@@ -27,48 +27,18 @@
         <property name="redisService" ref="redisService"/>
     </bean>
 
+    <bean name="creditLogService" class="com.xiayule.getll.service.impl.CreditLogServiceImpl">
+        <property name="redisService" ref="redisService"/>
+    </bean>
+
+
     <bean name="subscribeAction" class="com.xiayule.getll.action.SubscribeAction">
         <property name="subscriberService" ref="subscribeService"/>
     </bean>
 
-
-
-    <!-- spring 集成 QuartZ -->
-
-    <!-- 线程执行器配置，用于任务注册 -->
-    <bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
-        <property name="corePoolSize" value="10" />
-        <property name="maxPoolSize" value="100" />
-        <property name="queueCapacity" value="500" />
-    </bean>
-
-
-    <!-- 业务对象 -->
-    <bean id="jobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobTaskImpl">
-        <property name="playService" ref="playService"/>
+    <bean name="searchAction" class="com.xiayule.getll.action.SearchAction">
         <property name="subscriberService" ref="subscribeService"/>
     </bean>
 
-    <!-- 调度业务 -->
-    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="jobTask" />
-        <property name="targetMethod" value="doJob" />
-    </bean>
 
-    <!-- 增加调度触发器 -->
-    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
-        <property name="jobDetail" ref="jobDetail" />
-        <!-- 每天6点执行任务 -->
-        <property name="cronExpression" value="0 52 13 * * ?" />
-    </bean>
-
-    <!-- 设置调度 -->
-    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-        <property name="triggers">
-            <list>
-                <ref bean="cronTrigger" />
-            </list>
-        </property>
-        <property name="taskExecutor" ref="executor" />
-    </bean>
 </beans>

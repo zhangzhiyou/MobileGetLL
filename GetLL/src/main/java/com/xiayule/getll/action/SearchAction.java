@@ -6,7 +6,7 @@ import com.xiayule.getll.service.SubscriberService;
 /**
  * Created by tan on 14-7-22.
  */
-public class SubscribeAction implements Action {
+public class SearchAction implements Action {
     private SubscriberService subscriberService;
 
     private String mobile;
@@ -14,21 +14,11 @@ public class SubscribeAction implements Action {
 
     @Override
     public String execute() throws Exception {
-        if (mobile.equals("")) {
 
-            return ERROR;
-        }
-
-        // TODO:需要序列号
-        if (subscriberService.subscribe(mobile, "try")) {
-            return SUCCESS;
-        } else {
-            tip = "请输入有效的序列号";
-            return ERROR;
-        }
+        return SUCCESS;
     }
 
-    // set and get methods
+    // get and set methods
 
 
     public void setSubscriberService(SubscriberService subscriberService) {

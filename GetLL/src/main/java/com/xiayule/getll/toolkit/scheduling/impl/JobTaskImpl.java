@@ -59,6 +59,13 @@ public class JobTaskImpl implements JobTask {
 
                     remainTimes = Integer.parseInt(playService.queryScore().getString("times"));
 
+                    try {
+                        // 等待 3 秒，保险起见
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                     System.out.println(" 剩余次数:" + remainTimes);
                 } while (remainTimes > 0);
             }

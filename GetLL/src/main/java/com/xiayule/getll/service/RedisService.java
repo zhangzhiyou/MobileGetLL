@@ -1,5 +1,6 @@
 package com.xiayule.getll.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -132,4 +133,40 @@ public interface RedisService {
      * h[ae]llo 匹配 hello 和 hallo ，但不匹配 hillo
      */
     public Set<String> keys(String pattern);
+
+    /**
+     * 将一个值 value 插入到列表 key 的<strong>表头</strong>
+     * 如果 key 不存在，一个空列表会被创建并执行 LPUSH 操作。
+     * 当 key 存在但不是列表类型时，返回一个错误。
+     *
+     * @param key
+     * @param value
+     * @return 执行 LPUSH 命令后，列表的长度。
+     */
+    public Long lpush(String key, String value);
+
+    /**
+     * 将一个值 value 插入到列表 key 的表尾(最右边)。
+     * 如果 key 不存在，一个空列表会被创建并执行 RPUSH 操作。
+     * 当 key 存在但不是列表类型时，返回一个错误。
+     *
+     * @param key
+     * @param value
+     * @return 执行 RPUSH 操作后，表的长度。
+     */
+    public Long rpush(String key, String value);
+
+    /**
+     * 返回列表 key 中指定区间内的元素，区间以偏移量 start 和 stop 指定。
+     * 下标(index)参数 start 和 stop 都以 0 为底，也就是说，以 0 表示列表的第一个元素，以 1 表示列表的第二个元素，以此类推。
+     * 你也可以使用负数下标，以 -1 表示列表的最后一个元素， -2 表示列表的倒数第二个元素，以此类推。
+     *
+     * 返回全部元素可以 (0,-1)
+     *
+     * @param key
+     * @param start
+     * @param end
+     * @return
+     */
+    public List<String> lrange(String key, long start, long end);
 }

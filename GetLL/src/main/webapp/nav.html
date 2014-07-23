@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link href="http://raining.qiniudn.com/bootstrap.min.css" rel="stylesheet">
+    <script src="http://raining.qiniudn.com/jquery.min.js"></script>
+    <script src="http://raining.qiniudn.com/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#sub_mobile").click(function() {
+                var mobileReg_ = /^1\d{10}$/;
+
+                var mobile = parseMobile($.trim($("#mobile").val()));
+
+                var $tip = $("#tip");
+
+                if (!mobile) {
+                    $tip.html("手机号不能为空")
+                    return false;
+                } else if (!mobileReg_.test(mobile)) {
+                    $("#tip").html("要求输入移动手机号哦")
+                    return false;
+                }
+
+                return true;
+            })
+        });
+
+        function parseMobile(mobile) {
+            mobile = mobile.replace(/\-/g, "");
+            if (mobile.indexOf("+86") == 0) {
+                mobile = mobile.substr(3);
+            } else if (mobile.indexOf("86") == 0) {
+                mobile = mobile.substr(2);
+            }
+            return mobile;
+        }
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

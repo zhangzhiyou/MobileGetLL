@@ -1,6 +1,9 @@
 package com.xiayule.getll;
 
 import com.xiayule.getll.service.CreditLogService;
+import com.xiayule.getll.service.PlayService;
+import com.xiayule.getll.service.impl.PlayServiceImpl;
+import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -37,7 +40,7 @@ public class Test {
     //    System.out.println(SerialNumberUtils.getSerialNumber());*/
 
 
-        // 日志测试
+      /*  // 日志测试
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
         CreditLogService creditLogService = ctx.getBean("creditLogService", CreditLogService.class);
 
@@ -55,7 +58,7 @@ public class Test {
                 System.out.println(s);
             }
         }
-
+*/
         /*// 流量币计数 测试
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
         CreditService creditService = ctx.getBean("creditService", CreditService.class);
@@ -71,5 +74,9 @@ public class Test {
         System.out.println(creditService.getRank("18369905136"));*/
 
 
+        logger.info("ha");
+        logger.debug("wa");
     }
+    private static Logger logger = Logger.getLogger(PlayService.class);
+
 }

@@ -5,6 +5,7 @@ import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
 import org.apache.http.client.CookieStore;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,9 @@ import java.util.List;
  * 摇奖等进行操作的类
  */
 public class PlayServiceImpl implements PlayService {
+    // 输出到系统日志
+    private static Logger logger = Logger.getLogger(PlayService.class);
+
     private HttpService httpService;
     private CookieService cookieService;
     private CreditLogService creditLogService;
@@ -29,15 +33,17 @@ public class PlayServiceImpl implements PlayService {
     public void autoPlay(String mobile) {
         this.setMobile(mobile);
 
-        boolean logined = true;
+        logger.info("JobTask:" + "执行任务:" + "订阅者:" + mobile);
 
         // 如果未登录, 就登录
         if (!this.isLogined()) {
-//            creditLogService.log(mobile, "未登录, 进行登录");
-            logined = false;
+            logger.info(mobile + " 未登录, 进行登录");
+            creditLogService.log(mobile, "未登录, 进行登录");
+
             this.loginDo();
 
-//            creditLogService.log(mobile, "登录成功");
+            logger.info(mobile + " 登录成功");
+            creditLogService.log(mobile, "登录成功");
         }
 
         // 累加每日奖励, 并接收返回结果
@@ -48,9 +54,10 @@ public class PlayServiceImpl implements PlayService {
             creditService.addCredit(mobile, firstShakeGiveCredit);
         }
 
-        //            如果已经登录
+        // 如果已经登录
         int remainTimes = this.getRemainTimes();
 
+        logger.info(mobile + " 还剩 " + remainTimes + " 次");
         creditLogService.log(mobile, "还剩 " + remainTimes + " 次");
 
         if (remainTimes > 0) {
@@ -61,6 +68,8 @@ public class PlayServiceImpl implements PlayService {
                 String winName = this.draw();
 
                 creditLogService.log(mobile, "第" + (++cnt) + "次摇奖,获得奖励:"
+                        + winName);
+                logger.info(mobile + " 第" + cnt + "次摇奖,获得奖励:"
                         + winName);
 
                 // 如果获得的流量币，就要 计数
@@ -83,26 +92,18 @@ public class PlayServiceImpl implements PlayService {
                 }
 
                 creditLogService.log(mobile, " 剩余次数:" + remainTimes);
+                logger.info(mobile + " 剩余次数:" + remainTimes);
             } while (remainTimes > 0);
-
-
-
-        }
-
-        // 为了保证顺序，将代码放到这里
-        // 即 如果没登录，记录日志
-        //然后是 概况的日志
-        // 然后是 获奖记录
-        // 注意，顺序, logHead是反过来的
-        if (!logined) {
-            creditLogService.logHead(mobile, "登录成功");
-            creditLogService.logHead(mobile, "未登录, 进行登录");
         }
 
         // 总结性的日志，要放在 list 的最前面
         // 查询分数
         JSONObject queryScore = this.queryScore();
-        creditLogService.logHead(mobile, "连续登录:" + queryScore.getString("count_1") + "天"
+        creditLogService.log(mobile, "总计: 连续登录:" + queryScore.getString("count_1") + "天"
+                + " 今日奖励:" + queryScore.getString("todayCredit")
+                + " 当前流量币: " + queryScore.getString("credit"));
+
+        logger.info(mobile + " 总计: 连续登录:" + queryScore.getString("count_1") + "天"
                 + " 今日奖励:" + queryScore.getString("todayCredit")
                 + " 当前流量币: " + queryScore.getString("credit"));
     }

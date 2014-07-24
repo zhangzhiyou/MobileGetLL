@@ -22,7 +22,7 @@
 
         <action name="search" class="searchAction">
             <result name="success">/search.jsp</result>
-            <result name="error">/error.jsp</result>
+            <result name="error">/search.jsp</result>
         </action>
     </package>
 </struts>

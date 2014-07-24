@@ -1,7 +1,6 @@
 package com.xiayule.getll;
 
 import com.xiayule.getll.service.CreditLogService;
-import com.xiayule.getll.service.impl.PlayServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -42,10 +41,10 @@ public class Test {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
         CreditLogService creditLogService = ctx.getBean("creditLogService", CreditLogService.class);
 
-        creditLogService.writeLog("110", "开始服务");
-        creditLogService.writeLog("110", "开始了");
+        creditLogService.log("18369905136", "日志记录开始");
+        creditLogService.log("18369905136", "日志记录1");
 
-        Map<String, List<String>> rs = creditLogService.readLog("110");
+        Map<String, List<String>> rs = creditLogService.readLog("18369905136");
 
         Set<String> keys = rs.keySet();
 
@@ -56,5 +55,21 @@ public class Test {
                 System.out.println(s);
             }
         }
+
+        /*// 流量币计数 测试
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
+        CreditService creditService = ctx.getBean("creditService", CreditService.class);
+
+        creditService.addCredit("18369905136", 0.1d);
+        creditService.addCredit("18369905135", 0.2d);
+
+        creditService.addCredit("18369905136", 0.2d);
+
+        System.out.println(creditService.getCredit("18369905136"));
+        System.out.println(creditService.getCredit("18369905135"));
+
+        System.out.println(creditService.getRank("18369905136"));*/
+
+
     }
 }

@@ -6,7 +6,7 @@ import java.util.Calendar;
 /**
  * Created by tan on 14-6-25.
  */
-public class TimeUtil {
+public class TimeUtils {
     public static SimpleDateFormat sdf_line;
 
     static
@@ -29,9 +29,11 @@ public class TimeUtil {
     }
 
     public static void main(String[] args) {
-        String log = "log_18369905136_" + getDate();
+      /*  String log = "log_18369905136_" + getDate();
         System.out.println(log);
         String[] ss = log.split("_");
-        System.out.println(ss[0] + " " + ss[1] + " " + ss[2]);
+        System.out.println(ss[0] + " " + ss[1] + " " + ss[2]);*/
+
+        System.out.println(Double.parseDouble("0.1"));
     }
 }

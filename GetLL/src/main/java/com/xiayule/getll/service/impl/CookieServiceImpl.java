@@ -11,6 +11,7 @@ import java.util.*;
 
 /**
  * Created by tan on 14-7-20.
+ * 操作本地cookie的类
  */
 public class CookieServiceImpl implements CookieService {
     private RedisService redisService;

@@ -10,8 +10,10 @@ public interface PlayService {
     public int getRemainTimes();
     public String loginDo();
     public String draw();
-    public String addDrawScore();
+    public double addDrawScore();
     public boolean isLogined();
     public void setMobile(String mobile);
     public JSONObject queryScore();
+
+    public void autoPlay(String mobile);
 }

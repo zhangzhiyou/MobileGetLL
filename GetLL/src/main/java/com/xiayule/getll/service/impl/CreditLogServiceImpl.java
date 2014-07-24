@@ -2,7 +2,7 @@ package com.xiayule.getll.service.impl;
 
 import com.xiayule.getll.service.CreditLogService;
 import com.xiayule.getll.service.RedisService;
-import com.xiayule.getll.utils.TimeUtil;
+import com.xiayule.getll.utils.TimeUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,20 +11,43 @@ import java.util.Set;
 
 /**
  * Created by tan on 14-7-23.
+ * 用来记录获奖记录
+ *
+ * 使用方法:
+ * creditLogService.log("110", "开始服务");
+ * creditLogService.log("110", "开始了");
+
+ * Map<String, List<String>> rs = creditLogService.readLog("110");
+
+ * Set<String> keys = rs.keySet();
+
+ * for (String key : keys) {
+ *   System.out.println(key + ":");
+ *   List<String> list = rs.get(key);
+ *   for (String s : list) {
+ *     System.out.println(s);
+ *   }
+ * }
  */
+
 public class CreditLogServiceImpl implements CreditLogService {
     private RedisService redisService;
 
-    public void writeLog(String mobile, String content) {
-        String date = TimeUtil.getDate();
+    public void log(String mobile, String content) {
+        String date = TimeUtils.getDate();
         redisService.rpush("log_" + mobile + "_" + date, content);
     }
 
+    public void logHead(String mobile, String content) {
+        String date = TimeUtils.getDate();
+        redisService.lpush("log_" + mobile + "_" + date, content);
+    }
+
     /**
-     * 获得的格式为(哈希键是日期，值是日志列表):
+     * 返回的格式为(哈希键是日期，值是日志列表, 自动按时间 新->旧 排序):
      * {
-     *     2014-07-20:[..., ..., ...],
      *     2014-08-21:[..., ..., ...]
+     *     2014-07-20:[..., ..., ...],
      * }
      * @param mobile
      * @return
@@ -54,4 +77,6 @@ public class CreditLogServiceImpl implements CreditLogService {
     public void setRedisService(RedisService redisService) {
         this.redisService = redisService;
     }
+
+
 }

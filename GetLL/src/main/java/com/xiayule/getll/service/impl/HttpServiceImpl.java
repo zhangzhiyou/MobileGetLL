@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * Created by tan on 14-7-20.
+ * Http 的 post 和 get，能够操作 cookie
  */
 public class HttpServiceImpl implements HttpService {
     private static DefaultHttpClient defaultHttpClient;

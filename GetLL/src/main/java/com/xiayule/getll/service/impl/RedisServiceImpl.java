@@ -2,6 +2,7 @@ package com.xiayule.getll.service.impl;
 
 import com.xiayule.getll.service.RedisService;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Tuple;
 
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 /**
  * Created by tan on 14-7-21.
+ * Redis 操作的类
  */
 public class RedisServiceImpl implements RedisService {
     private static Jedis jedis;
@@ -173,6 +175,7 @@ public class RedisServiceImpl implements RedisService {
      */
     public Set<String> keys(String pattern) {
         return jedis.keys(pattern);
+
     }
 
     /**
@@ -215,5 +218,182 @@ public class RedisServiceImpl implements RedisService {
      */
     public List<String> lrange(String key, long start, long end) {
         return jedis.lrange(key, start, end);
+    }
+
+    /**
+     * 将一个 member 元素及其 score 值加入到有序集 key 当中。
+     * score 值可以是整数值或双精度浮点数。
+     * 如果 key 不存在，则创建一个空的有序集并执行 ZADD 操作。
+     * 当 key 存在但不是有序集类型时，返回一个错误。
+     * @param key
+     * @param score
+     * @param member
+     * @return
+     */
+    public Long zadd(String key, double score, String member) {
+        return jedis.zadd(key, score, member);
+    }
+
+    /**
+     * 返回有序集 key 的基数。
+     * @param key
+     * @return 当 key 存在且是有序集类型时，返回有序集的基数。当 key 不存在时，返回 0 。
+     */
+    public Long zcard(String key) {
+        return jedis.zcard(key);
+    }
+
+    /**
+     * 返回有序集 key 中， score 值在 min 和 max 之间(默认包括 score 值等于 min 或 max )的成员的数量。
+     *
+     * @param key
+     * @param min
+     * @param max
+     * @return
+     */
+    public Long zcount(String key, double min, double max) {
+        return jedis.zcount(key, min, max);
+    }
+
+    /**
+     * 为有序集 key 的成员 member 的 score 值加上增量 increment 。
+     * 可以通过传递一个负数值 increment ，让 score 减去相应的值，比如 ZINCRBY key -5 member ，就是让 member 的 score 值减去 5 。
+     *
+     * 当 key 不存在，或 member 不是 key 的成员时， ZINCRBY key increment member 等同于 ZADD key increment member 。
+     * 当 key 不是有序集类型时，返回一个错误。
+     * score 值可以是整数值或双精度浮点数。
+     *
+     * @param key
+     * @param score
+     * @param member
+     * @return member 成员的新 score 值，以字符串形式表示。
+     */
+    public Double zincrby(String key, double score, String member) {
+        return jedis.zincrby(key, score, member);
+    }
+
+
+    /**
+     * 返回有序集 key 中，指定区间内的成员。
+     * 其中成员的位置按 score 值递增(从小到大)来排序。
+     * 具有相同 score 值的成员按字典序(lexicographical order )来排列。
+     * 如果你需要成员按 score 值递减(从大到小)来排列，请使用 ZREVRANGE 命令。
+     * 下标参数 start 和 stop 都以 0 为底，也就是说，以 0 表示有序集第一个成员，以 1 表示有序集第二个成员，以此类推。
+     * 你也可以使用负数下标，以 -1 表示最后一个成员， -2 表示倒数第二个成员，以此类推。
+     * 比如说，当 start 的值比有序集的最大下标还要大，或是 start > stop 时， ZRANGE 命令只是简单地返回一个空列表。
+     * 另一方面，假如 stop 参数的值比有序集的最大下标还要大，那么 Redis 将 stop 当作最大下标来处理。
+
+     * @param key
+     * @param start
+     * @param end
+     * @return
+     */
+    public Set<String> zrange(String key, int start, int end) {
+        return jedis.zrange(key, start, end);
+    }
+
+    /**
+     * 通 zrange，但是返回score
+     * @param key
+     * @param start
+     * @param end
+     * @return
+     */
+    public Set<Tuple> zrangeWithScores(String key, int start, int end) {
+        return jedis.zrangeWithScores(key, start, end);
+    }
+
+    /**
+     * 详情参见 zrange
+     * @param key
+     * @param start
+     * @param end
+     * @return
+     */
+    public Set<String> zrevrange(String key, int start, int end) {
+        return jedis.zrevrange(key, start, end);
+    }
+
+    /**
+     * 详情参见 zrangeWithScores
+     * @param key
+     * @param start
+     * @param end
+     * @return
+     */
+    public Set<Tuple> zrevrangeWithScores(String key, int start, int end) {
+        return jedis.zrevrangeWithScores(key, start, end);
+    }
+
+    /**
+     * 为给定 key 设置生存时间，当 key 过期时(生存时间为 0 )，它会被自动删除。
+     * 在 Redis 中，带有生存时间的 key 被称为『易失的』(volatile)。
+     *
+     * 生存时间可以通过使用 DEL 命令来删除整个 key 来移除，或者被 SET 和 GETSET 命令覆写(overwrite)，这意味着，如果一个命令只是修改(alter)一个带生存时间的 key 的值而不是用一个新的 key 值来代替(replace)它的话，那么生存时间不会被改变。
+     * 比如说，对一个 key 执行 INCR 命令，对一个列表进行 LPUSH 命令，或者对一个哈希表执行 HSET 命令，这类操作都不会修改 key 本身的生存时间。
+     *
+     * 另一方面，如果使用 RENAME 对一个 key 进行改名，那么改名后的 key 的生存时间和改名前一样。
+     *
+     * RENAME 命令的另一种可能是，尝试将一个带生存时间的 key 改名成另一个带生存时间的 another_key ，这时旧的 another_key (以及它的生存时间)会被删除，然后旧的 key 会改名为 another_key ，因此，新的 another_key 的生存时间也和原本的 key 一样。
+     *
+     * 使用 PERSIST 命令可以在不删除 key 的情况下，移除 key 的生存时间，让 key 重新成为一个『持久的』(persistent) key 。
+     *
+     * 可以对一个已经带有生存时间的 key 执行 EXPIRE 命令，新指定的生存时间会取代旧的生存时间。
+     *
+     * 设置成功返回 1 。
+     * 当 key 不存在或者不能为 key 设置生存时间时(比如在低于 2.1.3 版本的 Redis 中你尝试更新 key 的生存时间)，返回 0 。
+     *
+     * @param key
+     * @param seconds
+     * @return 成功1, 失败0
+     */
+    public Long expire(String key, int seconds) {
+        return jedis.expire(key, seconds);
+    }
+
+    /**
+     * EXPIREAT 的作用和 EXPIRE 类似，都用于为 key 设置生存时间。
+     * 不同在于 EXPIREAT 命令接受的时间参数是 UNIX 时间戳(unix timestamp)。
+     * @param key
+     * @param unixTime
+     * @return 成功返回1,失败返回 0
+     */
+    public Long expireat(String key, long unixTime) {
+        return jedis.expireAt(key, unixTime);
+    }
+
+    /**
+     * 返回有序集 key 中成员 member 的排名。其中有序集成员按 score 值递增(从小到大)顺序排列。
+     * 排名以 0 为底，也就是说， score 值最小的成员排名为 0 。
+     * 使用 ZREVRANK 命令可以获得成员按 score 值递减(从大到小)排列的排名。
+     * @param key
+     * @param member
+     * @return 如果 member 是有序集 key 的成员，返回 member 的排名。如果 member 不是有序集 key 的成员，返回 nil 。
+     */
+    public Long zrank(String key, String member) {
+        return jedis.zrank(key, member);
+    }
+
+    /**
+     * 返回有序集 key 中成员 member 的排名。其中有序集成员按 score 值递减(从大到小)排序。
+     * 排名以 0 为底，也就是说， score 值最大的成员排名为 0 。
+     * 使用 ZRANK 命令可以获得成员按 score 值递增(从小到大)排列的排名。
+     * @param key
+     * @param member
+     * @return 如果 member 是有序集 key 的成员，返回 member 的排名;如果 member 不是有序集 key 的成员，返回 nil 。
+     */
+    public Long zrevrank(String key, String member) {
+        return jedis.zrevrank(key, member);
+    }
+
+    /**
+     * 返回有序集 key 中，成员 member 的 score 值。
+     * 如果 member 元素不是有序集 key 的成员，或 key 不存在，返回 nil 。
+     * @param key
+     * @param member
+     * @return
+     */
+    public Double zscore(String key, String member) {
+        return jedis.zscore(key, member);
     }
 }

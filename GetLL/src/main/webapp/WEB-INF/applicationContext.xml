@@ -21,6 +21,8 @@
 
         <property name="cookieService" ref="cookieService"/>
         <property name="httpService" ref="httpService"/>
+        <property name="creditLogService" ref="creditLogService"/>
+        <property name="creditService" ref="creditService"/>
     </bean>
 
     <bean name="subscribeService" class="com.xiayule.getll.service.impl.SubscriberServiceImpl">
@@ -32,14 +34,19 @@
     </bean>
 
 
+    <bean name="creditService" class="com.xiayule.getll.service.impl.CreditServiceImpl">
+        <property name="redisService" ref="redisService"/>
+    </bean>
+
     <bean name="subscribeAction" class="com.xiayule.getll.action.SubscribeAction">
         <property name="subscriberService" ref="subscribeService"/>
     </bean>
 
     <bean name="searchAction" class="com.xiayule.getll.action.SearchAction">
         <property name="subscriberService" ref="subscribeService"/>
+        <property name="creditService" ref="creditService"/>
+        <property name="creditLogService" ref="creditLogService"/>
     </bean>
-
 
 
 
@@ -69,7 +76,7 @@
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="jobDetail" />
         <!-- 每天6点执行任务 -->
-        <property name="cronExpression" value="0 13 23 * * ?" />
+        <property name="cronExpression" value="0 16 15 * * ?" />
     </bean>
 
     <!-- 设置调度 -->

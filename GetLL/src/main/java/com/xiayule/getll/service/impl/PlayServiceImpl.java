@@ -1,8 +1,6 @@
 package com.xiayule.getll.service.impl;
 
-import com.xiayule.getll.service.CookieService;
-import com.xiayule.getll.service.HttpService;
-import com.xiayule.getll.service.PlayService;
+import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
 import org.apache.http.client.CookieStore;
@@ -10,19 +8,103 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by tan on 14-7-20.
+ * 摇奖等进行操作的类
  */
 public class PlayServiceImpl implements PlayService {
     private HttpService httpService;
     private CookieService cookieService;
+    private CreditLogService creditLogService;
+    private CreditService creditService;
 
     private String mobile;
 
     public PlayServiceImpl(String mobile) {
         this.mobile = mobile;
+    }
+
+    @Override
+    public void autoPlay(String mobile) {
+        this.setMobile(mobile);
+
+        boolean logined = true;
+
+        // 如果未登录, 就登录
+        if (!this.isLogined()) {
+//            creditLogService.log(mobile, "未登录, 进行登录");
+            logined = false;
+            this.loginDo();
+
+//            creditLogService.log(mobile, "登录成功");
+        }
+
+        // 累加每日奖励, 并接收返回结果
+        double firstShakeGiveCredit = this.addDrawScore();
+
+        // 流量币计数
+        if (firstShakeGiveCredit > 0) {
+            creditService.addCredit(mobile, firstShakeGiveCredit);
+        }
+
+        //            如果已经登录
+        int remainTimes = this.getRemainTimes();
+
+        creditLogService.log(mobile, "还剩 " + remainTimes + " 次");
+
+        if (remainTimes > 0) {
+            // 有可能抽奖过程中获得再一次奖励
+
+            int cnt = 0;
+            do {
+                String winName = this.draw();
+
+                creditLogService.log(mobile, "第" + (++cnt) + "次摇奖,获得奖励:"
+                        + winName);
+
+                // 如果获得的流量币，就要 计数
+                // 解析出来获得的流量币
+                // 如果获得流量币，一般都是 '0.1个流量币' 这样的形式
+                if (winName.contains("个流量币")) {
+                    double credit = Double.parseDouble(winName.replace("个流量币", ""));
+                    creditService.addCredit(mobile, credit);
+                }
+
+                this.addDrawScore();
+
+                remainTimes = Integer.parseInt(this.queryScore().getString("times"));
+
+                try {
+                    // 等待 3 秒，保险起见
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                creditLogService.log(mobile, " 剩余次数:" + remainTimes);
+            } while (remainTimes > 0);
+
+
+
+        }
+
+        // 为了保证顺序，将代码放到这里
+        // 即 如果没登录，记录日志
+        //然后是 概况的日志
+        // 然后是 获奖记录
+        // 注意，顺序, logHead是反过来的
+        if (!logined) {
+            creditLogService.logHead(mobile, "登录成功");
+            creditLogService.logHead(mobile, "未登录, 进行登录");
+        }
+
+        // 总结性的日志，要放在 list 的最前面
+        // 查询分数
+        JSONObject queryScore = this.queryScore();
+        creditLogService.logHead(mobile, "连续登录:" + queryScore.getString("count_1") + "天"
+                + " 今日奖励:" + queryScore.getString("todayCredit")
+                + " 当前流量币: " + queryScore.getString("credit"));
     }
 
     /**
@@ -115,6 +197,8 @@ public class PlayServiceImpl implements PlayService {
         String json = post(urlDrawPath, null);
 
         String winName = getFromResult(json, "winName");
+        //TODO: DRAW WIN ID
+        //TODO:如果想要订购业务，可以在这里增加代码
         String winId = getFromResult(json, "winID");
 
         if (winName == null || winName.equals("")) {
@@ -125,11 +209,17 @@ public class PlayServiceImpl implements PlayService {
     }
 
 
-    public String addDrawScore() {
+    public double addDrawScore() {
         String urlAddDrawScore = "http://shake.sd.chinamobile.com/score?method=addDrawScore";
 
         String json = get(urlAddDrawScore);
-        return json;
+
+        double firstShakeGiveCredit = JsonUtils.stringToJson(json).getJSONObject("result")
+                .getJSONArray("list")
+                .getJSONObject(0)
+                .getDouble("firstShakeGiveCredit");
+
+        return firstShakeGiveCredit;
     }
 
     /**
@@ -215,5 +305,13 @@ public class PlayServiceImpl implements PlayService {
 
     public void setHttpService(HttpService httpService) {
         this.httpService = httpService;
+    }
+
+    public void setCreditLogService(CreditLogService creditLogService) {
+        this.creditLogService = creditLogService;
+    }
+
+    public void setCreditService(CreditService creditService) {
+        this.creditService = creditService;
     }
 }

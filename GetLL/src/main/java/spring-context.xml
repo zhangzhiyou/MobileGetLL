@@ -41,4 +41,7 @@
     </bean>
 
 
+    <bean name="creditService" class="com.xiayule.getll.service.impl.CreditServiceImpl">
+        <property name="redisService" ref="redisService"/>
+    </bean>
 </beans>

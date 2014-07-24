@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tan
@@ -17,6 +18,7 @@
 <form action="search.action" method="post">
     <table>
         <tr>
+            <td></td>
             <td><span id="tip" style="color: red">${tip}</span></td>
         </tr>
         <tr>
@@ -28,6 +30,23 @@
         </tr>
     </table>
 </form>
+
+
+
+<c:if test="${!empty ret}">
+    ${mobile} <br />
+    ${rank} <br/>
+    ${credit} <br/>
+    logs<br/>
+    <%--${logs} <br>--%>
+
+    <c:forEach var="log" items="${logs}">
+        ${log.key}<br/>
+        <c:forEach var="detail" items="${log.value}">
+            ${detail} <br/>
+        </c:forEach>
+    </c:forEach>
+</c:if>
 
 </body>
 </html>

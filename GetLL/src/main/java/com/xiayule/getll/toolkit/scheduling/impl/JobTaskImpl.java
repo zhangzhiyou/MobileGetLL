@@ -25,6 +25,8 @@ public class JobTaskImpl implements JobTask {
 
             playService.autoPlay(sub);
         }
+
+        System.out.println("JobTask:" + "任务执行完毕");
     }
 
     public void setPlayService(PlayService playService) {

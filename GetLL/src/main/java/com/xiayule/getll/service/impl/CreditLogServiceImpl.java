@@ -4,10 +4,7 @@ import com.xiayule.getll.service.CreditLogService;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.utils.TimeUtils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by tan on 14-7-23.
@@ -34,12 +31,12 @@ public class CreditLogServiceImpl implements CreditLogService {
     private RedisService redisService;
 
     public void log(String mobile, String content) {
-        String date = TimeUtils.getDate();
+        String date = TimeUtils.getTodayDate();
         redisService.rpush("log_" + mobile + "_" + date, content);
     }
 
     public void logHead(String mobile, String content) {
-        String date = TimeUtils.getDate();
+        String date = TimeUtils.getTodayDate();
         redisService.lpush("log_" + mobile + "_" + date, content);
     }
 
@@ -58,7 +55,8 @@ public class CreditLogServiceImpl implements CreditLogService {
 
         Set<String> keys = redisService.keys(prefix+"*");
 
-        Map<String, List<String>> rs = new HashMap<String, List<String>>();
+        // 让 日志 在 hash 中逆序排序
+        Map<String, List<String>> rs = new TreeMap<String, List<String>>(Collections.reverseOrder());
 
         for (String key : keys) {
             List<String> logs = redisService.lrange(key, 0, -1);

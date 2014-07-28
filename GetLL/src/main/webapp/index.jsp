@@ -28,6 +28,40 @@
             <td><input id="sub_mobile" onsubmit="checkMobile(this)" type="submit" value="订购"></td>
         </tr>
     </table>
+
+    <!--英雄榜-->
+    <div class="bangdan" style="width: 30%">
+        <div class="bangdan-title">流量汇英雄榜</div>
+        <div class="juci03"></div>
+        <div class="bangdan-content">
+            <div class="first" id="bigWiner">排行</div>
+            <div id="winList" style="overflow: hidden;clear:both;">
+                <div class="mingdan">
+                    <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+                        <thead>
+                        <tr>
+                            <th>排行</th>
+                            <th>手机号</th>
+                            <th>流量</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <!--                            <div><span class="mingdan-name">1</span><span>山东18369905136获得0.3个流量币</span></div>-->
+                                1
+                            </td>
+                            <td>
+                                2
+                            </td>
+                            <td>3</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 </body>
 </html>

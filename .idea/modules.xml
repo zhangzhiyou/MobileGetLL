@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GetLL/GetLL.iml" filepath="$PROJECT_DIR$/GetLL/GetLL.iml" />
       <module fileurl="file://$PROJECT_DIR$/GetLL/getll.iml" filepath="$PROJECT_DIR$/GetLL/getll.iml" />
     </modules>
   </component>

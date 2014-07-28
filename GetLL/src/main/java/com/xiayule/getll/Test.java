@@ -1,8 +1,10 @@
 package com.xiayule.getll;
 
 import com.xiayule.getll.service.CreditLogService;
+import com.xiayule.getll.service.CreditService;
 import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.service.impl.PlayServiceImpl;
+import com.xiayule.getll.utils.TimeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -71,11 +73,25 @@ public class Test {
         System.out.println(creditService.getCredit("18369905136"));
         System.out.println(creditService.getCredit("18369905135"));
 
-        System.out.println(creditService.getRank("18369905136"));*/
+        System.out.println(creditService.getRankByTotalAtHere("18369905136"));*/
 
-
+/*
         logger.info("ha");
-        logger.debug("wa");
+        logger.debug("wa");*/
+
+        // 流量币每日记录测试
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
+        CreditService creditService = ctx.getBean("creditService", CreditService.class);
+
+        creditService.setDayCredit("18369905136", 3.12);
+        creditService.setDayCredit("18369905136", 4.12);
+        System.out.println(creditService.getDayCredit("18369905136", TimeUtils.getTodayDate()));
+
+        String[] days = creditService.getDaysOfCredit("18369905136");
+        for (String day : days) {
+            System.out.println(day);
+            System.out.println(day + ":" + creditService.getDayCredit(day));
+        }
     }
     private static Logger logger = Logger.getLogger(PlayService.class);
 

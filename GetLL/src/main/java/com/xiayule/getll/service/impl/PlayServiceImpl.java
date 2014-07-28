@@ -99,12 +99,15 @@ public class PlayServiceImpl implements PlayService {
         // 总结性的日志，要放在 list 的最前面
         // 查询分数
         JSONObject queryScore = this.queryScore();
+
+        creditService.setDayCredit(mobile, queryScore.getDouble("todayCredit"));
+
         creditLogService.log(mobile, "总计: 连续登录:" + queryScore.getString("count_1") + "天"
-                + " 今日奖励:" + queryScore.getString("todayCredit")
+                + " 今日总计:" + queryScore.getString("todayCredit")
                 + " 当前流量币: " + queryScore.getString("credit"));
 
         logger.info(mobile + " 总计: 连续登录:" + queryScore.getString("count_1") + "天"
-                + " 今日奖励:" + queryScore.getString("todayCredit")
+                + " 今日总计:" + queryScore.getString("todayCredit")
                 + " 当前流量币: " + queryScore.getString("credit"));
     }
 

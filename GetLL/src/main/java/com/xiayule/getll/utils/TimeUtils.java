@@ -14,10 +14,14 @@ public class TimeUtils {
         sdf_line = new SimpleDateFormat("yyyy-MM-dd");
     }
 
-    public static String getDate() {
+    public static String getTodayDate() {
         Calendar dt = Calendar.getInstance();
 
         return sdf_line.format(dt.getTime());
+    }
+
+    public static int getSecondOfOneWeek() {
+        return 60*60*24*7;
     }
 
     public static String getDateWithUnderLine(Calendar c) {
@@ -29,7 +33,7 @@ public class TimeUtils {
     }
 
     public static void main(String[] args) {
-      /*  String log = "log_18369905136_" + getDate();
+      /*  String log = "log_18369905136_" + getTodayDate();
         System.out.println(log);
         String[] ss = log.split("_");
         System.out.println(ss[0] + " " + ss[1] + " " + ss[2]);*/

@@ -48,7 +48,9 @@
         <property name="creditLogService" ref="creditLogService"/>
     </bean>
 
-
+    <bean name="ajaxAction" class="com.xiayule.getll.action.AjaxAction">
+        <property name="subscriberService" ref="subscribeService"/>
+    </bean>
 
     <!-- spring 集成 QuartZ -->
 
@@ -58,7 +60,6 @@
         <property name="maxPoolSize" value="100" />
         <property name="queueCapacity" value="500" />
     </bean>
-
 
     <!-- 业务对象 -->
     <bean id="jobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobTaskImpl">
@@ -76,7 +77,7 @@
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="jobDetail" />
         <!-- 每天6点执行任务 -->
-        <property name="cronExpression" value="0 40 21 * * ?" />
+        <property name="cronExpression" value="0 8 0 * * ?" />
     </bean>
 
     <!-- 设置调度 -->

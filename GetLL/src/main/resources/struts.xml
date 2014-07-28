@@ -25,4 +25,26 @@
             <result name="error">/search.jsp</result>
         </action>
     </package>
+
+    <package name="ajax" namespace="/ajax" extends="struts-default">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+        </result-types>
+
+        <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+        </interceptors>
+        
+        <action name="login" class="ajaxAction" method="login">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="loadLoginMobile" class="ajaxAction" method="loadLoginMobile">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+    </package>
 </struts>

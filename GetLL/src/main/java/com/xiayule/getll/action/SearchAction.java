@@ -30,7 +30,7 @@ public class SearchAction implements Action {
             String credit = DecimalUtils.formatDecial(creditService.getCredit(mobile));
 
             // 获得排名
-            Long rank = creditService.getRank(mobile);
+            Long rank = creditService.getRankByTotalAtHere(mobile);
 
             // 取得日志
             Map<String, List<String>> logs = creditLogService.readLog(mobile);
@@ -49,7 +49,6 @@ public class SearchAction implements Action {
             return SUCCESS;
         } else {
             tip = "该手机号未使用过本站服务!!!";
-
             return ERROR;
         }
     }

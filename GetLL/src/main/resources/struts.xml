@@ -46,5 +46,17 @@
                 <param name="root">json</param>
             </result>
         </action>
+
+        <action name="queryScore" class="ajaxAction" method="queryScore">
+            <result type="json">
+                <param name="root">jsonObj</param>
+            </result>
+        </action>
+
+        <action name="logout" class="ajaxAction" method="logout">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
     </package>
 </struts>

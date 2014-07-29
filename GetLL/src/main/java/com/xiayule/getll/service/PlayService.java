@@ -14,6 +14,11 @@ public interface PlayService {
     public boolean isLogined();
     public void setMobile(String mobile);
     public JSONObject queryScore();
+    /**
+     * 同 queryScore， 但是返回的是官方返回的 string
+     * @return
+     */
+    public String queryScoreWithSource();
 
     public void autoPlay(String mobile);
 }

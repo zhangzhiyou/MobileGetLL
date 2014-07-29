@@ -238,12 +238,21 @@ public class PlayServiceImpl implements PlayService {
      * @return
      */
     public JSONObject queryScore() {
-        String urlQueryScore = "http://shake.sd.chinamobile.com/score?method=queryScore";
-        String rs = get(urlQueryScore);
+        String rs = queryScoreWithSource();
         return JsonUtils.stringToJson(rs)
                 .getJSONObject("result")
                 .getJSONArray("list")
                 .getJSONObject(0);
+    }
+
+    /**
+     * 同 queryScore， 但是返回的是官方返回的 string
+     * @return
+     */
+    public String queryScoreWithSource() {
+        String urlQueryScore = "http://shake.sd.chinamobile.com/score?method=queryScore";
+        String rs = get(urlQueryScore);
+        return rs;
     }
 
     /**

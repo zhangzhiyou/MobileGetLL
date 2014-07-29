@@ -1,17 +1,13 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionContext;
-import com.xiayule.getll.domain.Result;
-import com.xiayule.getll.domain.User;
+import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.service.SubscriberService;
-import org.apache.http.impl.cookie.BasicClientCookie;
+import com.xiayule.getll.utils.JsonUtils;
+import net.sf.json.JSONObject;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.Cookie;
-import javax.xml.crypto.Data;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -19,10 +15,12 @@ import java.util.*;
  */
 public class AjaxAction {
     private SubscriberService subscriberService;
+    private PlayService playService;
 
     private String mobile;
 
     private Map json;
+    private JSONObject jsonObj;
 
     public String getRankByTotal(){
         json = new HashMap();
@@ -30,6 +28,8 @@ public class AjaxAction {
         json.put("status", "ok");
 
         json.put("mobile", mobile);
+
+        mobile = null;// 用完清空
 
         return Action.SUCCESS;
     }
@@ -57,6 +57,32 @@ public class AjaxAction {
         } else {
             json.put("status", "error");
         }
+
+        mobile = null;
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 退出登录，即清除 cookie
+     * @return
+     */
+    public String logout() {
+
+        // 退出登录，即清除 cookie
+        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                cookie.setPath("/");
+                cookie.setMaxAge(0);
+                // 设置 cookie
+                ServletActionContext.getResponse().addCookie(cookie);
+            }
+        }
+
+        json = new HashMap();
+        json.put("status", "ok");
 
         return Action.SUCCESS;
     }
@@ -92,6 +118,8 @@ public class AjaxAction {
             json.put("result", result);
         }
 
+        mobile = null;
+
         return Action.SUCCESS;
     }
 
@@ -102,6 +130,36 @@ public class AjaxAction {
     public String getRankByTotalAtHere() {
 
         return Action.SUCCESS;
+    }
+
+    /**
+     * 从官网上获取数据后，再转发回去
+     * @return
+     */
+    public String queryScore() {
+        String m = getMobileFromCookie();
+
+        playService.setMobile(m);
+
+        String strJson = playService.queryScoreWithSource();
+        jsonObj = JsonUtils.stringToJson(strJson);
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 从请求中获取Cookie中存储的手机号
+     * @return
+     */
+    private String getMobileFromCookie() {
+        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("mobile"))
+                return cookie.getValue();
+        }
+
+        return null;
     }
 
     // set and get methods
@@ -128,5 +186,17 @@ public class AjaxAction {
 
     public void setSubscriberService(SubscriberService subscriberService) {
         this.subscriberService = subscriberService;
+    }
+
+    public void setPlayService(PlayService playService) {
+        this.playService = playService;
+    }
+
+    public JSONObject getJsonObj() {
+        return jsonObj;
+    }
+
+    public void setJsonObj(JSONObject jsonObj) {
+        this.jsonObj = jsonObj;
     }
 }

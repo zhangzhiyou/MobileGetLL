@@ -16,7 +16,9 @@
 
     </bean>
 
-    <bean name="playService" class="com.xiayule.getll.service.impl.PlayServiceImpl">
+    <bean name="playService" class="com.xiayule.getll.service.impl.PlayServiceImpl"
+          scope="prototype">
+
         <constructor-arg value="123"/>
 
         <property name="cookieService" ref="cookieService"/>
@@ -50,7 +52,9 @@
 
     <bean name="ajaxAction" class="com.xiayule.getll.action.AjaxAction">
         <property name="subscriberService" ref="subscribeService"/>
+        <property name="playService" ref="playService"/>
     </bean>
+
 
     <!-- spring 集成 QuartZ -->
 

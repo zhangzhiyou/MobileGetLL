@@ -35,7 +35,7 @@ EventMan.prototype.parseMobileFormat = function (mobile) {
  * 检测是否登录
  * 如果已经登录,刷新页面，隐藏登录框，如果没有登录，显示登录框
  */
-EventMan.prototype.checkLogin = function() {
+EventMan.prototype.checkLogin = function(callback) {
     var that = this;
 
     $.getJSON("/ajax/loadLoginMobile.action", function(data) {
@@ -50,6 +50,10 @@ EventMan.prototype.checkLogin = function() {
             $("#loginContent").hide();
         } else {
             $("#loginContent").show();
+        }
+
+        if (callback) {
+            callback(data);
         }
     });
 };
@@ -91,6 +95,13 @@ EventMan.prototype.loginDo = function() {
 EventMan.prototype.refresh = function() {
     location.href = location.href;
 };
+
+/**
+ * 获取登录状态
+ */
+EventMan.prototype.isLogin = function() {
+    return this.loginMobile_ ? true : false;
+}
 
 var eventMan = new EventMan();
 eventMan.init();

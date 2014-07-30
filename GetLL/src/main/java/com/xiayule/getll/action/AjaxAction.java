@@ -1,9 +1,11 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
+import com.xiayule.getll.factory.CookieFactory;
 import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
+import org.apache.http.client.CookieStore;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
@@ -101,12 +103,19 @@ public class AjaxAction {
 
             json.put("result", result);
 
-            //ActionContext.getContext().getSession().put("mobile", mobile);
-            Cookie cookie = new Cookie("mobile", mobile);
-            cookie.setPath("/");
-            cookie.setMaxAge(60*60*24*365);// cookie 默认一年
 
+            // 设置 cookie
+            /*Cookie cookie = new Cookie("mobile", mobile);
+            cookie.setPath("/");
+            cookie.setMaxAge(60*60*24*365);// cookie 默认一年*/
+
+            Cookie cookie = CookieFactory.newCookie("mobile", mobile);
+
+           /* CookieStore cookieStore = cookieService.getCookieStore(mobile);
+            Cookie[] cookies = transFormCookieStore(cookieStore);
+*/
             ServletActionContext.getResponse().addCookie(cookie);
+
         } else {
             json.put("status", "error");
         }
@@ -116,6 +125,11 @@ public class AjaxAction {
 
         return Action.SUCCESS;
     }
+
+    //todo ：转发 url
+    /* private Cookie[] transFormCookieStore(CookieStore cookieStore) {
+        ServletActionContext.getrequ
+    }*/
 
     /**
      * 退出登录，即清除 cookie
@@ -251,6 +265,33 @@ public class AjaxAction {
         result.put("remainsTimes", remainsTimes);
 
         json.put("result", result);
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 加载收支总和信息, 返回原json信息
+     * @return
+     */
+    public String queryCreditSum() {
+        String m = getMobileFromCookie();
+        playService.setMobile(m);
+        String rs = playService.queryCreditSum();
+        jsonObj = JsonUtils.stringToJson(rs);
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 加载收支明细
+     * @return
+     */
+    public String queryCreditDetail() {
+        String m = getMobileFromCookie();
+        playService.setMobile(m);
+        String rs = playService.queryCreditDetail();
+
+        jsonObj = JsonUtils.stringToJson(rs);
 
         return Action.SUCCESS;
     }

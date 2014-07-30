@@ -75,7 +75,7 @@ EventMan.prototype.parseMobileFormat = function (mobile) {
 EventMan.prototype.checkLogin = function(callback) {
     var that = this;
 
-    $.getJSON("/ajax/loadLoginMobile.action", function(data) {
+    $.post("/ajax/loadLoginMobile.action", {}, function(data) {
         if (data.status != "ok") {
             $("#loginContent").show();
             return;
@@ -193,4 +193,3 @@ EventMan.prototype.isLogin = function() {
 
 var eventMan = new EventMan();
 eventMan.init();
-

@@ -6,6 +6,7 @@ import net.sf.json.JSONObject;
 import org.apache.http.client.CookieStore;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -268,6 +269,32 @@ public class PlayServiceImpl implements PlayService {
 
         String loginMobile = getFromResult(rs, "loginMobile");
         return loginMobile.equals(mobile);
+    }
+
+    /**
+     * 加载收支总和信息, 返回原json信息
+     * @return
+     */
+    public String queryCreditSum() {
+        String urlQueryCreditSumPath = "http://shake.sd.chinamobile.com/flowScore?method=querCreditSum";
+
+        String rs = post(urlQueryCreditSumPath, null);
+        return rs;
+    }
+
+    /**
+     * 加载收支明细
+     * @return
+     */
+    public String  queryCreditDetail() {
+        String paramType = ServletActionContext.getRequest().getParameter("type");
+        String paramStartNum = ServletActionContext.getRequest().getParameter("startNum");
+
+        String urlQueryCreditDetail = "http://shake.sd.chinamobile.com/flowScore?method=queryCreditDetail&type=" +  paramType + "&startNum=" + paramStartNum;
+
+        String rs = post(urlQueryCreditDetail, null);
+
+        return rs;
     }
 
     /**

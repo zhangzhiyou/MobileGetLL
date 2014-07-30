@@ -10,13 +10,13 @@ function Score() {
     this.remainTimes_ = 0;
 }
 
-Score.prototype.showMyScore = function(callback) {
+Score.prototype.showMyScore = function() {
     var that = this;
 
     // TODO: 不知道干啥的, 注释掉
    /* $("#jia_head").show();*/
 
-    $.getJSON(that.queryScorePath_, {}, function(data) {
+    $.post(that.queryScorePath_, {}, function(data) {
         if (data.status != "ok") {
             alert("流量币信息获取失败!");
             return;
@@ -62,9 +62,9 @@ Score.prototype.showMyScore = function(callback) {
         if($("#isHandlesCreditNumber")){
             $("#isHandlesCreditNumber").html(scoreData.isHandlesCreditNumber);
         }
-        if(callback){
-            callback();
-        }
+
+        //更新 总汇信息
+        flowScore.loadCreditSum();
     });
 };
 

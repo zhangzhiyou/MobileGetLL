@@ -12,7 +12,8 @@
         <property name="redisService" ref="redisService"/>
     </bean>
 
-    <bean name="httpService" class="com.xiayule.getll.service.impl.HttpServiceImpl">
+    <bean name="httpService" class="com.xiayule.getll.service.impl.HttpServiceImpl"
+            scope="prototype">
 
     </bean>
 

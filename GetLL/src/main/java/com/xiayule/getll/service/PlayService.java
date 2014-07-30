@@ -20,5 +20,17 @@ public interface PlayService {
      */
     public String queryScoreWithSource();
 
+    /**
+     * 加载收支总和信息, 返回原json信息
+     * @return
+     */
+    public String queryCreditSum();
+
+    /**
+     * 加载收支明细
+     * @return
+     */
+    public String queryCreditDetail();
+
     public void autoPlay(String mobile);
 }

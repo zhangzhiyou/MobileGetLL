@@ -70,10 +70,23 @@
                 <param name="root">json</param>
             </result>
         </action>
-        
+
+        <!--js调用该接口后，出现问题-->
         <action name="getRemainTimes" class="ajaxAction" method="getRemainTimes">
             <result type="json">
                 <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="queryCreditSum" class="ajaxAction" method="queryCreditSum">
+            <result type="json">
+                <param name="root">jsonObj</param>
+            </result>
+        </action>
+
+        <action name="queryCreditDetail" class="ajaxAction" method="queryCreditDetail">
+            <result type="json">
+                <param name="root">jsonObj</param>
             </result>
         </action>
     </package>

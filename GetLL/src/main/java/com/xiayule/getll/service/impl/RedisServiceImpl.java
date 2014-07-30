@@ -23,7 +23,6 @@ public class RedisServiceImpl implements RedisService {
             jedis = new Jedis(host, port);//连接redis
             System.out.println("构造 " + host + " " + port);
         }
-
     }
 
     public String hmset(String key, Map<String, String> hash) {
@@ -89,12 +88,10 @@ public class RedisServiceImpl implements RedisService {
 
     /**
      * 判断 member 元素是否集合 key 的成员。
-     *
-     * @param key
-     * @param member
-     */
-    public void sismember(String key, String member) {
-        jedis.sismember(key, member);
+     *  @param key
+     * @param member*/
+    public boolean sismember(String key, String member) {
+        return jedis.sismember(key, member);
     }
 
     /**

@@ -59,11 +59,10 @@ public interface RedisService {
 
     /**
      * 判断 member 元素是否集合 key 的成员。
-     *
-     * @param key
+     *  @param key
      * @param member
      */
-    public void sismember(String key, String member);
+    public boolean sismember(String key, String member);
 
     /**
      * 返回集合 key 中的所有成员。

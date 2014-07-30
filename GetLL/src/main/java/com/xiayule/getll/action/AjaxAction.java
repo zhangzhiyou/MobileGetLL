@@ -1,10 +1,10 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
-import com.xiayule.getll.service.PlayService;
-import com.xiayule.getll.service.SubscriberService;
+import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.Cookie;
@@ -14,13 +14,39 @@ import java.util.*;
  * Created by tan on 14-7-27.
  */
 public class AjaxAction {
+    private static Logger logger = Logger.getLogger(PlayService.class);
+
     private SubscriberService subscriberService;
     private PlayService playService;
+    private RegisterCodeService registerCodeService;
+    private CookieService cookieService;
+    private CreditLogService creditLogService;
 
     private String mobile;
 
     private Map json;
     private JSONObject jsonObj;
+
+    private String registerCode;
+
+
+    /**
+     * 从请求中获取Cookie中存储的手机号
+     * @return
+     */
+    private String getMobileFromCookie() {
+        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("mobile"))
+                    return cookie.getValue();
+            }
+        }
+
+        return null;
+    }
+
 
     public String getRankByTotal(){
         json = new HashMap();
@@ -35,10 +61,16 @@ public class AjaxAction {
     }
 
     /**
-     * ajax登录的方法
+     * ajax登录的方法, 如果传过来 registerCode，会优先注册
+     * 如果不存在 手机号 的cookie，证明为第一次登录
      */
     public String login() {
         json = new HashMap();
+
+        // 如果传递了注册码, 就先注册，时效会覆盖掉之前的
+        if (registerCode != null && registerCodeService.isValid(registerCode)) {
+            subscriberService.subscribe(mobile, registerCode);
+        }
 
         if (subscriberService.isSubscribe(mobile)) {
             json.put("status", "ok");
@@ -46,12 +78,33 @@ public class AjaxAction {
             Map result = new HashMap();
             result.put("mobile", mobile);
 
+            // 如果不存在 cookie，证明第一次登录
+            if (!cookieService.isExist(mobile)) {
+                result.put("firstLogin", true);
+
+                // 立刻为该手机执行一次任务
+//                logger.info(mobile + " 第一次使用本服务，立即执行一次任务");
+
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        TODO; bug mobile 为空
+//                        ystem.out.println("第一次登录手机号:" + mobile);
+
+                // 如果没有使用过本站服务, 就先登录
+                playService.loginDo();
+
+//                        playService.autoPlay(mobile);
+//                    }
+//                }).start();
+            }
+
             json.put("result", result);
 
             //ActionContext.getContext().getSession().put("mobile", mobile);
             Cookie cookie = new Cookie("mobile", mobile);
             cookie.setPath("/");
-            cookie.setMaxAge(60*100);
+            cookie.setMaxAge(60*60*24*365);// cookie 默认一年
 
             ServletActionContext.getResponse().addCookie(cookie);
         } else {
@@ -59,6 +112,7 @@ public class AjaxAction {
         }
 
         mobile = null;
+        registerCode = null;
 
         return Action.SUCCESS;
     }
@@ -147,19 +201,58 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
+    public String getRegisterCodeDo() {
+        json = new HashMap();
+
+        // 生成注册码
+        String registerCode = registerCodeService.generateRegisterCode();
+
+        json.put("status", "ok");
+
+        Map<String, String> result = new HashMap<String, String>();
+        result.put("registerCode", registerCode);
+
+        json.put("result", result);
+
+        return Action.SUCCESS;
+    }
+
     /**
-     * 从请求中获取Cookie中存储的手机号
+     * 立刻摇奖
      * @return
      */
-    private String getMobileFromCookie() {
-        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+    public String shakeNow() {
+        mobile = getMobileFromCookie();
 
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("mobile"))
-                return cookie.getValue();
-        }
+        playService.autoPlay(mobile);
 
-        return null;
+        json = new HashMap();
+        json.put("status", "ok");
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 获得剩余摇奖次数
+     * @return
+     */
+    public String getRemainTimes() {
+        String m = getMobileFromCookie();
+
+        playService.setMobile(m);
+
+        int remainsTimes = playService.getRemainTimes();
+
+        json = new HashMap();
+
+        json.put("status", "ok");
+
+        Map result = new HashMap();
+        result.put("remainsTimes", remainsTimes);
+
+        json.put("result", result);
+
+        return Action.SUCCESS;
     }
 
     // set and get methods
@@ -198,5 +291,25 @@ public class AjaxAction {
 
     public void setJsonObj(JSONObject jsonObj) {
         this.jsonObj = jsonObj;
+    }
+
+    public void setRegisterCodeService(RegisterCodeService registerCodeService) {
+        this.registerCodeService = registerCodeService;
+    }
+
+    public String getRegisterCode() {
+        return registerCode;
+    }
+
+    public void setRegisterCode(String registerCode) {
+        this.registerCode = registerCode;
+    }
+
+    public void setCookieService(CookieService cookieService) {
+        this.cookieService = cookieService;
+    }
+
+    public void setCreditLogService(CreditLogService creditLogService) {
+        this.creditLogService = creditLogService;
     }
 }

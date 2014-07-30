@@ -15,4 +15,5 @@ public class DecimalUtils {
     public static void main(String[] args) {
         System.out.println(formatDecial(0211.2345));
     }
+
 }

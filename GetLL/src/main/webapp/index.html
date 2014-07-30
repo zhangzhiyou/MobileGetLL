@@ -6,9 +6,9 @@
     <link href="css/yao.css" rel="stylesheet" type="text/css">
     <link href="css/css.css" rel="stylesheet" type="text/css">
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 
-    <script src="http://raining.qiniudn.com/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <title></title>
 
@@ -41,6 +41,29 @@
     </div>
 </div>
 
+<!-- 生效码框 -->
+<div id="registerCodeContent" class="hide">
+    <div class="tishi-gonggao">
+        <div class="tishi-title">您未使用本站服务或者注册码过期<span class="arrow"></span></div>
+        <div class="tishi-input" >输入注册码(您可以一直免费领取有效期15天的注册码哦)：</div>
+        <div class="tishi-input" >
+            <input id="registerCode" name="registerCode" type="text"  placeholder="请输入注册码（点击下面按钮，免费领取哦）"/>
+            <a href="javascript:;"  id="getRegisterCode">免费获取注册码</a>
+        </div>
+        <div id="btsItem_setFriendDo"  class="tishi-but">
+            <div class="but55" id="cancelSetting">
+                <li class="but-orange"><span class="tishi-btn-cancel">取消</span></li>
+            </div>
+            <div class="but55" id="setRegisterCodeDo">
+                <li class="but-red" ><span class="tishi-btn-confirm">确认</span></li>
+            </div>
+        </div>
+        <div id="setMobileMessage" class="tishi-text"></div>
+    </div>
+</div>
+
+
+
 <!-- 个人信息 -->
 <div id="myaccount_head" class="hide">
     <div class="jia_nav2">
@@ -59,6 +82,7 @@
         <div style="text-align:left">
             帐户余额：<span class="bignum"><font class="yellowfont" id="credit">&nbsp;</font></span>&nbsp;
             <span><img src="image/mb.png" width="25" height="23"></span>
+            <span style="margin-left: 10px" id="btShakeNow" class="but_logout">立即摇奖</span>
         </div>
 
         <div class="phonenum">
@@ -66,16 +90,19 @@
         </div>
 
         <!--TODO: 修改领取地址-->
-        <div class="phonenum hide" id="receiveDiv">
+        <!--<div class="phonenum hide" id="receiveDiv">
             <span class="yellowfont" id="totalCredit">?</span>流量币未领
             <span class="but_lingqu" onclick="javascript:location.href='/portal/app/receiveFlowScore.jsp'">领取</span>
         </div>
 
-        <div class="jia_jindu" style="clear:both;" id="RankDiv" height="50"></div>
+        <div class="jia_jindu" style="clear:both;" id="RankDiv" height="50"></div>-->
     </div>
 </div>
 
 
+
+
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/eventMan.js"></script>
 <script type="text/javascript" src="js/info.js"></script>
 <script type="text/javascript" src="js/tip.js"></script>
@@ -97,7 +124,17 @@
                 $("#userMobile").html(eventMan.nickName_);
             }
 
-            isLogin = true;
+
+            // 登录成功, 更新剩余次数
+            // todo: 报错
+            //eventMan.getRemainTimes();
+
+            // 如果剩余次数为0,则立即摇奖不可用
+
+
+
+          //  isLogin = true;
+
             /* getFlowScoreRank();//获取登陆用户的流量币排行榜
 
 
@@ -123,7 +160,7 @@
         }
     }
 
-    function locationPage(url) {
+    /*function locationPage(url) {
         if (shakeCom.isLogin()) {
             location.href = url;
         }
@@ -134,9 +171,9 @@
             alert(message);
             return;
         }
-    }
+    }*/
 
-    function getFlowScoreRank() {
+    /*function getFlowScoreRank() {
         var lazySeconds = 1;
         $.post("/flowScore?method=getFlowScoreRank", {}, function (data) {
             setTimeout(function () {
@@ -154,10 +191,10 @@
                 }
             }, lazySeconds * 1000);
         }, "json");
-    }
+    }*/
 
     //未领取流量币数据加载
-    function getFlowScoreTransferGiftsInfo() {
+    /*function getFlowScoreTransferGiftsInfo() {
         var lazySeconds = 1;
         $.post("/flowScore?method=getTransferGiftsList&queryType=count&type=others&status=2", {}, function (data) {
             setTimeout(function () {
@@ -181,7 +218,7 @@
         }, function () {
 
         });
-    }
+    }*/
 
 </script>
 

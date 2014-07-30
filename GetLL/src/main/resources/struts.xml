@@ -12,7 +12,7 @@
         <default-action-ref name="default"/>
         <!-- 为了解决 sae 默认首页不闲问题 -->
         <action name="default" class="com.xiayule.getll.action.DefaultAction">
-            <result name="success">/index.jsp</result>
+            <result name="success">/index.html</result>
         </action>
 
         <action name="subscribe" class="subscribeAction">
@@ -54,6 +54,24 @@
         </action>
 
         <action name="logout" class="ajaxAction" method="logout">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="getRegisterCode" class="ajaxAction" method="getRegisterCodeDo">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="shakeNow" class="ajaxAction" method="shakeNow">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+        
+        <action name="getRemainTimes" class="ajaxAction" method="getRemainTimes">
             <result type="json">
                 <param name="root">json</param>
             </result>

@@ -86,7 +86,7 @@ public class PlayServiceImpl implements PlayService {
 
                 try {
                     // 等待 3 秒，保险起见
-                    Thread.sleep(2000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -136,6 +136,8 @@ public class PlayServiceImpl implements PlayService {
         String urlGetRemainTimes = "http://shake.sd.chinamobile.com/shake?method=getRemainTimes&r=" + Math.random();
 
         String result = post(urlGetRemainTimes, null);
+
+        System.out.println("remainsTimes:" + result);
 
         // TODO: 如果解析错误，就认为0次
         String drawCount = getFromResult(result, "drawCount");

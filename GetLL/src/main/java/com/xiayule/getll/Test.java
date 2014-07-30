@@ -39,7 +39,7 @@ public class Test {
 
         System.out.println(playService.queryScore());
 
-    //    System.out.println(SerialNumberUtils.getSerialNumber());*/
+    //    System.out.println(SerialNumberUtils.generateRegisterCode());*/
 
 
       /*  // 日志测试

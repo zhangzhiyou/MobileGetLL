@@ -5,6 +5,9 @@
 function Score() {
     // 获取用户积分信息请求路径
     this.queryScorePath_ = "/ajax/queryScore.action";
+
+    // 剩余摇奖次数
+    this.remainTimes_ = 0;
 }
 
 Score.prototype.showMyScore = function(callback) {
@@ -21,6 +24,9 @@ Score.prototype.showMyScore = function(callback) {
 
         var scoreData = data.result.list[0];
         that.scoreData_	= scoreData;
+
+        // 更新剩余摇奖次数
+        that.remainTimes_ = data.result.list[0].times;
 
         // 连续登录天数
         if($("#continueDay")){

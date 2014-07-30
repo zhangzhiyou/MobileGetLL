@@ -1,6 +1,7 @@
 package com.xiayule.getll.service.impl;
 
 import com.xiayule.getll.service.RedisService;
+import com.xiayule.getll.service.RegisterCodeService;
 import com.xiayule.getll.service.SubscriberService;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.Set;
  */
 public class SubscriberServiceImpl implements SubscriberService {
     private RedisService redisService;
+    private RegisterCodeService registerCodeService;
 
     /**
      * 某个 手机号 是否已经订购服务
@@ -25,15 +27,16 @@ public class SubscriberServiceImpl implements SubscriberService {
     /**
      * 订阅服务
      * @param mobile 要订阅的手机号
-     * @param serial 使用的序列号
+     * @param registerCode 使用的序列号
      * @return
      */
-    public boolean subscribe(String mobile, String serial) {
+    public boolean subscribe(String mobile, String registerCode) {
         // 检测序列号是否合法
-        if (SerialNumberManager.isValid(serial)) {
-            redisService.set("sub_" + mobile, serial);
-
-            // TODO:删除已经使用的序列号
+        if (registerCodeService.isValid(registerCode)) {
+            // 首先注册
+            redisService.set("sub_" + mobile, registerCode);
+            // 然后将序列号删除
+            registerCodeService.removeRegisterCode(registerCode);
 
             return true;
         }
@@ -61,5 +64,9 @@ public class SubscriberServiceImpl implements SubscriberService {
 
     public void setRedisService(RedisService redisService) {
         this.redisService = redisService;
+    }
+
+    public void setRegisterCodeService(RegisterCodeService registerCodeService) {
+        this.registerCodeService = registerCodeService;
     }
 }

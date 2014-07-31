@@ -24,31 +24,29 @@ public class PlayServiceImpl implements PlayService {
     private CreditLogService creditLogService;
     private CreditService creditService;
 
-    private String mobile;
+    //private String mobile;
 
-    public PlayServiceImpl(String mobile) {
-        this.mobile = mobile;
-    }
+//    public PlayServiceImpl(String mobile) {
+//        this.mobile = mobile;
+//    }
 
     @Override
     public void autoPlay(String mobile) {
-        this.setMobile(mobile);
-
         logger.info("JobTask:" + "执行任务:" + "订阅者:" + mobile);
 
         // 如果未登录, 就登录
-        if (!this.isLogined()) {
+        if (!this.isLogined(mobile)) {
             logger.info(mobile + " 未登录, 进行登录");
             creditLogService.log(mobile, "未登录, 进行登录");
 
-            this.loginDo();
+            this.loginDo(mobile);
 
             logger.info(mobile + " 登录成功");
             creditLogService.log(mobile, "登录成功");
         }
 
         // 累加每日奖励, 并接收返回结果
-        double firstShakeGiveCredit = this.addDrawScore();
+        double firstShakeGiveCredit = this.addDrawScore(mobile);
 
         // 流量币计数
         if (firstShakeGiveCredit > 0) {
@@ -56,7 +54,7 @@ public class PlayServiceImpl implements PlayService {
         }
 
         // 如果已经登录
-        int remainTimes = this.getRemainTimes();
+        int remainTimes = this.getRemainTimes(mobile);
 
         logger.info(mobile + " 还剩 " + remainTimes + " 次");
         creditLogService.log(mobile, "还剩 " + remainTimes + " 次");
@@ -66,7 +64,7 @@ public class PlayServiceImpl implements PlayService {
 
             int cnt = 0;
             do {
-                String winName = this.draw();
+                String winName = this.draw(mobile);
 
                 creditLogService.log(mobile, "第" + (++cnt) + "次摇奖,获得奖励:"
                         + winName);
@@ -81,9 +79,9 @@ public class PlayServiceImpl implements PlayService {
                     creditService.addCredit(mobile, credit);
                 }
 
-                this.addDrawScore();
+                this.addDrawScore(mobile);
 
-                remainTimes = Integer.parseInt(this.queryScore().getString("times"));
+                remainTimes = Integer.parseInt(this.queryScore(mobile).getString("times"));
 
                 try {
                     // 等待 3 秒，保险起见
@@ -99,7 +97,7 @@ public class PlayServiceImpl implements PlayService {
 
         // 总结性的日志，要放在 list 的最前面
         // 查询分数
-        JSONObject queryScore = this.queryScore();
+        JSONObject queryScore = this.queryScore(mobile);
 
         creditService.setDayCredit(mobile, queryScore.getDouble("todayCredit"));
 
@@ -116,7 +114,7 @@ public class PlayServiceImpl implements PlayService {
      * 获取动态密码
      * @return
      */
-    public String getPassword() {
+    public String getPassword(String mobile) {
         String urlGetPassword = "http://shake.sd.chinamobile.com/shake?method=getPassword&r=";
 
         urlGetPassword += Math.random();
@@ -133,12 +131,10 @@ public class PlayServiceImpl implements PlayService {
     /**
      * 获取剩余摇奖次数
      */
-    public int getRemainTimes() {
+    public int getRemainTimes(String mobile) {
         String urlGetRemainTimes = "http://shake.sd.chinamobile.com/shake?method=getRemainTimes&r=" + Math.random();
 
-        String result = post(urlGetRemainTimes, null);
-
-        System.out.println("remainsTimes:" + result);
+        String result = post(mobile, urlGetRemainTimes, null);
 
         // TODO: 如果解析错误，就认为0次
         String drawCount = getFromResult(result, "drawCount");
@@ -151,7 +147,7 @@ public class PlayServiceImpl implements PlayService {
      * @param password 动态密码
      * @return
      */
-    public String loginDo(String password) {
+    public String loginDo(String mobile, String password) {
         String urlLoginDo = "http://shake.sd.chinamobile.com/shake?method=loginDo&r=" + Math.random();
 
         List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
@@ -160,7 +156,7 @@ public class PlayServiceImpl implements PlayService {
 
         String s = httpService.post(urlLoginDo, params);
 
-        updateCookieToLocal();
+        updateCookieToLocal(mobile);
 
         return s;
     }
@@ -169,13 +165,13 @@ public class PlayServiceImpl implements PlayService {
      * 通过手机号登录
      * @return
      */
-    public String loginDo() {
-        String resultJson = getPassword();
+    public String loginDo(String mobile) {
+        String resultJson = getPassword(mobile);
         String password = getFromResult(resultJson, "password");
 
         System.out.println("获得动态密码:" + password);
 
-        String result = loginDo(password);
+        String result = loginDo(mobile, password);
         return result;
     }
 
@@ -199,9 +195,9 @@ public class PlayServiceImpl implements PlayService {
      * 进行摇奖
      * @return 获得的金币数量
      */
-    public String draw() {
+    public String draw(String mobile) {
         String urlDrawPath = "http://shake.sd.chinamobile.com/shake?method=draw&r=" + Math.random();
-        String json = post(urlDrawPath, null);
+        String json = post(mobile, urlDrawPath, null);
 
         String winName = getFromResult(json, "winName");
         //TODO: DRAW WIN ID
@@ -216,10 +212,10 @@ public class PlayServiceImpl implements PlayService {
     }
 
 
-    public double addDrawScore() {
+    public double addDrawScore(String mobile) {
         String urlAddDrawScore = "http://shake.sd.chinamobile.com/score?method=addDrawScore";
 
-        String json = get(urlAddDrawScore);
+        String json = get(mobile, urlAddDrawScore);
 
         double firstShakeGiveCredit = JsonUtils.stringToJson(json).getJSONObject("result")
                 .getJSONArray("list")
@@ -240,8 +236,8 @@ public class PlayServiceImpl implements PlayService {
      * 解析时，返回 list
      * @return
      */
-    public JSONObject queryScore() {
-        String rs = queryScoreWithSource();
+    public JSONObject queryScore(String mobile) {
+        String rs = queryScoreWithSource(mobile);
         return JsonUtils.stringToJson(rs)
                 .getJSONObject("result")
                 .getJSONArray("list")
@@ -252,9 +248,9 @@ public class PlayServiceImpl implements PlayService {
      * 同 queryScore， 但是返回的是官方返回的 string
      * @return
      */
-    public String queryScoreWithSource() {
+    public String queryScoreWithSource(String mobile) {
         String urlQueryScore = "http://shake.sd.chinamobile.com/score?method=queryScore";
-        String rs = get(urlQueryScore);
+        String rs = get(mobile, urlQueryScore);
         return rs;
     }
 
@@ -262,10 +258,10 @@ public class PlayServiceImpl implements PlayService {
      * 获取当前登录的手机号
      * @return 返回登录手机号，如果未登录，返回 ""
      */
-    public boolean isLogined() {
+    public boolean isLogined(String mobile) {
         String urlLoadMobile = "http://shake.sd.chinamobile.com/shake?method=loadLoginMobile&r=" + Math.random();
 
-        String rs = get(urlLoadMobile);
+        String rs = get(mobile, urlLoadMobile);
 
         String loginMobile = getFromResult(rs, "loginMobile");
         return loginMobile.equals(mobile);
@@ -275,10 +271,10 @@ public class PlayServiceImpl implements PlayService {
      * 加载收支总和信息, 返回原json信息
      * @return
      */
-    public String queryCreditSum() {
+    public String queryCreditSum(String mobile) {
         String urlQueryCreditSumPath = "http://shake.sd.chinamobile.com/flowScore?method=querCreditSum";
 
-        String rs = post(urlQueryCreditSumPath, null);
+        String rs = post(mobile, urlQueryCreditSumPath, null);
         return rs;
     }
 
@@ -286,13 +282,13 @@ public class PlayServiceImpl implements PlayService {
      * 加载收支明细
      * @return
      */
-    public String  queryCreditDetail() {
+    public String  queryCreditDetail(String mobile) {
         String paramType = ServletActionContext.getRequest().getParameter("type");
         String paramStartNum = ServletActionContext.getRequest().getParameter("startNum");
 
         String urlQueryCreditDetail = "http://shake.sd.chinamobile.com/flowScore?method=queryCreditDetail&type=" +  paramType + "&startNum=" + paramStartNum;
 
-        String rs = post(urlQueryCreditDetail, null);
+        String rs = post(mobile, urlQueryCreditDetail, null);
 
         return rs;
     }
@@ -303,43 +299,43 @@ public class PlayServiceImpl implements PlayService {
      * @param params 参数
      * @return 结果
      */
-    private String post(String url, List<BasicNameValuePair> params) {
+    private String post(String mobile, String url, List<BasicNameValuePair> params) {
 
-        updateCookieToService();
+        updateCookieToService(mobile);
 
         String rs = httpService.post(url, params);
 
-        updateCookieToLocal();
+        updateCookieToLocal(mobile);
 
         return rs;
     }
 
-    public String get(String url) {
-        updateCookieToService();
+    public String get(String mobile, String url) {
+        updateCookieToService(mobile);
 
         String rs = httpService.get(url);
 
-        updateCookieToLocal();
+        updateCookieToLocal(mobile);
         return rs;
     }
 
-    public void updateCookieToService() {
+    public void updateCookieToService(String mobile) {
         if (cookieService.isExist(mobile)) {
             CookieStore cookieStore = cookieService.getCookieStore(mobile);
             httpService.setCookieStore(cookieStore);
         }
     }
 
-    public void updateCookieToLocal() {
+    public void updateCookieToLocal(String mobile) {
         CookieStore cookieStore = httpService.getCookieStore();
         cookieService.saveCookie(mobile, cookieStore);
     }
 
     // set and get methods
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
+//    public void setMobile(String mobile) {
+//        this.mobile = mobile;
+//    }
 
     public void setCookieService(CookieService cookieService) {
         this.cookieService = cookieService;
@@ -356,4 +352,6 @@ public class PlayServiceImpl implements PlayService {
     public void setCreditService(CreditService creditService) {
         this.creditService = creditService;
     }
+
+
 }

@@ -3,6 +3,7 @@ package com.xiayule.getll.service.impl;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.service.RegisterCodeService;
 import com.xiayule.getll.service.SubscriberService;
+import com.xiayule.getll.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class SubscriberServiceImpl implements SubscriberService {
         // 检测序列号是否合法
         if (registerCodeService.isValid(registerCode)) {
             // 首先注册
-            redisService.set("sub_" + mobile, registerCode);
+            redisService.setex("sub_" + mobile, TimeUtils.getSecondOfOneWeek(), registerCode);
             // 然后将序列号删除
             registerCodeService.removeRegisterCode(registerCode);
 

@@ -8,6 +8,8 @@ import com.xiayule.getll.utils.TimeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import java.util.List;
 import java.util.Map;
@@ -79,7 +81,7 @@ public class Test {
         logger.info("ha");
         logger.debug("wa");*/
 
-        // 流量币每日记录测试
+/*        // 流量币每日记录测试
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
         CreditService creditService = ctx.getBean("creditService", CreditService.class);
 
@@ -91,7 +93,21 @@ public class Test {
         for (String day : days) {
             System.out.println(day);
             System.out.println(day + ":" + creditService.getDayCredit(day));
-        }
+        }*/
+
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
+        final JedisPool jedisPool = ctx.getBean("jedisPool", JedisPool.class);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Jedis jedis = jedisPool.getResource();
+                System.out.println(jedis);
+                jedisPool.returnResource(jedis);
+
+            }
+        }).start();
+
     }
     private static Logger logger = Logger.getLogger(PlayService.class);
 

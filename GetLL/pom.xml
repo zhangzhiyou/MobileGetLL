@@ -107,6 +107,13 @@
             <version>4.0.5.RELEASE</version>
         </dependency>
 
+        <!-- spring redis -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.3.2.RELEASE</version>
+        </dependency>
+
         <!-- struts2 -->
         <dependency>
             <groupId>org.apache.struts</groupId>

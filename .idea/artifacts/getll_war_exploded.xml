@@ -12,6 +12,8 @@
           <element id="library" level="project" name="Maven: javax.mail:mail:1.4" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: javax.jms:jms:1.1" />
+          <element id="library" level="project" name="Maven: com.sun.jdmk:jmxtools:1.2.1" />
+          <element id="library" level="project" name="Maven: com.sun.jmx:jmxri:1.2.1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.0.5.RELEASE" />
@@ -32,6 +34,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-test:4.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aspects:4.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.7.4" />
+          <element id="library" level="project" name="Maven: org.springframework.data:spring-data-redis:1.3.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.5" />
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-core:2.3.16" />
           <element id="library" level="project" name="Maven: org.apache.struts.xwork:xwork-core:2.3.16" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.1" />
@@ -65,7 +69,6 @@
           <element id="library" level="project" name="Maven: org.eclipse.jetty.orbit:javax.servlet.jsp:2.1.0.v201105211820" />
           <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:1.8.4" />
           <element id="library" level="project" name="Maven: javax.transaction:jta:1.1" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.6.0" />
           <element id="library" level="application" name="Spring-4.0.5.RELEASE" />
         </element>
       </element>

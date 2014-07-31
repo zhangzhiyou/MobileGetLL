@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean name="redisService" class="com.xiayule.getll.service.impl.RedisServiceImpl">
-        <constructor-arg value="localhost"/>
-        <constructor-arg value="6379"/>
+        <property name="redisDataSource" ref="redisDataSource"/>
     </bean>
 
     <bean name="cookieService" class="com.xiayule.getll.service.impl.CookieServiceImpl">
         <property name="redisService" ref="redisService"/>
     </bean>
 
-    <bean name="httpService" class="com.xiayule.getll.service.impl.HttpServiceImpl">
+    <bean name="httpService" class="com.xiayule.getll.service.impl.HttpServiceImpl"
+          scope="prototype">
 
     </bean>
 
-    <bean name="playService" class="com.xiayule.getll.service.impl.PlayServiceImpl">
+    <bean name="playService" class="com.xiayule.getll.service.impl.PlayServiceImpl"
+          scope="prototype">
+
         <constructor-arg value="123"/>
 
         <property name="cookieService" ref="cookieService"/>
@@ -25,8 +28,13 @@
         <property name="creditService" ref="creditService"/>
     </bean>
 
+    <bean name="registerCodeService" class="com.xiayule.getll.service.impl.RegisterCodeServiceImpl">
+        <property name="redisService" ref="redisService"/>
+    </bean>
+
     <bean name="subscribeService" class="com.xiayule.getll.service.impl.SubscriberServiceImpl">
         <property name="redisService" ref="redisService"/>
+        <property name="registerCodeService" ref="registerCodeService"/>
     </bean>
 
     <bean name="creditLogService" class="com.xiayule.getll.service.impl.CreditLogServiceImpl">
@@ -50,6 +58,38 @@
 
     <bean name="ajaxAction" class="com.xiayule.getll.action.AjaxAction">
         <property name="subscriberService" ref="subscribeService"/>
+        <property name="playService" ref="playService"/>
+        <property name="registerCodeService" ref="registerCodeService"/>
+        <property name="cookieService" ref="cookieService"/>
+        <property name="creditLogService" ref="creditLogService"/>
+    </bean>
+
+    <bean name="redisDataSource" class="com.xiayule.getll.service.impl.RedisDataSourceImpl">
+        <property name="jedisPool" ref="jedisPool"/>
+    </bean>
+
+    <!-- redis 配置 -->
+
+    <!-- 加载redis配置文件 -->
+    <context:property-placeholder location="classpath:redis.properties"/>
+
+    <!-- redis连接池的配置 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxActive" value="${redis.pool.maxActive}"/>
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <!--<property name="minIdle" value="${redis.pool.minIdle}"/>-->
+        <property name="maxWait" value="${redis.pool.maxWait}"/>
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}"/>
+        <property name="testOnReturn" value="${redis.pool.testOnReturn}"/>
+    </bean>
+
+    <!-- redis的连接池pool，不是必选项：timeout/password  -->
+    <bean id = "jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <constructor-arg index="1" value="${redis.host}"/>
+<!--        <constructor-arg index="2" value="${redis.port}" type="int"/>
+        <constructor-arg index="3" value="${redis.timeout}" type="int"/>
+        <constructor-arg index="4" value="${redis.password}"/>-->
     </bean>
 
 </beans>

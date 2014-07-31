@@ -6,31 +6,30 @@ import net.sf.json.JSONObject;
  * Created by tan on 14-7-21.
  */
 public interface PlayService {
-    public String getPassword();
-    public int getRemainTimes();
-    public String loginDo();
-    public String draw();
-    public double addDrawScore();
-    public boolean isLogined();
-    public void setMobile(String mobile);
-    public JSONObject queryScore();
+    public String getPassword(String mobile);
+    public int getRemainTimes(String mobile);
+    public String loginDo(String mobile);
+    public String draw(String mobile);
+    public double addDrawScore(String mobile);
+    public boolean isLogined(String mobile);
+    public JSONObject queryScore(String mobile);
     /**
      * 同 queryScore， 但是返回的是官方返回的 string
      * @return
      */
-    public String queryScoreWithSource();
+    public String queryScoreWithSource(String mobile);
 
     /**
      * 加载收支总和信息, 返回原json信息
      * @return
      */
-    public String queryCreditSum();
+    public String queryCreditSum(String mobile);
 
     /**
      * 加载收支明细
      * @return
      */
-    public String queryCreditDetail();
+    public String queryCreditDetail(String mobile);
 
     public void autoPlay(String mobile);
 }

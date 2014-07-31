@@ -255,7 +255,7 @@ body {
 .ad .ad_r{width:49%; float:right; text-align:center;}
 .ad img{max-width:300px; }
 
-.foot{text-align:center; background-color:#f1f8fe; padding:0px 0; border-top:#d5e6f0 solid 1px; font-size:1em; line-height:1.2em; color:#7b7a78;}
+.foot{text-align:center; background-color:#f1f8fe; padding:0px 0; border-top:#d5e6f0 solid 1px; font-size:1em; line-height:1.2em; color:#7b7a78; margin-bottom: 0px}
 .foot .smallfont{font-size:0.8em;}
 .foot a{color:#000; text-decoration:none;}
 

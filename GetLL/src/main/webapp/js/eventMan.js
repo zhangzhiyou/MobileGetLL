@@ -12,6 +12,8 @@ function EventMan() {
 
     // 剩余摇奖次数
     this.remainTimes_ = 0;
+
+    this.nickName_ = "";
 }
 
 EventMan.prototype.init = function() {
@@ -82,6 +84,7 @@ EventMan.prototype.checkLogin = function(callback) {
         }
 
         that.loginMobile_ = data.result.loginMobile;
+        that.nickName_ = data.result.nickName;
 
         if (that.loginMobile_) {
             $("#loginContent").hide();
@@ -159,7 +162,6 @@ EventMan.prototype.shakeNow = function() {
 
 /**
  * 获取剩余摇奖次数
- */
 EventMan.prototype.getRemainTimes = function () {
     var that = this;
 
@@ -171,11 +173,9 @@ EventMan.prototype.getRemainTimes = function () {
             that.remainTimes_ = data.result.remainTimes;
         }
 
-        alert(that.remainTimes_);
-
         return that.remainTimes_;
     })
-};
+};*/
 
 /**
  * 刷新页面

@@ -1,7 +1,10 @@
 package com.xiayule.getll.service.impl;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.xiayule.getll.service.RedisDataSource;
 import com.xiayule.getll.service.RedisService;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Tuple;
 
 import java.util.List;
@@ -13,7 +16,10 @@ import java.util.Set;
  * Redis 操作的类
  */
 public class RedisServiceImpl implements RedisService {
-    private static Jedis jedis;
+
+
+    private RedisDataSource redisDataSource;
+/*    private static Jedis jedis;
 
     public RedisServiceImpl(String host, int port) {
         //该构造函数只执行一次
@@ -23,14 +29,43 @@ public class RedisServiceImpl implements RedisService {
             jedis = new Jedis(host, port);//连接redis
             System.out.println("构造 " + host + " " + port);
         }
-    }
+    }*/
 
     public String hmset(String key, Map<String, String> hash) {
-        return jedis.hmset(key, hash);
+        boolean broken = false;
+        Jedis jedis = null;
+        String rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.hmset(key, hash);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
+
     public Map hgetAll(String key) {
-        Map<String, String> data = jedis.hgetAll(key);
+        boolean broken = false;
+        Jedis jedis = null;
+
+        Map<String, String> data = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            data = jedis.hgetAll(key);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
         return data;
     }
 
@@ -42,7 +77,21 @@ public class RedisServiceImpl implements RedisService {
      * @return 值
      */
     public String get(String key) {
-        return jedis.get(key);
+        boolean broken = false;
+        Jedis jedis = null;
+        String rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.get(key);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -52,7 +101,21 @@ public class RedisServiceImpl implements RedisService {
      */
     @Override
     public boolean exists(String key) {
-        return jedis.exists(key);
+        boolean broken = false;
+        Jedis jedis = null;
+        Boolean rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.exists(key);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -62,7 +125,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public boolean hexists(String key, String field) {
-        return jedis.hexists(key, field);
+        boolean broken = false;
+        Jedis jedis = null;
+        Boolean rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.hexists(key, field);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -73,7 +150,19 @@ public class RedisServiceImpl implements RedisService {
      */
     @SuppressWarnings("JavaDoc")
     public void sadd(String key, String member) {
-        jedis.sadd(key, member);
+        boolean broken = false;
+        Jedis jedis = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            jedis.sadd(key, member);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
     }
 
     /**
@@ -83,7 +172,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public Long scard(String key) {
-        return jedis.scard(key);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.scard(key);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -91,7 +194,21 @@ public class RedisServiceImpl implements RedisService {
      *  @param key
      * @param member*/
     public boolean sismember(String key, String member) {
-        return jedis.sismember(key, member);
+        boolean broken = false;
+        Jedis jedis = null;
+        Boolean rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.sismember(key, member);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -101,7 +218,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public Set<String> smembers(String key) {
-        return jedis.smembers(key);
+        boolean broken = false;
+        Jedis jedis = null;
+        Set<String> rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.smembers(key);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -115,7 +246,21 @@ public class RedisServiceImpl implements RedisService {
      * @param member
      */
     public Long smove(String source, String destination, String member) {
-        return jedis.smove(source, destination, member);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.smove(source, destination, member);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -125,7 +270,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public Long srem(String key, String member) {
-        return jedis.srem(key, member);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.srem(key, member);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -136,7 +295,18 @@ public class RedisServiceImpl implements RedisService {
      * @param value
      */
     public void set(String key, String value) {
-        jedis.set(key, value);
+        boolean broken = false;
+        Jedis jedis = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            jedis.set(key, value);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
     }
 
     /**
@@ -148,7 +318,21 @@ public class RedisServiceImpl implements RedisService {
      * @return 设置成功时返回 OK,当 seconds 参数不合法时，返回一个错误。
      */
     public String setex(String key, int seconds, String value) {
-        return jedis.setex(key, seconds, value);
+        boolean broken = false;
+        Jedis jedis = null;
+        String rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.setex(key, seconds, value);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -160,7 +344,21 @@ public class RedisServiceImpl implements RedisService {
      * 否则，以秒为单位，返回 key 的剩余生存时间。
      */
     public Long ttl(String key) {
-        return jedis.ttl(key);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.ttl(key);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -170,7 +368,21 @@ public class RedisServiceImpl implements RedisService {
      * @return 被删除 key 的数量。
      */
     public Long del(String key) {
-        return jedis.del(key);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.del(key);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -182,8 +394,21 @@ public class RedisServiceImpl implements RedisService {
      * h[ae]llo 匹配 hello 和 hallo ，但不匹配 hillo
      */
     public Set<String> keys(String pattern) {
-        return jedis.keys(pattern);
+        boolean broken = false;
+        Jedis jedis = null;
+        Set<String> rs = null;
 
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.keys(pattern);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -196,7 +421,21 @@ public class RedisServiceImpl implements RedisService {
      * @return 执行 LPUSH 命令后，列表的长度。
      */
     public Long lpush(String key, String value) {
-        return jedis.lpush(key, value);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.lpush(key, value);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -209,7 +448,21 @@ public class RedisServiceImpl implements RedisService {
      * @return 执行 RPUSH 操作后，表的长度。
      */
     public Long rpush(String key, String value) {
-        return jedis.rpush(key, value);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.rpush(key, value);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -225,7 +478,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public List<String> lrange(String key, long start, long end) {
-        return jedis.lrange(key, start, end);
+        boolean broken = false;
+        Jedis jedis = null;
+        List<String> rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.lrange(key, start, end);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -239,7 +506,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public Long zadd(String key, double score, String member) {
-        return jedis.zadd(key, score, member);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zadd(key, score, member);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -248,7 +529,21 @@ public class RedisServiceImpl implements RedisService {
      * @return 当 key 存在且是有序集类型时，返回有序集的基数。当 key 不存在时，返回 0 。
      */
     public Long zcard(String key) {
-        return jedis.zcard(key);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zcard(key);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -260,7 +555,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public Long zcount(String key, double min, double max) {
-        return jedis.zcount(key, min, max);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zcount(key, min, max);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -277,7 +586,21 @@ public class RedisServiceImpl implements RedisService {
      * @return member 成员的新 score 值，以字符串形式表示。
      */
     public Double zincrby(String key, double score, String member) {
-        return jedis.zincrby(key, score, member);
+        boolean broken = false;
+        Jedis jedis = null;
+        Double rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zincrby(key, score, member);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
 
@@ -297,7 +620,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public Set<String> zrange(String key, int start, int end) {
-        return jedis.zrange(key, start, end);
+        boolean broken = false;
+        Jedis jedis = null;
+        Set<String> rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zrange(key, start, end);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -308,7 +645,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public Set<Tuple> zrangeWithScores(String key, int start, int end) {
-        return jedis.zrangeWithScores(key, start, end);
+        boolean broken = false;
+        Jedis jedis = null;
+        Set<Tuple> rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zrangeWithScores(key, start, end);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -319,7 +670,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public Set<String> zrevrange(String key, int start, int end) {
-        return jedis.zrevrange(key, start, end);
+        boolean broken = false;
+        Jedis jedis = null;
+        Set<String> rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zrevrange(key, start, end);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -330,7 +695,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public Set<Tuple> zrevrangeWithScores(String key, int start, int end) {
-        return jedis.zrevrangeWithScores(key, start, end);
+        boolean broken = false;
+        Jedis jedis = null;
+        Set<Tuple> rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zrevrangeWithScores(key, start, end);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -356,7 +735,21 @@ public class RedisServiceImpl implements RedisService {
      * @return 成功1, 失败0
      */
     public Long expire(String key, int seconds) {
-        return jedis.expire(key, seconds);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.expire(key, seconds);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -367,7 +760,21 @@ public class RedisServiceImpl implements RedisService {
      * @return 成功返回1,失败返回 0
      */
     public Long expireat(String key, long unixTime) {
-        return jedis.expireAt(key, unixTime);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.expireAt(key, unixTime);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -379,7 +786,21 @@ public class RedisServiceImpl implements RedisService {
      * @return 如果 member 是有序集 key 的成员，返回 member 的排名。如果 member 不是有序集 key 的成员，返回 nil 。
      */
     public Long zrank(String key, String member) {
-        return jedis.zrank(key, member);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zrank(key, member);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -391,7 +812,21 @@ public class RedisServiceImpl implements RedisService {
      * @return 如果 member 是有序集 key 的成员，返回 member 的排名;如果 member 不是有序集 key 的成员，返回 nil 。
      */
     public Long zrevrank(String key, String member) {
-        return jedis.zrevrank(key, member);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zrevrank(key, member);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -402,7 +837,21 @@ public class RedisServiceImpl implements RedisService {
      * @return
      */
     public Double zscore(String key, String member) {
-        return jedis.zscore(key, member);
+        boolean broken = false;
+        Jedis jedis = null;
+        Double rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.zscore(key, member);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
     }
 
     /**
@@ -414,6 +863,24 @@ public class RedisServiceImpl implements RedisService {
      * @param value
      */
     public Long hset(String key, String field, String value) {
-        return jedis.hset(key, field, value);
+        boolean broken = false;
+        Jedis jedis = null;
+        Long rs = null;
+
+        try {
+            jedis = redisDataSource.getJedisClient();
+
+            rs = jedis.hset(key, field, value);
+        } catch (Exception e) {
+            broken = true;
+        } finally {
+            redisDataSource.returnResource(jedis, broken);
+        }
+
+        return rs;
+    }
+
+    public void setRedisDataSource(RedisDataSource redisDataSource) {
+        this.redisDataSource = redisDataSource;
     }
 }

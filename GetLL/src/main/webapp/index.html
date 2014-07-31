@@ -9,11 +9,36 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <title>流量汇自动管家</title>
+
+    <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
+    <link rel="shortcut icon" href="image/icon.png">
 </head>
 <body>
 
 
 <div class="layout">
+
+<!--<div class="head">
+    <div class="logo">
+        <div class="img"><img src="image/llh_logo_new.png" width="100%"></div>
+    </div>
+</div>-->
+
+<!-- 公告 -->
+<!--<div class="gonggao">
+    <table>
+        <tr>
+            <td><font style="color:#be1518;">说明：</font>本站是编写的目的是为了方便流量不够用的孩子们</td>
+        </tr>
+        <tr>
+            <td><font style="color:#be1518;">说明：</font>每日凌晨6点，准时为您自动摇奖</td>
+        </tr>
+        <tr>
+            <td><font style="color:#be1518;">说明：</font>本站的服务是免费的, 是流量汇的一个自动摇奖助手</td>
+        </tr>
+    </table>
+</div>-->
+
 <!-- 登录框 -->
 <div class="pop hide" id="loginContent">
     <div class="pop_title">请先输入手机号</div>
@@ -37,7 +62,7 @@
 <div id="registerCodeContent" class="hide">
     <div class="tishi-gonggao">
         <div class="tishi-title">您未使用本站服务或者注册码过期<span class="arrow"></span></div>
-        <div class="tishi-input" >输入注册码(您可以一直免费领取有效期15天的注册码哦)：</div>
+        <div class="tishi-input" >输入注册码(您可以一直免费领取有效期7天的注册码哦)：</div>
         <div class="tishi-input" >
             <input id="registerCode" name="registerCode" type="text"  placeholder="请输入注册码（点击下面按钮，免费领取哦）"/>
             <a href="javascript:;"  id="getRegisterCode">免费获取注册码</a>
@@ -100,6 +125,15 @@
     </div>
 </div>
 
+<!-- 页脚j -->
+<div class="foot">
+    <div class="smallfont">Auth:<a href="mailto:xiayule148@gmail.com">tanhe123</a> Version:1.0</div>
+
+    <div style="display: none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5678078'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5678078' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+</div>
+
 <!--明细列表-->
 <div id= "mingxiListDiv"></div>
 
@@ -150,10 +184,10 @@
     $(window).scroll(function(){
         var scrolltop = $(document).scrollTop();
         var winHeight = $(document).height() - $(window).height();
-        if(scrolltop == 0){
-            flowScore.loadFirstCreditDetail();
-            flowScore.loadCreditSum();
-        }else if(scrolltop >= winHeight-410){
+//        if(scrolltop == 0){
+//            flowScore.loadFirstCreditDetail();
+//            flowScore.loadCreditSum();
+        if(scrolltop >= winHeight-410 && eventMan.isLogin()){
             flowScore.loadCreditDetail("down");
         }
     });

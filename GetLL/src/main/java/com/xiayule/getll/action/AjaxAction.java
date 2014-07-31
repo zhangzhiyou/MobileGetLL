@@ -70,7 +70,7 @@ public class AjaxAction {
         json = new HashMap();
 
         // 如果传递了注册码, 就先注册，时效会覆盖掉之前的
-        if (registerCode != null && registerCodeService.isValid(registerCode)) {
+        if (registerCode != null && !registerCode.equals("") && registerCodeService.isValid(registerCode)) {
             subscriberService.subscribe(mobile, registerCode);
         }
 
@@ -94,7 +94,7 @@ public class AjaxAction {
 //                        ystem.out.println("第一次登录手机号:" + mobile);
 
                 // 如果没有使用过本站服务, 就先登录
-                playService.loginDo();
+                playService.loginDo(mobile);
 
 //                        playService.autoPlay(mobile);
 //                    }
@@ -207,9 +207,9 @@ public class AjaxAction {
     public String queryScore() {
         String m = getMobileFromCookie();
 
-        playService.setMobile(m);
+//        playService.setMobile(m);
 
-        String strJson = playService.queryScoreWithSource();
+        String strJson = playService.queryScoreWithSource(m);
         jsonObj = JsonUtils.stringToJson(strJson);
 
         return Action.SUCCESS;
@@ -253,9 +253,9 @@ public class AjaxAction {
     public String getRemainTimes() {
         String m = getMobileFromCookie();
 
-        playService.setMobile(m);
+//        playService.setMobile(m);
 
-        int remainsTimes = playService.getRemainTimes();
+        int remainsTimes = playService.getRemainTimes(m);
 
         json = new HashMap();
 
@@ -275,8 +275,8 @@ public class AjaxAction {
      */
     public String queryCreditSum() {
         String m = getMobileFromCookie();
-        playService.setMobile(m);
-        String rs = playService.queryCreditSum();
+//        playService.setMobile(m);
+        String rs = playService.queryCreditSum(m);
         jsonObj = JsonUtils.stringToJson(rs);
 
         return Action.SUCCESS;
@@ -288,8 +288,8 @@ public class AjaxAction {
      */
     public String queryCreditDetail() {
         String m = getMobileFromCookie();
-        playService.setMobile(m);
-        String rs = playService.queryCreditDetail();
+//        playService.setMobile(m);
+        String rs = playService.queryCreditDetail(m);
 
         jsonObj = JsonUtils.stringToJson(rs);
 

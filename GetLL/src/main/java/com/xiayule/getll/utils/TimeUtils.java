@@ -21,7 +21,7 @@ public class TimeUtils {
     }
 
     public static int getSecondOfOneWeek() {
-        return 60*60*24*7;
+        return 60*60*24*7-1;
     }
 
     public static String getDateWithUnderLine(Calendar c) {

@@ -79,8 +79,6 @@
     </div>
 </div>
 
-
-
 <!-- 个人信息 -->
 <div id="myaccount_head" class="hide">
     <div class="jia_nav2">
@@ -100,10 +98,15 @@
             帐户余额：<span class="bignum"><font class="yellowfont" id="credit">&nbsp;</font></span>&nbsp;
             <span><img src="image/mb.png" width="25" height="23"></span>
             <span style="margin-left: 10px" id="btShakeNow" class="but_logout">立即摇奖</span>
+            <span style="margin-left: 10px" id="bt_liuyan" class="but_logout">留言</span>
         </div>
 
         <div class="phonenum">
             今日收益：<span class="yellowfont" id="todayCredit">0.0</span>流量币
+        </div>
+
+        <div class="registnum">
+            有效期：<span class="yellowfont" id="leavesDay">&nbsp;</span>
         </div>
 
         <!--TODO: 修改领取地址-->
@@ -136,7 +139,6 @@
 
 <!--明细列表-->
 <div id= "mingxiListDiv"></div>
-
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/eventMan.js"></script>
@@ -182,20 +184,26 @@
     });
 
     $(window).scroll(function(){
-        var scrolltop = $(document).scrollTop();
-        var winHeight = $(document).height() - $(window).height();
+        var detailVisible = $("#mingxiListDiv").is(":visible")
+        // 可见的情况下，才加载数据
+        if (detailVisible) {
+            var scrolltop = $(document).scrollTop();
+            var winHeight = $(document).height() - $(window).height();
 //        if(scrolltop == 0){
 //            flowScore.loadFirstCreditDetail();
 //            flowScore.loadCreditSum();
-        if(scrolltop >= winHeight-410 && eventMan.isLogin()){
-            flowScore.loadCreditDetail("down");
+
+            if(scrolltop >= winHeight-410 && eventMan.isLogin()){
+                flowScore.loadCreditDetail("down");
+            }
         }
+
     });
 
     function logoutSystem() {
         var confirmMessage = "下次来将重新登录，确定退出吗？";
         if (confirm(confirmMessage)) {
-            $.post("/ajax/logout.action", {}, function (data) {
+            $.post("/ajax/logout.action?r="+Math.random(), {}, function (data) {
                 if (data.status != "ok") {
                     alert(data.message);
                 } else {
@@ -268,52 +276,27 @@
 </script>
 
 
-<!-- 个人信息-->
-
-
-<!--公告
-<div class="gonggao">
-    <div id="topMarquee"><span id="propaganda"></span></div>
-</div>-->
-<!--英雄榜-->
-<!--<div class="bangdan" style="width: 30%">
-    <div class="bangdan-title">流量汇英雄榜</div>
-    <div class="juci03"></div>
-    <div class="bangdan-content">
-        <div class="first" id="bigWiner">排行</div>
-        <div id="winList" style="overflow: hidden;clear:both;">
-            <div class="mingdan">
-                <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
-                    <thead>
-                    <tr>
-                        <th>排行</th>
-                        <th>手机号</th>
-                        <th>流量</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-&lt;!&ndash;                            <div><span class="mingdan-name">1</span><span>山东18369905136获得0.3个流量币</span></div>&ndash;&gt;
-                            1
-                        </td>
-                        <td>
-                            2
-                        </td>
-                        <td>3</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+<!-- 留言模块-->
+<div id="duoshuoContent" class="hide">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" id="duoshuoContent"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"xiayule"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0]
+                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共JS代码 end -->
 </div>
 
-&lt;!&ndash;更新榜单&ndash;&gt;
-<script>
 
-
-</script>-->
 </div>
 
 </body>

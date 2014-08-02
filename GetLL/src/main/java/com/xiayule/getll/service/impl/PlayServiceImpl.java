@@ -39,7 +39,12 @@ public class PlayServiceImpl implements PlayService {
             logger.info(mobile + " 未登录, 进行登录");
             creditLogService.log(mobile, "未登录, 进行登录");
 
-            this.loginDo(mobile);
+            // 非山东移动号码
+            if (this.loginDo(mobile) == null) {
+                logger.info(mobile + " 非山东移动号码");
+                logger.info(mobile + "结束任务");
+                return;
+            }
 
             logger.info(mobile + " 登录成功");
             creditLogService.log(mobile, "登录成功");
@@ -63,6 +68,7 @@ public class PlayServiceImpl implements PlayService {
             // 有可能抽奖过程中获得再一次奖励
 
             int cnt = 0;
+
             do {
                 String winName = this.draw(mobile);
 
@@ -145,7 +151,7 @@ public class PlayServiceImpl implements PlayService {
     /**
      * 通过手机号 和 动态密码 登录
      * @param password 动态密码
-     * @return
+     * @return 原文
      */
     public String loginDo(String mobile, String password) {
         String urlLoginDo = "http://shake.sd.chinamobile.com/shake?method=loginDo&r=" + Math.random();
@@ -163,10 +169,19 @@ public class PlayServiceImpl implements PlayService {
 
     /**
      * 通过手机号登录
-     * @return
+     *
+     * @return 如果非山东移动号码，返回空
      */
     public String loginDo(String mobile) {
         String resultJson = getPassword(mobile);
+
+        JSONObject jsonObject = JsonUtils.stringToJson(resultJson);
+
+        // 非山东移动登录, 返回空
+        if ( !jsonObject.getString("status").equals("ok") ) {
+            return null;
+        }
+
         String password = getFromResult(resultJson, "password");
 
         System.out.println("获得动态密码:" + password);

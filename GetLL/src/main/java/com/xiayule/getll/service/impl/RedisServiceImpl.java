@@ -1,10 +1,8 @@
 package com.xiayule.getll.service.impl;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.xiayule.getll.service.RedisDataSource;
 import com.xiayule.getll.service.RedisService;
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Tuple;
 
 import java.util.List;
@@ -144,25 +142,26 @@ public class RedisServiceImpl implements RedisService {
 
     /**
      * 将一个或多个 member 元素加入到集合 key 当中
-     *
-     * @param key
+     *  @param key
      * @param member
      */
     @SuppressWarnings("JavaDoc")
-    public void sadd(String key, String member) {
+    public Long sadd(String key, String member) {
         boolean broken = false;
         Jedis jedis = null;
+        Long rs = null;
 
         try {
             jedis = redisDataSource.getJedisClient();
 
-            jedis.sadd(key, member);
+            rs = jedis.sadd(key, member);
         } catch (Exception e) {
             broken = true;
         } finally {
             redisDataSource.returnResource(jedis, broken);
         }
 
+        return rs;
     }
 
     /**

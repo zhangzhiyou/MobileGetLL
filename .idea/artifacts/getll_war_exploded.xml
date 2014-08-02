@@ -8,12 +8,7 @@
           <element id="module-output" name="getll" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: log4j:log4j:1.2.15" />
-          <element id="library" level="project" name="Maven: javax.mail:mail:1.4" />
-          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
-          <element id="library" level="project" name="Maven: javax.jms:jms:1.1" />
-          <element id="library" level="project" name="Maven: com.sun.jdmk:jmxtools:1.2.1" />
-          <element id="library" level="project" name="Maven: com.sun.jmx:jmxri:1.2.1" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.16" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.0.5.RELEASE" />
@@ -67,8 +62,8 @@
           <element id="library" level="project" name="Maven: org.eclipse.jetty.orbit:javax.servlet.jsp.jstl:1.2.0.v201105211821" />
           <element id="library" level="project" name="Maven: org.eclipse.jetty.orbit:javax.servlet:2.5.0.v201103041518" />
           <element id="library" level="project" name="Maven: org.eclipse.jetty.orbit:javax.servlet.jsp:2.1.0.v201105211820" />
-          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:1.8.4" />
-          <element id="library" level="project" name="Maven: javax.transaction:jta:1.1" />
+          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.2.1" />
+          <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.1" />
           <element id="library" level="application" name="Spring-4.0.5.RELEASE" />
         </element>
       </element>

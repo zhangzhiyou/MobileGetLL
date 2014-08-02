@@ -23,6 +23,15 @@ public interface SubscriberService {
 
     public void unSubscribe(String mobile);
 
+    /**
+     * 获取注册码有效期剩余时间
+     * @param mobile 要获取的手机号
+     * @return 剩余时间，单位为 秒
+     * 当 key 不存在时，返回 -2 。
+     * 当 key 存在但没有设置剩余生存时间时，返回 -1 。
+     */
+    public Long getTTL(String mobile);
+
     // get and set methods
 
     public void setRedisService(RedisService redisService);

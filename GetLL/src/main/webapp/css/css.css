@@ -1077,7 +1077,8 @@ body {
 .myaccount_logout{float:right; border:#a11013 1px solid; padding:0 5px; background-color:#bb1112; height:20px; line-height:20px; font-size:0.9em;}
 .myaccount_userpic{float:left; min-width:80px; text-align:right; padding:10px 10px;}
 .myaccount_unseinfo{float:left; text-align:left; color:#FFF; padding:5px 5px;}
-.myaccount_unseinfo .phonenum{color:#FFF;padding:8px 0; overflow:hidden; font-size:1em;}
+.myaccount_unseinfo .phonenum{color:#FFF;padding:0px 0; overflow:hidden; font-size:1em;}
+.myaccount_unseinfo .registnum{color:#FFF;padding:0px 0; overflow:hidden; font-size:1em;}
 .myaccount_unseinfo .yellowfont{color:#FF0; font-size:1.1em;}
 .myaccount_unseinfo .bignum{font-size:1.5em; color:#FFF;}
 .myaccount_menu{margin:5px 10px; background-color:#FFF; border-bottom:#CCC solid 1px; overflow:hidden; clear:both;}

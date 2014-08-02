@@ -5,7 +5,7 @@
 function FlowScore() {
 
     // 加载收支总和信息请求路径
-    this.querCreditSumPath_ =  "/ajax/queryCreditSum.action";
+    this.querCreditSumPath_ =  "/ajax/queryCreditSum.action?r=";
 
     // 加载收支明细请求路径
     this.queryCreditDetailPath_ = "/ajax/queryCreditDetail.action?type=";
@@ -21,7 +21,7 @@ FlowScore.prototype.loadCreditSum = function () {
     var that = this;
     $.ajax( {
         type: "POST",
-        url:that.querCreditSumPath_,
+        url:that.querCreditSumPath_+Math.random(),
         cache: false,
         dataType: "json",
         timeout: 25000,
@@ -56,7 +56,7 @@ FlowScore.prototype.loadFirstCreditDetail = function () {
     var that = this;
     that.stop_ = false;
     that.detailId_ = 0;
-    var requertUrl = that.queryCreditDetailPath_+that.upType_+"&startNum=0";
+    var requertUrl = that.queryCreditDetailPath_+that.upType_+"&startNum=0&r="+Math.random();
     if(!that.isloading){
         that.isloading = true;
         $.ajax( {
@@ -178,7 +178,7 @@ FlowScore.prototype.showErrorResult = function (data,isFirst){
 //非第一次加载明细内容
 FlowScore.prototype.loadNoFirstCreditDetail = function () {
     var that = this;
-    var requertUrl = that.queryCreditDetailPath_+that.downType_+"&startNum="+that.detailId_;
+    var requertUrl = that.queryCreditDetailPath_+that.downType_+"&startNum="+that.detailId_ + "r="+Math.random();
     if(!that.stop_){
         if(!that.isloading){
             that.isloading = true;

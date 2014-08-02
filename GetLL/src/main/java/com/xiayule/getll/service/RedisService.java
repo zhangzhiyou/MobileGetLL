@@ -43,11 +43,10 @@ public interface RedisService {
 
     /**
      * 将一个或多个 member 元素加入到集合 key 当中
-     *
-     * @param key
+     *  @param key
      * @param member
      */
-    public void sadd(String key, String member);
+    public Long sadd(String key, String member);
 
     /**
      * 返回集合中元素的数量

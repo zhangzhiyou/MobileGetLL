@@ -14,6 +14,7 @@ function EventMan() {
     this.remainTimes_ = 0;
 
     this.nickName_ = "";
+
 }
 
 EventMan.prototype.init = function() {
@@ -59,6 +60,34 @@ EventMan.prototype.init = function() {
         alert("正在为您摇奖，请稍等刷新查看\n提示: 系统每天6点准时为您摇奖")
         that.shakeNow();
     });
+
+    $("#bt_liuyan").click(function() {
+
+        if ($("#bt_liuyan").text() == "留言") {
+            $("#duoshuoContent").show();
+            $("#mingxiListDiv").hide();
+            $("#bt_liuyan").text("关闭留言")
+        } else {
+            $("#duoshuoContent").hide();
+            $("#mingxiListDiv").show();
+            $("#bt_liuyan").text("留言")
+        }
+    })
+
+    // 免费续期
+    $("#leavesDay").click(function() {
+        if ($("#leavesDay").text().indexOf("免费续期") > 0) {
+            // TODO: 续期
+            $.post("/ajax/freshRegisterCode.action?r="+Math.random(), {}, function (data) {
+                if (data.status != "ok") {
+                    alert("续期失败，请刷新后重试");
+                } else {
+                    $("#leavesDay").text(data.result.ttl);
+                    alert("恭喜，续期成功")
+                }
+            });
+        }
+    });
 };
 
 EventMan.prototype.parseMobileFormat = function (mobile) {
@@ -77,7 +106,7 @@ EventMan.prototype.parseMobileFormat = function (mobile) {
 EventMan.prototype.checkLogin = function(callback) {
     var that = this;
 
-    $.post("/ajax/loadLoginMobile.action", {}, function(data) {
+    $.post("/ajax/loadLoginMobile.action?r="+Math.random(), {}, function(data) {
         if (data.status != "ok") {
             $("#loginContent").show();
             return;
@@ -124,13 +153,25 @@ EventMan.prototype.loginDo = function() {
         "registerCode" : registerCode
     };
 
-    $.post("/ajax/login.action", params, function (data) {
+    $.post("/ajax/login.action?r=", params, function (data) {
         if (data.status != "ok") {
 //            $message.html("该手机号没有订购业务");
-            // 登录窗口隐藏
-            $("#loginContent").hide();
-            // 显示注册窗口
-            $("#registerCodeContent").show();
+
+            // 没有订购业务
+            if (data.errorId == 0) {
+                // 登录窗口隐藏
+                $("#loginContent").hide();
+                // 显示注册窗口
+                $("#registerCodeContent").show();
+            } else if (data.errorId == 1) {//不是山东移动号码
+                // 登录窗口隐藏
+                $("#loginContent").show();
+                // 显示注册窗口
+                $("#registerCodeContent").hide();
+                $message.html("<span style=\"color: red;\">" + data.errorDesc + "</span>")
+            }
+
+
         } else {
             // 如果是第一次登录
             if (data.result.firstLogin) {
@@ -150,7 +191,7 @@ EventMan.prototype.shakeNow = function() {
 
     // 获取剩余摇奖次数
 
-    $.post("/ajax/shakeNow.action", {}, function (data) {
+    $.post("/ajax/shakeNow.action?r=", {}, function (data) {
         if (data.status != "ok") {
             alert("网络错误");
         } else {

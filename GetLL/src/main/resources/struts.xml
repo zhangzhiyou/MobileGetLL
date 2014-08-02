@@ -7,6 +7,7 @@
 <struts>
     <constant name="struts.devMode" value="true"/>
     <constant name="struts.i18n.encoding" value="UTF-8"/>
+
     <package name="xiayule" extends="struts-default">
         <!-- 默认主页 -->
         <default-action-ref name="default"/>
@@ -27,14 +28,35 @@
     </package>
 
     <package name="ajax" namespace="/ajax" extends="struts-default">
+
         <result-types>
             <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
         </result-types>
 
+        <!-- 定义一个拦截器 -->
         <interceptors>
+            <!-- json 中使用的自带的 -->
             <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+
+            <!-- 自定义的检测是否自动登录  -->
+            <interceptor name="authority" class="authInterceptor"/>
+
+            <!-- 拦截器栈 -->
+            <interceptor-stack name="authStack">
+                <interceptor-ref name="authority"/>
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="json"/>
+            </interceptor-stack>
         </interceptors>
-        
+
+        <default-interceptor-ref name="authStack"/>
+
+        <!-- 定义全局 Result -->
+        <global-results>
+            <!-- 当返回login视图名时，转入/页面 -->
+            <result name="login" type="redirect">/</result>
+        </global-results>
+
         <action name="login" class="ajaxAction" method="login">
             <result type="json">
                 <param name="root">json</param>
@@ -71,7 +93,7 @@
             </result>
         </action>
 
-        <!--js调用该接口后，出现问题-->
+        <!--TODO:js调用该接口后，出现问题-->
         <action name="getRemainTimes" class="ajaxAction" method="getRemainTimes">
             <result type="json">
                 <param name="root">json</param>
@@ -89,5 +111,18 @@
                 <param name="root">jsonObj</param>
             </result>
         </action>
+
+        <action name="getTTL" class="ajaxAction" method="getTTL">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="freshRegisterCode" class="ajaxAction" method="freshRegisterCode">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
     </package>
 </struts>

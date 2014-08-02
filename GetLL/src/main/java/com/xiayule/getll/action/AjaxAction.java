@@ -65,12 +65,30 @@ public class AjaxAction {
     /**
      * ajax登录的方法, 如果传过来 registerCode，会优先注册
      * 如果不存在 手机号 的cookie，证明为第一次登录
+     * 该服务写的有些复杂，因为有以下几种可能：
+     * 1. 当非山东移动使用服务时，会消耗掉注册码，但是登录不成功
+     * 2. 当非山东移动存在时（因为bug），会是服务停止
+     *
      */
     public String login() {
         json = new HashMap();
 
         // 如果传递了注册码, 就先注册，时效会覆盖掉之前的
         if (registerCode != null && !registerCode.equals("") && registerCodeService.isValid(registerCode)) {
+
+            // 判断下是不是移动手机号, 保证不是山东移动，不会注册
+            if (!cookieService.isExist(mobile)) {
+                // 返回空证明，不是山东移动号码
+                if (playService.loginDo(mobile) == null) {
+                    json.put("status", "fail");
+                    // 非山东手机号
+                    json.put("errorId", "1");
+                    json.put("errorDesc", "亲，只有山东移动用户才能参与哦！");
+
+                    return Action.SUCCESS;
+                }
+            }
+
             subscriberService.subscribe(mobile, registerCode);
         }
 
@@ -94,7 +112,14 @@ public class AjaxAction {
 //                        ystem.out.println("第一次登录手机号:" + mobile);
 
                 // 如果没有使用过本站服务, 就先登录
-                playService.loginDo(mobile);
+                if (playService.loginDo(mobile) == null) {
+                    json.put("status", "fail");
+                    // 非山东手机号
+                    json.put("errorId", "1");
+                    json.put("errorDesc", "亲，只有山东移动用户才能参与哦！");
+
+                    return Action.SUCCESS;
+                }
 
 //                        playService.autoPlay(mobile);
 //                    }
@@ -115,9 +140,10 @@ public class AjaxAction {
             Cookie[] cookies = transFormCookieStore(cookieStore);
 */
             ServletActionContext.getResponse().addCookie(cookie);
-
         } else {
             json.put("status", "error");
+            json.put("errorId", 0);
+            json.put("errorDesc", "亲,您未注册过本站服务");
         }
 
         mobile = null;
@@ -247,6 +273,44 @@ public class AjaxAction {
     }
 
     /**
+     * 获取注册码有效期剩余天数
+     */
+    public String getTTL() {
+        String m = getMobileFromCookie();
+
+        String strDays = getStrTTL(m);
+
+        json = new HashMap();
+        json.put("status", "ok");
+
+        Map result = new HashMap();
+        result.put("ttl", strDays);
+
+        json.put("result", result);
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 提取成一个函数，方便 getTTL 和 freshRegisterCode 调用
+     * @return
+     */
+    private String getStrTTL(String m) {
+        // 如果没有订阅，或者到期，会被 struts 拦截，因此不用考虑到期的情况
+        Long remainSeconds = subscriberService.getTTL(m);
+
+        // 将秒数转换为天
+        Long days = remainSeconds / 60 / 60 / 24 + 1;
+
+        String strDays = null;
+
+        if (days <= 6) strDays = days + "天(免费续期)";
+        else strDays = days + "天";
+
+        return strDays;
+    }
+
+    /**
      * 获得剩余摇奖次数
      * @return
      */
@@ -292,6 +356,31 @@ public class AjaxAction {
         String rs = playService.queryCreditDetail(m);
 
         jsonObj = JsonUtils.stringToJson(rs);
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 免费续期 7 天
+     * @return
+     */
+    public String freshRegisterCode() {
+        String m = getMobileFromCookie();
+
+        // 生成注册码
+        String registerCode = registerCodeService.generateRegisterCode();
+        // 注册注册码
+        subscriberService.subscribe(m, registerCode);
+
+        // 获得更新后得到有效时间
+        String strDays = getStrTTL(m);
+
+        json = new HashMap();
+        json.put("status", "ok");
+
+        Map result = new HashMap();
+        result.put("ttl", strDays);
+        json.put("result", result);
 
         return Action.SUCCESS;
     }

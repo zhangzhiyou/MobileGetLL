@@ -20,8 +20,6 @@
     <bean name="playService" class="com.xiayule.getll.service.impl.PlayServiceImpl"
           scope="prototype">
 
-        <!--<constructor-arg value="123"/>-->
-
         <property name="cookieService" ref="cookieService"/>
         <property name="httpService" ref="httpService"/>
         <property name="creditLogService" ref="creditLogService"/>
@@ -68,6 +66,11 @@
         <property name="jedisPool" ref="jedisPool"/>
     </bean>
 
+    <bean name="authInterceptor" class="com.xiayule.getll.interceptot.AuthInterceptor">
+        <property name="subscriberService" ref="subscribeService"/>
+    </bean>
+
+
     <!-- redis 配置 -->
 
     <!-- 加载redis配置文件 -->
@@ -93,7 +96,7 @@
     </bean>
 
 
-    <!-- spring 集成 QuartZ -->
+    <!-- spring 集成 QuartZ 2.x-->
 
     <!-- 线程执行器配置，用于任务注册 -->
     <bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
@@ -115,14 +118,22 @@
     </bean>
 
     <!-- 增加调度触发器 -->
+    <!-- 1.8 以前的配置
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="jobDetail" />
+        &lt;!&ndash; 每天6点执行任务 &ndash;&gt;
+        <property name="cronExpression" value="0 18 8 * * ?" />
+    </bean>-->
+
+    <!-- 2.x 的配置 -->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail" />
         <!-- 每天6点执行任务 -->
-        <property name="cronExpression" value="0 0 6 * * ?" />
+        <property name="cronExpression" value="0 28 8 * * ?" />
     </bean>
 
     <!-- 设置调度 -->
-    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    <bean lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref bean="cronTrigger" />

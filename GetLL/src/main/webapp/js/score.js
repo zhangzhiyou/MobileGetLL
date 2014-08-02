@@ -4,7 +4,7 @@
 
 function Score() {
     // 获取用户积分信息请求路径
-    this.queryScorePath_ = "/ajax/queryScore.action";
+    this.queryScorePath_ = "/ajax/queryScore.action?r=";
 
     // 剩余摇奖次数
     this.remainTimes_ = 0;
@@ -16,7 +16,7 @@ Score.prototype.showMyScore = function() {
     // TODO: 不知道干啥的, 注释掉
    /* $("#jia_head").show();*/
 
-    $.post(that.queryScorePath_, {}, function(data) {
+    $.post(that.queryScorePath_+Math.random(), {}, function(data) {
         if (data.status != "ok") {
             alert("流量币信息获取失败!");
             return;
@@ -62,6 +62,15 @@ Score.prototype.showMyScore = function() {
         if($("#isHandlesCreditNumber")){
             $("#isHandlesCreditNumber").html(scoreData.isHandlesCreditNumber);
         }
+
+        // 获得注册码有效期
+        $.post("/ajax/getTTL.action?r="+Math.random(), {}, function (data) {
+            if (data.status != "ok") {
+                alert("获取个人服务信息失败")
+            } else {
+                $("#leavesDay").text(data.result.ttl);
+            }
+        })
 
         //更新 总汇信息
         flowScore.loadCreditSum();

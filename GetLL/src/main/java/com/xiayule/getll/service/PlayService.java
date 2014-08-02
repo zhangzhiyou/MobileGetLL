@@ -8,6 +8,10 @@ import net.sf.json.JSONObject;
 public interface PlayService {
     public String getPassword(String mobile);
     public int getRemainTimes(String mobile);
+    /**
+     * 通过手机号登录
+     * @return 如果非山东移动号码，返回空
+     */
     public String loginDo(String mobile);
     public String draw(String mobile);
     public double addDrawScore(String mobile);

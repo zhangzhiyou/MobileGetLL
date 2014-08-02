@@ -95,7 +95,7 @@ public class Test {
             System.out.println(day + ":" + creditService.getDayCredit(day));
         }*/
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
+     /*   ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
         final JedisPool jedisPool = ctx.getBean("jedisPool", JedisPool.class);
 
         new Thread(new Runnable() {
@@ -106,7 +106,11 @@ public class Test {
                 jedisPool.returnResource(jedis);
 
             }
-        }).start();
+        }).start();*/
+        Long a = 604700L / 60;
+        System.out.println(a);
+        System.out.println((a/=60));
+        System.out.println(((a/=24)));
 
     }
     private static Logger logger = Logger.getLogger(PlayService.class);

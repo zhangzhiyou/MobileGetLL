@@ -189,11 +189,8 @@
         if (detailVisible) {
             var scrolltop = $(document).scrollTop();
             var winHeight = $(document).height() - $(window).height();
-//        if(scrolltop == 0){
-//            flowScore.loadFirstCreditDetail();
-//            flowScore.loadCreditSum();
 
-            if(scrolltop >= winHeight-410 && eventMan.isLogin()){
+            if(scrolltop >= winHeight-50 && eventMan.isLogin()){
                 flowScore.loadCreditDetail("down");
             }
         }

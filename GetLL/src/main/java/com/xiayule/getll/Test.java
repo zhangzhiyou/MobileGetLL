@@ -1,19 +1,8 @@
 package com.xiayule.getll;
 
-import com.xiayule.getll.service.CreditLogService;
-import com.xiayule.getll.service.CreditService;
 import com.xiayule.getll.service.PlayService;
-import com.xiayule.getll.service.impl.PlayServiceImpl;
-import com.xiayule.getll.utils.TimeUtils;
-import org.apache.log4j.Logger;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by tan on 14-7-20.
@@ -107,12 +96,13 @@ public class Test {
 
             }
         }).start();*/
-        Long a = 604700L / 60;
-        System.out.println(a);
-        System.out.println((a/=60));
-        System.out.println(((a/=24)));
-
+        for (int i=0; i<10; i++) {
+            logger.info("ha");
+            logger.debug("hadebug");
+            logger.error("hei");
+//        System.out.println("ha1");
+        }
     }
-    private static Logger logger = Logger.getLogger(PlayService.class);
+    private static Logger logger = LogManager.getLogger(PlayService.class);
 
 }

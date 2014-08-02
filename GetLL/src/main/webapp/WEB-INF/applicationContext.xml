@@ -22,7 +22,7 @@
 
         <property name="cookieService" ref="cookieService"/>
         <property name="httpService" ref="httpService"/>
-        <property name="creditLogService" ref="creditLogService"/>
+        <!--<property name="creditLogService" ref="creditLogService"/>-->
         <property name="creditService" ref="creditService"/>
     </bean>
 
@@ -59,7 +59,7 @@
         <property name="playService" ref="playService"/>
         <property name="registerCodeService" ref="registerCodeService"/>
         <property name="cookieService" ref="cookieService"/>
-        <property name="creditLogService" ref="creditLogService"/>
+        <!--<property name="creditLogService" ref="creditLogService"/>-->
     </bean>
 
     <bean name="redisDataSource" class="com.xiayule.getll.service.impl.RedisDataSourceImpl">

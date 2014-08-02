@@ -8,7 +8,8 @@
           <element id="module-output" name="getll" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: log4j:log4j:1.2.16" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.0" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.0.5.RELEASE" />

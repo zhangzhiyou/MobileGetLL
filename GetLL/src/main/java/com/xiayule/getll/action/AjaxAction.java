@@ -5,8 +5,8 @@ import com.xiayule.getll.factory.CookieFactory;
 import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
-import org.apache.http.client.CookieStore;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.Cookie;
@@ -16,16 +16,18 @@ import java.util.*;
  * Created by tan on 14-7-27.
  */
 public class AjaxAction {
-    private static Logger logger = Logger.getLogger(PlayService.class);
+    private static Logger logger = LogManager.getLogger(PlayService.class.getName());
 
     private SubscriberService subscriberService;
     private PlayService playService;
     private RegisterCodeService registerCodeService;
     private CookieService cookieService;
-    private CreditLogService creditLogService;
+//    private CreditLogService creditLogService;
 
     private String mobile;
-
+    private String r;// 是个随机参数，为了防止缓存机制，struts中不加这个会warning，不加也行
+    private String type;
+    private String startNum;
     private Map json;
     private JSONObject jsonObj;
 
@@ -352,8 +354,11 @@ public class AjaxAction {
      */
     public String queryCreditDetail() {
         String m = getMobileFromCookie();
+
 //        playService.setMobile(m);
-        String rs = playService.queryCreditDetail(m);
+        String rs = playService.queryCreditDetail(m, type, startNum);
+
+        System.out.println("type:" + type + ";" + "startNum" + startNum);
 
         jsonObj = JsonUtils.stringToJson(rs);
 
@@ -439,7 +444,27 @@ public class AjaxAction {
         this.cookieService = cookieService;
     }
 
-    public void setCreditLogService(CreditLogService creditLogService) {
-        this.creditLogService = creditLogService;
+//    public void setCreditLogService(CreditLogService creditLogService) {
+//        this.creditLogService = creditLogService;
+//    }
+
+    public void setR(String r) {
+        this.r = r;
+    }
+
+    public String getR() {
+        return r;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setStartNum(String startNum) {
+        this.startNum = startNum;
     }
 }

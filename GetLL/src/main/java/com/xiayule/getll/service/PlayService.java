@@ -33,7 +33,7 @@ public interface PlayService {
      * 加载收支明细
      * @return
      */
-    public String queryCreditDetail(String mobile);
+    public String  queryCreditDetail(String mobile, String type, String startNum);
 
     public void autoPlay(String mobile);
 }

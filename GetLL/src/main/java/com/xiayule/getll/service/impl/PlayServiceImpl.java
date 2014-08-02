@@ -5,7 +5,8 @@ import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
 import org.apache.http.client.CookieStore;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import java.util.ArrayList;
@@ -17,11 +18,11 @@ import java.util.List;
  */
 public class PlayServiceImpl implements PlayService {
     // 输出到系统日志
-    private static Logger logger = Logger.getLogger(PlayService.class);
+    private static Logger logger = LogManager.getLogger(PlayService.class.getName());
 
     private HttpService httpService;
     private CookieService cookieService;
-    private CreditLogService creditLogService;
+//    private CreditLogService creditLogService;
     private CreditService creditService;
 
     //private String mobile;
@@ -37,7 +38,7 @@ public class PlayServiceImpl implements PlayService {
         // 如果未登录, 就登录
         if (!this.isLogined(mobile)) {
             logger.info(mobile + " 未登录, 进行登录");
-            creditLogService.log(mobile, "未登录, 进行登录");
+//            creditLogService.log(mobile, "未登录, 进行登录");
 
             // 非山东移动号码
             if (this.loginDo(mobile) == null) {
@@ -47,7 +48,7 @@ public class PlayServiceImpl implements PlayService {
             }
 
             logger.info(mobile + " 登录成功");
-            creditLogService.log(mobile, "登录成功");
+//            creditLogService.log(mobile, "登录成功");
         }
 
         // 累加每日奖励, 并接收返回结果
@@ -62,7 +63,7 @@ public class PlayServiceImpl implements PlayService {
         int remainTimes = this.getRemainTimes(mobile);
 
         logger.info(mobile + " 还剩 " + remainTimes + " 次");
-        creditLogService.log(mobile, "还剩 " + remainTimes + " 次");
+//        creditLogService.log(mobile, "还剩 " + remainTimes + " 次");
 
         if (remainTimes > 0) {
             // 有可能抽奖过程中获得再一次奖励
@@ -72,8 +73,8 @@ public class PlayServiceImpl implements PlayService {
             do {
                 String winName = this.draw(mobile);
 
-                creditLogService.log(mobile, "第" + (++cnt) + "次摇奖,获得奖励:"
-                        + winName);
+//                creditLogService.log(mobile, "第" + (++cnt) + "次摇奖,获得奖励:"
+//                        + winName);
                 logger.info(mobile + " 第" + cnt + "次摇奖,获得奖励:"
                         + winName);
 
@@ -96,7 +97,7 @@ public class PlayServiceImpl implements PlayService {
                     e.printStackTrace();
                 }
 
-                creditLogService.log(mobile, " 剩余次数:" + remainTimes);
+//                creditLogService.log(mobile, " 剩余次数:" + remainTimes);
                 logger.info(mobile + " 剩余次数:" + remainTimes);
             } while (remainTimes > 0);
         }
@@ -107,9 +108,9 @@ public class PlayServiceImpl implements PlayService {
 
         creditService.setDayCredit(mobile, queryScore.getDouble("todayCredit"));
 
-        creditLogService.log(mobile, "总计: 连续登录:" + queryScore.getString("count_1") + "天"
-                + " 今日总计:" + queryScore.getString("todayCredit")
-                + " 当前流量币: " + queryScore.getString("credit"));
+//        creditLogService.log(mobile, "总计: 连续登录:" + queryScore.getString("count_1") + "天"
+//                + " 今日总计:" + queryScore.getString("todayCredit")
+//                + " 当前流量币: " + queryScore.getString("credit"));
 
         logger.info(mobile + " 总计: 连续登录:" + queryScore.getString("count_1") + "天"
                 + " 今日总计:" + queryScore.getString("todayCredit")
@@ -297,11 +298,8 @@ public class PlayServiceImpl implements PlayService {
      * 加载收支明细
      * @return
      */
-    public String  queryCreditDetail(String mobile) {
-        String paramType = ServletActionContext.getRequest().getParameter("type");
-        String paramStartNum = ServletActionContext.getRequest().getParameter("startNum");
-
-        String urlQueryCreditDetail = "http://shake.sd.chinamobile.com/flowScore?method=queryCreditDetail&type=" +  paramType + "&startNum=" + paramStartNum;
+    public String  queryCreditDetail(String mobile, String type, String startNum) {
+        String urlQueryCreditDetail = "http://shake.sd.chinamobile.com/flowScore?method=queryCreditDetail&type=" +  type + "&startNum=" + startNum;
 
         String rs = post(mobile, urlQueryCreditDetail, null);
 
@@ -360,9 +358,9 @@ public class PlayServiceImpl implements PlayService {
         this.httpService = httpService;
     }
 
-    public void setCreditLogService(CreditLogService creditLogService) {
-        this.creditLogService = creditLogService;
-    }
+//    public void setCreditLogService(CreditLogService creditLogService) {
+//        this.creditLogService = creditLogService;
+//    }
 
     public void setCreditService(CreditService creditService) {
         this.creditService = creditService;

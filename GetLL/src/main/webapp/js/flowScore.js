@@ -178,7 +178,7 @@ FlowScore.prototype.showErrorResult = function (data,isFirst){
 //非第一次加载明细内容
 FlowScore.prototype.loadNoFirstCreditDetail = function () {
     var that = this;
-    var requertUrl = that.queryCreditDetailPath_+that.downType_+"&startNum="+that.detailId_ + "r="+Math.random();
+    var requertUrl = that.queryCreditDetailPath_+that.downType_+"&startNum="+that.detailId_ + "&r="+Math.random();
     if(!that.stop_){
         if(!that.isloading){
             that.isloading = true;

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+
+        <!-- 系统日志 -->
+        <RollingFile name="systemRollingFile" fileName="/home/tan/getll/system.log"
+                     filePattern="/home/tan/getll/$${date:yyyy-MM}/system-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <SizeBasedTriggeringPolicy size="100 MB" />
+        </RollingFile>
+
+        <!-- 每日访问记录 -->
+        <RollingFile name="accessRollingFile" fileName="/home/tan/getll/access.log"
+                     filePattern="/home/tan/getll/$${date:yyyy-MM}/accesslog-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="10 MB" />
+        </RollingFile>
+
+        <!-- 每日摇奖记录 -->
+        <RollingFile name="shakeRollingFile" fileName="/home/tan/getll/credit.log"
+                     filePattern="/home/tan/getll/$${date:yyyy-MM}/creditlog-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="10 MB" />
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <!-- 记录每日流量统计 -->
+        <logger name="com.xiayule.getll.service.PlayService" level="info" additivity="false">
+            <appender-ref ref="shakeRollingFile"/>
+        </logger>
+
+        <!-- 访问及请求地址日志-->
+        <logger name="com.xiayule.getll.interceptot.AuthInterceptor" level="info" additivity="false">
+            <appender-ref ref="accessRollingFile"/>
+        </logger>
+
+        <root level="error">
+            <appender-ref ref="systemRollingFile"/>
+        </root>
+    </loggers>
+</configuration>

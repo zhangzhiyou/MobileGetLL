@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.xiayule.getll.service.SubscriberService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.Cookie;
@@ -12,6 +14,8 @@ import javax.servlet.http.Cookie;
  * Created by tan on 14-8-1.
  */
 public class AuthInterceptor extends AbstractInterceptor {
+    private static Logger logger = LogManager.getLogger(AuthInterceptor.class.getName());
+
     private SubscriberService subscriberService;
 
     @Override
@@ -21,6 +25,8 @@ public class AuthInterceptor extends AbstractInterceptor {
 
         // 如果不存在，则证明进行的是登录操作, 跳过即可
         if (mobile == null || subscriberService.isSubscribe(mobile)) {
+            logger.info(mobile + " 请求 " + actionInvocation.getProxy().getActionName());
+
             return actionInvocation.invoke();
         }
 

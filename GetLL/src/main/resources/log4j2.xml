@@ -10,21 +10,21 @@
         <RollingFile name="systemRollingFile" fileName="/home/tan/getll/system.log"
                      filePattern="/home/tan/getll/$${date:yyyy-MM}/system-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-            <SizeBasedTriggeringPolicy size="100 MB" />
+            <SizeBasedTriggeringPolicy size="50 MB" />
         </RollingFile>
 
         <!-- 每日访问记录 -->
         <RollingFile name="accessRollingFile" fileName="/home/tan/getll/access.log"
                      filePattern="/home/tan/getll/$${date:yyyy-MM}/accesslog-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} - %msg%xEx%n"/>
-            <SizeBasedTriggeringPolicy size="10 MB" />
+            <SizeBasedTriggeringPolicy size="5 MB" />
         </RollingFile>
 
         <!-- 每日摇奖记录 -->
         <RollingFile name="shakeRollingFile" fileName="/home/tan/getll/credit.log"
                      filePattern="/home/tan/getll/$${date:yyyy-MM}/creditlog-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} - %msg%xEx%n"/>
-            <SizeBasedTriggeringPolicy size="10 MB" />
+            <SizeBasedTriggeringPolicy size="1 MB" />
         </RollingFile>
     </appenders>
 
@@ -39,7 +39,8 @@
             <appender-ref ref="accessRollingFile"/>
         </logger>
 
-        <root level="error">
+        <!-- 系统日志 -->
+        <root level="debug">
             <appender-ref ref="systemRollingFile"/>
         </root>
     </loggers>

@@ -75,7 +75,7 @@ public class PlayServiceImpl implements PlayService {
 
 //                creditLogService.log(mobile, "第" + (++cnt) + "次摇奖,获得奖励:"
 //                        + winName);
-                logger.info(mobile + " 第" + cnt + "次摇奖,获得奖励:"
+                logger.info(mobile + " 第" + (++cnt) + "次摇奖,获得奖励:"
                         + winName);
 
                 // 如果获得的流量币，就要 计数
@@ -229,7 +229,7 @@ public class PlayServiceImpl implements PlayService {
 
 
     public double addDrawScore(String mobile) {
-        String urlAddDrawScore = "http://shake.sd.chinamobile.com/score?method=addDrawScore";
+        String urlAddDrawScore = "http://shake.sd.chinamobile.com/score?method=addDrawScore&r=" + Math.random();
 
         String json = get(mobile, urlAddDrawScore);
 
@@ -265,7 +265,7 @@ public class PlayServiceImpl implements PlayService {
      * @return
      */
     public String queryScoreWithSource(String mobile) {
-        String urlQueryScore = "http://shake.sd.chinamobile.com/score?method=queryScore";
+        String urlQueryScore = "http://shake.sd.chinamobile.com/score?method=queryScore&r="+Math.random();
         String rs = get(mobile, urlQueryScore);
         return rs;
     }
@@ -288,7 +288,7 @@ public class PlayServiceImpl implements PlayService {
      * @return
      */
     public String queryCreditSum(String mobile) {
-        String urlQueryCreditSumPath = "http://shake.sd.chinamobile.com/flowScore?method=querCreditSum";
+        String urlQueryCreditSumPath = "http://shake.sd.chinamobile.com/flowScore?method=querCreditSum&r=" + Math.random();
 
         String rs = post(mobile, urlQueryCreditSumPath, null);
         return rs;
@@ -299,7 +299,7 @@ public class PlayServiceImpl implements PlayService {
      * @return
      */
     public String  queryCreditDetail(String mobile, String type, String startNum) {
-        String urlQueryCreditDetail = "http://shake.sd.chinamobile.com/flowScore?method=queryCreditDetail&type=" +  type + "&startNum=" + startNum;
+        String urlQueryCreditDetail = "http://shake.sd.chinamobile.com/flowScore?method=queryCreditDetail&type=" +  type + "&startNum=" + startNum+"&r=" + Math.random();
 
         String rs = post(mobile, urlQueryCreditDetail, null);
 

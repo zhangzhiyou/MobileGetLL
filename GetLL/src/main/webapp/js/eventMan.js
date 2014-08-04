@@ -76,7 +76,7 @@ EventMan.prototype.init = function() {
 
     // 免费续期
     $("#leavesDay").click(function() {
-        if ($("#leavesDay").text().indexOf("免费续期") > 0) {
+        if ($("#leavesDay").text().indexOf("点我续期") > 0) {
             // TODO: 续期
             $.post("/ajax/freshRegisterCode.action?r="+Math.random(), {}, function (data) {
                 if (data.status != "ok") {
@@ -127,7 +127,6 @@ EventMan.prototype.checkLogin = function(callback) {
     });
 };
 
-
 /**
  * 登录
  * 登录成功后，刷新页面
@@ -170,7 +169,6 @@ EventMan.prototype.loginDo = function() {
                 $("#registerCodeContent").hide();
                 $message.html("<span style=\"color: red;\">" + data.errorDesc + "</span>")
             }
-
 
         } else {
             // 如果是第一次登录

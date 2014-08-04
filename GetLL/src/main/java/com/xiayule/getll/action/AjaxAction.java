@@ -306,7 +306,7 @@ public class AjaxAction {
 
         String strDays = null;
 
-        if (days <= 6) strDays = days + "天(免费续期)";
+        if (days <= 6) strDays = days + "天(点我续期)";
         else strDays = days + "天";
 
         return strDays;
@@ -357,8 +357,6 @@ public class AjaxAction {
 
 //        playService.setMobile(m);
         String rs = playService.queryCreditDetail(m, type, startNum);
-
-        System.out.println("type:" + type + ";" + "startNum" + startNum);
 
         jsonObj = JsonUtils.stringToJson(rs);
 

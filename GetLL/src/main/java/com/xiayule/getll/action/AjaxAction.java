@@ -420,6 +420,8 @@ public class AjaxAction {
             json.put("message", jsonRs.getString("message"));
         }
 
+        logger.info(m + " 兑换 5M 流量");
+
         return Action.SUCCESS;
     }
 

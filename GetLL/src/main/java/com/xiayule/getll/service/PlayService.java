@@ -35,5 +35,19 @@ public interface PlayService {
      */
     public String  queryCreditDetail(String mobile, String type, String startNum);
 
+    /**
+     * 获取其他密码，比如兑换流量币的密码, 返回原json
+     */
+    public String getOtherPassword(String mobile);
+
+
+    /**
+     * 获取流量
+     * @param mobile
+     * @param exchangeID 要兑换的 id， 1 为 5m 流量
+     * @return
+     */
+    public String exchangePrize(String mobile, String exchangeID, String password);
+
     public void autoPlay(String mobile);
 }

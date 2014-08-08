@@ -88,6 +88,23 @@ EventMan.prototype.init = function() {
             });
         }
     });
+
+    // 兑换5M按钮
+    $("#btExchangeFive").click(function () {
+        if (score.creditSum_ < 5) {
+            alert("您的流量币不足 5 个");
+        } else {
+            // 兑换
+            $.post("/ajax/exchangeFlowWithFive?r="+Math.random(), {}, function(data) {
+                if (data.status != "ok") {
+                    alert(data.message);
+                } else {
+                    alert(data.message + "\n已成功兑换5M\n请稍后刷新查看");
+                    this.refresh();
+                }
+            });
+        }
+    });
 };
 
 EventMan.prototype.parseMobileFormat = function (mobile) {

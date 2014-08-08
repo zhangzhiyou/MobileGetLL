@@ -75,13 +75,15 @@ public class AjaxAction {
     public String login() {
         json = new HashMap();
 
+        String m = mobile;
+
         // 如果传递了注册码, 就先注册，时效会覆盖掉之前的
         if (registerCode != null && !registerCode.equals("") && registerCodeService.isValid(registerCode)) {
 
             // 判断下是不是移动手机号, 保证不是山东移动，不会注册
-            if (!cookieService.isExist(mobile)) {
+            if (!cookieService.isExist(m)) {
                 // 返回空证明，不是山东移动号码
-                if (playService.loginDo(mobile) == null) {
+                if (playService.loginDo(m) == null) {
                     json.put("status", "fail");
                     // 非山东手机号
                     json.put("errorId", "1");
@@ -91,30 +93,21 @@ public class AjaxAction {
                 }
             }
 
-            subscriberService.subscribe(mobile, registerCode);
+            subscriberService.subscribe(m, registerCode);
         }
 
-        if (subscriberService.isSubscribe(mobile)) {
+        if (subscriberService.isSubscribe(m)) {
             json.put("status", "ok");
 
             Map result = new HashMap();
-            result.put("mobile", mobile);
+            result.put("mobile", m);
 
             // 如果不存在 cookie，证明第一次登录
-            if (!cookieService.isExist(mobile)) {
+            if (!cookieService.isExist(m)) {
                 result.put("firstLogin", true);
 
-                // 立刻为该手机执行一次任务
-//                logger.info(mobile + " 第一次使用本服务，立即执行一次任务");
-
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        TODO; bug mobile 为空
-//                        ystem.out.println("第一次登录手机号:" + mobile);
-
                 // 如果没有使用过本站服务, 就先登录
-                if (playService.loginDo(mobile) == null) {
+                if (playService.loginDo(m) == null) {
                     json.put("status", "fail");
                     // 非山东手机号
                     json.put("errorId", "1");
@@ -122,25 +115,12 @@ public class AjaxAction {
 
                     return Action.SUCCESS;
                 }
-
-//                        playService.autoPlay(mobile);
-//                    }
-//                }).start();
             }
 
             json.put("result", result);
 
-
             // 设置 cookie
-            /*Cookie cookie = new Cookie("mobile", mobile);
-            cookie.setPath("/");
-            cookie.setMaxAge(60*60*24*365);// cookie 默认一年*/
-
-            Cookie cookie = CookieFactory.newCookie("mobile", mobile);
-
-           /* CookieStore cookieStore = cookieService.getCookieStore(mobile);
-            Cookie[] cookies = transFormCookieStore(cookieStore);
-*/
+            Cookie cookie = CookieFactory.newCookie("mobile", m);
             ServletActionContext.getResponse().addCookie(cookie);
         } else {
             json.put("status", "error");
@@ -148,7 +128,6 @@ public class AjaxAction {
             json.put("errorDesc", "亲,您未注册过本站服务");
         }
 
-        mobile = null;
         registerCode = null;
 
         return Action.SUCCESS;
@@ -190,31 +169,31 @@ public class AjaxAction {
     public String loadLoginMobile() {
         json = new HashMap();
 
-        mobile = null;
+        //mobile = null;
 
         Cookie[] cookies = ServletActionContext.getRequest().getCookies();
 
-        if (cookies != null) {
+        String m = getMobileFromCookie();
+
+        /*if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("mobile")) {
                     mobile = cookie.getValue();
                     break;
                 }
             }
-        }
+        }*/
 
-        if (mobile == null) {
+        if (m == null) {
             json.put("status", "error");
         } else {
             json.put("status", "ok");
 
             Map<String, String> result = new HashMap<String, String>();
-            result.put("loginMobile", mobile);
+            result.put("loginMobile", m);
 
             json.put("result", result);
         }
-
-        mobile = null;
 
         return Action.SUCCESS;
     }
@@ -264,9 +243,9 @@ public class AjaxAction {
      * @return
      */
     public String shakeNow() {
-        mobile = getMobileFromCookie();
+        String m = getMobileFromCookie();
 
-        playService.autoPlay(mobile);
+        playService.autoPlay(m);
 
         json = new HashMap();
         json.put("status", "ok");
@@ -387,6 +366,63 @@ public class AjaxAction {
 
         return Action.SUCCESS;
     }
+
+    /**
+     * 获取兑换流量的动态密码
+     */
+    public String getExchangeFlowPassword() {
+
+
+        json = new HashMap();
+
+        if (jsonObj.getString("status").equals("ok")) {
+            json.put("status", "ok");
+
+        }
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 自动兑换5M流量
+     * @return
+     */
+    public String exchangeFlowWithFive() {
+        //TODO: 兑换日志
+        json = new HashMap();
+
+        // 获取动态密码
+        String m = getMobileFromCookie();
+
+        String rs = playService.getOtherPassword(m);
+
+        JSONObject jsonObj = JsonUtils.stringToJson(rs);
+
+        // 如果获取动态密码失败
+        if (!jsonObj.getString("status").equals("ok")) {
+            json.put("status", "error");
+            json.put("message", "获取动态密码失败");
+            return Action.SUCCESS;
+        }
+
+        // 如果获取成功就执行兑换
+        String pass = jsonObj.getJSONObject("result").getString("password");
+
+        String strJson = playService.exchangePrize(m, "1", pass);
+
+        JSONObject jsonRs = JsonUtils.stringToJson(strJson);
+
+        if (jsonRs.getString("status").equals("ok")) {
+            json.put("status", "ok");
+            json.put("message", jsonRs.getString("message"));
+        } else {
+            json.put("status", "error");
+            json.put("message", jsonRs.getString("message"));
+        }
+
+        return Action.SUCCESS;
+    }
+
 
     // set and get methods
 

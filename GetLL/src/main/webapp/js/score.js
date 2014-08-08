@@ -8,6 +8,8 @@ function Score() {
 
     // 剩余摇奖次数
     this.remainTimes_ = 0;
+    // 流量币总数
+    this.creditSum_ = 0;
 }
 
 Score.prototype.showMyScore = function() {
@@ -49,6 +51,7 @@ Score.prototype.showMyScore = function() {
                 credit_temp = 0;
             }
             $("#credit").html(credit_temp);
+            that.creditSum_ = credit_temp;
         }
         //今天登陆了用户已赠送次数
         if($("#transferGiftsNum")){

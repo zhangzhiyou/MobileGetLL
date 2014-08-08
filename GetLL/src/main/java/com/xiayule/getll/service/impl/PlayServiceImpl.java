@@ -344,6 +344,43 @@ public class PlayServiceImpl implements PlayService {
         cookieService.saveCookie(mobile, cookieStore);
     }
 
+    /**
+     * 获取其他密码，比如兑换流量币的密码, 返回原json
+     */
+    public String getOtherPassword(String mobile) {
+        String urlGetOtherPassword = "http://shake.sd.chinamobile.com/shake?method=getOtherPassword&isLogin=true&mobile=&r=" + Math.random();
+
+        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("type", "ExchangeFlow"));
+
+        //TODO: 获取不到
+        String rs = post(mobile, urlGetOtherPassword, params);
+
+        return rs;
+    }
+
+
+    /**
+     * 获取流量
+     * @param mobile
+     * @param exchangeID 要兑换的 id， 1 为 5m 流量
+     * @return
+     */
+    public String exchangePrize(String mobile, String exchangeID, String password) {
+        String urlExchangePrize = "http://shake.sd.chinamobile.com/score?method=exchangePrize&r=" + Math.random();
+
+        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("exchangeID", exchangeID));
+        params.add(new BasicNameValuePair("type", "ExchangeFlow"));
+        params.add(new BasicNameValuePair("password", password));
+
+        String rs = post(mobile, urlExchangePrize, params);
+        return rs;
+    }
+
+
+
+
     // set and get methods
 
 //    public void setMobile(String mobile) {

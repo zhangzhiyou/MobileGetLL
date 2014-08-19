@@ -8,6 +8,8 @@
     background-repeat: repeat-x;
     background-position: center;
     background-color:#c51517;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .button {

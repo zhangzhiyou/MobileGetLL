@@ -6,6 +6,8 @@ function Score() {
     // 获取用户积分信息请求路径
     this.queryScorePath_ = "/ajax/queryScore.action?r=";
 
+
+
     // 剩余摇奖次数
     this.remainTimes_ = 0;
     // 流量币总数

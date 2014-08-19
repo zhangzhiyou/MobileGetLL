@@ -10,7 +10,6 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <title>流量汇自动管家</title>
@@ -116,13 +115,6 @@
                 有效期：<span class="yellowfont" id="leavesDay">&nbsp;</span>
             </div>
 
-            <!--TODO: 修改领取地址-->
-            <!--<div class="phonenum hide" id="receiveDiv">
-                <span class="yellowfont" id="totalCredit">?</span>流量币未领
-                <span class="but_lingqu" onclick="javascript:location.href='/portal/app/receiveFlowScore.jsp'">领取</span>
-            </div>
-
-            <div class="jia_jindu" style="clear:both;" id="RankDiv" height="50"></div>-->
         </div>
     </div>
 
@@ -131,12 +123,24 @@
         <button class="btn button" id="btShakeNow" type="button" onclick="this.blur()">立即摇奖</button>
 
         <div class="btn-group">
-            <button class="btn button" href="#" data-toggle="dropdown">兑换流量<i class="caret"></i></button>
+            <button class="btn button" href="#" onclick="this.blur()" data-toggle="dropdown">兑换流量<i class="caret"></i></button>
 
             <ul class="dropdown-menu">
                 <li><a href="javascript:;">兑换5M</a></li>
-                <li><a href="#">兑换10M</a></li>
-                <li><a href="#">兑换20M</a></li>
+                <li><a href="javascript:;">兑换10M</a></li>
+                <li><a href="javascript:;">兑换30M</a></li>
+                <li><a href="javascript:;">兑换50M</a></li>
+                <li><a href="javascript:;">兑换100M</a></li>
+            </ul>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn button" href="#" onclick="this.blur()" data-toggle="dropdown">兑换短信<i class="caret"></i></button>
+
+            <ul class="dropdown-menu">
+                <li><a href="javascript:;">兑换5条</a></li>
+                <li><a href="javascript:;">兑换10条</a></li>
+                <li><a href="javascript:;">兑换15条</a></li>
             </ul>
         </div>
 

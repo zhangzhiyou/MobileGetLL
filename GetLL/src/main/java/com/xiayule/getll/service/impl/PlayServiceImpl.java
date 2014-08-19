@@ -381,7 +381,17 @@ public class PlayServiceImpl implements PlayService {
         return rs;
     }
 
+    /**
+     *  获取积分兑换列表请求路径
+     * @return 原文
+     */
+    public String queryPrize(String mobile) {
+        String urlQueryPrize = "http://shake.sd.chinamobile.com/score?method=queryPrize";
 
+        String rs = get(mobile, urlQueryPrize);
+
+        return rs;
+    }
 
 
     // set and get methods

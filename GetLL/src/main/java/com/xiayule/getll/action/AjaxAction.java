@@ -468,6 +468,18 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
+    /**
+     * 	获取积分兑换列表请求路径
+     */
+    public String queryPrize() {
+        String m = getMobileFromCookie();
+
+        String rs = playService.queryPrize(m);
+
+        jsonObj = JsonUtils.stringToJson(rs);
+
+        return Action.SUCCESS;
+    }
 
     // set and get methods
 

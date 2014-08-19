@@ -17,6 +17,13 @@ public interface PlayService {
     public double addDrawScore(String mobile);
     public boolean isLogined(String mobile);
     public JSONObject queryScore(String mobile);
+
+    /**
+     *  获取积分兑换列表请求路径
+     * @return 原文
+     */
+    public String queryPrize(String mobile);
+
     /**
      * 同 queryScore， 但是返回的是官方返回的 string
      * @return

@@ -141,5 +141,11 @@
                 <param name="root">jsonObj</param>
             </result>
         </action>
+
+        <action name="queryPrize" class="ajaxAction" method="queryPrize">
+            <result type="json">
+                <param name="root">jsonObj</param>
+            </result>
+        </action>
     </package>
 </struts>

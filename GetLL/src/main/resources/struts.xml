@@ -59,7 +59,13 @@
 
         <action name="login" class="ajaxAction" method="login">
             <result type="json">
-                <param name="root">json</param>
+                <param name="root">jsonObj</param>
+            </result>
+        </action>
+
+        <action name="getPasswordDo" class="ajaxAction" method="getPasswordDo">
+            <result type="json">
+                <param name="root">jsonObj</param>
             </result>
         </action>
 
@@ -127,6 +133,12 @@
         <action name="exchangeFlowWithFive" class="ajaxAction" method="exchangeFlowWithFive">
             <result type="json">
                 <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="getExchangeFlowPassword" class="ajaxAction" method="getExchangeFlowPassword">
+            <result type="json">
+                <param name="root">jsonObj</param>
             </result>
         </action>
     </package>

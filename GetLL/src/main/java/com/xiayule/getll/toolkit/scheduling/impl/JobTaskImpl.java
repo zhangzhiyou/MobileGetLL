@@ -31,7 +31,12 @@ public class JobTaskImpl implements JobTask {
             logger.info("JobTask:" + "执行任务:" + "订阅者:" + sub + " 当前第" + (++cnt) + "个任务");
             System.out.println("JobTask:" + "执行任务:" + "订阅者:" + sub +  "当前第" + (cnt) + "个任务");
 
-            playService.autoPlay(sub);
+            // 如果发生错误，也要继续执行
+            try {
+                playService.autoPlay(sub);
+            } catch (Exception e) {
+
+            }
         }
 
         System.out.println("JobTask:" + "任务执行完毕");

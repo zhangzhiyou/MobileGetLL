@@ -25,6 +25,7 @@ public class AjaxAction {
 //    private CreditLogService creditLogService;
 
     private String mobile;
+    private String password;
     private String r;// 是个随机参数，为了防止缓存机制，struts中不加这个会warning，不加也行
     private String type;
     private String startNum;
@@ -73,33 +74,66 @@ public class AjaxAction {
      *
      */
     public String login() {
-        json = new HashMap();
+        jsonObj = new JSONObject();
 
         String m = mobile;
+        String pass = password;
 
-        // 如果传递了注册码, 就先注册，时效会覆盖掉之前的
-        if (registerCode != null && !registerCode.equals("") && registerCodeService.isValid(registerCode)) {
 
-            // 判断下是不是移动手机号, 保证不是山东移动，不会注册
-            if (!cookieService.isExist(m)) {
-                // 返回空证明，不是山东移动号码
-                if (playService.loginDo(m) == null) {
-                    json.put("status", "fail");
-                    // 非山东手机号
-                    json.put("errorId", "1");
-                    json.put("errorDesc", "亲，只有山东移动用户才能参与哦！");
+        Cookie cookie = CookieFactory.newCookie("mobile", m);
 
-                    return Action.SUCCESS;
-                }
-            }
+        // 存在 cookie， 是订阅者
+        if (cookieService.isExist(m) && subscriberService.isSubscribe(m)) {
+            jsonObj.put("status", "ok");
 
+            // 设置 cookie
+            ServletActionContext.getResponse().addCookie(cookie);
+
+            return Action.SUCCESS;
+        } else  if (cookieService.isExist(m) && !subscriberService.isSubscribe(m)) {// 存在 cookie，不是订阅者
+            // 订购本站业务
+            String registerCode = registerCodeService.generateRegisterCode();
             subscriberService.subscribe(m, registerCode);
+            jsonObj.put("status", "ok");
+
+            // 设置 cookie
+            ServletActionContext.getResponse().addCookie(cookie);
+
+            return Action.SUCCESS;
         }
 
-        if (subscriberService.isSubscribe(m)) {
-            json.put("status", "ok");
+        // 如果不存在 cookie，且密码不为空 则需要登录
+        else if (!cookieService.isExist(m) && (pass != null && !pass.equals(""))) {
+            String strJson = playService.loginDo(m, pass);
 
-            Map result = new HashMap();
+            jsonObj = JsonUtils.stringToJson(strJson);
+
+            // 如果返回的不是 ok，则没有登录成功
+            if (!jsonObj.getString("status").equals("ok")) {
+                return Action.SUCCESS;
+            }
+
+            String registerCode = registerCodeService.generateRegisterCode();
+            subscriberService.subscribe(m, registerCode);
+
+            // 设置 cookie
+            ServletActionContext.getResponse().addCookie(cookie);
+
+            return Action.SUCCESS;
+        }
+
+        // 如果不存在 cookie，并且没有 password
+        else if (!cookieService.isExist(m) && (pass == null || pass.equals(""))) {
+            jsonObj.put("status", "error");
+            jsonObj.put("errorId", 0);
+            jsonObj.put("message", "请输入动态密码");
+            return Action.SUCCESS;
+        }
+
+      /*  if (subscriberService.isSubscribe(m)) {
+
+
+            JSONObject result = new JSONObject();
             result.put("mobile", m);
 
             // 如果不存在 cookie，证明第一次登录
@@ -107,7 +141,7 @@ public class AjaxAction {
                 result.put("firstLogin", true);
 
                 // 如果没有使用过本站服务, 就先登录
-                if (playService.loginDo(m) == null) {
+                if (playService.loginDo(m, pass) == null) {
                     json.put("status", "fail");
                     // 非山东手机号
                     json.put("errorId", "1");
@@ -119,16 +153,24 @@ public class AjaxAction {
 
             json.put("result", result);
 
-            // 设置 cookie
-            Cookie cookie = CookieFactory.newCookie("mobile", m);
-            ServletActionContext.getResponse().addCookie(cookie);
+
         } else {
             json.put("status", "error");
             json.put("errorId", 0);
             json.put("errorDesc", "亲,您未注册过本站服务");
-        }
+        }*/
 
-        registerCode = null;
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 取得登录密码
+     */
+    public String getPasswordDo() {
+        String m = mobile;
+        String strRes = playService.getPassword(m);
+
+        jsonObj = JsonUtils.stringToJson(strRes);
 
         return Action.SUCCESS;
     }
@@ -185,7 +227,9 @@ public class AjaxAction {
         }*/
 
         if (m == null) {
-            json.put("status", "error");
+            json.put("status", "ok");
+            Map<String, String> result = new HashMap<String, String>();
+            json.put("result", result);
         } else {
             json.put("status", "ok");
 
@@ -371,14 +415,12 @@ public class AjaxAction {
      * 获取兑换流量的动态密码
      */
     public String getExchangeFlowPassword() {
+        // 获取动态密码
+        String m = getMobileFromCookie();
 
+        String rs = playService.getOtherPassword(m);
 
-        json = new HashMap();
-
-        if (jsonObj.getString("status").equals("ok")) {
-            json.put("status", "ok");
-
-        }
+        jsonObj = JsonUtils.stringToJson(rs);
 
         return Action.SUCCESS;
     }
@@ -393,20 +435,21 @@ public class AjaxAction {
 
         // 获取动态密码
         String m = getMobileFromCookie();
+        String pass = password;
 
-        String rs = playService.getOtherPassword(m);
+//        String rs = playService.getOtherPassword(m);
 
-        JSONObject jsonObj = JsonUtils.stringToJson(rs);
+//        JSONObject jsonObj = JsonUtils.stringToJson(rs);
 
         // 如果获取动态密码失败
-        if (!jsonObj.getString("status").equals("ok")) {
-            json.put("status", "error");
-            json.put("message", "获取动态密码失败");
-            return Action.SUCCESS;
-        }
+//        if (!jsonObj.getString("status").equals("ok")) {
+//            json.put("status", "error");
+//            json.put("message", "获取动态密码失败");
+//            return Action.SUCCESS;
+//        }
 
         // 如果获取成功就执行兑换
-        String pass = jsonObj.getJSONObject("result").getString("password");
+//        String pass = jsonObj.getJSONObject("result").getString("password");
 
         String strJson = playService.exchangePrize(m, "1", pass);
 
@@ -502,5 +545,13 @@ public class AjaxAction {
 
     public void setStartNum(String startNum) {
         this.startNum = startNum;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

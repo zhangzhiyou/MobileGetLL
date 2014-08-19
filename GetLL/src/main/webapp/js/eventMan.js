@@ -15,6 +15,10 @@ function EventMan() {
 
     this.nickName_ = "";
 
+    // 获取登陆动态密码请求路径
+    this.getPasswordPath_ = "/ajax/getPasswordDo.action";
+
+    this.getOtherPasswordPath_ = this.basePath_ + "getOtherPassword";
 }
 
 EventMan.prototype.init = function() {
@@ -27,6 +31,7 @@ EventMan.prototype.init = function() {
 
     // 登录
     $("#loginDo").click(function (){
+//        $("#passwordContent").show();
         that.loginDo();
     });
 
@@ -94,17 +99,44 @@ EventMan.prototype.init = function() {
         if (score.creditSum_ < 5) {
             alert("您的流量币不足 5 个");
         } else {
-            // 兑换
-            $.post("/ajax/exchangeFlowWithFive?r="+Math.random(), {}, function(data) {
+            // 获取动态密码
+            $.post("/ajax/getExchangeFlowPassword.action?r=" + Math.random(), {}, function (data) {
                 if (data.status != "ok") {
-                    alert(data.message);
+                    alert("获取动态密码失败");
                 } else {
-                    alert(data.message + "\n已成功兑换5M\n请稍后刷新查看");
-                    this.refresh();
+                    var pass = prompt("请输入您的动态密码", "");
+                    if (pass != null && pass != "") {
+                        // 兑换
+                        $.post("/ajax/exchangeFlowWithFive.action?r="+Math.random(), {"password" : pass}, function(data) {
+                            if (data.status != "ok") {
+                                alert(data.message);
+                            } else {
+                                alert(data.message + "\n已成功提交兑换5M请求\n兑换结果请稍后以短信为准");
+                                this.refresh();
+                            }
+                        });
+                    }
                 }
             });
         }
     });
+
+
+    $("#getPassword").unbind("click");
+    // 点击事件:获取动态密码
+    $("#getPassword").click(function() {
+        that.getPassword();
+    });
+};
+
+EventMan.prototype.parseMobile = function(mobile) {
+    mobile = mobile.replace(/\-/g, "");
+    if (mobile.indexOf("+86") == 0) {
+        mobile = mobile.substr(3);
+    } else if (mobile.indexOf("86") == 0) {
+        mobile = mobile.substr(2);
+    }
+    return mobile;
 };
 
 EventMan.prototype.parseMobileFormat = function (mobile) {
@@ -117,6 +149,68 @@ EventMan.prototype.parseMobileFormat = function (mobile) {
 }
 
 /**
+ * 获取动态密码
+ * @param type
+ */
+EventMan.prototype.getPassword =  function(type) {
+    var that = this;
+    var mobile = that.parseMobile($.trim($("#mobile").val()));
+    if (!mobile) {
+        $("#message").html("手机号不能为空");
+        return;
+    } else if (!that.mobileReg_.test(mobile)) {
+        $("#message").html("必须输入山东移动手机号");
+        return;
+    }
+    var postUrl = that.getPasswordPath_;
+
+    //TODO: other
+    /*if(type == "other")
+    {
+        postUrl = that.getOtherPasswordPath_+"&isLogin=true";
+    }*/
+
+    $.post(postUrl + "?r=" + Math.random(), {
+        mobile : mobile
+    }, function(data) {
+        var msg = "";
+        if (data.status != "ok") {
+            msg = data.message;
+        }
+        $("#message").html(msg);
+        var seconds = parseInt(data.result.seconds);
+        if (seconds > 0) {
+            $("#getPassword").hide();
+            $("#sendStatus").show();
+            that.pwdInterval(seconds);
+        }
+    }, "json");
+};
+
+
+/**
+ * 允许再次获取动态密码倒计时
+ * @param seconds 秒
+ */
+EventMan.prototype.pwdInterval = function(seconds) {
+    var that = this;
+    var $seconds = $("#seconds");
+    $seconds.html(seconds);
+    var index = setInterval(function() {
+        var second = parseInt($seconds.html());
+        second = second - 1;
+        $seconds.html(second);
+        if (second <= 0) {
+            clearInterval(that.pwdIntervalIndex_);
+            $("#getPassword").show();
+            $("#sendStatus").hide();
+        }
+    }, 1000);
+    that.pwdIntervalIndex_ = parseInt(index);
+};
+
+
+/**
  * 检测是否登录
  * 如果已经登录,刷新页面，隐藏登录框，如果没有登录，显示登录框
  */
@@ -125,17 +219,20 @@ EventMan.prototype.checkLogin = function(callback) {
 
     $.post("/ajax/loadLoginMobile.action?r="+Math.random(), {}, function(data) {
         if (data.status != "ok") {
-            $("#loginContent").show();
+            alert("登录失败");
             return;
         }
 
         that.loginMobile_ = data.result.loginMobile;
         that.nickName_ = data.result.nickName;
 
+        //TODO: 首页不显示
         if (that.loginMobile_) {
             $("#loginContent").hide();
+            $("#duoshuoContent").hide();
         } else {
             $("#loginContent").show();
+            $("#duoshuoContent").show();
         }
 
         if (callback) {
@@ -153,7 +250,7 @@ EventMan.prototype.loginDo = function() {
 
     // 取得参数
     var mobile = that.parseMobileFormat($.trim($("#mobile").val()));
-    var registerCode = $.trim($("#registerCode").val());
+    var password = $.trim($("#password").val());
 
     var $message = $("#message");
     if (!mobile) {
@@ -162,37 +259,45 @@ EventMan.prototype.loginDo = function() {
     } else if(!that.mobileReg_.test(mobile)) {
         $message.html("要输入山东移动手机号哦");
         return;
-    };
+    }
+    /*else if (!password) {
+        $message.html("密码不能为空");
+        return;
+    }*/
 
     var params = {
         "mobile" : mobile,
-        "registerCode" : registerCode
+        "password": password
+        //"registerCode" : registerCode
     };
 
-    $.post("/ajax/login.action?r=", params, function (data) {
+    $.post("/ajax/login.action?r=" + Math.random(), params, function (data) {
         if (data.status != "ok") {
+            if (data.errorId == 0) {
+                $("#passwordContent").show();
+            }
+
+            $message.html(data.message);
+
+            return;
+
 //            $message.html("该手机号没有订购业务");
 
             // 没有订购业务
-            if (data.errorId == 0) {
+//            if (data.errorId == 0) {
                 // 登录窗口隐藏
-                $("#loginContent").hide();
-                // 显示注册窗口
-                $("#registerCodeContent").show();
-            } else if (data.errorId == 1) {//不是山东移动号码
+//                $("#loginContent").hide();
+//                显示注册窗口
+//                $("#registerCodeContent").show();
+        /*    } else if (data.errorId == 1) {//不是山东移动号码
                 // 登录窗口隐藏
                 $("#loginContent").show();
                 // 显示注册窗口
                 $("#registerCodeContent").hide();
                 $message.html("<span style=\"color: red;\">" + data.errorDesc + "</span>")
-            }
+            }*/
 
         } else {
-            // 如果是第一次登录
-            if (data.result.firstLogin) {
-                //alert("您是第一次使用本站服务\n正在为您准备数据，请稍等约30秒后刷新即可")
-            }
-            // 登录成功就刷新 本页面
             that.refresh();
         }
     })

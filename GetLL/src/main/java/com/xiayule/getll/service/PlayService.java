@@ -12,7 +12,7 @@ public interface PlayService {
      * 通过手机号登录
      * @return 如果非山东移动号码，返回空
      */
-    public String loginDo(String mobile);
+    public String loginDo(String mobile, String password);
     public String draw(String mobile);
     public double addDrawScore(String mobile);
     public boolean isLogined(String mobile);

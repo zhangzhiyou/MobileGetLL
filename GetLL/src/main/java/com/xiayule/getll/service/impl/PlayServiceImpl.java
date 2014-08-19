@@ -35,8 +35,11 @@ public class PlayServiceImpl implements PlayService {
     public void autoPlay(String mobile) {
         logger.info("JobTask:" + "执行任务:" + "订阅者:" + mobile);
 
-        // 如果未登录, 就登录
+        // 如果未登录, 就退出
         if (!this.isLogined(mobile)) {
+            return ;
+
+        /*
             logger.info(mobile + " 未登录, 进行登录");
 //            creditLogService.log(mobile, "未登录, 进行登录");
 
@@ -47,7 +50,7 @@ public class PlayServiceImpl implements PlayService {
                 return;
             }
 
-            logger.info(mobile + " 登录成功");
+            logger.info(mobile + " 登录成功");*/
 //            creditLogService.log(mobile, "登录成功");
         }
 
@@ -173,7 +176,7 @@ public class PlayServiceImpl implements PlayService {
      *
      * @return 如果非山东移动号码，返回空
      */
-    public String loginDo(String mobile) {
+   /* public String loginDo(String mobile) {
         String resultJson = getPassword(mobile);
 
         JSONObject jsonObject = JsonUtils.stringToJson(resultJson);
@@ -189,7 +192,7 @@ public class PlayServiceImpl implements PlayService {
 
         String result = loginDo(mobile, password);
         return result;
-    }
+    }*/
 
 
     /**

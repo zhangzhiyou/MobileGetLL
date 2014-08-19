@@ -6,6 +6,8 @@
     <link href="css/yao.css" rel="stylesheet" type="text/css">
     <link href="css/css.css" rel="stylesheet" type="text/css">
 
+    <link href="css/my.css" rel="stylesheet" type="text/css">
+
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
 
@@ -15,14 +17,26 @@
 
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
+
+    <!-- 回顶部按钮样式 -->
+    <style type="text/css">
+        /** 返回顶部CSS **/
+        #gotop {
+            position: fixed;
+            bottom: 90px;
+            right: 50px;
+            top: auto;
+            display: none;
+            cursor: pointer;
+            z-index: 999;
+        }
+    </style>
 </head>
 <body>
-
 
 <div class="layout">
 
 <!-- 登录框 -->
-<!-- todo hiden -->
 <div class="pop hideme" id="loginContent">
     <div class="pop_title">请先输入手机号</div>
     <div class="pop_cont">
@@ -70,8 +84,7 @@
     </div>
 </div>
 
-<!-- todo :hide -->
-<div id="personInfo" class="hideme"> <!--class="hide"-->
+<div id="personInfo" class="hideme">
     <!-- 个人信息 -->
     <div id="myaccount_head">
         <div class="jia_nav2">
@@ -87,41 +100,15 @@
 
         <div class="myaccount_unseinfo">
             <!-- <div class="phonenum" id="phonenum">?</div> -->
-            <div style="text-align:left">
+
+
+            <div><!--style="text-align:left"-->
                 帐户余额：<span class="bignum"><font class="yellowfont" id="credit">&nbsp;</font></span>&nbsp;
                 <span><img src="image/mb.png" width="25" height="23"></span>
-                <span style="margin-left: 10px" id="btShakeNow" class="but_logout">立即摇奖</span>
+                <!--<span style="margin-left: 10px" id="btShakeNow" class="but_logout">立即摇奖</span>
                 <span style="margin-left: 10px" id="bt_liuyan" class="but_logout">留言</span>
                 <span style="margin-left: 10px" id="btExchangeFive" class="but_logout">兑换5M</span>
-
-                <!-- 兑换 -->
-                <!-- <div class="dropdown">
-                     <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
-                             data-toggle="dropdown">
-                         主题
-                         <span class="caret"></span>
-                     </button>
-                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                         <li role="presentation" class="dropdown-header">下拉菜单标题</li>
-                         <li role="presentation" >
-                             <a role="menuitem" tabindex="-1" href="#">Java</a>
-                         </li>
-                         <li role="presentation">
-                             <a role="menuitem" tabindex="-1" href="#">数据挖掘</a>
-                         </li>
-                         <li role="presentation">
-                             <a role="menuitem" tabindex="-1" href="#">
-                                 数据通信/网络
-                             </a>
-                         </li>
-                         <li role="presentation" class="divider"></li>
-                         <li role="presentation" class="dropdown-header">下拉菜单标题</li>
-                         <li role="presentation">
-                             <a role="menuitem" tabindex="-1" href="#">分离的链接</a>
-                         </li>
-                     </ul>
-                 </div>-->
-
+-->
             </div>
 
             <div class="phonenum">
@@ -140,9 +127,23 @@
 
             <div class="jia_jindu" style="clear:both;" id="RankDiv" height="50"></div>-->
         </div>
+    </div>
 
+    <!-- 功能模块 -->
+    <div class="functions">
+        <button class="btn button" id="btShakeNow" type="button" onclick="this.blur()">立即摇奖</button>
 
+        <div class="btn-group">
+            <button class="btn button" href="#" data-toggle="dropdown">兑换流量<i class="caret"></i></button>
 
+            <ul class="dropdown-menu">
+                <li><a href="javascript:;">兑换5M</a></li>
+                <li><a href="#">兑换10M</a></li>
+                <li><a href="#">兑换20M</a></li>
+            </ul>
+        </div>
+
+        <button class="btn button" id="bt_liuyan" type="button" onclick="this.blur()">留言</button>
     </div>
 
     <!-- 流量明细查询 -->
@@ -164,9 +165,8 @@
     </div>
 
     <!--明细列表-->
-    <div id= "mingxiListDiv"></div>s
+    <div id= "mingxiListDiv"></div>
 </div>
-
 
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -222,69 +222,7 @@
             });
         }
     }
-
-    /*function locationPage(url) {
-        if (shakeCom.isLogin()) {
-            location.href = url;
-        }
-    }
-    function showErrorResult(data) {
-        if (data.status != "ok") {
-            var message = data.message;
-            alert(message);
-            return;
-        }
-    }*/
-
-    /*function getFlowScoreRank() {
-        var lazySeconds = 1;
-        $.post("/flowScore?method=getFlowScoreRank", {}, function (data) {
-            setTimeout(function () {
-                if (data.status != "ok") {
-                    showErrorResult(data);
-                    return;
-                } else {
-                    var result = data.result;
-                    var htmls = [
-                        '<div class="jia_jindutiao"></div>',
-                                '<div class="jia_jindu_icon"><span style="margin-left:' + result.creditRanking + '%; display:block;"><img src="image/icon_arrow.png" width="20" height="11" /></span></div>',
-                                '<div class="jia_jindu_text"><span style="margin-left:' + result.creditRanking + '%; display:block;">资产打败了<font class="yellowfont">' + result.creditRanking + '%</font>的用户</span></div>'
-                    ].join('');
-                    $("#RankDiv").html(htmls);
-                }
-            }, lazySeconds * 1000);
-        }, "json");
-    }*/
-
-    //未领取流量币数据加载
-    /*function getFlowScoreTransferGiftsInfo() {
-        var lazySeconds = 1;
-        $.post("/flowScore?method=getTransferGiftsList&queryType=count&type=others&status=2", {}, function (data) {
-            setTimeout(function () {
-                if (data.status != "ok") {
-                    //showErrorResult(data);
-                    return;
-                } else {
-                    var result = data.result;
-                    if (Number(result.totalCredit) > 0) {
-                        $("#receiveDiv").show();
-                        $("#totalCredit").html(result.totalCredit);
-                    }
-                }
-            }, lazySeconds * 1000);
-        }, "json");
-    }
-
-    function loadCouponCount() {
-        coupon.loadCouponInfo("unUsed", "yes", function () {
-
-        }, function () {
-
-        });
-    }*/
-
 </script>
-
 
 <!-- 留言模块-->
 <div id="duoshuoContent">
@@ -307,8 +245,35 @@
     <!-- 多说公共JS代码 end -->
 </div>
 
-
 </div>
+
+
+<!-- 返回顶部 -->
+
+<div id="gotop"><img src="image/top.png" /></div>
+<script>
+    /*返回顶部JS*/
+    backTop = function (btnId){
+        var btn = document.getElementById(btnId);
+        var d = document.documentElement;
+        var b = document.body;
+        window.onscroll = btnDisplay;
+        btn.onclick = function (){
+            btn.style.display = "none";
+            window.onscroll = null;
+            this.timer = setInterval(function(){
+                d.scrollTop -= Math.ceil((d.scrollTop+b.scrollTop)*0.1);
+                b.scrollTop -= Math.ceil((d.scrollTop+b.scrollTop)*0.1);
+                if((d.scrollTop + b.scrollTop) == 0)
+                    clearInterval(btn.timer,window.onscroll = btnDisplay);
+            },10);
+        };
+        function btnDisplay(){
+            btn.style.display=(d.scrollTop+b.scrollTop>200)?'block':"none";
+        }
+    };
+    backTop('gotop');//返回顶部调用
+</script>
 
 </body>
 </html>

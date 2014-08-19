@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+.functions {
+    text-align:center;
+    border-top:#a21212 solid 1px;
+    border-bottom:#a21212 solid 1px;
+    background-image: url(../image/top_2.jpg);
+    background-repeat: repeat-x;
+    background-position: center;
+    background-color:#c51517;
+}
+
+.button {
+    padding: 1px 3px;
+    margin-right: 20px;;
+    height: 30px;
+    background: #d32410;
+    color: blanchedalmond;
+}

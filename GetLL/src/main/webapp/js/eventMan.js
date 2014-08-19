@@ -227,7 +227,6 @@ EventMan.prototype.checkLogin = function(callback) {
         that.loginMobile_ = data.result.loginMobile;
         that.nickName_ = data.result.nickName;
 
-        //TODO: 首页不显示
         if (that.loginMobile_) {
             $("#loginContent").hide();
             $("#duoshuoContent").hide();

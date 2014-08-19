@@ -6,15 +6,12 @@
     <link href="css/yao.css" rel="stylesheet" type="text/css">
     <link href="css/css.css" rel="stylesheet" type="text/css">
 
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <title>流量汇自动管家</title>
-
-    <!-- bootstrap -->
-    <!--<link href="http://raining.qiniudn.com/bootstrap.min.css" rel="stylesheet">-->
-    <!--<script src="http://raining.qiniudn.com/jquery.min.js"></script>-->
-    <!--<script src="http://raining.qiniudn.com/bootstrap.min.js"></script>-->
-
 
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
@@ -24,29 +21,9 @@
 
 <div class="layout">
 
-<!--<div class="head">
-    <div class="logo">
-        <div class="img"><img src="image/llh_logo_new.png" width="100%"></div>
-    </div>
-</div>-->
-
-<!-- 公告 -->
-<!--<div class="gonggao">
-    <table>
-        <tr>
-            <td><font style="color:#be1518;">说明：</font>本站是编写的目的是为了方便流量不够用的孩子们</td>
-        </tr>
-        <tr>
-            <td><font style="color:#be1518;">说明：</font>每日凌晨6点，准时为您自动摇奖</td>
-        </tr>
-        <tr>
-            <td><font style="color:#be1518;">说明：</font>本站的服务是免费的, 是流量汇的一个自动摇奖助手</td>
-        </tr>
-    </table>
-</div>-->
-
 <!-- 登录框 -->
-<div class="pop hide" id="loginContent">
+<!-- todo hiden -->
+<div class="pop hideme" id="loginContent">
     <div class="pop_title">请先输入手机号</div>
     <div class="pop_cont">
         <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -54,7 +31,7 @@
                 <td width="30%" align="right">手机号码</td>
                 <td width="70%"><input type="text" id="mobile" name="mobile"/></td>
             </tr>
-            <tr id="passwordContent" class="hide">
+            <tr id="passwordContent" class="hideme">
                 <td align="right">动态密码</td>
                 <td>
                     <input type="text" class="pop_cinput" id="password" name="password" />
@@ -73,7 +50,7 @@
 </div>
 
 <!-- 生效码框 -->
-<div id="registerCodeContent" class="hide">
+<div id="registerCodeContent" class="hideme">
     <div class="tishi-gonggao">
         <div class="tishi-title">您未使用本站服务或者注册码过期<span class="arrow"></span></div>
         <div class="tishi-input" >输入注册码(您可以一直免费领取有效期7天的注册码哦)：</div>
@@ -93,7 +70,8 @@
     </div>
 </div>
 
-<div id="personInfo" class="hide">
+<!-- todo :hide -->
+<div id="personInfo" class="hideme"> <!--class="hide"-->
     <!-- 个人信息 -->
     <div id="myaccount_head">
         <div class="jia_nav2">
@@ -186,11 +164,14 @@
     </div>
 
     <!--明细列表-->
-    <div id= "mingxiListDiv"></div>
+    <div id= "mingxiListDiv"></div>s
 </div>
 
 
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="js/eventMan.js"></script>
 <script type="text/javascript" src="js/info.js"></script>
 <script type="text/javascript" src="js/tip.js"></script>
@@ -202,7 +183,7 @@
         if (eventMan.isLogin()) {
 //            $("#logoutSystem").show();
             $("#personInfo").show();
-           // $("#creditSumContent").show();
+//           $("#creditSumContent").show();
 
             // 显示个人积分
             score.showMyScore();

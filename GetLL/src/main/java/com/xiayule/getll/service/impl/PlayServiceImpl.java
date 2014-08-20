@@ -1,5 +1,6 @@
 package com.xiayule.getll.service.impl;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
@@ -10,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,39 +40,23 @@ public class PlayServiceImpl implements PlayService {
         // 如果未登录, 就退出
         if (!this.isLogined(mobile)) {
             return ;
-
-        /*
-            logger.info(mobile + " 未登录, 进行登录");
-//            creditLogService.log(mobile, "未登录, 进行登录");
-
-            // 非山东移动号码
-            if (this.loginDo(mobile) == null) {
-                logger.info(mobile + " 非山东移动号码");
-                logger.info(mobile + "结束任务");
-                return;
-            }
-
-            logger.info(mobile + " 登录成功");*/
-//            creditLogService.log(mobile, "登录成功");
         }
 
         // 累加每日奖励, 并接收返回结果
         double firstShakeGiveCredit = this.addDrawScore(mobile);
 
-        // 流量币计数
-        if (firstShakeGiveCredit > 0) {
-            creditService.addCredit(mobile, firstShakeGiveCredit);
-        }
+        // 流量币计数, 在本站获取的流量币总数
+//        if (firstShakeGiveCredit > 0) {
+//            creditService.addCredit(mobile, firstShakeGiveCredit);
+//        }
 
-        // 如果已经登录
+        // 获取剩余次数
         int remainTimes = this.getRemainTimes(mobile);
 
         logger.info(mobile + " 还剩 " + remainTimes + " 次");
 //        creditLogService.log(mobile, "还剩 " + remainTimes + " 次");
 
         if (remainTimes > 0) {
-            // 有可能抽奖过程中获得再一次奖励
-
             int cnt = 0;
 
             do {
@@ -109,7 +95,7 @@ public class PlayServiceImpl implements PlayService {
         // 查询分数
         JSONObject queryScore = this.queryScore(mobile);
 
-        creditService.setDayCredit(mobile, queryScore.getDouble("todayCredit"));
+//        creditService.setDayCredit(mobile, queryScore.getDouble("todayCredit"));
 
 //        creditLogService.log(mobile, "总计: 连续登录:" + queryScore.getString("count_1") + "天"
 //                + " 今日总计:" + queryScore.getString("todayCredit")
@@ -350,14 +336,13 @@ public class PlayServiceImpl implements PlayService {
     /**
      * 获取其他密码，比如兑换流量币的密码, 返回原json
      */
-    public String getOtherPassword(String mobile) {
-        String urlGetOtherPassword = "http://shake.sd.chinamobile.com/shake?method=getOtherPassword&isLogin=true&mobile=&r=" + Math.random();
+    public String getOtherPassword(String realMobile, String paramMobile, String type, Boolean isLogin) {
+        String urlGetOtherPassword = "http://shake.sd.chinamobile.com/shake?method=getOtherPassword&isLogin="+isLogin+"&mobile="+paramMobile+"&r=" + new Date().getTime();
 
         List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
-        params.add(new BasicNameValuePair("type", "ExchangeFlow"));
+        params.add(new BasicNameValuePair("type", type));
 
-        //TODO: 获取不到
-        String rs = post(mobile, urlGetOtherPassword, params);
+        String rs = post(realMobile, urlGetOtherPassword, params);
 
         return rs;
     }
@@ -369,12 +354,12 @@ public class PlayServiceImpl implements PlayService {
      * @param exchangeID 要兑换的 id， 1 为 5m 流量
      * @return
      */
-    public String exchangePrize(String mobile, String exchangeID, String password) {
+    public String exchangePrize(String mobile, String exchangeID, String type, String password) {
         String urlExchangePrize = "http://shake.sd.chinamobile.com/score?method=exchangePrize&r=" + Math.random();
 
         List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
         params.add(new BasicNameValuePair("exchangeID", exchangeID));
-        params.add(new BasicNameValuePair("type", "ExchangeFlow"));
+        params.add(new BasicNameValuePair("type", type));
         params.add(new BasicNameValuePair("password", password));
 
         String rs = post(mobile, urlExchangePrize, params);

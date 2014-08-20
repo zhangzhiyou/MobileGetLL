@@ -4,7 +4,6 @@ import com.xiayule.getll.service.CreditService;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.utils.TimeUtils;
 
-import java.nio.LongBuffer;
 import java.util.*;
 
 /**
@@ -40,7 +39,7 @@ public class CreditServiceImpl implements CreditService {
      */
     public void setDayCredit(String mobile, String date, double credit) {
         redisService.setex("dayCredit_" + mobile + "_" + date,
-                TimeUtils.getSecondOfOneWeek() + 500,//设置过期时间为1周+200秒
+                TimeUtils.getMaxValidTimeWithSecond() + 500,//设置过期时间为1周+200秒
                 String.valueOf(credit));
     }
 

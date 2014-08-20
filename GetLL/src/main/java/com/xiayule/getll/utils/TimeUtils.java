@@ -20,8 +20,12 @@ public class TimeUtils {
         return sdf_line.format(dt.getTime());
     }
 
-    public static int getSecondOfOneWeek() {
-        return 60*60*24*7-1;
+    /**
+     * 单位是秒
+     * @return
+     */
+    public static int getMaxValidTimeWithSecond() {
+        return 60*60*24*Constants.TTL_VALID_DAY-10;
     }
 
     public static String getDateWithUnderLine(Calendar c) {

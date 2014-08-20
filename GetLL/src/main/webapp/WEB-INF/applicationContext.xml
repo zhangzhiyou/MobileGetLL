@@ -71,6 +71,10 @@
     </bean>
 
 
+    <bean name="score" class="com.xiayule.getll.action.Score">
+
+    </bean>
+
     <!-- redis 配置 -->
 
     <!-- 加载redis配置文件 -->

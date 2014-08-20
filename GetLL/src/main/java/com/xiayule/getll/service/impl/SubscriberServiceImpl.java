@@ -35,7 +35,7 @@ public class SubscriberServiceImpl implements SubscriberService {
         // 检测序列号是否合法
         if (registerCodeService.isValid(registerCode)) {
             // 首先注册
-            redisService.setex("sub_" + mobile, TimeUtils.getSecondOfOneWeek(), registerCode);
+            redisService.setex("sub_" + mobile, TimeUtils.getMaxValidTimeWithSecond(), registerCode);
             // 然后将序列号删除
             registerCodeService.removeRegisterCode(registerCode);
 

@@ -77,10 +77,10 @@ FlowScore.prototype.loadFirstCreditDetail = function () {
                      * 0.清空div内容，重新更新div内容
                      * 1.更新当前对象的detailId_属性值为本次加载最后一条数据ID
                      * 2.更新stop_值，确定是否还可以继续加载数据
-
                      */
                     if(list != null && list.length > 0){
                         var htmls = that.getDetailHtml(data);
+                        $("#mingxiListDiv").show();
                         $("#mingxiListDiv").html(htmls);
                         that.detailId_ = list[list.length-1].accessId;
                         that.stop_ = false;

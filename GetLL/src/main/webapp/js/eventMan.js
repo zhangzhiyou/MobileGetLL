@@ -18,16 +18,37 @@ function EventMan() {
     // 获取登陆动态密码请求路径
     this.getPasswordPath_ = "/ajax/getPasswordDo.action";
 
-    this.getOtherPasswordPath_ = this.basePath_ + "getOtherPassword";
+    this.getOtherPasswordPath_ = "/ajax/getOtherPassword.action";
+
+    // 重发动态密码倒计时线程ID
+    this.pwdIntervalIndex_ = -1;
+    // 重发动态密码倒计时线程ID
+    this.pwdIntervalIndex2_ = -1;
 }
 
 EventMan.prototype.init = function() {
     var that = this;
 
+    $("#mobile").keydown(function(e) {
+        var curKey = e.which;
+        if (curKey == 13) {
+            $("#loginDo").click();
+        }
+    });
+
+    $("#password").keydown(function (e) {
+        var curKey = e.which;
+        if (curKey == 13) {
+            $("#loginDo").click();
+        }
+    })
+
     // 去掉非法字符
     $("#mobile").keyup(function() {
         $(this).val(that.parseMobileFormat($(this).val()))
     });
+
+
 
     // 登录
     $("#loginDo").click(function (){
@@ -82,7 +103,6 @@ EventMan.prototype.init = function() {
     // 免费续期
     $("#leavesDay").click(function() {
         if ($("#leavesDay").text().indexOf("点我续期") > 0) {
-            // TODO: 续期
             $.post("/ajax/freshRegisterCode.action?r="+Math.random(), {}, function (data) {
                 if (data.status != "ok") {
                     alert("续期失败，请刷新后重试");
@@ -94,20 +114,20 @@ EventMan.prototype.init = function() {
         }
     });
 
-    // 兑换5M按钮
+    /*// 兑换5M按钮
     $("#btExchangeFive").click(function () {
         if (score.creditSum_ < 5) {
             alert("您的流量币不足 5 个");
         } else {
             // 获取动态密码
-            $.post("/ajax/getExchangeFlowPassword.action?r=" + Math.random(), {}, function (data) {
+            $.post("/ajax/getOtherPassword.action?r=" + Math.random(), {}, function (data) {
                 if (data.status != "ok") {
                     alert("获取动态密码失败");
                 } else {
                     var pass = prompt("请输入您的动态密码", "");
                     if (pass != null && pass != "") {
                         // 兑换
-                        $.post("/ajax/exchangeFlowWithFive.action?r="+Math.random(), {"password" : pass}, function(data) {
+                        $.post("/ajax/exchangePrize.action?r="+Math.random(), {"password" : pass}, function(data) {
                             if (data.status != "ok") {
                                 alert(data.message);
                             } else {
@@ -119,7 +139,7 @@ EventMan.prototype.init = function() {
                 }
             });
         }
-    });
+    });*/
 
 
     $("#getPassword").unbind("click");
@@ -209,6 +229,28 @@ EventMan.prototype.pwdInterval = function(seconds) {
     that.pwdIntervalIndex_ = parseInt(index);
 };
 
+/**
+ * 允许再次获取动态密码倒计时
+
+ * @param seconds 秒
+
+ */
+EventMan.prototype.pwdInterval2 = function(seconds,type) {
+    var that = this;
+    var $seconds = $("#seconds"+type);
+    $seconds.html(seconds);
+    var index = setInterval(function() {
+        var second = parseInt($seconds.html());
+        second = second - 1;
+        $seconds.html(second);
+        if (second <= 0) {
+            clearInterval(that.pwdIntervalIndex2_);
+            $("#getPassword"+type).show();
+            $("#sendStatus"+type).hide();
+        }
+    }, 1000);
+    that.pwdIntervalIndex2_ = parseInt(index);
+};
 
 /**
  * 检测是否登录
@@ -216,7 +258,6 @@ EventMan.prototype.pwdInterval = function(seconds) {
  */
 EventMan.prototype.checkLogin = function(callback) {
     var that = this;
-
 
     $.post("/ajax/loadLoginMobile.action?r="+Math.random(), {}, function(data) {
         if (data.status != "ok") {
@@ -304,6 +345,46 @@ EventMan.prototype.loginDo = function() {
     })
 };
 
+EventMan.prototype.getPassword2 = function(type, isLogin, isVeriMobile) {
+    var that = this;
+
+    // 找不到就为空
+    var mobile = that.parseMobile($.trim($("#mobile"+type).val()));
+
+    if(isVeriMobile){
+        if (!mobile) {
+            $("#message"+type).html(that.tip_.emptyMobile);
+            $("#message"+type).show();
+            return;
+        } else if (!that.mobileReg_.test(mobile)) {
+            $("#message"+type).html(that.tip_.notShangDongMobile);
+            $("#message"+type).show();
+            return;
+        }
+    }
+
+
+    var postUrl = that.getOtherPasswordPath_+"?isLogin="+isLogin+"&mobile="+mobile+"&r=" + new Date().getTime();
+    $.post(postUrl, {"type":type}, function(data) {
+        var msg = "";
+        if (data.status != "ok") {
+            msg = data.message;
+        }
+        $("#message"+type).html(msg);
+        var seconds = parseInt(data.result.seconds);
+        if (seconds > 0) {
+            if($("#getPassword"+type)){
+                $("#getPassword"+type).hide();
+            }
+            if($("#sendStatus"+type)){
+                $("#sendStatus"+type).show();
+            }
+            that.pwdInterval2(seconds,type);
+        }
+    }, "json");
+};
+
+
 /**
  * 立即摇奖
  */
@@ -316,8 +397,7 @@ EventMan.prototype.shakeNow = function() {
         if (data.status != "ok") {
             alert("网络错误");
         } else {
-            //TODO: 多少秒后自动刷新
-            that.refresh();
+           that.refresh();
         }
     })
 }

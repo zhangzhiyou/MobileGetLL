@@ -1,8 +1,10 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.xiayule.getll.factory.CookieFactory;
 import com.xiayule.getll.service.*;
+import com.xiayule.getll.utils.Constants;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +19,8 @@ import java.util.*;
  */
 public class AjaxAction {
     private static Logger logger = LogManager.getLogger(PlayService.class.getName());
+    // 兑换日志
+    private static Logger exchangeLogger = LogManager.getLogger("com.xiayule.exchange");
 
     private SubscriberService subscriberService;
     private PlayService playService;
@@ -31,6 +35,10 @@ public class AjaxAction {
     private String startNum;
     private Map json;
     private JSONObject jsonObj;
+    private String exchangeID;
+
+
+    private Boolean isLogin;
 
     private String registerCode;
 
@@ -329,7 +337,7 @@ public class AjaxAction {
 
         String strDays = null;
 
-        if (days <= 6) strDays = days + "天(点我续期)";
+        if (days <= Constants.TTL_XUQI_DAY) strDays = days + "天(点我续期)";
         else strDays = days + "天";
 
         return strDays;
@@ -414,11 +422,18 @@ public class AjaxAction {
     /**
      * 获取兑换流量的动态密码
      */
-    public String getExchangeFlowPassword() {
+    public String getOtherPassword() {
         // 获取动态密码
-        String m = getMobileFromCookie();
 
-        String rs = playService.getOtherPassword(m);
+        String paramMobile = mobile;
+        String realMobile = getMobileFromCookie();
+        Boolean paramIsLogin = isLogin;
+
+        String t = type;
+
+        String rs = playService.getOtherPassword(realMobile, paramMobile, t, paramIsLogin);
+
+        exchangeLogger.info(realMobile + ": 获取动态密码准备兑换");
 
         jsonObj = JsonUtils.stringToJson(rs);
 
@@ -429,41 +444,21 @@ public class AjaxAction {
      * 自动兑换5M流量
      * @return
      */
-    public String exchangeFlowWithFive() {
-        //TODO: 兑换日志
-        json = new HashMap();
-
+    public String exchangePrize() {
         // 获取动态密码
         String m = getMobileFromCookie();
-        String pass = password;
+        String paramPassword = password;
 
-//        String rs = playService.getOtherPassword(m);
+        String paramExchangeID = exchangeID;
 
-//        JSONObject jsonObj = JsonUtils.stringToJson(rs);
+        String paramType = type;
 
-        // 如果获取动态密码失败
-//        if (!jsonObj.getString("status").equals("ok")) {
-//            json.put("status", "error");
-//            json.put("message", "获取动态密码失败");
-//            return Action.SUCCESS;
-//        }
+        String strJson = playService.exchangePrize(m, paramExchangeID, paramType, paramPassword);
 
-        // 如果获取成功就执行兑换
-//        String pass = jsonObj.getJSONObject("result").getString("password");
+        exchangeLogger.info(m +": 兑换id(" + paramExchangeID + ")" + " 兑换type(" + paramType + ")" + " 返回信息:(" + strJson + ")");
 
-        String strJson = playService.exchangePrize(m, "1", pass);
 
-        JSONObject jsonRs = JsonUtils.stringToJson(strJson);
-
-        if (jsonRs.getString("status").equals("ok")) {
-            json.put("status", "ok");
-            json.put("message", jsonRs.getString("message"));
-        } else {
-            json.put("status", "error");
-            json.put("message", jsonRs.getString("message"));
-        }
-
-        logger.info(m + " 兑换 5M 流量");
+        jsonObj = JsonUtils.stringToJson(strJson);
 
         return Action.SUCCESS;
     }
@@ -565,5 +560,21 @@ public class AjaxAction {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getIsLogin() {
+        return isLogin;
+    }
+
+    public void setIsLogin(Boolean isLogin) {
+        this.isLogin = isLogin;
+    }
+
+    public String getExchangeID() {
+        return exchangeID;
+    }
+
+    public void setExchangeID(String exchangeID) {
+        this.exchangeID = exchangeID;
     }
 }

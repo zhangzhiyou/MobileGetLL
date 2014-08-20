@@ -45,7 +45,7 @@ public interface PlayService {
     /**
      * 获取其他密码，比如兑换流量币的密码, 返回原json
      */
-    public String getOtherPassword(String mobile);
+    public String getOtherPassword(String realMobile, String paramMobile, String type, Boolean isLogin);
 
 
     /**
@@ -54,7 +54,7 @@ public interface PlayService {
      * @param exchangeID 要兑换的 id， 1 为 5m 流量
      * @return
      */
-    public String exchangePrize(String mobile, String exchangeID, String password);
+    public String exchangePrize(String mobile, String exchangeID, String type, String password);
 
     public void autoPlay(String mobile);
 }

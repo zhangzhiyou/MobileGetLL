@@ -1,7 +1,7 @@
 @charset "utf-8";
 body {
     margin:0;
-    font-size:12px;
+    font-size:18px;
 }
 .layout{
     min-width:320px;
@@ -529,9 +529,9 @@ body {
 
 /*加流量*/
 .jia_layout{
-    background-color:#f6efe7;
+    background-color: #f6efe7;
     min-width:320px;
-    max-width:800px;
+    max-width:1100px;
     margin:auto;
     overflow:hidden;
 }
@@ -544,7 +544,7 @@ body {
 #jia_head a{color:#FFF; text-decoration:none;}
 .jia_nav{overflow:hidden; padding:10px 10px; margin-bottom:5px;}
 .jia_nav a{color:#FFF; text-decoration:none;}
-.jia_nav2{/*height:30px;*/ padding:0 10px; border-bottom:#a21212 solid 1px; background-color:#c51517;}
+.jia_nav2{height:30px; padding:0 10px; border-bottom:#a21212 solid 1px; background-color:#c51517;}
 .jia_nav2 a{color:#FFF; text-decoration:none;}
 .jia_back{color:#FFF; float:left; margin-left:10px; padding-top:5px; font-size:0.8em; width:40%; overflow:hidden; max-width:150px;}
 .jia_bottom{

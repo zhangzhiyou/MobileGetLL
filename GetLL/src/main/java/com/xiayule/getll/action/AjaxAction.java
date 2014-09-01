@@ -421,6 +421,8 @@ public class AjaxAction {
 
         String rs = playService.getOtherPassword(realMobile, paramMobile, t, paramIsLogin);
 
+        System.out.println(rs);
+
         exchangeLogger.info(realMobile + ": 获取动态密码准备兑换");
 
         jsonObj = JsonUtils.stringToJson(rs);

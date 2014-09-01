@@ -118,6 +118,7 @@
     <div class="functions">
         <button class="btn button" id="btShakeNow" type="button" onclick="this.blur()">立即摇奖</button>
 
+        <!-- 兑换流量 -->
         <div class="btn-group">
             <button class="btn button" href="javascript:;" onclick="this.blur()" data-toggle="dropdown">兑换流量<i class="caret"></i></button>
 
@@ -125,6 +126,7 @@
             </ul>
         </div>
 
+        <!-- 兑换短信 -->
         <div class="btn-group">
             <button class="btn button" href="#" onclick="this.blur()" data-toggle="dropdown">兑换短信<i class="caret"></i></button>
 
@@ -135,6 +137,10 @@
             </ul>
         </div>
 
+        <!-- 转赠 -->
+        <button class="btn button" id="bt_zhuanzeng" type="button" onclick="this.blur()">转赠</button>
+
+        <!-- 留言 -->
         <button class="btn button" id="bt_liuyan" type="button" onclick="this.blur()">留言</button>
     </div>
 
@@ -205,6 +211,9 @@
             score.showMyScore();
         }
     });
+
+    <!-- 获取兑换列表 -->
+    score.showConvertList();
 
     /**
      * 隐藏滚动动态加载流量信息

@@ -24,6 +24,8 @@ public class JobTaskImpl implements JobTask {
     public void doJob() {
 
         if (!isRunning) {
+            isRunning = true;
+
             List<String> subs = subscriberService.getAllSubscriber();
 
             int cnt = 0;
@@ -46,6 +48,8 @@ public class JobTaskImpl implements JobTask {
 
             System.out.println("JobTask:" + "任务执行完毕");
             logger.info("JobTask:" + "任务执行完毕");
+
+            isRunning = false;
         } else {
             logger.info("Jobtask:" + "任务已经开启，无需再开启");
         }

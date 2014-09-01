@@ -185,10 +185,11 @@ EventMan.prototype.getPassword =  function(type) {
     var postUrl = that.getPasswordPath_;
 
     //TODO: other
-    /*if(type == "other")
+    if(type == "other")
     {
+        alert("other");
         postUrl = that.getOtherPasswordPath_+"&isLogin=true";
-    }*/
+    }
 
     $.post(postUrl + "?r=" + Math.random(), {
         mobile : mobile

@@ -88,7 +88,7 @@ Score.prototype.showMyScore = function() {
             }
 
             // 显示兑换列表
-            score.showConvertList();
+//            score.showConvertList();
         })
     });
 };

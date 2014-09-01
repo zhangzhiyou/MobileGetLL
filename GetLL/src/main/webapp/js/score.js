@@ -4,7 +4,7 @@
 
 function Score() {
     // 获取用户积分信息请求路径
-    this.queryScorePath_ = "/ajax/queryScore.action?r=";
+    this.queryScorePath_ = "/ajax/queryScore.action";
 
     // 获取积分兑换列表请求路径
     this.queryPrizePath_ = "/ajax/queryPrize.action";
@@ -30,7 +30,8 @@ Score.prototype.showMyScore = function() {
     // TODO: 不知道干啥的, 注释掉
    /* $("#jia_head").show();*/
 
-    $.post(that.queryScorePath_+Math.random(), {}, function(data) {
+//    $.post(that.queryScorePath_+Math.random(), {}, function(data) {
+    $.getJSON(that.queryScorePath_, {}, function(data) {
         if (data.status != "ok") {
             alert("流量币信息获取失败!");
             return;
@@ -79,7 +80,7 @@ Score.prototype.showMyScore = function() {
         }
 
         // 获得注册码有效期
-        $.post("/ajax/getTTL.action?r="+Math.random(), {}, function (data) {
+        $.getJSON("/ajax/getTTL.action", {}, function (data) {
             if (data.status != "ok") {
                 alert("获取个人服务信息失败")
             } else {
@@ -190,6 +191,7 @@ Score.prototype.exchange = function(id,productType) {
 
     //todo： 兑换摇奖次数, 暂时不考虑
     if(converData.productType == "6"){//兑换摇奖次数的，需要验证是否在可兑换时间范围内
+        alert("执行到不应该被执行的地方了（exchange 摇奖次数）")
         $.getJSON(that.exchangeTimesPath_, {}, function(data) {
             if (data.status != "ok") {
                 alert(data.message);

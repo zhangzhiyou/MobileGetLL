@@ -5,7 +5,7 @@
 function FlowScore() {
 
     // 加载收支总和信息请求路径
-    this.querCreditSumPath_ =  "/ajax/queryCreditSum.action?r=";
+    this.querCreditSumPath_ =  "/ajax/queryCreditSum.action";
 
     // 加载收支明细请求路径
     this.queryCreditDetailPath_ = "/ajax/queryCreditDetail.action?type=";
@@ -20,8 +20,9 @@ function FlowScore() {
 FlowScore.prototype.loadCreditSum = function () {
     var that = this;
     $.ajax( {
-        type: "POST",
-        url:that.querCreditSumPath_+Math.random(),
+//        type: "POST",
+        type: "GET",
+        url:that.querCreditSumPath_,
         cache: false,
         dataType: "json",
         timeout: 25000,
@@ -56,11 +57,12 @@ FlowScore.prototype.loadFirstCreditDetail = function () {
     var that = this;
     that.stop_ = false;
     that.detailId_ = 0;
-    var requertUrl = that.queryCreditDetailPath_+that.upType_+"&startNum=0&r="+Math.random();
+    var requertUrl = that.queryCreditDetailPath_+that.upType_+"&startNum=0";
     if(!that.isloading){
         that.isloading = true;
         $.ajax( {
-            type: "POST",
+//            type: "POST",
+            type: "GET",
             url:requertUrl,
             cache: false,
             dataType: "json",
@@ -183,7 +185,8 @@ FlowScore.prototype.loadNoFirstCreditDetail = function () {
         if(!that.isloading){
             that.isloading = true;
             $.ajax( {
-                type: "POST",
+//                type: "POST",
+                type: "GET",
                 url:requertUrl,
                 cache: false,
                 dataType: "json",

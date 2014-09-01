@@ -259,7 +259,7 @@ EventMan.prototype.pwdInterval2 = function(seconds,type) {
 EventMan.prototype.checkLogin = function(callback) {
     var that = this;
 
-    $.post("/ajax/loadLoginMobile.action?r="+Math.random(), {}, function(data) {
+    $.getJSON("/ajax/loadLoginMobile.action", {}, function(data) {
         if (data.status != "ok") {
             alert("登录失败");
             return;

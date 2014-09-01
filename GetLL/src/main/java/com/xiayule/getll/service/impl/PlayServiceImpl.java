@@ -254,7 +254,7 @@ public class PlayServiceImpl implements PlayService {
      * @return
      */
     public String queryScoreWithSource(String mobile) {
-        String urlQueryScore = "http://shake.sd.chinamobile.com/score?method=queryScore&r="+Math.random();
+        String urlQueryScore = "http://shake.sd.chinamobile.com/score?method=queryScore";
         String rs = get(mobile, urlQueryScore);
         return rs;
     }
@@ -277,7 +277,7 @@ public class PlayServiceImpl implements PlayService {
      * @return
      */
     public String queryCreditSum(String mobile) {
-        String urlQueryCreditSumPath = "http://shake.sd.chinamobile.com/flowScore?method=querCreditSum&r=" + Math.random();
+        String urlQueryCreditSumPath = "http://shake.sd.chinamobile.com/flowScore?method=querCreditSum";
 
         String rs = post(mobile, urlQueryCreditSumPath, null);
         return rs;
@@ -288,7 +288,7 @@ public class PlayServiceImpl implements PlayService {
      * @return
      */
     public String  queryCreditDetail(String mobile, String type, String startNum) {
-        String urlQueryCreditDetail = "http://shake.sd.chinamobile.com/flowScore?method=queryCreditDetail&type=" +  type + "&startNum=" + startNum+"&r=" + Math.random();
+        String urlQueryCreditDetail = "http://shake.sd.chinamobile.com/flowScore?method=queryCreditDetail&type=" +  type + "&startNum=" + startNum;
 
         String rs = post(mobile, urlQueryCreditDetail, null);
 
@@ -346,7 +346,6 @@ public class PlayServiceImpl implements PlayService {
 
         return rs;
     }
-
 
     /**
      * 获取流量

@@ -8,7 +8,8 @@
         <!-- 系统日志 -->
         <RollingFile name="systemRollingFile" fileName="/home/tan/getll/system.log"
                      filePattern="/home/tan/getll/$${date:yyyy-MM}/system-%d{MM-dd-yyyy}-%i.log.gz">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
+            <PatternLayout pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z} [%t] %-5level %logger{36} - %msg%n"/>
             <SizeBasedTriggeringPolicy size="50 MB" />
         </RollingFile>
 

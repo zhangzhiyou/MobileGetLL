@@ -99,7 +99,6 @@
         <!--<constructor-arg index="4" value="${redis.password}"/>-->
     </bean>
 
-
     <!-- spring 集成 QuartZ 2.x-->
 
     <!-- 线程执行器配置，用于任务注册 -->

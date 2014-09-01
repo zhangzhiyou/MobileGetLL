@@ -37,6 +37,8 @@ public class AjaxAction {
     private JSONObject jsonObj;
     private String exchangeID;
 
+    // TODO:这个参数好像是从 /ajax/queryCreditSum.action 和 /ajax/queryCreditDetail.action 这里传过来的，是 $.ajax 自动添加的，目前不明白
+    private String _;
 
     private Boolean isLogin;
 
@@ -183,11 +185,6 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
-    //todo ：转发 url
-    /* private Cookie[] transFormCookieStore(CookieStore cookieStore) {
-        ServletActionContext.getrequ
-    }*/
-
     /**
      * 退出登录，即清除 cookie
      * @return
@@ -224,15 +221,6 @@ public class AjaxAction {
         Cookie[] cookies = ServletActionContext.getRequest().getCookies();
 
         String m = getMobileFromCookie();
-
-        /*if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("mobile")) {
-                    mobile = cookie.getValue();
-                    break;
-                }
-            }
-        }*/
 
         if (m == null) {
             json.put("status", "ok");
@@ -372,7 +360,7 @@ public class AjaxAction {
      */
     public String queryCreditSum() {
         String m = getMobileFromCookie();
-//        playService.setMobile(m);
+
         String rs = playService.queryCreditSum(m);
         jsonObj = JsonUtils.stringToJson(rs);
 
@@ -576,5 +564,13 @@ public class AjaxAction {
 
     public void setExchangeID(String exchangeID) {
         this.exchangeID = exchangeID;
+    }
+
+    public String get_() {
+        return _;
+    }
+
+    public void set_(String _) {
+        this._ = _;
     }
 }

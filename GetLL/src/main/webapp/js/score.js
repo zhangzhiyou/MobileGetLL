@@ -24,7 +24,7 @@ function Score() {
     this.scoreData_ = {};
 }
 
-Score.prototype.showMyScore = function() {
+Score.prototype.showMyScore = function(callback) {
     var that = this;
 
     // TODO: 不知道干啥的, 注释掉
@@ -33,7 +33,7 @@ Score.prototype.showMyScore = function() {
 //    $.post(that.queryScorePath_+Math.random(), {}, function(data) {
     $.getJSON(that.queryScorePath_, {}, function(data) {
         if (data.status != "ok") {
-            alert("流量币信息获取失败!");
+            alert("流量币信息获取失败!!!");
             return;
         }
 
@@ -87,13 +87,18 @@ Score.prototype.showMyScore = function() {
                 $("#leavesDay").text(data.result.ttl);
             }
 
-            // 显示兑换列表
+//            显示兑换列表
 //            score.showConvertList();
+
+            // 回调
+            if (callback) {
+                callback(data);
+            }
         })
     });
 };
 
-Score.prototype.showConvertList = function() {
+Score.prototype.showConvertList = function(callback) {
     var that = this;
 
     //TODO: 其他兑换
@@ -168,8 +173,11 @@ Score.prototype.showConvertList = function() {
             that.exchange(id);
         });
 
+        if (callback) {
+            callback(data);
+        }
         //更新 总汇信息
-        flowScore.loadCreditSum();
+//        flowScore.loadCreditSum();
     });
 }
 

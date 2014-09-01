@@ -208,12 +208,15 @@
             }
 
             // 显示个人积分
-            score.showMyScore();
+            score.showMyScore(function() {
+                // 显示 兑换列表
+                score.showConvertList(function() {
+                    //更新 总汇信息
+                    flowScore.loadCreditSum();
+                });
+            });
         }
     });
-
-    <!-- 获取兑换列表 -->
-    score.showConvertList();
 
     /**
      * 隐藏滚动动态加载流量信息

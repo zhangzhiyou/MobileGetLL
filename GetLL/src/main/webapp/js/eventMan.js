@@ -182,16 +182,16 @@ EventMan.prototype.getPassword =  function(type) {
         $("#message").html("必须输入山东移动手机号");
         return;
     }
-    var postUrl = that.getPasswordPath_;
+    var postUrl = that.getPasswordPath_ + "?";
 
     //TODO: other
     if(type == "other")
     {
         alert("other");
-        postUrl = that.getOtherPasswordPath_+"&isLogin=true";
+        postUrl = that.getOtherPasswordPath_+"?isLogin=true"+"&";
     }
 
-    $.post(postUrl + "?r=" + Math.random(), {
+    $.post(postUrl + "r=" + Math.random(), {
         mobile : mobile
     }, function(data) {
         var msg = "";

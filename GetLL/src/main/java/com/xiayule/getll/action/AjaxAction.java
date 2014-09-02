@@ -530,8 +530,6 @@ public class AjaxAction {
 
         String strJson = playService.getTransferGiftsList(m, paramQueryType, paramType, paramStatus);
 
-        System.out.println(strJson);
-
         jsonObj = JsonUtils.stringToJson(strJson);
 
         cleanParams();

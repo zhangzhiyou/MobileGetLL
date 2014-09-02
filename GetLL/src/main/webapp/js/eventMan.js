@@ -268,7 +268,6 @@ EventMan.prototype.checkLogin = function(callback) {
 
         if (that.loginMobile_) {
             $("#loginContent").hide();
-            alert(that.loginMobile_);
             $("#duoshuoContent").show();
             $("#mingxiListDiv").hide();
         } else {

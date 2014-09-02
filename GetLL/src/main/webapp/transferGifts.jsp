@@ -193,7 +193,6 @@
             "transferGifts":transferGifts
         };
 
-        //todo: 转赠
         var confirmMessage = "您将向" + mobile + "赠送" + transferGifts + "个流量币，请核对转赠信息：";
         if (confirm(confirmMessage)) {
             //showBuyingTip();

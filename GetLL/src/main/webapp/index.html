@@ -107,6 +107,12 @@
                 今日收益：<span class="yellowfont" id="todayCredit">0.0</span>流量币
             </div>
 
+            <!--todo: 未领去的流量币 -->
+            <div class="phonenum" id="receiveDiv">
+                <span class="yellowfont" id="totalCredit">?</span>流量币未领
+                <span class="but_lingqu" onclick="javascript:location.href='/receiveFlowScore.jsp'">领取</span>
+            </div>
+
             <div class="registnum">
                 有效期：<span class="yellowfont" id="leavesDay">&nbsp;</span>
             </div>
@@ -239,7 +245,7 @@
     });*/
 
 
-
+    // 未领去的流量币加载
     function getFlowScoreTransferGiftsInfo(){
         var lazySeconds = 1;
         $.post("/flowScore?method=getTransferGiftsList&queryType=count&type=others&status=2",{}, function(data) {
@@ -258,7 +264,6 @@
         },"json");
     }
 
-
     function logoutSystem() {
         var confirmMessage = "下次来将重新登录，确定退出吗？";
         if (confirm(confirmMessage)) {
@@ -272,6 +277,7 @@
         }
     }
 
+    // 重定向网页
     function locationPage(url){
         if(eventMan.isLogin()){
             location.href=url;

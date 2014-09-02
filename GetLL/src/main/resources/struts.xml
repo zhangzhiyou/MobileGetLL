@@ -61,27 +61,11 @@
             <result name="login" type="redirect">/</result>
         </global-results>
 
-        <action name="login" class="ajaxAction" method="login">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>
 
-        <action name="getPasswordDo" class="ajaxAction" method="getPasswordDo">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>
 
         <action name="loadLoginMobile" class="ajaxAction" method="loadLoginMobile">
             <result type="json">
                 <param name="root">json</param>
-            </result>
-        </action>
-
-        <action name="queryScore" class="ajaxAction" method="queryScore">
-            <result type="json">
-                <param name="root">jsonObj</param>
             </result>
         </action>
 
@@ -110,6 +94,44 @@
             </result>
         </action>
 
+        <action name="getTTL" class="ajaxAction" method="getTTL">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="freshRegisterCode" class="ajaxAction" method="freshRegisterCode">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="*" class="ajaxAction" method="{1}">
+            <result type="json">
+                <param name="root">jsonObj</param>
+            </result>
+        </action>
+
+        <!-- jsonObj -->
+
+        <!--<action name="login" class="ajaxAction" method="login">
+            <result type="json">
+                <param name="root">jsonObj</param>
+            </result>
+        </action>
+
+        <action name="getPasswordDo" class="ajaxAction" method="getPasswordDo">
+            <result type="json">
+                <param name="root">jsonObj</param>
+            </result>
+        </action>
+
+        <action name="queryScore" class="ajaxAction" method="queryScore">
+            <result type="json">
+                <param name="root">jsonObj</param>
+            </result>
+        </action>
+
         <action name="queryCreditSum" class="ajaxAction" method="queryCreditSum">
             <result type="json">
                 <param name="root">jsonObj</param>
@@ -122,17 +144,7 @@
             </result>
         </action>
 
-        <action name="getTTL" class="ajaxAction" method="getTTL">
-            <result type="json">
-                <param name="root">json</param>
-            </result>
-        </action>
 
-        <action name="freshRegisterCode" class="ajaxAction" method="freshRegisterCode">
-            <result type="json">
-                <param name="root">json</param>
-            </result>
-        </action>
 
         <action name="getOtherPassword" class="ajaxAction" method="getOtherPassword">
             <result type="json">
@@ -156,6 +168,6 @@
             <result type="json">
                 <param name="root">jsonObj</param>
             </result>
-        </action>
+        </action>-->
     </package>
 </struts>

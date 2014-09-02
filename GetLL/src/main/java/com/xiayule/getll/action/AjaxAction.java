@@ -555,6 +555,8 @@ public class AjaxAction {
 
         jsonObj = JsonUtils.stringToJson(strJson);
 
+        cleanParams();
+
         return Action.SUCCESS;
     }
 

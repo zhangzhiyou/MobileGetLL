@@ -498,6 +498,8 @@ public class AjaxAction {
 
         jsonObj = JsonUtils.stringToJson(strJson);
 
+        exchangeLogger.info(realMobile + ": 转赠给 " + paramMobile + " smsContext:" + paramSmsContext + " 转赠金额: " + paramTransferGifts + " 返回信息:(" + strJson + ")");
+
         cleanParams();
 
         return Action.SUCCESS;

@@ -58,7 +58,7 @@ FlowScore.prototype.loadCreditSum = function (callback) {
 }
 
 //首次加载明细数据
-FlowScore.prototype.loadFirstCreditDetail = function () {
+FlowScore.prototype.loadFirstCreditDetail = function (callback) {
     var that = this;
     that.stop_ = false;
     that.detailId_ = 0;
@@ -94,6 +94,11 @@ FlowScore.prototype.loadFirstCreditDetail = function () {
                     }else{
                         that.stop_= true;
                     }
+                }
+
+                // 回调
+                if (callback) {
+                    callback(data);
                 }
             },
             error: function(data){

@@ -108,7 +108,7 @@
             </div>
 
             <!--todo: 未领去的流量币 -->
-            <div class="phonenum" id="receiveDiv">
+            <div class="phonenum hideme" id="receiveDiv">
                 <span class="yellowfont" id="totalCredit">?</span>流量币未领
                 <span class="but_lingqu" onclick="javascript:location.href='/receiveFlowScore.jsp'">领取</span>
             </div>
@@ -116,11 +116,8 @@
             <div class="registnum">
                 有效期：<span class="yellowfont" id="leavesDay">&nbsp;</span>
             </div>
-
         </div>
     </div>
-
-    <!-- todo: 		未领取流量币数据加载 -->
 
     <!-- 功能模块 -->
     <div class="functions">
@@ -222,7 +219,9 @@
                     //更新 总汇信息
                     flowScore.loadCreditSum(function () {
                         // 加载第一页流量币记录
-                        flowScore.loadFirstCreditDetail();
+                        flowScore.loadFirstCreditDetail(function () {
+                            getFlowScoreTransferGiftsInfo();
+                        });
                     });
                 });
             });
@@ -248,7 +247,7 @@
     // 未领去的流量币加载
     function getFlowScoreTransferGiftsInfo(){
         var lazySeconds = 1;
-        $.post("/flowScore?method=getTransferGiftsList&queryType=count&type=others&status=2",{}, function(data) {
+        $.post("/ajax/getTransferGiftsList.action?queryType=count&type=others&status=2",{}, function(data) {
             setTimeout(function () {
                 if (data.status != "ok") {
                     //showErrorResult(data);

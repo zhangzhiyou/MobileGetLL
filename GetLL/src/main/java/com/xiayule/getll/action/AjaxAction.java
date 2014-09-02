@@ -32,7 +32,7 @@ public class AjaxAction {
     private Map json;
     private JSONObject jsonObj;
 
-    // 参数
+    // 参数, 每天加一个参数，都要在 cleanParams 函数中添加清理
     private String mobile;
     private String password;
     private String r;// 是个随机参数，为了防止缓存机制，struts中不加这个会warning，不加也行
@@ -44,6 +44,9 @@ public class AjaxAction {
     // TODO:这个参数好像是从 /ajax/queryCreditSum.action 和 /ajax/queryCreditDetail.action 这里传过来的，是 $.ajax 自动添加的，目前不明白
     private String _;
     private Boolean isLogin;
+    private String queryType;
+    private String status;
+    private String id;
 
 //    private String registerCode;
 
@@ -60,7 +63,9 @@ public class AjaxAction {
         isLogin = null;
         smsContext = null;
         transferGifts = null;
-
+        queryType = null;
+        status = null;
+        id = null;
 //        registerCode = null;
     }
 
@@ -449,8 +454,6 @@ public class AjaxAction {
 
         String rs = playService.getOtherPassword(realMobile, paramMobile, t, paramIsLogin);
 
-        System.out.println(rs);
-
         exchangeLogger.info(realMobile + ": 获取动态密码准备兑换");
 
         jsonObj = JsonUtils.stringToJson(rs);
@@ -518,7 +521,42 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
+    // 未领流量查询
+    public String getTransferGiftsList() {
+        String m = getMobileFromCookie();
+        String paramQueryType = queryType;
+        String paramType = type;
+        String paramStatus = status;
 
+        String strJson = playService.getTransferGiftsList(m, paramQueryType, paramType, paramStatus);
+
+        System.out.println(strJson);
+
+        jsonObj = JsonUtils.stringToJson(strJson);
+
+        cleanParams();
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 领取朋友赠送的流量币
+     * @return
+     */
+    public String transferGiftsReceive() {
+
+        String m = getMobileFromCookie();
+
+        String paramId = id;
+
+        String strJson = playService.transferGiftsReceive(m, paramId);
+
+        exchangeLogger.info(m + ": 领取赠送的流量币 id:(" + id + ") " + " 返回信息:(" + strJson + ")");
+
+        jsonObj = JsonUtils.stringToJson(strJson);
+
+        return Action.SUCCESS;
+    }
 
     // set and get methods
 
@@ -648,5 +686,29 @@ public class AjaxAction {
 
     public String getStartNum() {
         return startNum;
+    }
+
+    public String getQueryType() {
+        return queryType;
+    }
+
+    public void setQueryType(String queryType) {
+        this.queryType = queryType;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

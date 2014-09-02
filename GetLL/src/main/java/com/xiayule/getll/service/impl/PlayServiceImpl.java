@@ -295,6 +295,17 @@ public class PlayServiceImpl implements PlayService {
         return rs;
     }
 
+    public String transferGiftsReceive(String cookieMobile, String paramId) {
+        String urlTransferGiftsReceive =  "http://shake.sd.chinamobile.com/flowScore?method=transferGiftsReceive";
+
+        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("id", paramId));
+
+        String rs = post(cookieMobile, urlTransferGiftsReceive, params);
+
+        return rs;
+    }
+
     /**
      * 调用httpservice的post，会设置和保存 cookie
      * @param url url
@@ -370,6 +381,22 @@ public class PlayServiceImpl implements PlayService {
         params.add(new BasicNameValuePair("transferGifts", transferGifts));
 
         String rs = post(realMobile, urlTransferGifts, params);
+
+        return rs;
+    }
+
+    /**
+     * 获得未领流量币信息
+     */
+    public String getTransferGiftsList(String cookieMobile, String queryType, String type, String status) {
+        String urlGetTransferGiftsList = "http://shake.sd.chinamobile.com/flowScore?method=getTransferGiftsList";
+
+        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("queryType", queryType));
+        params.add(new BasicNameValuePair("type", type));
+        params.add(new BasicNameValuePair("status", status));
+
+        String rs = post(cookieMobile, urlGetTransferGiftsList, params);
 
         return rs;
     }

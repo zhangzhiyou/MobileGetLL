@@ -151,5 +151,11 @@
                 <param name="root">jsonObj</param>
             </result>
         </action>
+
+        <action name="transferGifts" class="ajaxAction" method="transferGifts">
+            <result type="json">
+                <param name="root">jsonObj</param>
+            </result>
+        </action>
     </package>
 </struts>

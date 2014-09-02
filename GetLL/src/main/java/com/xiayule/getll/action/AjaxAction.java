@@ -28,22 +28,41 @@ public class AjaxAction {
     private CookieService cookieService;
 //    private CreditLogService creditLogService;
 
+    // 返回的结果类型
+    private Map json;
+    private JSONObject jsonObj;
+
+    // 参数
     private String mobile;
     private String password;
     private String r;// 是个随机参数，为了防止缓存机制，struts中不加这个会warning，不加也行
     private String type;
     private String startNum;
-    private Map json;
-    private JSONObject jsonObj;
     private String exchangeID;
-
+    private String smsContext;
+    private String transferGifts;
     // TODO:这个参数好像是从 /ajax/queryCreditSum.action 和 /ajax/queryCreditDetail.action 这里传过来的，是 $.ajax 自动添加的，目前不明白
     private String _;
-
     private Boolean isLogin;
 
-    private String registerCode;
+//    private String registerCode;
 
+    private void cleanParams() {
+        mobile = null;
+        password = null;
+        r = null;
+        type = null;
+        startNum = null;
+        exchangeID = null;
+
+        _ = null;
+
+        isLogin = null;
+        smsContext = null;
+        transferGifts = null;
+
+//        registerCode = null;
+    }
 
     /**
      * 从请求中获取Cookie中存储的手机号
@@ -240,8 +259,6 @@ public class AjaxAction {
             json.put("result", result);
         }
 
-        cleanParams();
-
         return Action.SUCCESS;
     }
 
@@ -380,11 +397,15 @@ public class AjaxAction {
      */
     public String queryCreditDetail() {
         String m = getMobileFromCookie();
+        String t = type;
+        String startN = startNum;
 
 //        playService.setMobile(m);
-        String rs = playService.queryCreditDetail(m, type, startNum);
+        String rs = playService.queryCreditDetail(m, t, startN);
 
         jsonObj = JsonUtils.stringToJson(rs);
+
+        cleanParams();
 
         return Action.SUCCESS;
     }
@@ -454,8 +475,26 @@ public class AjaxAction {
 
         String strJson = playService.exchangePrize(m, paramExchangeID, paramType, paramPassword);
 
-        exchangeLogger.info(m +": 兑换id(" + paramExchangeID + ")" + " 兑换type(" + paramType + ")" + " 返回信息:(" + strJson + ")");
+        exchangeLogger.info(m + ": 兑换id(" + paramExchangeID + ")" + " 兑换type(" + paramType + ")" + " 返回信息:(" + strJson + ")");
 
+
+        jsonObj = JsonUtils.stringToJson(strJson);
+
+        cleanParams();
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 转赠流量币
+     */
+    public String transferGifts() {
+        String realMobile = getMobileFromCookie();
+        String paramMobile = mobile;
+        String paramSmsContext = smsContext;
+        String paramTransferGifts = transferGifts;
+
+        String strJson = playService.transferGifts(realMobile, paramMobile, password, smsContext, paramTransferGifts);
 
         jsonObj = JsonUtils.stringToJson(strJson);
 
@@ -477,22 +516,7 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
-    private void cleanParams() {
-        mobile = null;
-        password = null;
-        r = null;
-        type = null;
-        startNum = null;
-        json = null;
-        jsonObj = null;
-        exchangeID = null;
 
-        _ = null;
-
-        isLogin = null;
-
-        registerCode = null;
-    }
 
     // set and get methods
 
@@ -536,13 +560,13 @@ public class AjaxAction {
         this.registerCodeService = registerCodeService;
     }
 
-    public String getRegisterCode() {
+    /*public String getRegisterCode() {
         return registerCode;
     }
 
     public void setRegisterCode(String registerCode) {
         this.registerCode = registerCode;
-    }
+    }*/
 
     public void setCookieService(CookieService cookieService) {
         this.cookieService = cookieService;
@@ -602,5 +626,25 @@ public class AjaxAction {
 
     public void set_(String _) {
         this._ = _;
+    }
+
+    public String getTransferGifts() {
+        return transferGifts;
+    }
+
+    public void setTransferGifts(String transferGifts) {
+        this.transferGifts = transferGifts;
+    }
+
+    public String getSmsContext() {
+        return smsContext;
+    }
+
+    public void setSmsContext(String smsContext) {
+        this.smsContext = smsContext;
+    }
+
+    public String getStartNum() {
+        return startNum;
     }
 }

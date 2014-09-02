@@ -93,7 +93,7 @@
 <div id="buying_tip" class="hide" style="z-index: 101;color:#fff;text-align:center;position: absolute;">我们正在努力处理中，请稍候！</div>
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
-
+<script type="text/javascript" src="js/tip.js"></script>
 <script type="text/javascript" src="js/eventMan.js"></script>
 <script type="text/javascript" src="js/score.js"></script>
 
@@ -121,7 +121,6 @@
 
     $("#getPassword").unbind("click");
     $("#getPassword").bind("click",function(){
-        //TODO: 好像收不到
         eventMan.getPassword("other");
     });
 
@@ -198,19 +197,18 @@
         var confirmMessage = "您将向" + mobile + "赠送" + transferGifts + "个流量币，请核对转赠信息：";
         if (confirm(confirmMessage)) {
             //showBuyingTip();
-            $.post("/flowScore?method=transferGifts&r=" + Math.random(),params,function(data) {
+            $.post("/ajax/transferGifts?r=" + Math.random(),params,function(data) {
                 //hideBuyingTip();
                 if (data.status != "ok") {
                     if(data.code != "NOLOGIN" && data.code != "10005" && data.code != "1"){
-                        shakeCom.pwdInterval(0);
+                        eventMan.pwdInterval(0);
                     }
                     alert(data.message);
                 }else{
                     var result = data.result;
-                    //alert("您已成功给好友"+mobile+"转赠"+transferGifts+"流量币！");
 
-                    alert("成功向"+mobile+"赠送"+transferGifts+"个流量币，快通知TA登录流量汇领取吧！");
-                    location.href = "/portal/app/transferGifts.jsp";
+                    alert("成功向"+mobile+"赠送"+transferGifts+"个流量币，快通知TA登录本站领取吧！");
+                    location.href = "/";
                 }
             },"json");
         }else{

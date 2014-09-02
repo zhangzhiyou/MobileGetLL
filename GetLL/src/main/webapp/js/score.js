@@ -87,9 +87,6 @@ Score.prototype.showMyScore = function(callback) {
                 $("#leavesDay").text(data.result.ttl);
             }
 
-//            显示兑换列表
-//            score.showConvertList();
-
             // 回调
             if (callback) {
                 callback(data);

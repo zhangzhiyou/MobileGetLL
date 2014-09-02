@@ -337,12 +337,39 @@ public class PlayServiceImpl implements PlayService {
      * 获取其他密码，比如兑换流量币的密码, 返回原json
      */
     public String getOtherPassword(String realMobile, String paramMobile, String type, Boolean isLogin) {
-        String urlGetOtherPassword = "http://shake.sd.chinamobile.com/shake?method=getOtherPassword&isLogin="+isLogin+"&mobile="+paramMobile+"&r=" + new Date().getTime();
+        String urlGetOtherPassword = null;
+        List<BasicNameValuePair> params = null;
 
-        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
-        params.add(new BasicNameValuePair("type", type));
+        // 如果是转赠，则 type == null
+        if (type == null) {
+            urlGetOtherPassword = "http://shake.sd.chinamobile.com/shake?method=getOtherPassword&isLogin=true&r=" + Math.random();
+
+            params = new ArrayList<BasicNameValuePair>();
+            params.add(new BasicNameValuePair("mobile", paramMobile));
+
+        }
+        else {// 获取兑换动态密码
+            urlGetOtherPassword = "http://shake.sd.chinamobile.com/shake?method=getOtherPassword&isLogin="+isLogin+"&mobile="+paramMobile+"&r=" + new Date().getTime();
+
+            params = new ArrayList<BasicNameValuePair>();
+            params.add(new BasicNameValuePair("type", type));
+        }
 
         String rs = post(realMobile, urlGetOtherPassword, params);
+
+        return rs;
+    }
+
+    public String transferGifts(String realMobile, String paramMobile, String password, String smsContext, String transferGifts) {
+        String urlTransferGifts = "http://shake.sd.chinamobile.com/flowScore?method=transferGifts&r" + Math.random();
+
+        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("mobile", paramMobile));
+        params.add(new BasicNameValuePair("password", password));
+        params.add(new BasicNameValuePair("smsContext", smsContext));
+        params.add(new BasicNameValuePair("transferGifts", transferGifts));
+
+        String rs = post(realMobile, urlTransferGifts, params);
 
         return rs;
     }

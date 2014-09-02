@@ -57,4 +57,15 @@ public interface PlayService {
     public String exchangePrize(String mobile, String exchangeID, String type, String password);
 
     public void autoPlay(String mobile);
+
+    /**
+     * 转赠
+     * @param realMobile 自己的手机号（存在 cookie中的）
+     * @param paramMobile 参数
+     * @param password
+     * @param smsContext
+     * @param transferGifts
+     * @return
+     */
+    public String transferGifts(String realMobile, String paramMobile, String password, String smsContext, String transferGifts);
 }

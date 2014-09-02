@@ -87,7 +87,7 @@ FlowScore.prototype.loadFirstCreditDetail = function (callback) {
                      */
                     if(list != null && list.length > 0){
                         var htmls = that.getDetailHtml(data);
-                        $("#mingxiListDiv").show();
+//                        $("#mingxiListDiv").show();
                         $("#mingxiListDiv").html(htmls);
                         that.detailId_ = list[list.length-1].accessId;
                         that.stop_ = false;

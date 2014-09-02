@@ -87,16 +87,15 @@ EventMan.prototype.init = function() {
         that.shakeNow();
     });
 
-    $("#bt_liuyan").click(function() {
-
-        if ($("#bt_liuyan").text() == "留言") {
-            $("#duoshuoContent").show();
-            $("#mingxiListDiv").hide();
-            $("#bt_liuyan").text("关闭留言")
-        } else {
+    $("#bt_mingxi").click(function() {
+        if ($("#bt_mingxi").text() == "流量明细") {
             $("#duoshuoContent").hide();
             $("#mingxiListDiv").show();
-            $("#bt_liuyan").text("留言")
+            $("#bt_mingxi").text("留言")
+        } else {
+            $("#duoshuoContent").show();
+            $("#mingxiListDiv").hide();
+            $("#bt_mingxi").text("流量明细")
         }
     })
 
@@ -269,7 +268,9 @@ EventMan.prototype.checkLogin = function(callback) {
 
         if (that.loginMobile_) {
             $("#loginContent").hide();
-            $("#duoshuoContent").hide();
+            alert(that.loginMobile_);
+            $("#duoshuoContent").show();
+            $("#mingxiListDiv").hide();
         } else {
 //            $("#loginContent").show();
             $("#loginContent").show();

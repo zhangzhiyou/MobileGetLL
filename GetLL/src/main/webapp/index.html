@@ -145,8 +145,13 @@
         <!-- 转赠 -->
         <button class="btn button" id="bt_zhuanzeng" type="button" onclick="locationPage('/transferGifts.jsp')">转赠</button>
 
-        <!-- 留言 -->
+<!--
+        &lt;!&ndash; 留言 &ndash;&gt;
         <button class="btn button" id="bt_liuyan" type="button" onclick="this.blur()">留言</button>
+-->
+
+        <!-- 流量明细展开按钮 -->
+        <button class="btn button" id="bt_mingxi" type="button" onclick="this.blur()">流量明细</button>
     </div>
 
     <!-- 流量明细查询 -->
@@ -172,11 +177,11 @@
 </div>
 
 <!-- 临时模板 -->
-<div id="jiaitem_tmp" class="hide">
+<div id="jiaitem_tmp" class="hideme">
     <li><a href="javascript:;" id="convert_#id#">#prizeName#</a></li>
 </div>
 
-<div id="jiaitem_tmp_sms" class="hide">
+<div id="jiaitem_tmp_sms" class="hideme">
     <li><a href="javascript:;" id="convert_#id#">#prizeName#(需#nowLostCredit#流量币)</a></li>
 </div>
 
@@ -309,8 +314,7 @@
 </div>
 
 
-<!-- 返回顶部 -->
-
+<!-- 返回顶部按钮 -->
 <div id="gotop"><img src="image/top.png" /></div>
 <script>
     /*返回顶部JS*/

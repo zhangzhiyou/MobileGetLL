@@ -7,9 +7,11 @@
   </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/GetLL/src/main/webapp/score.jsp" line="40" />
-    <bookmark url="file://$PROJECT_DIR$/GetLL/src/main/webapp/transferGifts.jsp" line="124" />
     <bookmark url="file://$PROJECT_DIR$/GetLL/src/main/webapp/js/eventMan.js" line="187" />
     <bookmark url="file://$PROJECT_DIR$/GetLL/src/main/webapp/js/score.js" line="90" />
+    <bookmark url="file://$PROJECT_DIR$/GetLL/src/main/webapp/transferGifts.jsp" line="197" />
+    <bookmark url="file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java" line="338" />
+    <bookmark url="file://$PROJECT_DIR$/GetLL/src/main/webapp/transferGifts.jsp" line="124" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee581ae2-6654-4256-9314-04fd4049c249" name="Default" comment="" />
@@ -42,11 +44,9 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.7586207" vertical-offset="3880" max-vertical-offset="6140">
+            <state vertical-scroll-proportion="-0.6896552" vertical-offset="3940" max-vertical-offset="6140">
               <caret line="198" column="20" selection-start-line="198" selection-start-column="20" selection-end-line="198" selection-end-column="20" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -54,83 +54,45 @@
       <file leaf-file-name="transferGifts.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/transferGifts.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.79310346" vertical-offset="1317" max-vertical-offset="5140">
-              <caret line="67" column="37" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
+            <state vertical-scroll-proportion="-8.793103" vertical-offset="2225" max-vertical-offset="5180">
+              <caret line="124" column="21" selection-start-line="124" selection-start-column="21" selection-end-line="124" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="score.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/js/score.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1697" max-vertical-offset="4440">
-              <caret line="90" column="6" selection-start-line="90" selection-start-column="6" selection-end-line="90" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="score.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/score.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-33.103447" vertical-offset="120" max-vertical-offset="3860">
-              <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AjaxAction.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AjaxAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="438" max-vertical-offset="10720">
-              <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.4993046" vertical-offset="8161" max-vertical-offset="11320">
+              <caret line="426" column="18" selection-start-line="426" selection-start-column="18" selection-end-line="426" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6187#6203#0" expanded="true" />
-                <element signature="e#6355#6371#0" expanded="true" />
-                <element signature="e#7205#7221#0" expanded="true" />
+                <element signature="e#6258#6274#0" expanded="true" />
+                <element signature="e#6426#6442#0" expanded="true" />
+                <element signature="e#7304#7320#0" expanded="true" />
+                <element signature="e#11895#11896#0" expanded="true" />
+                <element signature="e#11922#11923#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobTaskImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/toolkit/scheduling/impl/JobTaskImpl.java">
+      <file leaf-file-name="PlayServiceImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1220">
-              <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="6378" max-vertical-offset="7840">
+              <caret line="339" column="83" selection-start-line="339" selection-start-column="83" selection-end-line="339" selection-end-column="83" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flowScore.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/js/flowScore.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3618" max-vertical-offset="4820">
-              <caret line="194" column="28" selection-start-line="194" selection-start-column="28" selection-end-line="194" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/search.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.3103447" vertical-offset="355" max-vertical-offset="1160">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eventMan.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="eventMan.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/js/eventMan.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5275081" vertical-offset="5497" max-vertical-offset="8860">
-              <caret line="283" column="7" selection-start-line="283" selection-start-column="7" selection-end-line="283" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2278" max-vertical-offset="8840">
+              <caret line="122" column="26" selection-start-line="122" selection-start-column="26" selection-end-line="122" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -146,7 +108,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/domain/User.java" />
         <option value="$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/action/SearchAction.java" />
         <option value="$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/service/impl/CreditLogServiceImpl.java" />
         <option value="$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/service/impl/CreditServiceImpl.java" />
@@ -188,15 +149,16 @@
         <option value="$PROJECT_DIR$/GetLL/src/main/webapp/exchange.jsp" />
         <option value="$PROJECT_DIR$/GetLL/src/main/webapp/score.jsp" />
         <option value="$PROJECT_DIR$/GetLL/src/main/resources/log4j2.xml" />
-        <option value="$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java" />
         <option value="$PROJECT_DIR$/GetLL/src/main/webapp/js/flowScore.js" />
         <option value="$PROJECT_DIR$/GetLL/src/main/webapp/WEB-INF/applicationContext.xml" />
-        <option value="$PROJECT_DIR$/GetLL/src/main/webapp/transferGifts.jsp" />
-        <option value="$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java" />
         <option value="$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/toolkit/scheduling/impl/JobTaskImpl.java" />
-        <option value="$PROJECT_DIR$/GetLL/src/main/webapp/js/eventMan.js" />
         <option value="$PROJECT_DIR$/GetLL/src/main/webapp/js/score.js" />
         <option value="$PROJECT_DIR$/GetLL/src/main/webapp/index.html" />
+        <option value="$PROJECT_DIR$/GetLL/src/main/webapp/js/tip.js" />
+        <option value="$PROJECT_DIR$/GetLL/src/main/webapp/transferGifts.jsp" />
+        <option value="$PROJECT_DIR$/GetLL/src/main/webapp/js/eventMan.js" />
+        <option value="$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java" />
+        <option value="$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java" />
       </list>
     </option>
   </component>
@@ -226,9 +188,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="-4" />
+    <option name="y" value="24" />
     <option name="width" value="1375" />
-    <option name="height" value="904" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -258,7 +220,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -667,6 +628,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -690,7 +652,7 @@
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="inde&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;ran&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/transferGifts.jsp&#10;index.&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;aja&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;ajax&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;ap&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/WEB-INF/applicationContext.xml&#10;aj&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;AJAX&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;ind&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;plays&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java&#10;play&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java&#10;playser&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java&#10;app&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/WEB-INF/applicationContext.xml&#10;eve&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;index&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;score&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/score.js&#10;ev&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;in&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;scor&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/Score.java&#10;Aj&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;ven&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;stru&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/resources/struts.xml&#10;sco&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/score.js&#10;event&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;a&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;even&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;redis&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/impl/RedisServiceImpl.java&#10;redisSer&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/RedisService.java&#10;dex&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;eventma&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;aler&#9;PSI&#9;JAVA://sun.security.ssl.Alerts&#10;fl&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/flowScore.js&#10;flo&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/flowScore.js&#10;sc&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/score.js&#10;logindo&#9;null&#9;null&#10;aa&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;getremai&#9;null&#9;null&#10;shaken&#9;null&#9;null&#10;regist&#9;PSI&#9;JAVA://com.xiayule.getll.service.RegisterCodeService&#10;str&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/resources/struts.xml&#10;nde&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;Redis&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/impl/RedisServiceImpl.java&#10;Sear&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/SearchAction.java&#10;getSub&#9;PSI&#9;JAVA://com.xiayule.getll.service.SubscriberService#getAllSubscriber&#10;setRedisServ&#9;PSI&#9;JAVA://com.xiayule.getll.service.SubscriberService#setRedisService&#10;job&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/toolkit/scheduling/impl/JobTaskImpl.java" />
+    <property name="SearchEverywhereHistoryKey" value="playser&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java&#10;ajax&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;ap&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/WEB-INF/applicationContext.xml&#10;ip&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/tip.js&#10;inde&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;ran&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/transferGifts.jsp&#10;index.&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;aja&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;aj&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;AJAX&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;ind&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;plays&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java&#10;play&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java&#10;app&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/WEB-INF/applicationContext.xml&#10;eve&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;index&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;score&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/score.js&#10;ev&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;in&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;scor&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/Score.java&#10;Aj&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;ven&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;stru&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/resources/struts.xml&#10;sco&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/score.js&#10;event&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;a&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;even&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;redis&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/impl/RedisServiceImpl.java&#10;redisSer&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/RedisService.java&#10;dex&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;eventma&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/eventMan.js&#10;aler&#9;PSI&#9;JAVA://sun.security.ssl.Alerts&#10;fl&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/flowScore.js&#10;flo&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/flowScore.js&#10;sc&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/js/score.js&#10;logindo&#9;null&#9;null&#10;aa&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java&#10;getremai&#9;null&#9;null&#10;shaken&#9;null&#9;null&#10;regist&#9;PSI&#9;JAVA://com.xiayule.getll.service.RegisterCodeService&#10;str&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/resources/struts.xml&#10;nde&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/webapp/index.html&#10;Redis&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/service/impl/RedisServiceImpl.java&#10;Sear&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/action/SearchAction.java&#10;getSub&#9;PSI&#9;JAVA://com.xiayule.getll.service.SubscriberService#getAllSubscriber&#10;setRedisServ&#9;PSI&#9;JAVA://com.xiayule.getll.service.SubscriberService#setRedisService&#10;job&#9;FILE&#9;file:///home/tan/IdeaProjects/MobileGetLL/GetLL/src/main/java/com/xiayule/getll/toolkit/scheduling/impl/JobTaskImpl.java" />
     <property name="LayoutCode.rearrangeEntriesJSP" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="options.lastSelected" value="preferences.pluginManager" />
@@ -1231,12 +1193,13 @@
       <workItem from="1408587428890" duration="162000" />
       <workItem from="1409297891406" duration="624000" />
       <workItem from="1409320390807" duration="99000" />
-      <workItem from="1409562693034" duration="12867000" />
+      <workItem from="1409562693034" duration="13717000" />
+      <workItem from="1409624249340" duration="2293000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="409348000" />
+    <option name="totallyTimeSpent" value="412491000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1259,7 +1222,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1375" height="904" extended-state="6" />
+    <frame x="65" y="24" width="1375" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1272,22 +1235,22 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933232" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33333334" sideWeight="0.87926924" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33465084" sideWeight="0.87926924" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3241107" sideWeight="0.49887472" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33596838" sideWeight="0.49737436" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.49960285" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.51119894" sideWeight="0.7914479" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40974966" sideWeight="0.7914479" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32674572" sideWeight="0.4996249" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.49960285" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2708177" sideWeight="0.40431267" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2708177" sideWeight="0.40316206" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27156788" sideWeight="0.45885286" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30566534" sideWeight="0.49887472" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="CSS-X-Fire" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32279316" sideWeight="0.49887472" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2708177" sideWeight="0.5956873" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2708177" sideWeight="0.59552044" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2494043" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1348,13 +1311,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java</url>
-          <line>417</line>
+          <url>file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java</url>
+          <line>339</line>
           <properties />
-          <option name="timeStamp" value="63" />
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="64" />
+      <option name="time" value="65" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1362,20 +1325,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/lib/jvm/java-6-openjdk-amd64/jre/lib/rt.jar!/java/util/Map.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78993434" vertical-offset="179" max-vertical-offset="1020">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="18740">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/factory/CookieFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="460">
@@ -1548,7 +1497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="1080">
           <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1580,7 +1528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.352518" vertical-offset="53" max-vertical-offset="4500">
           <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1588,15 +1535,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19909503" vertical-offset="272" max-vertical-offset="780">
           <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/WEB-INF/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2238" max-vertical-offset="3040">
-          <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1612,7 +1550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.004304161" vertical-offset="63" max-vertical-offset="1300">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="8" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1620,7 +1557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
           <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1632,27 +1568,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6705" max-vertical-offset="7840">
-          <caret line="357" column="0" selection-start-line="357" selection-start-column="0" selection-end-line="357" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="13.206897" vertical-offset="643" max-vertical-offset="1460">
           <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/search.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.3103447" vertical-offset="355" max-vertical-offset="1160">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1660,9 +1579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="478">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1674,38 +1590,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/js/tip.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12552302" vertical-offset="0" max-vertical-offset="478">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/toolkit/scheduling/impl/JobTaskImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1220">
           <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="438" max-vertical-offset="10720">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6187#6203#0" expanded="true" />
-            <element signature="e#6355#6371#0" expanded="true" />
-            <element signature="e#7205#7221#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/score.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-33.103447" vertical-offset="120" max-vertical-offset="3860">
+        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="3860">
           <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
           <folding />
         </state>
@@ -1719,37 +1613,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/transferGifts.jsp">
+    <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/search.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.79310346" vertical-offset="1317" max-vertical-offset="5140">
-          <caret line="67" column="37" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="355" max-vertical-offset="1160">
+          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12147" max-vertical-offset="18740">
+          <caret line="614" column="9" selection-start-line="614" selection-start-column="9" selection-end-line="614" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/js/score.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1697" max-vertical-offset="4440">
-          <caret line="90" column="6" selection-start-line="90" selection-start-column="6" selection-end-line="90" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="332" max-vertical-offset="4440">
+          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/js/tip.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="440">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/WEB-INF/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="903" max-vertical-offset="3040">
+          <caret line="135" column="11" selection-start-line="135" selection-start-column="11" selection-end-line="135" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18364419" vertical-offset="3112" max-vertical-offset="76320">
+          <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.7586207" vertical-offset="3880" max-vertical-offset="6140">
+        <state vertical-scroll-proportion="-0.6896552" vertical-offset="3940" max-vertical-offset="6140">
           <caret line="198" column="20" selection-start-line="198" selection-start-column="20" selection-end-line="198" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/transferGifts.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.793103" vertical-offset="2225" max-vertical-offset="5180">
+          <caret line="124" column="21" selection-start-line="124" selection-start-column="21" selection-end-line="124" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/service/impl/PlayServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6378" max-vertical-offset="7840">
+          <caret line="339" column="83" selection-start-line="339" selection-start-column="83" selection-end-line="339" selection-end-column="83" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GetLL/src/main/webapp/js/eventMan.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5275081" vertical-offset="5497" max-vertical-offset="8860">
-          <caret line="283" column="7" selection-start-line="283" selection-start-column="7" selection-end-line="283" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2278" max-vertical-offset="8840">
+          <caret line="122" column="26" selection-start-line="122" selection-start-column="26" selection-end-line="122" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GetLL/src/main/java/com/xiayule/getll/action/AjaxAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4993046" vertical-offset="8161" max-vertical-offset="11320">
+          <caret line="426" column="18" selection-start-line="426" selection-start-column="18" selection-end-line="426" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6258#6274#0" expanded="true" />
+            <element signature="e#6426#6442#0" expanded="true" />
+            <element signature="e#7304#7320#0" expanded="true" />
+            <element signature="e#11895#11896#0" expanded="true" />
+            <element signature="e#11922#11923#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -89,6 +89,7 @@ public class AjaxAction {
         String m = mobile;
         String pass = password;
 
+        cleanParams();
 
         Cookie cookie = CookieFactory.newCookie("mobile", m);
 
@@ -182,6 +183,8 @@ public class AjaxAction {
 
         jsonObj = JsonUtils.stringToJson(strRes);
 
+        cleanParams();
+
         return Action.SUCCESS;
     }
 
@@ -205,6 +208,8 @@ public class AjaxAction {
 
         json = new HashMap();
         json.put("status", "ok");
+
+        cleanParams();
 
         return Action.SUCCESS;
     }
@@ -235,6 +240,8 @@ public class AjaxAction {
             json.put("result", result);
         }
 
+        cleanParams();
+
         return Action.SUCCESS;
     }
 
@@ -242,11 +249,11 @@ public class AjaxAction {
      * 由本应用获取的总流量排行
      * @return
      */
-    public String getRankByTotalAtHere() {
+   /* public String getRankByTotalAtHere() {
 
         return Action.SUCCESS;
     }
-
+*/
     /**
      * 从官网上获取数据后，再转发回去
      * @return
@@ -427,6 +434,8 @@ public class AjaxAction {
 
         jsonObj = JsonUtils.stringToJson(rs);
 
+        cleanParams();
+
         return Action.SUCCESS;
     }
 
@@ -450,6 +459,8 @@ public class AjaxAction {
 
         jsonObj = JsonUtils.stringToJson(strJson);
 
+        cleanParams();
+
         return Action.SUCCESS;
     }
 
@@ -464,6 +475,23 @@ public class AjaxAction {
         jsonObj = JsonUtils.stringToJson(rs);
 
         return Action.SUCCESS;
+    }
+
+    private void cleanParams() {
+        mobile = null;
+        password = null;
+        r = null;
+        type = null;
+        startNum = null;
+        json = null;
+        jsonObj = null;
+        exchangeID = null;
+
+        _ = null;
+
+        isLogin = null;
+
+        registerCode = null;
     }
 
     // set and get methods

@@ -121,6 +121,7 @@
 
     $("#getPassword").unbind("click");
     $("#getPassword").bind("click",function(){
+        //TODO: 好像收不到
         eventMan.getPassword("other");
     });
 
@@ -136,13 +137,12 @@
     //remarkSelect.val("AAAAAA");
     //输入手机号码有效性验证
 
-
     function verifyMobile(){
-        var mobile = shakeCom.parseMobile($.trim($("#mobile").val()));
+        var mobile = eventMan.parseMobile($.trim($("#mobile").val()));
         if (!mobile) {
             return tip.transferGiftsEmptyMobile;
-        }else if (!shakeCom.mobileReg_.test(mobile)) {
-            return shakeCom.tip_.notShangDongMobile;
+        }else if (!eventMan.mobileReg_.test(mobile)) {
+            return tip.notShangDongMobile;
         }
         return true;
     }
@@ -152,7 +152,6 @@
     function submitFun(){
         var mobile = $.trim($("#mobile").val());
         //手机号码的验证
-
 
         var flag = verifyMobile();
         if(flag != true){
@@ -183,16 +182,19 @@
         //验证码的验证
         var password = $.trim($("#password").val());
         if (!password) {
-            messageDiv.html(shakeCom.tip_.emptyPwd);
+            messageDiv.html(tip.emptyPwd);
             return;
         }
         var remarkSelectText = remarkSelect.find("option:selected").val();
+
         var params = {
             "mobile" :  mobile,
             "password" : password,
             "smsContext":remarkSelectText,
             "transferGifts":transferGifts
         };
+
+        //todo: 转赠
         var confirmMessage = "您将向" + mobile + "赠送" + transferGifts + "个流量币，请核对转赠信息：";
         if (confirm(confirmMessage)) {
             //showBuyingTip();

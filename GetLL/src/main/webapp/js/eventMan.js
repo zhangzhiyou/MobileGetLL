@@ -187,7 +187,6 @@ EventMan.prototype.getPassword =  function(type) {
     //TODO: other
     if(type == "other")
     {
-        alert("other");
         postUrl = that.getOtherPasswordPath_+"?isLogin=true"+"&";
     }
 

@@ -214,7 +214,10 @@
                 // 显示 兑换列表
                 score.showConvertList(function() {
                     //更新 总汇信息
-                    flowScore.loadCreditSum();
+                    flowScore.loadCreditSum(function () {
+                        // 加载第一页流量币记录
+                        flowScore.loadFirstCreditDetail();
+                    });
                 });
             });
         }
@@ -234,6 +237,27 @@
             }
         }
     });*/
+
+
+
+    function getFlowScoreTransferGiftsInfo(){
+        var lazySeconds = 1;
+        $.post("/flowScore?method=getTransferGiftsList&queryType=count&type=others&status=2",{}, function(data) {
+            setTimeout(function () {
+                if (data.status != "ok") {
+                    //showErrorResult(data);
+                    return;
+                }else{
+                    var result = data.result;
+                    if(Number(result.totalCredit)>0){
+                        $("#receiveDiv").show();
+                        $("#totalCredit").html(result.totalCredit);
+                    }
+                }
+            }, lazySeconds * 1000);
+        },"json");
+    }
+
 
     function logoutSystem() {
         var confirmMessage = "下次来将重新登录，确定退出吗？";

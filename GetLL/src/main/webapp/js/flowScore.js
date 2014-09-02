@@ -17,7 +17,7 @@ function FlowScore() {
 }
 
 
-FlowScore.prototype.loadCreditSum = function () {
+FlowScore.prototype.loadCreditSum = function (callback) {
     var that = this;
     $.ajax( {
 //        type: "POST",
@@ -46,7 +46,12 @@ FlowScore.prototype.loadCreditSum = function () {
                 }
             }
 
-            that.loadFirstCreditDetail();
+            // 回调
+            if (callback) {
+                callback(data);
+            }
+
+//            that.loadFirstCreditDetail();
         },
         error: function(data){}
     });

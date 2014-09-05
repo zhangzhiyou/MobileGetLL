@@ -79,6 +79,8 @@ public class HttpServiceImpl implements HttpService {
             // 根据内容来源地址创建一个Http请求
             HttpGet request = new HttpGet(url);
 
+            initHeaders(request);
+
             DefaultHttpClient client = getDefaultHttpClient();
 
             client.setCookieStore(cookieStore);

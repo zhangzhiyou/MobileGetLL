@@ -83,7 +83,6 @@ EventMan.prototype.init = function() {
             return;
         }
 
-        alert("正在为您摇奖，请稍等刷新查看\n提示: 系统每天6点准时为您摇奖")
         that.shakeNow();
     });
 
@@ -392,11 +391,12 @@ EventMan.prototype.shakeNow = function() {
 
     // 获取剩余摇奖次数
 
-    $.post("/ajax/shakeNow.action?r=", {}, function (data) {
+    $.post("/ajax/shakeNow.action", {}, function (data) {
         if (data.status != "ok") {
             alert("网络错误");
         } else {
-           that.refresh();
+            alert("正在为您摇奖，请稍等刷新查看\n提示: 系统每天6点准时为您摇奖")
+            that.refresh();
         }
     })
 }

@@ -165,36 +165,6 @@ public class AjaxAction {
             return Action.SUCCESS;
         }
 
-      /*  if (subscriberService.isSubscribe(m)) {
-
-
-            JSONObject result = new JSONObject();
-            result.put("mobile", m);
-
-            // 如果不存在 cookie，证明第一次登录
-            if (!cookieService.isExist(m)) {
-                result.put("firstLogin", true);
-
-                // 如果没有使用过本站服务, 就先登录
-                if (playService.loginDo(m, pass) == null) {
-                    json.put("status", "fail");
-                    // 非山东手机号
-                    json.put("errorId", "1");
-                    json.put("errorDesc", "亲，只有山东移动用户才能参与哦！");
-
-                    return Action.SUCCESS;
-                }
-            }
-
-            json.put("result", result);
-
-
-        } else {
-            json.put("status", "error");
-            json.put("errorId", 0);
-            json.put("errorDesc", "亲,您未注册过本站服务");
-        }*/
-
         return Action.SUCCESS;
     }
 
@@ -312,10 +282,19 @@ public class AjaxAction {
      * @return
      */
     public String shakeNow() {
-        String m = getMobileFromCookie();
+        final String m = getMobileFromCookie();
 
         playService.autoPlay(m);
+        
+/*
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                playService.autoPlay(m);
+            }
+        }).start();
+*/
         json = new HashMap();
         json.put("status", "ok");
 
@@ -454,7 +433,7 @@ public class AjaxAction {
 
         String rs = playService.getOtherPassword(realMobile, paramMobile, t, paramIsLogin);
 
-        exchangeLogger.info(realMobile + ": 获取动态密码准备兑换");
+        exchangeLogger.info(realMobile + ": 获取动态密码, 返回信息:(" + rs + ")");
 
         jsonObj = JsonUtils.stringToJson(rs);
 

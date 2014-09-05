@@ -88,7 +88,7 @@ public class PlayServiceImpl implements PlayService {
 
 //                creditLogService.log(mobile, " 剩余次数:" + remainTimes);
                 logger.info(mobile + " 剩余次数:" + remainTimes);
-            } while (remainTimes > 0);
+            } while (remainTimes > 8);
         }
 
         // 总结性的日志，要放在 list 的最前面
@@ -132,6 +132,8 @@ public class PlayServiceImpl implements PlayService {
 
         String result = post(mobile, urlGetRemainTimes, null);
 
+        System.out.println(result);
+
         // TODO: 如果解析错误，就认为0次
         String drawCount = getFromResult(result, "drawCount");
 
@@ -143,12 +145,14 @@ public class PlayServiceImpl implements PlayService {
      * @param password 动态密码
      * @return 原文
      */
-    public String loginDo(String mobile, String password) {
+    public synchronized String loginDo(String mobile, String password) {
         String urlLoginDo = "http://shake.sd.chinamobile.com/shake?method=loginDo&r=" + Math.random();
 
         List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
         params.add(new BasicNameValuePair("mobile", mobile));
         params.add(new BasicNameValuePair("password", password));
+
+        // todo: 这里如果有多线程可能会除错, 因此加上线程锁
 
         String s = httpService.post(urlLoginDo, params);
 
@@ -195,6 +199,7 @@ public class PlayServiceImpl implements PlayService {
         String value = resultJson.get(key);*/
         return value;
     }
+
 
     /**
      * 进行摇奖
@@ -329,6 +334,7 @@ public class PlayServiceImpl implements PlayService {
         String rs = httpService.get(url);
 
         updateCookieToLocal(mobile);
+
         return rs;
     }
 

@@ -20,11 +20,9 @@
     <bean name="playService" class="com.xiayule.getll.service.impl.PlayServiceImpl"
           scope="prototype">
 
-        <constructor-arg value="123"/>
-
         <property name="cookieService" ref="cookieService"/>
         <property name="httpService" ref="httpService"/>
-        <property name="creditLogService" ref="creditLogService"/>
+        <!--<property name="creditLogService" ref="creditLogService"/>-->
         <property name="creditService" ref="creditService"/>
     </bean>
 
@@ -61,11 +59,20 @@
         <property name="playService" ref="playService"/>
         <property name="registerCodeService" ref="registerCodeService"/>
         <property name="cookieService" ref="cookieService"/>
-        <property name="creditLogService" ref="creditLogService"/>
+        <!--<property name="creditLogService" ref="creditLogService"/>-->
     </bean>
 
     <bean name="redisDataSource" class="com.xiayule.getll.service.impl.RedisDataSourceImpl">
         <property name="jedisPool" ref="jedisPool"/>
+    </bean>
+
+    <bean name="authInterceptor" class="com.xiayule.getll.interceptot.AuthInterceptor">
+        <property name="subscriberService" ref="subscribeService"/>
+    </bean>
+
+
+    <bean name="score" class="com.xiayule.getll.action.Score">
+
     </bean>
 
     <!-- redis 配置 -->
@@ -84,12 +91,13 @@
     </bean>
 
     <!-- redis的连接池pool，不是必选项：timeout/password  -->
-    <bean id = "jedisPool" class="redis.clients.jedis.JedisPool">
+    <bean id = "jedisPool" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
         <constructor-arg index="0" ref="jedisPoolConfig"/>
         <constructor-arg index="1" value="${redis.host}"/>
-<!--        <constructor-arg index="2" value="${redis.port}" type="int"/>
+        <constructor-arg index="2" value="${redis.port}" type="int"/>
         <constructor-arg index="3" value="${redis.timeout}" type="int"/>
-        <constructor-arg index="4" value="${redis.password}"/>-->
+        <!--<constructor-arg index="4" value="${redis.password}"/>-->
     </bean>
+
 
 </beans>

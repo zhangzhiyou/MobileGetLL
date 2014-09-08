@@ -25,7 +25,6 @@ public class PlayServiceImpl implements PlayService {
     private HttpService httpService;
     private CookieService cookieService;
 //    private CreditLogService creditLogService;
-    private CreditService creditService;
 
     //private String mobile;
 
@@ -33,7 +32,7 @@ public class PlayServiceImpl implements PlayService {
 //        this.mobile = mobile;
 //    }
 
-    @Override
+    /*@Override
     public void autoPlay(String mobile) {
         logger.info("JobTask:" + "执行任务:" + "订阅者:" + mobile);
 
@@ -88,7 +87,7 @@ public class PlayServiceImpl implements PlayService {
 
 //                creditLogService.log(mobile, " 剩余次数:" + remainTimes);
                 logger.info(mobile + " 剩余次数:" + remainTimes);
-            } while (remainTimes > 8);
+            } while (remainTimes > 0);
         }
 
         // 总结性的日志，要放在 list 的最前面
@@ -104,7 +103,7 @@ public class PlayServiceImpl implements PlayService {
         logger.info(mobile + " 总计: 连续登录:" + queryScore.getString("count_1") + "天"
                 + " 今日总计:" + queryScore.getString("todayCredit")
                 + " 当前流量币: " + queryScore.getString("credit"));
-    }
+    }*/
 
     /**
      * 获取动态密码
@@ -131,8 +130,6 @@ public class PlayServiceImpl implements PlayService {
         String urlGetRemainTimes = "http://shake.sd.chinamobile.com/shake?method=getRemainTimes&r=" + Math.random();
 
         String result = post(mobile, urlGetRemainTimes, null);
-
-        System.out.println(result);
 
         // TODO: 如果解析错误，就认为0次
         String drawCount = getFromResult(result, "drawCount");
@@ -455,10 +452,5 @@ public class PlayServiceImpl implements PlayService {
 //    public void setCreditLogService(CreditLogService creditLogService) {
 //        this.creditLogService = creditLogService;
 //    }
-
-    public void setCreditService(CreditService creditService) {
-        this.creditService = creditService;
-    }
-
 
 }

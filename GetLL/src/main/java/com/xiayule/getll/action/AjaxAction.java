@@ -2,6 +2,7 @@ package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.xiayule.getll.draw.DrawRequest;
 import com.xiayule.getll.factory.CookieFactory;
 import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.Constants;
@@ -21,6 +22,8 @@ public class AjaxAction {
     private static Logger logger = LogManager.getLogger(PlayService.class.getName());
     // 兑换日志
     private static Logger exchangeLogger = LogManager.getLogger("com.xiayule.exchange");
+
+    private DrawRequest drawRequest;
 
     private SubscriberService subscriberService;
     private PlayService playService;
@@ -284,8 +287,11 @@ public class AjaxAction {
     public String shakeNow() {
         final String m = getMobileFromCookie();
 
-        playService.autoPlay(m);
-        
+//        playService.autoPlay(m);
+
+        // 加入执行队列
+        drawRequest.addRequest(m);
+
 /*
 
         new Thread(new Runnable() {
@@ -538,6 +544,15 @@ public class AjaxAction {
     }
 
     // set and get methods
+
+
+    public DrawRequest getDrawRequest() {
+        return drawRequest;
+    }
+
+    public void setDrawRequest(DrawRequest drawRequest) {
+        this.drawRequest = drawRequest;
+    }
 
     public Map getJson() {
         return json;

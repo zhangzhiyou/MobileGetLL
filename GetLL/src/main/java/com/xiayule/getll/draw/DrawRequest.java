@@ -1,11 +1,8 @@
 package com.xiayule.getll.draw;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 /**
- * Created by tan on 14-9-5.
+ * Created by tan on 14-9-8.
  */
-public class DrawRequest {
-
+public interface DrawRequest {
+    public void addRequest(String mobile);
 }

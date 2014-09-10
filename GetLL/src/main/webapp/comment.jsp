@@ -67,5 +67,31 @@
     </div>
 </div>
 
+<!-- 返回顶部按钮 -->
+<div id="gotop"><img src="image/top.png"/></div>
+<script>
+    /*返回顶部JS*/
+    backTop = function (btnId) {
+        var btn = document.getElementById(btnId);
+        var d = document.documentElement;
+        var b = document.body;
+        window.onscroll = btnDisplay;
+        btn.onclick = function () {
+            btn.style.display = "none";
+            window.onscroll = null;
+            this.timer = setInterval(function () {
+                d.scrollTop -= Math.ceil((d.scrollTop + b.scrollTop) * 0.1);
+                b.scrollTop -= Math.ceil((d.scrollTop + b.scrollTop) * 0.1);
+                if ((d.scrollTop + b.scrollTop) == 0)
+                    clearInterval(btn.timer, window.onscroll = btnDisplay);
+            }, 10);
+        };
+        function btnDisplay() {
+            btn.style.display = (d.scrollTop + b.scrollTop > 200) ? 'block' : "none";
+        }
+    };
+    backTop('gotop');//返回顶部调用
+</script>
+
 </body>
 </html>

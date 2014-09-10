@@ -3,3 +3,23 @@
 	var value = charObj[index];
 	return value ? value : "";
 }
+
+// 重定向网页
+function locationPage(url) {
+    if (eventMan.isLogin()) {
+        location.href = url;
+    }
+}
+
+function logoutSystem() {
+    var confirmMessage = "下次来将重新登录，确定退出吗？";
+    if (confirm(confirmMessage)) {
+        $.post("/ajax/logout.action?r=" + Math.random(), {}, function (data) {
+            if (data.status != "ok") {
+                alert(data.message);
+            } else {
+                location.href = "/";
+            }
+        });
+    }
+}

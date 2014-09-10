@@ -243,4 +243,141 @@ FlowScore.prototype.loadCreditDetail = function (type) {
     }
 }
 
+// 未领去的流量币加载
+FlowScore.prototype.getFlowScoreTransferGiftsInfo = function (callback) {
+    var lazySeconds = 1;
+    $.post("/ajax/getTransferGiftsList.action?queryType=count&type=others&status=2", {}, function (data) {
+//        setTimeout(function () {
+        if (data.status != "ok") {
+            //showErrorResult(data);
+            return;
+        } else {
+            var result = data.result;
+            if (Number(result.totalCredit) > 0) {
+                $("#receiveDiv").show();
+                $("#totalCredit").html(result.totalCredit);
+            }
+        }
+//        }, lazySeconds * 1000);
+
+        if (callback) {
+            callback(data);
+        }
+    }, "json");
+}
+
+// 流量详情
+FlowScore.prototype.getTotalFlow = function (callback) {
+    var lazySeconds = 1;
+    $.post("/ajax/getPackage.action", {}, function (data) {
+//            setTimeout(function () {
+        if (data.status != "ok") {
+            showErrorResult(data);
+            return;
+        } else {
+            var result = data.result;
+            //流量总和展示
+            $("#TotalFlowDiv").html(result.sumNumTotal);
+            $("#LeftFlowDiv").html(result.leftNumTotal);
+            $("#distanceDays").html(result.distDay);
+            $("#dayNum").html(result.dayNum);
+
+            var colorsResult = new Array();
+            colorsResult.push('#e2e2e2');
+            colorsResult.push('#feba01');
+
+            //是否告警
+            /*if(result.isWarning == true){
+             $("#tipDiv").html(' • 剩余流量不多了，快去<a href="/portal/app/buy.jsp">加流量</a>吧');
+             colorsResult = new Array();
+             colorsResult.push('#c5c5c5');
+             colorsResult.push('#dc0000');
+             }
+             //剩余流量大于80%或者大于200M时的提示
+             if(result.flag == true){
+             $("#tipDiv").html(' • 流量用不完？看看<a href="/portal/app/gain.jsp">高帅富流量指南</a><span class="but_arrow">&nbsp;</span>');
+             }*/
+
+            //饼状图展示
+            var statResult = new Array();
+            statResult.push(['已用', result.usedNumTotal]);
+            statResult.push(['剩余', result.leftNumTotal]);
+            newChart(statResult, colorsResult);
+
+            //列表展示
+            var list = result.list;
+            var htmls = '<div class="jiafengge"><span class="line" style="color:#F33">套餐明细</span></div>';
+            for (var i = 0; i < list.length; i++) {
+                var obj = list[i];
+                htmls = [htmls,
+                        '<div class="myaccount_mingxi_list"><div>套餐' + getNumTip(i) + '</div>',
+                        '<div>' + obj.PRIVSET + '</div>',//（'+obj.TYPE+'）
+
+                        '<div><span class="detail">剩余：' + obj.LEFTNUM + 'M</span><span class="detail">已用：' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</span></div></div>'
+                ].join('');
+            }
+            $("#listDiv").html(htmls);
+        }
+
+        if (callback) {
+            callback(data);
+        }
+//            }, lazySeconds * 1000);
+    }, "json");
+}
+
+function showErrorResult(data) {
+    if (data.status != "ok") {
+        var message = data.message;
+        if (data.code == "EMPTY") {
+            /*if (confirm(message)) {
+             window.location.href = "/portal/app/buy.jsp"
+             } else {
+             window.location.href = "/portal/app/personalCenter.jsp"
+             }*/
+
+            window.location.href = "/"
+        } else {
+            alert(message);
+        }
+        return;
+    }
+}
+
+function newChart(data, colorsResult) {
+    $('#ReportDiv').highcharts({
+        chart: {
+            height: 200
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            pointFormat: '{point.percentage:.2f}%</b>'
+        },
+        colors: colorsResult,
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    color: '#000000',
+                    connectorColor: '#000000',
+                    format: '<b>{point.name}: </b>{point.y:.2f}M'
+                }
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        series: [
+            {
+                type: 'pie',
+                data: data
+            }
+        ]
+    });
+}
+
 var flowScore = new FlowScore();

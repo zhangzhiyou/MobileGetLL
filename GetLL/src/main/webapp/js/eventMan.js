@@ -86,18 +86,6 @@ EventMan.prototype.init = function() {
         that.shakeNow();
     });
 
-/*    $("#bt_mingxi").click(function() {
-        if ($("#bt_mingxi").text() == "流量明细") {
-            $("#duoshuoContent").hide();
-            $("#mingxiListDiv").show();
-            $("#bt_mingxi").text("留言")
-        } else {
-            $("#duoshuoContent").show();
-            $("#mingxiListDiv").hide();
-            $("#bt_mingxi").text("流量明细")
-        }
-    })*/
-
     // 免费续期
     $("#leavesDay").click(function() {
         if ($("#leavesDay").text().indexOf("点我续期") > 0) {
@@ -111,34 +99,6 @@ EventMan.prototype.init = function() {
             });
         }
     });
-
-    /*// 兑换5M按钮
-    $("#btExchangeFive").click(function () {
-        if (score.creditSum_ < 5) {
-            alert("您的流量币不足 5 个");
-        } else {
-            // 获取动态密码
-            $.post("/ajax/getOtherPassword.action?r=" + Math.random(), {}, function (data) {
-                if (data.status != "ok") {
-                    alert("获取动态密码失败");
-                } else {
-                    var pass = prompt("请输入您的动态密码", "");
-                    if (pass != null && pass != "") {
-                        // 兑换
-                        $.post("/ajax/exchangePrize.action?r="+Math.random(), {"password" : pass}, function(data) {
-                            if (data.status != "ok") {
-                                alert(data.message);
-                            } else {
-                                alert(data.message + "\n已成功提交兑换5M请求\n兑换结果请稍后以短信为准");
-                                this.refresh();
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    });*/
-
 
     $("#getPassword").unbind("click");
     // 点击事件:获取动态密码
@@ -267,12 +227,11 @@ EventMan.prototype.checkLogin = function(callback) {
 
         if (that.loginMobile_) {
             $("#loginContent").hide();
-            $("#duoshuoContent").show();
-            $("#mingxiListDiv").hide();
+//            $("#duoshuoContent").show();
+//            $("#mingxiListDiv").hide();
         } else {
-//            $("#loginContent").show();
             $("#loginContent").show();
-            $("#duoshuoContent").show();
+//            $("#duoshuoContent").show();
         }
 
         if (callback) {

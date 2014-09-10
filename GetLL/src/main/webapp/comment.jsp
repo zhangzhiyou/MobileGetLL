@@ -10,6 +10,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
+    <link href="css/css.css" rel="stylesheet" type="text/css">
+
+    <link href="css/my.css" rel="stylesheet" type="text/css">
+
     <title>留言</title>
 
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
@@ -31,27 +35,36 @@
 </head>
 <body>
 
+<div class="jia_layout">
+    <div id="myaccount_mingxi_shouzhi">
+        <div class="jia_nav2">
+            <a href="/"><div class="jia_back"><img src="/image/go_back.png" width="21" height="19" align="absmiddle" /> 返回</div></a>
+        </div>
+    </div>
 
-<!-- 留言模块-->
-<div id="duoshuoContent">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" id="duoshuoContent" data-thread-key="index" data-url="http://xiayule.net"></div>
+    <div class="zhuanzeng_layout">
+        <!-- 留言模块-->
+        <div id="duoshuoContent">
+            <!-- 多说评论框 start -->
+            <div class="ds-thread" id="duoshuoContent" data-thread-key="index" data-url="http://xiayule.net"></div>
 
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-        var duoshuoQuery = {short_name: "xiayule"};
-        (function () {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-                    || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-    </script>
-    <!-- 多说公共JS代码 end -->
+            <!-- 多说评论框 end -->
+            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name: "xiayule"};
+                (function () {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';
+                    ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                            || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- 多说公共JS代码 end -->
+        </div>
+    </div>
 </div>
 
 </body>

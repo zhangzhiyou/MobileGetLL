@@ -258,36 +258,23 @@
             score.showMyScore(function () {
                 // 显示 兑换列表
                 score.showConvertList(function () {
-                    //更新 总汇信息
-                    flowScore.loadCreditSum(function () {
+                    //流量币总汇信息
+//                    flowScore.loadCreditSum(function () {
                         // 加载第一页流量币记录
-                        flowScore.loadFirstCreditDetail(function () {
+//                        flowScore.loadFirstCreditDetail(function () {
                             // 获得套餐详情, 包括绘制饼状图
                             flowScore.getTotalFlow(function () {
                                 // 未领取的流量币信息
                                 flowScore.getFlowScoreTransferGiftsInfo();
                             });
-                        });
-                    });
+//                        });
+//                    });
                 });
             });
         }
     });
 
-    /**
-     * 隐藏滚动动态加载流量信息
-     /*$(window).scroll(function(){
-        var detailVisible = $("#mingxiListDiv").is(":visible")
-        // 可见的情况下，才加载数据
-        if (detailVisible) {
-            var scrolltop = $(document).scrollTop();
-            var winHeight = $(document).height() - $(window).height();
 
-            if(scrolltop >= winHeight-50 && eventMan.isLogin()){
-                flowScore.loadCreditDetail("down");
-            }
-        }
-    });*/
 
 </script>
 

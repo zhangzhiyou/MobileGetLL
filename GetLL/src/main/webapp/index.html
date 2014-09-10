@@ -47,8 +47,8 @@
             <tr id="passwordContent" class="hideme">
                 <td align="right">动态密码</td>
                 <td>
-                    <input type="text" class="pop_cinput" id="password" name="password" />
-                    <a href="javascript:;"  id="getPassword">免费获取动态密码</a>
+                    <input type="text" class="pop_cinput" id="password" name="password"/>
+                    <a href="javascript:;" id="getPassword">免费获取动态密码</a>
                     <a href="javascript:;" id="sendStatus" style="display:none;">已发送(<span
                             id="seconds" style="display:inline;">0</span>秒)</a>
                 </td>
@@ -66,17 +66,17 @@
 <div id="registerCodeContent" class="hideme">
     <div class="tishi-gonggao">
         <div class="tishi-title">您未使用本站服务或者注册码过期<span class="arrow"></span></div>
-        <div class="tishi-input" >输入注册码(您可以一直免费领取有效期7天的注册码哦)：</div>
-        <div class="tishi-input" >
-            <input id="registerCode" name="registerCode" type="text"  placeholder="请输入注册码（点击下面按钮，免费领取哦）"/>
-            <a href="javascript:;"  id="getRegisterCode">免费获取注册码</a>
+        <div class="tishi-input">输入注册码(您可以一直免费领取有效期7天的注册码哦)：</div>
+        <div class="tishi-input">
+            <input id="registerCode" name="registerCode" type="text" placeholder="请输入注册码（点击下面按钮，免费领取哦）"/>
+            <a href="javascript:;" id="getRegisterCode">免费获取注册码</a>
         </div>
-        <div id="btsItem_setFriendDo"  class="tishi-but">
+        <div id="btsItem_setFriendDo" class="tishi-but">
             <div class="but55" id="cancelSetting">
                 <li class="but-orange"><span class="tishi-btn-cancel">取消</span></li>
             </div>
             <div class="but55" id="setRegisterCodeDo">
-                <li class="but-red" ><span class="tishi-btn-confirm">确认</span></li>
+                <li class="but-red"><span class="tishi-btn-confirm">确认</span></li>
             </div>
         </div>
         <div id="setMobileMessage" class="tishi-text"></div>
@@ -85,11 +85,12 @@
 
 <div id="personInfo" class="hideme">
     <!-- 个人信息 -->
-    <div id="myaccount_head" >
+    <div id="myaccount_head">
         <div class="jia_nav2">
             <div class="myaccount_title">
                 <span id="userMobile">&nbsp;</span>的帐户
-                <span class="myaccount_logout" onclick="javascript:logoutSystem();" id="logoutSystem" style="display: inline;">退出登录</span>
+                <span class="myaccount_logout" onclick="javascript:logoutSystem();" id="logoutSystem"
+                      style="display: inline;">退出登录</span>
             </div>
         </div>
 
@@ -125,7 +126,8 @@
 
         <!-- 兑换流量 -->
         <div class="btn-group">
-            <button class="btn button" href="javascript:;" onclick="this.blur()" data-toggle="dropdown">兑换流量<i class="caret"></i></button>
+            <button class="btn button" href="javascript:;" onclick="this.blur()" data-toggle="dropdown">兑换流量<i
+                    class="caret"></i></button>
 
             <ul class="dropdown-menu" id="convertList">
             </ul>
@@ -133,7 +135,8 @@
 
         <!-- 兑换短信 -->
         <div class="btn-group">
-            <button class="btn button" href="#" onclick="this.blur()" data-toggle="dropdown">兑换短信<i class="caret"></i></button>
+            <button class="btn button" href="#" onclick="this.blur()" data-toggle="dropdown">兑换短信<i class="caret"></i>
+            </button>
 
             <ul class="dropdown-menu" id="convertSmsList">
                 <!--<li><a href="javascript:;">兑换5条</a></li>-->
@@ -143,15 +146,42 @@
         </div>
 
         <!-- 转赠 -->
-        <button class="btn button" id="bt_zhuanzeng" type="button" onclick="locationPage('/transferGifts.jsp')">转赠</button>
+        <button class="btn button" id="bt_zhuanzeng" type="button" onclick="locationPage('/transferGifts.jsp')">转赠
+        </button>
 
-<!--
-        &lt;!&ndash; 留言 &ndash;&gt;
+        <!--
+                &lt;!&ndash; 留言 &ndash;&gt;
         <button class="btn button" id="bt_liuyan" type="button" onclick="this.blur()">留言</button>
 -->
 
         <!-- 流量明细展开按钮 -->
         <button class="btn button" id="bt_mingxi" type="button" onclick="this.blur()">流量明细</button>
+    </div>
+
+    <!--套餐详情-->
+    <div id="myaccount_head">
+        <div>
+            <div class="my_taocan">
+                <div class="text-up">本月总流量</div>
+                <div class="text-dwn" id="TotalFlowDiv">0</div>
+                <div class="text-up">MB</div>
+            </div>
+            <div class="my_taocan">
+                <div class="text-up">剩余流量</div>
+                <div class="text-dwn" id="LeftFlowDiv">0</div>
+                <div class="text-up">MB</div>
+            </div>
+            <div class="my_taocan">
+                <div class="text-up">距结算日</div>
+                <div class="text-dwn" id="distanceDays">0</div>
+                <div class="text-up">天</div>
+            </div>
+            <div class="my_taocan">
+                <div class="text-up2">日均可用</div>
+                <div class="text-dwn2" id="dayNum">0</div>
+                <div class="text-up2">MB</div>
+            </div>
+        </div>
     </div>
 
     <!-- 流量明细查询 -->
@@ -163,39 +193,16 @@
         </div>
     </div>
 
+    <!--明细列表-->
+    <div id="mingxiListDiv" class="hideme"></div>
+
     <!-- 页脚j -->
     <div class="foot">
         <div class="smallfont">Auth:<a href="mailto:xiayule148@gmail.com">tanhe123</a> Version:0.9.2</div>
 
         <div style="display: none">
-            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5678078'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5678078' type='text/javascript'%3E%3C/script%3E"));</script>
-        </div>
-    </div>
-
-    <!--明细列表-->
-    <div id= "mingxiListDiv" class="hideme"></div>
-
-    <!--套餐详情-->
-    <div>
-        <div class="my_taocan">
-            <div class="text-up">本月总流量</div>
-            <div class="text-dwn" id="TotalFlowDiv">0</div>
-            <div class="text-up">MB</div>
-        </div>
-        <div class="my_taocan">
-            <div class="text-up">剩余流量</div>
-            <div class="text-dwn" id="LeftFlowDiv">0</div>
-            <div class="text-up">MB</div>
-        </div>
-        <div class="my_taocan">
-            <div class="text-up">距结算日</div>
-            <div class="text-dwn" id="distanceDays">0</div>
-            <div class="text-up">天</div>
-        </div>
-        <div class="my_taocan">
-            <div class="text-up2">日均可用</div>
-            <div class="text-dwn2" id="dayNum">0</div>
-            <div class="text-up2">MB</div>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cspan id='cnzz_stat_icon_5678078'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5678078' type='text/javascript'%3E%3C/script%3E"));</script>
         </div>
     </div>
 </div>
@@ -210,7 +217,7 @@
 </div>
 
 <!-- 兑换申请表单 -->
-<form action="/score" method="POST" name="flowScoreCfPage" id="flowScoreCfPage"  class='hide'>
+<form action="/score" method="POST" name="flowScoreCfPage" id="flowScoreCfPage" class='hide'>
     <input type="text" value="flowScoreCfPage" name="redirect"/>
     <input type="text" value="" name="productType_n" id="productType"/>
     <input type="text" value="" name="id_n" id="id"/>
@@ -242,9 +249,9 @@
             }
 
             // 显示个人积分
-            score.showMyScore(function() {
+            score.showMyScore(function () {
                 // 显示 兑换列表
-                score.showConvertList(function() {
+                score.showConvertList(function () {
                     //更新 总汇信息
                     flowScore.loadCreditSum(function () {
                         // 加载第一页流量币记录
@@ -260,7 +267,7 @@
 
     /**
      * 隐藏滚动动态加载流量信息
-    /*$(window).scroll(function(){
+     /*$(window).scroll(function(){
         var detailVisible = $("#mingxiListDiv").is(":visible")
         // 可见的情况下，才加载数据
         if (detailVisible) {
@@ -274,34 +281,34 @@
     });*/
 
 
-    // 未领去的流量币加载
-    function getFlowScoreTransferGiftsInfo(){
+        // 未领去的流量币加载
+    function getFlowScoreTransferGiftsInfo() {
         var lazySeconds = 1;
-        $.post("/ajax/getTransferGiftsList.action?queryType=count&type=others&status=2",{}, function(data) {
+        $.post("/ajax/getTransferGiftsList.action?queryType=count&type=others&status=2", {}, function (data) {
             setTimeout(function () {
                 if (data.status != "ok") {
                     //showErrorResult(data);
                     return;
-                }else{
+                } else {
                     var result = data.result;
-                    if(Number(result.totalCredit)>0){
+                    if (Number(result.totalCredit) > 0) {
                         $("#receiveDiv").show();
                         $("#totalCredit").html(result.totalCredit);
                     }
                 }
             }, lazySeconds * 1000);
-        },"json");
+        }, "json");
     }
 
     // 流量详情
-    function getTotalFlow(){
+    function getTotalFlow() {
         var lazySeconds = 1;
-        $.post("/ajax/getPackage.action",{}, function(data) {
+        $.post("/ajax/getPackage.action", {}, function (data) {
             setTimeout(function () {
                 if (data.status != "ok") {
                     showErrorResult(data);
                     return;
-                }else{
+                } else {
                     var result = data.result;
                     //流量总和展示
                     $("#TotalFlowDiv").html(result.sumNumTotal);
@@ -310,55 +317,55 @@
                     $("#dayNum").html(result.dayNum);
 
                     /*var colorsResult = new Array();
-                    colorsResult.push('#e2e2e2');
-                    colorsResult.push('#feba01');*/
+                     colorsResult.push('#e2e2e2');
+                     colorsResult.push('#feba01');*/
 
                     //是否告警
                     /*if(result.isWarning == true){
-                        $("#tipDiv").html(' • 剩余流量不多了，快去<a href="/portal/app/buy.jsp">加流量</a>吧');
-                        colorsResult = new Array();
-                        colorsResult.push('#c5c5c5');
-                        colorsResult.push('#dc0000');
-                    }
-                    //剩余流量大于80%或者大于200M时的提示
-                    if(result.flag == true){
-                        $("#tipDiv").html(' • 流量用不完？看看<a href="/portal/app/gain.jsp">高帅富流量指南</a><span class="but_arrow">&nbsp;</span>');
-                    }*/
+                     $("#tipDiv").html(' • 剩余流量不多了，快去<a href="/portal/app/buy.jsp">加流量</a>吧');
+                     colorsResult = new Array();
+                     colorsResult.push('#c5c5c5');
+                     colorsResult.push('#dc0000');
+                     }
+                     //剩余流量大于80%或者大于200M时的提示
+                     if(result.flag == true){
+                     $("#tipDiv").html(' • 流量用不完？看看<a href="/portal/app/gain.jsp">高帅富流量指南</a><span class="but_arrow">&nbsp;</span>');
+                     }*/
 
                     //饼状图展示
                     /*var statResult = new Array();
-                    statResult.push(['已用', result.usedNumTotal]);
-                    statResult.push(['剩余', result.leftNumTotal]);
-                    newChart(statResult,colorsResult);*/
+                     statResult.push(['已用', result.usedNumTotal]);
+                     statResult.push(['剩余', result.leftNumTotal]);
+                     newChart(statResult,colorsResult);*/
 
                     //列表展示
                     var list = result.list;
-                    var htmls= '<div class="jiafengge"><span class="line" style="color:#F33">套餐明细</span></div>';
-                    for(var i =0 ;i<list.length;i++){
+                    var htmls = '<div class="jiafengge"><span class="line" style="color:#F33">套餐明细</span></div>';
+                    for (var i = 0; i < list.length; i++) {
                         var obj = list[i];
                         htmls = [htmls,
-                                    '<div class="myaccount_mingxi_list"><div>套餐'+getNumTip(i)+'</div>',
-                                    '<div>'+obj.PRIVSET+'</div>',//（'+obj.TYPE+'）
+                                    '<div class="myaccount_mingxi_list"><div>套餐' + getNumTip(i) + '</div>',
+                                    '<div>' + obj.PRIVSET + '</div>',//（'+obj.TYPE+'）
 
-                                    '<div><span class="detail">剩余：'+obj.LEFTNUM+'M</span><span class="detail">已用：'+obj.USEDNUM+'/'+obj.SUMNUM+'M</span></div></div>'
+                                    '<div><span class="detail">剩余：' + obj.LEFTNUM + 'M</span><span class="detail">已用：' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</span></div></div>'
                         ].join('');
                     }
                     $("#listDiv").html(htmls);
                 }
             }, lazySeconds * 1000);
-        },"json");
+        }, "json");
     }
 
-    function showErrorResult(data){
+    function showErrorResult(data) {
         if (data.status != "ok") {
             var message = data.message;
-            if(data.code == "EMPTY"){
+            if (data.code == "EMPTY") {
                 if (confirm(message)) {
-                    window.location.href="/portal/app/buy.jsp"
-                }else{
-                    window.location.href="/portal/app/personalCenter.jsp"
+                    window.location.href = "/portal/app/buy.jsp"
+                } else {
+                    window.location.href = "/portal/app/personalCenter.jsp"
                 }
-            }else{
+            } else {
                 alert(message);
             }
             return;
@@ -369,7 +376,7 @@
     function logoutSystem() {
         var confirmMessage = "下次来将重新登录，确定退出吗？";
         if (confirm(confirmMessage)) {
-            $.post("/ajax/logout.action?r="+Math.random(), {}, function (data) {
+            $.post("/ajax/logout.action?r=" + Math.random(), {}, function (data) {
                 if (data.status != "ok") {
                     alert(data.message);
                 } else {
@@ -380,9 +387,9 @@
     }
 
     // 重定向网页
-    function locationPage(url){
-        if(eventMan.isLogin()){
-            location.href=url;
+    function locationPage(url) {
+        if (eventMan.isLogin()) {
+            location.href = url;
         }
     }
 
@@ -396,10 +403,11 @@
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
-        var duoshuoQuery = {short_name:"xiayule"};
-        (function() {
+        var duoshuoQuery = {short_name: "xiayule"};
+        (function () {
             var ds = document.createElement('script');
-            ds.type = 'text/javascript';ds.async = true;
+            ds.type = 'text/javascript';
+            ds.async = true;
             ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
             ds.charset = 'UTF-8';
             (document.getElementsByTagName('head')[0]
@@ -413,26 +421,26 @@
 
 
 <!-- 返回顶部按钮 -->
-<div id="gotop"><img src="image/top.png" /></div>
+<div id="gotop"><img src="image/top.png"/></div>
 <script>
     /*返回顶部JS*/
-    backTop = function (btnId){
+    backTop = function (btnId) {
         var btn = document.getElementById(btnId);
         var d = document.documentElement;
         var b = document.body;
         window.onscroll = btnDisplay;
-        btn.onclick = function (){
+        btn.onclick = function () {
             btn.style.display = "none";
             window.onscroll = null;
-            this.timer = setInterval(function(){
-                d.scrollTop -= Math.ceil((d.scrollTop+b.scrollTop)*0.1);
-                b.scrollTop -= Math.ceil((d.scrollTop+b.scrollTop)*0.1);
-                if((d.scrollTop + b.scrollTop) == 0)
-                    clearInterval(btn.timer,window.onscroll = btnDisplay);
-            },10);
+            this.timer = setInterval(function () {
+                d.scrollTop -= Math.ceil((d.scrollTop + b.scrollTop) * 0.1);
+                b.scrollTop -= Math.ceil((d.scrollTop + b.scrollTop) * 0.1);
+                if ((d.scrollTop + b.scrollTop) == 0)
+                    clearInterval(btn.timer, window.onscroll = btnDisplay);
+            }, 10);
         };
-        function btnDisplay(){
-            btn.style.display=(d.scrollTop+b.scrollTop>200)?'block':"none";
+        function btnDisplay() {
+            btn.style.display = (d.scrollTop + b.scrollTop > 200) ? 'block' : "none";
         }
     };
     backTop('gotop');//返回顶部调用

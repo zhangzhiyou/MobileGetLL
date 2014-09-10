@@ -543,6 +543,20 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
+    //todo: 找不到对应的 action
+    public String getPackage() {
+        String m = getMobileFromCookie();
+
+        String strJson = playService.getPackage(m);
+
+        System.out.println(strJson);
+        jsonObj = JsonUtils.stringToJson(strJson);
+
+        cleanParams();
+
+        return Action.SUCCESS;
+    }
+
     // set and get methods
 
 

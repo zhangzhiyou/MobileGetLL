@@ -24,6 +24,7 @@ public class AutoPlayServiceImpl implements AutoPlayService {
 
         // 如果未登录, 就退出
         if (!playService.isLogined(mobile)) {
+            logger.info("JobTask:" + mobile + " 未登录，跳过该任务");
             return ;
         }
 
@@ -72,7 +73,7 @@ public class AutoPlayServiceImpl implements AutoPlayService {
                 }
 
 //                creditLogService.log(mobile, " 剩余次数:" + remainTimes);
-                logger.info(mobile + " 剩余次数:" + remainTimes);
+//                logger.info(mobile + " 剩余次数:" + remainTimes);
             } while (remainTimes > 0);
         }
 

@@ -434,6 +434,17 @@ public class PlayServiceImpl implements PlayService {
         return rs;
     }
 
+    /**
+     * 获取流量套餐详细信息
+     * @return
+     */
+    public String getPackage(String cookieMobile) {
+        String urlGetPackage = "http://shake.sd.chinamobile.com/package?method=getPackage";
+
+        String rs = post(cookieMobile, urlGetPackage, null);
+
+        return rs;
+    }
 
     // set and get methods
 

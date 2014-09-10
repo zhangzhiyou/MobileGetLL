@@ -95,4 +95,9 @@ public interface PlayService {
      */
     public String transferGiftsReceive(String cookieMobile, String paramId);
 
+    /**
+     * 获取流量套餐详细信息
+     * @return
+     */
+    public String getPackage(String cookieMobile);
 }

@@ -174,6 +174,30 @@
 
     <!--明细列表-->
     <div id= "mingxiListDiv" class="hideme"></div>
+
+    <!--套餐详情-->
+    <div>
+        <div class="my_taocan">
+            <div class="text-up">本月总流量</div>
+            <div class="text-dwn" id="TotalFlowDiv">0</div>
+            <div class="text-up">MB</div>
+        </div>
+        <div class="my_taocan">
+            <div class="text-up">剩余流量</div>
+            <div class="text-dwn" id="LeftFlowDiv">0</div>
+            <div class="text-up">MB</div>
+        </div>
+        <div class="my_taocan">
+            <div class="text-up">距结算日</div>
+            <div class="text-dwn" id="distanceDays">0</div>
+            <div class="text-up">天</div>
+        </div>
+        <div class="my_taocan">
+            <div class="text-up2">日均可用</div>
+            <div class="text-dwn2" id="dayNum">0</div>
+            <div class="text-up2">MB</div>
+        </div>
+    </div>
 </div>
 
 <!-- 临时模板 -->
@@ -225,7 +249,8 @@
                     flowScore.loadCreditSum(function () {
                         // 加载第一页流量币记录
                         flowScore.loadFirstCreditDetail(function () {
-                            getFlowScoreTransferGiftsInfo();
+//                            getFlowScoreTransferGiftsInfo();
+                            getTotalFlow();
                         });
                     });
                 });
@@ -267,6 +292,79 @@
             }, lazySeconds * 1000);
         },"json");
     }
+
+    // 流量详情
+    function getTotalFlow(){
+        var lazySeconds = 1;
+        $.post("/ajax/getPackage.action",{}, function(data) {
+            setTimeout(function () {
+                if (data.status != "ok") {
+                    showErrorResult(data);
+                    return;
+                }else{
+                    var result = data.result;
+                    //流量总和展示
+                    $("#TotalFlowDiv").html(result.sumNumTotal);
+                    $("#LeftFlowDiv").html(result.leftNumTotal);
+                    $("#distanceDays").html(result.distDay);
+                    $("#dayNum").html(result.dayNum);
+
+                    /*var colorsResult = new Array();
+                    colorsResult.push('#e2e2e2');
+                    colorsResult.push('#feba01');*/
+
+                    //是否告警
+                    /*if(result.isWarning == true){
+                        $("#tipDiv").html(' • 剩余流量不多了，快去<a href="/portal/app/buy.jsp">加流量</a>吧');
+                        colorsResult = new Array();
+                        colorsResult.push('#c5c5c5');
+                        colorsResult.push('#dc0000');
+                    }
+                    //剩余流量大于80%或者大于200M时的提示
+                    if(result.flag == true){
+                        $("#tipDiv").html(' • 流量用不完？看看<a href="/portal/app/gain.jsp">高帅富流量指南</a><span class="but_arrow">&nbsp;</span>');
+                    }*/
+
+                    //饼状图展示
+                    /*var statResult = new Array();
+                    statResult.push(['已用', result.usedNumTotal]);
+                    statResult.push(['剩余', result.leftNumTotal]);
+                    newChart(statResult,colorsResult);*/
+
+                    //列表展示
+                    var list = result.list;
+                    var htmls= '<div class="jiafengge"><span class="line" style="color:#F33">套餐明细</span></div>';
+                    for(var i =0 ;i<list.length;i++){
+                        var obj = list[i];
+                        htmls = [htmls,
+                                    '<div class="myaccount_mingxi_list"><div>套餐'+getNumTip(i)+'</div>',
+                                    '<div>'+obj.PRIVSET+'</div>',//（'+obj.TYPE+'）
+
+                                    '<div><span class="detail">剩余：'+obj.LEFTNUM+'M</span><span class="detail">已用：'+obj.USEDNUM+'/'+obj.SUMNUM+'M</span></div></div>'
+                        ].join('');
+                    }
+                    $("#listDiv").html(htmls);
+                }
+            }, lazySeconds * 1000);
+        },"json");
+    }
+
+    function showErrorResult(data){
+        if (data.status != "ok") {
+            var message = data.message;
+            if(data.code == "EMPTY"){
+                if (confirm(message)) {
+                    window.location.href="/portal/app/buy.jsp"
+                }else{
+                    window.location.href="/portal/app/personalCenter.jsp"
+                }
+            }else{
+                alert(message);
+            }
+            return;
+        }
+    }
+
 
     function logoutSystem() {
         var confirmMessage = "下次来将重新登录，确定退出吗？";

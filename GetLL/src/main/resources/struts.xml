@@ -106,6 +106,12 @@
             </result>
         </action>
 
+<!--        <action name="getPackage" class="ajaxAction" method="getPackage">
+            <result type="json">
+                <param name="root">jsonObj</param>
+            </result>
+        </action>-->
+
         <action name="*" class="ajaxAction" method="{1}">
             <result type="json">
                 <param name="root">jsonObj</param>

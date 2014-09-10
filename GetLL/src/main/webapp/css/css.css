@@ -875,17 +875,6 @@ body {
     font-size:0.8em;
     color:#8a8a8a;
 }
-.jia_duihuan_guize ul{margin-left:-20px;}
-.jiafengge{
-    text-align:center;
-    font-size:1.2em;
-    background-image: url(../image/fengge.gif);
-    background-repeat: repeat-x;
-    background-position: center center;
-    margin:5px;
-    clear:both;
-}
-.jiafengge .line{background-color:#fff; padding:5px 10px;}
 
 /*流量兑换tab*/
 .tab2{width:50%; overflow:hidden; float:left;}

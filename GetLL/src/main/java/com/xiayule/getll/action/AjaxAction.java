@@ -549,7 +549,6 @@ public class AjaxAction {
 
         String strJson = playService.getPackage(m);
 
-        System.out.println(strJson);
         jsonObj = JsonUtils.stringToJson(strJson);
 
         cleanParams();

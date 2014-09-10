@@ -77,6 +77,8 @@
     </div>
 </div>
 
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
 <!-- 返回顶部按钮 -->
 <div id="gotop"><img src="image/top.png"/></div>
 <script>

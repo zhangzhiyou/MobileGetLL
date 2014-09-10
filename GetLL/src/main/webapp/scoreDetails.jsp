@@ -35,7 +35,7 @@
 </head>
 
 <body>
-<div class="jia_layout">
+<div class="layout">
     <div id="myaccount_mingxi_shouzhi">
         <div class="jia_nav2">
             <div class="jia_back"><img src="/image/go_back.png" width="21" height="19" align="absmiddle" /> <a href="/">返回</a></div>
@@ -61,54 +61,33 @@
             document.write(unescape("%3Cspan id='cnzz_stat_icon_5678078'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5678078' type='text/javascript'%3E%3C/script%3E"));</script>
         </div>
     </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/flowScore.js"></script>
+
+
+    <script type="text/javascript">
+
+        //流量币总汇信息
+        flowScore.loadCreditSum(function () {
+            // 加载明细第一页
+            flowScore.loadFirstCreditDetail();
+        });
+
+
+        $(window).scroll(function() {
+            var scrolltop = $(document).scrollTop();
+            var winHeight = $(document).height() - $(window).height();
+
+            // todo: $(window).height() 获取的高度不对
+
+            if (scrolltop >= winHeight - 50) {
+                flowScore.loadCreditDetail("down");
+            }
+        });
+
+    </script>
 </div>
-
-
-<script type="text/javascript" src="js/jquery.min.js"></script>
-
-<script type="text/javascript" src="js/flowScore.js"></script>
-
-<script type="text/javascript">
-
-    //流量币总汇信息
-    flowScore.loadCreditSum(function () {
-        // 加载明细第一页
-        flowScore.loadFirstCreditDetail();
-    });
-
-    /*$(window).scroll(function(){
-        var scrolltop = $(document).scrollTop();
-        var winHeight = $(document).height() - $(window).height();
-
-        alert(document.documentElement.clientHeight);
-
-        alert($(document).height()  + " " +  $(window).height())
-
-        *//*f(scrolltop == 0){
-         flowScore.loadFirstCreditDetail();
-         flowScore.loadCreditSum();
-         }else*//*
-        if(scrolltop >= winHeight-410){
-            alert(scrolltop + " " + winHeight)
-            flowScore.loadCreditDetail("down");
-        }
-    });*/
-
-    // todo: $(window).height() 获取的高度不对
-    //隐藏滚动动态加载流量信息
-     $(window).scroll(function(){
-
-         alert($(window).height());
-         // 可见的情况下，才加载数据
-//         var scrolltop = $(document).scrollTop();
-//         var winHeight = $(document).height() - $(window).height();
-
-//         if(scrolltop >= winHeight-50){
-//             flowScore.loadCreditDetail("down");
-//         }
-     });
-
-</script>
 
 <!-- 返回顶部按钮 -->
 <div id="gotop"><img src="image/top.png"/></div>

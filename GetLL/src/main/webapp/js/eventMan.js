@@ -86,7 +86,7 @@ EventMan.prototype.init = function() {
         that.shakeNow();
     });
 
-    $("#bt_mingxi").click(function() {
+/*    $("#bt_mingxi").click(function() {
         if ($("#bt_mingxi").text() == "流量明细") {
             $("#duoshuoContent").hide();
             $("#mingxiListDiv").show();
@@ -96,7 +96,7 @@ EventMan.prototype.init = function() {
             $("#mingxiListDiv").hide();
             $("#bt_mingxi").text("流量明细")
         }
-    })
+    })*/
 
     // 免费续期
     $("#leavesDay").click(function() {

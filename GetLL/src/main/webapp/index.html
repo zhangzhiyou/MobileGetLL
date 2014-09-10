@@ -63,7 +63,7 @@
 </div>
 
 <!-- 生效码框 -->
-<div id="registerCodeContent" class="hideme">
+<!--<div id="registerCodeContent" class="hideme">
     <div class="tishi-gonggao">
         <div class="tishi-title">您未使用本站服务或者注册码过期<span class="arrow"></span></div>
         <div class="tishi-input">输入注册码(您可以一直免费领取有效期7天的注册码哦)：</div>
@@ -81,7 +81,7 @@
         </div>
         <div id="setMobileMessage" class="tishi-text"></div>
     </div>
-</div>
+</div>-->
 
 <div id="personInfo" class="hideme">
     <!-- 个人信息 -->
@@ -154,8 +154,12 @@
         <button class="btn button" id="bt_liuyan" type="button" onclick="this.blur()">留言</button>
 -->
 
-        <!-- 流量明细展开按钮 -->
-        <button class="btn button" id="bt_mingxi" type="button" onclick="this.blur()">流量明细</button>
+        <!-- 流量币明细展开 -->
+        <button class="btn button" id="bt_mingxi" type="button" onclick="locationPage('/scoreDetails.jsp')">流量币明细</button>
+
+        <!-- 留言 -->
+        <button class="btn button" id="bt_comment" type="button" onclick="locationPage('/comment.jsp')">留言</button>
+
     </div>
 
     <!--套餐详情-->
@@ -258,7 +262,7 @@
                     flowScore.loadCreditSum(function () {
                         // 加载第一页流量币记录
                         flowScore.loadFirstCreditDetail(function () {
-                            // 获得套餐详情
+                            // 获得套餐详情, 包括绘制饼状图
                             flowScore.getTotalFlow(function () {
                                 // 未领取的流量币信息
                                 flowScore.getFlowScoreTransferGiftsInfo();
@@ -286,28 +290,6 @@
     });*/
 
 </script>
-
-<!-- 留言模块-->
-<div id="duoshuoContent">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" id="duoshuoContent" data-thread-key="index" data-url="http://xiayule.net"></div>
-
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-        var duoshuoQuery = {short_name: "xiayule"};
-        (function () {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-                    || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-    </script>
-    <!-- 多说公共JS代码 end -->
-</div>
 
 <!-- 页脚 -->
 <div class="foot">

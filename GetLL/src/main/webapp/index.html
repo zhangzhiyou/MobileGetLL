@@ -154,7 +154,7 @@
         <button class="btn button" id="bt_liuyan" type="button" onclick="this.blur()">留言</button>
 -->
 
-        <!-- 流量币明细展开 -->
+        <!-- 流量币明细 -->
         <button class="btn button" id="bt_mingxi" type="button" onclick="locationPage('/scoreDetails.jsp')">流量币明细</button>
 
         <!-- 留言 -->
@@ -274,8 +274,17 @@
         }
     });
 
+    $(window).scroll(function(){
 
-
+         alert($(window).height());
+        // 可见的情况下，才加载数据
+//        var scrolltop = $(document).scrollTop();
+//        var winHeight = $(document).height() - $(window).height();
+//
+//        if(scrolltop >= winHeight-50){
+//            flowScore.loadCreditDetail("down");
+//        }
+    });
 </script>
 
 <!-- 页脚 -->

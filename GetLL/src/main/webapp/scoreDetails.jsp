@@ -12,28 +12,29 @@
 
     <link href="css/my.css" rel="stylesheet" type="text/css">
 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
 
     <title>账户明细</title>
 
-    <style>
-        .pwd {font-size:12px;}
-        .mask {
+    <!-- 回顶部按钮样式 -->
+    <style type="text/css">
+        /** 返回顶部CSS **/
+        #gotop {
+            position: fixed;
+            bottom: 90px;
+            right: 50px;
+            top: auto;
             display: none;
-            position: absolute;
-            top: 0px;
-            width: 100%;
-            height: 120%;
-            line-height: 100%;
-            background: none repeat scroll 0% 0% #000;
-            opacity: 0.5;
-            z-index: 101;
+            cursor: pointer;
+            z-index: 999;
         }
     </style>
 </head>
-<body>
 
+<body>
 <div class="jia_layout">
     <div id="myaccount_mingxi_shouzhi">
         <div class="jia_nav2">
@@ -48,14 +49,22 @@
         </div>
     </div>
 
-
     <!--列表-->
     <div id= "mingxiListDiv"></div>
+
+    <!-- 页脚 -->
+    <div class="foot">
+        <div class="smallfont">Auth:<a href="mailto:xiayule148@gmail.com">tanhe123</a> Version:0.9.2</div>
+
+        <div style="display: none">
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cspan id='cnzz_stat_icon_5678078'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5678078' type='text/javascript'%3E%3C/script%3E"));</script>
+        </div>
+    </div>
 </div>
 
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="js/flowScore.js"></script>
 
@@ -67,7 +76,7 @@
         flowScore.loadFirstCreditDetail();
     });
 
-    $(window).scroll(function(){
+    /*$(window).scroll(function(){
         var scrolltop = $(document).scrollTop();
         var winHeight = $(document).height() - $(window).height();
 
@@ -75,35 +84,34 @@
 
         alert($(document).height()  + " " +  $(window).height())
 
-        /*f(scrolltop == 0){
+        *//*f(scrolltop == 0){
          flowScore.loadFirstCreditDetail();
          flowScore.loadCreditSum();
-         }else*/
+         }else*//*
         if(scrolltop >= winHeight-410){
             alert(scrolltop + " " + winHeight)
             flowScore.loadCreditDetail("down");
         }
-    });
-
-    /**
-     * 隐藏滚动动态加载流量信息
-     /*$(window).scroll(function(){
-        var detailVisible = $("#mingxiListDiv").is(":visible")
-        // 可见的情况下，才加载数据
-        if (detailVisible) {
-            var scrolltop = $(document).scrollTop();
-            var winHeight = $(document).height() - $(window).height();
-
-            if(scrolltop >= winHeight-50 && eventMan.isLogin()){
-                flowScore.loadCreditDetail("down");
-            }
-        }
     });*/
+
+    // todo: $(window).height() 获取的高度不对
+    //隐藏滚动动态加载流量信息
+     $(window).scroll(function(){
+
+         alert($(window).height());
+         // 可见的情况下，才加载数据
+//         var scrolltop = $(document).scrollTop();
+//         var winHeight = $(document).height() - $(window).height();
+
+//         if(scrolltop >= winHeight-50){
+//             flowScore.loadCreditDetail("down");
+//         }
+     });
 
 </script>
 
 <!-- 返回顶部按钮 -->
-<%--<div id="gotop"><img src="image/top.png"/></div>
+<div id="gotop"><img src="image/top.png"/></div>
 <script>
     /*返回顶部JS*/
     backTop = function (btnId) {
@@ -126,7 +134,7 @@
         }
     };
     backTop('gotop');//返回顶部调用
-</script>--%>
+</script>
 
 </body>
 </html>

@@ -65,6 +65,16 @@
             <!-- 多说公共JS代码 end -->
         </div>
     </div>
+
+    <!-- 页脚 -->
+    <div class="foot">
+        <div class="smallfont">Auth:<a href="mailto:xiayule148@gmail.com">tanhe123</a> Version:0.9.2</div>
+
+        <div style="display: none">
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cspan id='cnzz_stat_icon_5678078'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5678078' type='text/javascript'%3E%3C/script%3E"));</script>
+        </div>
+    </div>
 </div>
 
 <!-- 返回顶部按钮 -->

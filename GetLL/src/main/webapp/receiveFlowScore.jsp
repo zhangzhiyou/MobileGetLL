@@ -120,7 +120,7 @@
     function getFlowScoreTransferGiftsInfo(){
         var lazySeconds = 1;
         $.post("/ajax/getTransferGiftsList.action?queryType=all&type=others&status=2",{}, function(data) {
-            setTimeout(function () {
+//            setTimeout(function () {
                 if (data.status != "ok") {
                     showErrorResult(data);
                     return;
@@ -169,7 +169,7 @@
                         checkAll(true);
                     }
                 }
-            }, lazySeconds * 1000);
+//        }, lazySeconds * 1000);
         },"json");
     }
 

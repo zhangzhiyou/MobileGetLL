@@ -239,10 +239,10 @@
 
             // 显示个人积分
             score.showMyScore(function () {
-                // 显示 兑换列表
-                score.showConvertList(function () {
-                    // 获得套餐详情, 包括绘制饼状图
-                    flowScore.getTotalFlow(function () {
+                // 获得套餐详情, 包括绘制饼状图
+                flowScore.getTotalFlow(function () {
+                    // 显示 兑换列表
+                    score.showConvertList(function () {
                         // 未领取的流量币信息
                         flowScore.getFlowScoreTransferGiftsInfo();
                     });

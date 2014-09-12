@@ -22,7 +22,7 @@ public class JobTaskImpl implements JobTask {
 //    private PlayService playService;
     private SubscriberService subscriberService;
 
-    private boolean isRunning = false;
+    private static boolean isRunning = false;
 
     public void doJob() {
 
@@ -33,26 +33,12 @@ public class JobTaskImpl implements JobTask {
 
             int cnt = 0;
 
-            /**
-             * 执行任务
-             */
             for (String sub : subs) {
                 cnt++;
-//                logger.info("JobTask:" + "执行任务:" + "订阅者:" + sub + " 当前第" + (++cnt) + "个任务");
-//                System.out.println("JobTask:" + "执行任务:" + "订阅者:" + sub +  "当前第" + (cnt) + "个任务");
-
-                // 如果发生错误，也要继续执行
-//                try {
-//                    playService.autoPlay(sub);
-//                } catch (Exception e) {
-//
-//                }
 
                 drawRequest.addRequest(sub);
             }
 
-//            System.out.println("JobTask:" + "任务执行完毕");
-//            logger.info("JobTask:" + "任务执行完毕");
             logger.info("JobTask:" + "将 " + cnt + " 个任务加入队列");
 
             isRunning = false;
@@ -60,10 +46,6 @@ public class JobTaskImpl implements JobTask {
             logger.info("Jobtask:" + "任务已经开启，无需再开启");
         }
     }
-
-//    public void setPlayService(PlayService playService) {
-//        this.playService = playService;
-//    }
 
     public void setSubscriberService(SubscriberService subscriberService) {
         this.subscriberService = subscriberService;

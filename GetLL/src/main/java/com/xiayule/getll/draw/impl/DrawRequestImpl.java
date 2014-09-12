@@ -27,27 +27,29 @@ public class DrawRequestImpl implements DrawRequest{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    while (true) {// 不挺的取
+
+                while (true) {// 不挺的取
+                    // try 在里面，有异常 不会影响其它任务的执行
+                    try {
                         String mobile = queue.take();
 
                         logger.info("获得新的任务: " + mobile);
 
                         autoPlayService.autoPlay(mobile);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+
             }
         }).start();
     }
 
 
-
     @Override
     public void addRequest(String mobile) {
         try {
-
             // 如果不存在于队列中，则加入到队列
             if (!queue.contains(mobile)) {
                 queue.put(mobile);

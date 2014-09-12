@@ -48,8 +48,6 @@ EventMan.prototype.init = function() {
         $(this).val(that.parseMobileFormat($(this).val()))
     });
 
-
-
     // 登录
     $("#loginDo").click(function (){
 //        $("#passwordContent").show();

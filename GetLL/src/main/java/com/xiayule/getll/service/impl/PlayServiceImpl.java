@@ -270,6 +270,9 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = get(mobile, urlLoadMobile);
 
+        //todo: 检查返回信息
+        logger.info(mobile + " isLogin 返回信息: " + "(" + rs + ")");
+
         String loginMobile = getFromResult(rs, "loginMobile");
         return loginMobile.equals(mobile);
     }

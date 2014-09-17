@@ -37,8 +37,8 @@ public class DrawRequestImpl implements DrawRequest{
 
                         autoPlayService.autoPlay(mobile);
 
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    } catch (Exception e) {
+                        logger.info("摇取时，发生了错误");
                     }
                 }
 

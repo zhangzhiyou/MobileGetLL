@@ -1,5 +1,6 @@
 package com.xiayule.getll.service.impl;
 
+import com.xiayule.getll.service.CookieService;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.service.RegisterCodeService;
 import com.xiayule.getll.service.SubscriberService;
@@ -15,6 +16,7 @@ import java.util.Set;
 public class SubscriberServiceImpl implements SubscriberService {
     private RedisService redisService;
     private RegisterCodeService registerCodeService;
+    private CookieService cookieService;
 
     /**
      * 某个 手机号 是否已经订购服务

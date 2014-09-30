@@ -35,6 +35,52 @@
 
 <div class="container">
 
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#navbar-collapse">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">流量汇管家</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    兑换流量
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" id="convertList"></ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    兑换短信
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" id="convertSmsList"></ul>
+            </li>
+
+            <li><a href="#" id="bt_zhuanzeng">转赠</a></li>
+            <li><a href="#" id="bt_mingxi">流量币明细</a></li>
+            <li><a href="#" id="bt_comment">留言</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="javascript:logoutSystem();" id="logoutSystem">注销</a></li>
+        </ul>
+    </div>
+
+
+    <!--todo: 没有加入立即摇奖-->
+</nav>
+
+
 <!-- 登录框 -->
 <div class="pop hideme" id="loginContent">
     <div class="pop_title">请先输入手机号</div>
@@ -63,118 +109,118 @@
 </div>
 
 <div id="personInfo" class="hideme">
-
     <!-- 个人信息 -->
-    <div  class="jumbotron">
+    <div class="jumbotron">
         <div>
             <h2>您好，亲爱的
                 <span id="userMobile">&nbsp;</span>
+                <!--todo: 昵称-->
+                <small>下雨了</small>
             </h2>
         </div>
 
-
-        <div>
-            <div class="myaccount_title">
-                <span class="myaccount_logout" onclick="javascript:logoutSystem();" id="logoutSystem"
-                      style="display: inline;">退出登录</span>
-            </div>
-        </div>
-
         <div class="row">
-            <div><!--style="text-align:left"-->
-                帐户余额：<span class="bignum"><font class="yellowfont" id="credit">&nbsp;</font></span>&nbsp;
-                <span><img src="image/mb.png" width="25" height="23"></span>
-            </div>
+            <!-- 个人详情 -->
+            <div class="col-xs-6">
+                <div><!--style="text-align:left"-->
+                    帐户余额：<span class="bignum"><font class="yellowfont" id="credit">&nbsp;</font></span>&nbsp;
+                    <span><img src="image/mb.png" width="25" height="23"></span>
+                </div>
 
-            <div class="phonenum">
-                今日收益：<span class="yellowfont" id="todayCredit">0.0</span>流量币
-            </div>
+                <div>
+                    今日收益：<span class="yellowfont" id="todayCredit">0.0</span>流量币
+                </div>
 
-            <!--未领取的流量币 -->
-            <div class="phonenum hideme" id="receiveDiv">
-                <span class="yellowfont" id="totalCredit">?</span>流量币未领
-                <span class="but_lingqu" onclick="javascript:location.href='/receiveFlowScore.jsp'">领取</span>
-            </div>
+                <!--未领取的流量币 -->
+                <div class="hideme" id="receiveDiv">
+                    <span class="yellowfont" id="totalCredit">?</span>流量币未领
+                    <span class="but_lingqu" onclick="javascript:location.href='/receiveFlowScore.jsp'">领取</span>
+                </div>
 
-            <div class="registnum">
-                有效期：<span class="yellowfont" id="leavesDay">&nbsp;</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- 功能模块 -->
-    <div class="functions">
-        <!-- 会引发错误，暂时关闭该功能-->
-        <!--<button class="btn button" id="btShakeNow" type="button" onclick="this.blur()">立即摇奖</button>-->
-
-        <!-- 兑换流量 -->
-        <div class="btn-group">
-            <button class="btn button" href="javascript:;" onclick="this.blur()" data-toggle="dropdown">兑换流量<i
-                    class="caret"></i></button>
-
-            <ul class="dropdown-menu" id="convertList">
-            </ul>
-        </div>
-
-        <!-- 兑换短信 -->
-        <div class="btn-group">
-            <button class="btn button" href="#" onclick="this.blur()" data-toggle="dropdown">兑换短信<i class="caret"></i>
-            </button>
-
-            <ul class="dropdown-menu" id="convertSmsList">
-                <!--<li><a href="javascript:;">兑换5条</a></li>-->
-                <!--<li><a href="javascript:;">兑换10条</a></li>-->
-                <!--<li><a href="javascript:;">兑换15条</a></li>-->
-            </ul>
-        </div>
-
-        <!-- 转赠 -->
-        <button class="btn button" id="bt_zhuanzeng" type="button" onclick="locationPage('/transferGifts.jsp')">转赠
-        </button>
-
-        <!-- 流量币明细 -->
-        <button class="btn button" id="bt_mingxi" type="button" onclick="locationPage('/scoreDetails.jsp')">流量币明细</button>
-
-        <!-- 留言 -->
-        <button class="btn button" id="bt_comment" type="button" onclick="locationPage('/comment.jsp')">留言</button>
-
-    </div>
-
-    <!--套餐详情-->
-    <div id="myaccount_head">
-        <div>
-            <div class="my_taocan">
-                <div class="text-up">本月总流量</div>
-                <div class="text-dwn" id="TotalFlowDiv">0</div>
-                <div class="text-up">MB</div>
-            </div>
-            <div class="my_taocan">
-                <div class="text-up">剩余流量</div>
-                <div class="text-dwn" id="LeftFlowDiv">0</div>
-                <div class="text-up">MB</div>
-            </div>
-            <div class="my_taocan">
-                <div class="text-up">距结算日</div>
-                <div class="text-dwn" id="distanceDays">0</div>
-                <div class="text-up">天</div>
-            </div>
-            <div class="my_taocan">
-                <div class="text-up2">日均可用</div>
-                <div class="text-dwn2" id="dayNum">0</div>
-                <div class="text-up2">MB</div>
+                <div>
+                    有效期：<span id="leavesDay">&nbsp;</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!--图表-->
-    <div class="myaccount_chart">
-        <div class="ask_but" id="tipDiv" style="padding-bottom:5px;"></div>
-        <div id="ReportDiv"></div>
-        <div class="tishi2">计费数据有延时，仅供参考，请以月结数据为准。</div>
+    <div class="row">
+        <!-- 流量图标 -->
+        <div class="col-xs-4">
+            <!--图表-->
+            <div class="myaccount_chart">
+                <div id="tipDiv" style="padding-bottom:5px;"></div>
+                <div id="ReportDiv"></div>
+                <div class="tishi2">计费数据有延时，仅供参考，请以月结数据为准。</div>
+            </div>
+        </div>
+
+
+        <div class="col-xs-4">
+            <!--明细-->
+            <div class="myaccount_mingxi" id="listDiv"></div>
+        </div>
+
+        <div class="col-xs-4">
+            <!--套餐详情-->
+            <div class="col-xs-12">
+                <div>
+                    <div>本月总流量<span id="TotalFlowDiv">0</span>MB</div>
+                </div>
+                <div>
+                    <div>剩余流量<span id="LeftFlowDiv">0</span>MB</div>
+                </div>
+                <div>
+                    <div>距结算日<span id="distanceDays">0</span>天</div>
+                </div>
+                <div>
+                    <div>日均可用<span id="dayNum">0</span>MB</div>
+                </div>
+            </div>
+
+            <!--<div class="col-xs-12">
+                &lt;!&ndash; 功能模块 &ndash;&gt;
+                <div class="functions">
+                    &lt;!&ndash; 会引发错误，暂时关闭该功能&ndash;&gt;
+            &lt;!&ndash;<button class="btn button" id="btShakeNow" type="button" onclick="this.blur()">立即摇奖</button>&ndash;&gt;
+
+            &lt;!&ndash; 兑换流量 &ndash;&gt;
+                    <div class="btn-group">
+                        <button class="btn button" href="javascript:;" onclick="this.blur()" data-toggle="dropdown">兑换流量<i
+                                class="caret"></i></button>
+
+                        <ul class="dropdown-menu" id="convertList">
+                        </ul>
+                    </div>
+
+                    &lt;!&ndash; 兑换短信 &ndash;&gt;
+                    <div class="btn-group">
+                        <button class="btn button" href="#" onclick="this.blur()" data-toggle="dropdown">兑换短信<i class="caret"></i>
+                        </button>
+
+                        <ul class="dropdown-menu" id="convertSmsList">
+                            &lt;!&ndash;<li><a href="javascript:;">兑换5条</a></li>&ndash;&gt;
+            &lt;!&ndash;<li><a href="javascript:;">兑换10条</a></li>&ndash;&gt;
+            &lt;!&ndash;<li><a href="javascript:;">兑换15条</a></li>&ndash;&gt;
+                        </ul>
+                    </div>
+
+                    &lt;!&ndash; 转赠 &ndash;&gt;
+                    <button class="btn button" id="bt_zhuanzeng" type="button" onclick="locationPage('/transferGifts.jsp')">转赠
+                    </button>
+
+                    &lt;!&ndash; 流量币明细 &ndash;&gt;
+                    <button class="btn button" id="bt_mingxi" type="button" onclick="locationPage('/scoreDetails.jsp')">流量币明细</button>
+
+                    &lt;!&ndash; 留言 &ndash;&gt;
+                    <button class="btn button" id="bt_comment" type="button" onclick="locationPage('/comment.jsp')">留言</button>
+
+                    <button class="btn button" type="button" onclick="javascript:logoutSystem();" id="logoutSystem">退出登录</button>
+                </div>
+            </div>-->
+        </div>
     </div>
 
-    <!--明细-->
-    <div class="myaccount_mingxi" id="listDiv"></div>
 </div>
 
 <!-- 临时模板 -->

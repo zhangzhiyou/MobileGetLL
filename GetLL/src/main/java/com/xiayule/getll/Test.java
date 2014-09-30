@@ -14,14 +14,15 @@ import java.util.concurrent.Executors;
  */
 public class Test {
     public static void main(String[] args) {
-        /*ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
         PlayService playService = ctx.getBean("playService", PlayService.class);
 
         String mobile = "18369905136";
 
-        System.out.println(playService.queryScore(mobile));
+//        playService.get(mobile, "http://shake.sd.chinamobile.com/");
 
-        playService.getRemainTimes(mobile);*/
+        System.out.println(playService.isLogined(mobile));
+//        System.out.println(playService.queryScore(mobile));
 
     }
 }

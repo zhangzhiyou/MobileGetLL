@@ -212,10 +212,19 @@ public class AjaxAction {
     }
 
     /**
-     * 获得当前登录的手机号
+     * 获取当前登录的手机号，官方的服务
+     * @return
+     */
+    /*public String loadLoginMobile() {
+
+        if (playService.isLogined())
+    }*/
+
+    /**
+     * 获得当前登录的手机号, 自己的服务
      * @returnm 登录的手机号
      */
-    public String loadLoginMobile() {
+    public String loadLoginedMobile() {
         json = new HashMap();
 
         //mobile = null;

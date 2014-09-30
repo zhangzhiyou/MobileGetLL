@@ -273,13 +273,16 @@ public class PlayServiceImpl implements PlayService {
         //todo: 检查返回信息
         logger.info(mobile + " isLogin 返回信息: " + "(" + rs + ")");
 
+        System.out.println(mobile + " isLogin 返回信息: " + "(" + rs + ")");
+
         String loginMobile = getFromResult(rs, "loginMobile");
+
         return loginMobile.equals(mobile);
     }
 
     /**
      * 加载收支总和信息, 返回原json信息
-     * @return
+     *
      */
     public String queryCreditSum(String mobile) {
         String urlQueryCreditSumPath = "http://shake.sd.chinamobile.com/flowScore?method=querCreditSum";
@@ -341,11 +344,14 @@ public class PlayServiceImpl implements PlayService {
     public void updateCookieToService(String mobile) {
         if (cookieService.isExist(mobile)) {
             CookieStore cookieStore = cookieService.getCookieStore(mobile);
+
+
+
             httpService.setCookieStore(cookieStore);
         }
     }
 
-    public void updateCookieToLocal(String mobile) {
+    public synchronized void updateCookieToLocal(String mobile) {
         CookieStore cookieStore = httpService.getCookieStore();
         cookieService.saveCookie(mobile, cookieStore);
     }
@@ -414,7 +420,7 @@ public class PlayServiceImpl implements PlayService {
      * @return
      */
     public String exchangePrize(String mobile, String exchangeID, String type, String password) {
-        String urlExchangePrize = "http://shake.sd.chinamobile.com/score?method=exchangePrize&r=" + Math.random();
+        String urlExchangePrize = "http://shake.sSd.chinamobile.com/score?method=exchangePrize&r=" + Math.random();
 
         List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
         params.add(new BasicNameValuePair("exchangeID", exchangeID));

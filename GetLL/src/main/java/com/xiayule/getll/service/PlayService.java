@@ -23,6 +23,9 @@ public interface PlayService {
 
     public boolean isLogined(String mobile);
 
+    //todo: 测试
+    public String get(String mobile, String url);
+
     public JSONObject queryScore(String mobile);
 
     /**

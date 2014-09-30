@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean name="drawRequest" class="com.xiayule.getll.draw.impl.DrawRequestImpl" lazy-init="false" init-method="init">
+        <property name="autoPlayService" ref="autoPlay"/>
+    </bean>
+
+    <bean name="redisService" class="com.xiayule.getll.service.impl.RedisServiceImpl">
+        <property name="redisDataSource" ref="redisDataSource"/>
+    </bean>
+
+    <bean name="cookieService" class="com.xiayule.getll.service.impl.CookieServiceImpl">
+        <property name="redisService" ref="redisService"/>
+    </bean>
+
+    <bean name="httpService" class="com.xiayule.getll.service.impl.HttpServiceImpl"
+            scope="prototype">
+
+    </bean>
+
+    <bean name="playService" class="com.xiayule.getll.service.impl.PlayServiceImpl"
+          scope="prototype">
+
+        <property name="cookieService" ref="cookieService"/>
+        <property name="httpService" ref="httpService"/>
+        <!--<property name="creditLogService" ref="creditLogService"/>-->
+    </bean>
+
+    <bean name="registerCodeService" class="com.xiayule.getll.service.impl.RegisterCodeServiceImpl">
+        <property name="redisService" ref="redisService"/>
+    </bean>
+
+    <bean name="subscribeService" class="com.xiayule.getll.service.impl.SubscriberServiceImpl">
+        <property name="redisService" ref="redisService"/>
+        <property name="registerCodeService" ref="registerCodeService"/>
+    </bean>
+
+    <bean name="creditLogService" class="com.xiayule.getll.service.impl.CreditLogServiceImpl">
+        <property name="redisService" ref="redisService"/>
+    </bean>
+
+
+    <bean name="creditService" class="com.xiayule.getll.service.impl.CreditServiceImpl">
+        <property name="redisService" ref="redisService"/>
+    </bean>
+
+    <bean name="subscribeAction" class="com.xiayule.getll.action.SubscribeAction" scope="prototype">
+        <property name="subscriberService" ref="subscribeService"/>
+    </bean>
+
+    <bean name="searchAction" class="com.xiayule.getll.action.SearchAction" scope="prototype">
+        <property name="subscriberService" ref="subscribeService"/>
+        <property name="creditService" ref="creditService"/>
+        <property name="creditLogService" ref="creditLogService"/>
+    </bean>
+
+    <bean name="ajaxAction" class="com.xiayule.getll.action.AjaxAction" scope="prototype">
+        <property name="subscriberService" ref="subscribeService"/>
+        <property name="playService" ref="playService"/>
+        <property name="registerCodeService" ref="registerCodeService"/>
+        <property name="cookieService" ref="cookieService"/>
+        <property name="drawRequest" ref="drawRequest"/>
+        <!--<property name="creditLogService" ref="creditLogService"/>-->
+    </bean>
+
+    <bean name="redisDataSource" class="com.xiayule.getll.service.impl.RedisDataSourceImpl">
+        <property name="jedisPool" ref="jedisPool"/>
+    </bean>
+
+    <bean name="authInterceptor" class="com.xiayule.getll.interceptot.AuthInterceptor">
+        <property name="subscriberService" ref="subscribeService"/>
+    </bean>
+
+
+    <bean name="score" class="com.xiayule.getll.action.Score">
+
+    </bean>
+
+    <bean name="autoPlay" class="com.xiayule.getll.service.impl.AutoPlayServiceImpl">
+        <property name="creditService" ref="creditService"/>
+        <property name="playService" ref="playService"/>
+    </bean>
+
+    <!-- redis 配置 -->
+
+    <!-- 加载redis配置文件 -->
+    <context:property-placeholder location="classpath:redis.properties"/>
+
+    <!-- redis连接池的配置 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxActive" value="${redis.pool.maxActive}"/>
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <!--<property name="minIdle" value="${redis.pool.minIdle}"/>-->
+        <property name="maxWait" value="${redis.pool.maxWait}"/>
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}"/>
+        <property name="testOnReturn" value="${redis.pool.testOnReturn}"/>
+    </bean>
+
+    <!-- redis的连接池pool，不是必选项：timeout/password  -->
+    <bean id = "jedisPool" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
+        <constructor-arg index="0" ref="jedisPoolConfig"/>
+        <constructor-arg index="1" value="${redis.host}"/>
+        <constructor-arg index="2" value="${redis.port}" type="int"/>
+        <constructor-arg index="3" value="${redis.timeout}" type="int"/>
+        <!--<constructor-arg index="4" value="${redis.password}"/>-->
+    </bean>
+
+    <!-- spring 集成 QuartZ 2.x-->
+
+    <!-- 线程执行器配置，用于任务注册 -->
+    <bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="10" />
+        <property name="maxPoolSize" value="100" />
+        <property name="queueCapacity" value="500" />
+    </bean>
+
+    <!-- 业务对象 -->
+    <bean id="jobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobTaskImpl">
+        <!--<property name="playService" ref="playService"/>-->
+        <property name="subscriberService" ref="subscribeService"/>
+        <property name="drawRequest" ref="drawRequest"/>
+    </bean>
+
+    <!-- 调度业务 -->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="jobTask" />
+        <property name="targetMethod" value="doJob" />
+    </bean>
+
+    <!-- 增加调度触发器 -->
+    <!-- 1.8 以前的配置
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="jobDetail" />
+        &lt;!&ndash; 每天6点执行任务 &ndash;&gt;
+        <property name="cronExpression" value="0 18 8 * * ?" />
+    </bean>-->
+
+    <!-- 2.x 的配置 -->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail" />
+        <!-- 每天6点执行任务 -->
+        <property name="cronExpression" value="0 0 6 * * ?" />
+    </bean>
+
+    <!-- 设置调度 -->
+    <bean lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="cronTrigger" />
+            </list>
+        </property>
+        <property name="taskExecutor" ref="executor" />
+    </bean>
+</beans>

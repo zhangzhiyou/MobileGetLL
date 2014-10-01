@@ -70,26 +70,14 @@
             <!-- json 中使用的自带的 -->
             <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
 
-          <!--  &lt;!&ndash; 自定义的检测是否自动登录  &ndash;&gt;
-            <interceptor name="authority" class="authInterceptor"/>
--->
             <!-- 拦截器栈 -->
             <interceptor-stack name="jsonStack">
-                <!--<interceptor-ref name="authority"/>-->
                 <interceptor-ref name="authStack"/>
                 <interceptor-ref name="json"/>
             </interceptor-stack>
         </interceptors>
 
         <default-interceptor-ref name="jsonStack"/>
-
- <!--       &lt;!&ndash; 定义全局 Result &ndash;&gt;
-        <global-results>
-            &lt;!&ndash; 当返回login视图名时，转入/页面 &ndash;&gt;
-            <result name="login" type="redirect">/admin.jsp</result>
-        </global-results>
-
--->
 
         <action name="loadLoginedMobile" class="ajaxAction" method="loadLoginedMobile">
             <result type="json">
@@ -134,74 +122,10 @@
             </result>
         </action>
 
-<!--        <action name="getPackage" class="ajaxAction" method="getPackage">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>-->
-
         <action name="*" class="ajaxAction" method="{1}">
             <result type="json">
                 <param name="root">jsonObj</param>
             </result>
         </action>
-
-        <!-- jsonObj -->
-
-        <!--<action name="login" class="ajaxAction" method="login">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>
-
-        <action name="getPasswordDo" class="ajaxAction" method="getPasswordDo">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>
-
-        <action name="queryScore" class="ajaxAction" method="queryScore">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>
-
-        <action name="queryCreditSum" class="ajaxAction" method="queryCreditSum">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>
-
-        <action name="queryCreditDetail" class="ajaxAction" method="queryCreditDetail">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>
-
-
-
-        <action name="getOtherPassword" class="ajaxAction" method="getOtherPassword">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>
-
-        <action name="queryPrize" class="ajaxAction" method="queryPrize">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>
-
-        <action name="exchangePrize" class="ajaxAction" method="exchangePrize">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>
-
-        <action name="transferGifts" class="ajaxAction" method="transferGifts">
-            <result type="json">
-                <param name="root">jsonObj</param>
-            </result>
-        </action>-->
     </package>
 </struts>

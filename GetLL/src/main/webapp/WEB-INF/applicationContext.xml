@@ -47,6 +47,10 @@
         <property name="redisService" ref="redisService"/>
     </bean>
 
+    <bean name="defaultAction" class="com.xiayule.getll.action.DefaultAction">
+
+    </bean>
+
     <bean name="subscribeAction" class="com.xiayule.getll.action.SubscribeAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
     </bean>

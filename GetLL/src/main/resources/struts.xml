@@ -14,6 +14,7 @@
             <!-- 定义权限控制拦截器 -->
             <!-- 自定义的检测是否自动登录  -->
             <!-- todo: 不知道为什么，不能拦截 html 的get方法 -->
+
             <interceptor name="authority" class="authInterceptor"/>
             <!-- 拦截器栈 -->
             <interceptor-stack name="authStack">
@@ -35,7 +36,7 @@
         </global-results>
 
         <!-- 为了解决 默认首页 -->
-        <action name="default" class="com.xiayule.getll.action.DefaultAction">
+        <action name="default" class="defaultAction">
             <result name="success">/index.html</result>
         </action>
 

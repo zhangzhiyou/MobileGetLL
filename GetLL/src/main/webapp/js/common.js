@@ -6,9 +6,10 @@
 
 // 重定向网页
 function locationPage(url) {
-    if (eventMan.isLogin()) {
+    //todo:
+//    if (eventMan.isLogin()) {
         location.href = url;
-    }
+//    }
 }
 
 function logoutSystem() {

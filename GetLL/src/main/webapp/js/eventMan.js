@@ -228,6 +228,9 @@ EventMan.prototype.checkLogin = function(callback) {
 //            $("#duoshuoContent").show();
 //            $("#mingxiListDiv").hide();
         } else {
+            // 跳转 todo:
+//            locationPage("/login.html");
+
             $("#loginContent").show();
 //            $("#duoshuoContent").show();
         }

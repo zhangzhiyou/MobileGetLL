@@ -8,13 +8,41 @@
     <constant name="struts.devMode" value="true"/>
     <constant name="struts.i18n.encoding" value="UTF-8"/>
 
-    <package name="xiayule" namespace="/" extends="struts-default">
+    <!-- 配置全局拦截器 -->
+    <package name="all" abstract="true" extends="struts-default">
+        <interceptors>
+            <!-- 定义权限控制拦截器 -->
+            <!-- 自定义的检测是否自动登录  -->
+            <!-- todo: 不知道为什么，不能拦截 html 的get方法 -->
+            <interceptor name="authority" class="authInterceptor"/>
+            <!-- 拦截器栈 -->
+            <interceptor-stack name="authStack">
+                <interceptor-ref name="authority"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <!-- 定义默认拦截器 -->
+        <default-interceptor-ref name="authStack" />
+
         <!-- 默认主页 -->
         <default-action-ref name="default"/>
-        <!-- 为了解决 sae 默认首页不闲问题 -->
+
+        <!-- 定义全局处理结果 -->
+        <global-results>
+            <!-- 逻辑名为login的结果，映射到/login.jsp页面 -->
+            <!-- 修改掉 -->
+            <result name="login">/login.html</result>
+        </global-results>
+
+        <!-- 为了解决 默认首页 -->
         <action name="default" class="com.xiayule.getll.action.DefaultAction">
             <result name="success">/index.html</result>
         </action>
+
+    </package>
+
+    <package name="xiayule" namespace="/" extends="all">
+        <default-interceptor-ref name="authStack"></default-interceptor-ref>
 
         <action name="score" class="score">
             <result name="success">/score.jsp</result>
@@ -31,7 +59,7 @@
         </action>-->
     </package>
 
-    <package name="ajax" namespace="/ajax" extends="struts-default">
+    <package name="ajax" namespace="/ajax" extends="all">
 
         <result-types>
             <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
@@ -42,26 +70,26 @@
             <!-- json 中使用的自带的 -->
             <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
 
-            <!-- 自定义的检测是否自动登录  -->
+          <!--  &lt;!&ndash; 自定义的检测是否自动登录  &ndash;&gt;
             <interceptor name="authority" class="authInterceptor"/>
-
+-->
             <!-- 拦截器栈 -->
-            <interceptor-stack name="authStack">
-                <interceptor-ref name="authority"/>
-                <interceptor-ref name="defaultStack"/>
+            <interceptor-stack name="jsonStack">
+                <!--<interceptor-ref name="authority"/>-->
+                <interceptor-ref name="authStack"/>
                 <interceptor-ref name="json"/>
             </interceptor-stack>
         </interceptors>
 
-        <default-interceptor-ref name="authStack"/>
+        <default-interceptor-ref name="jsonStack"/>
 
-        <!-- 定义全局 Result -->
+ <!--       &lt;!&ndash; 定义全局 Result &ndash;&gt;
         <global-results>
-            <!-- 当返回login视图名时，转入/页面 -->
-            <result name="login" type="redirect">/</result>
+            &lt;!&ndash; 当返回login视图名时，转入/页面 &ndash;&gt;
+            <result name="login" type="redirect">/admin.jsp</result>
         </global-results>
 
-
+-->
 
         <action name="loadLoginedMobile" class="ajaxAction" method="loadLoginedMobile">
             <result type="json">

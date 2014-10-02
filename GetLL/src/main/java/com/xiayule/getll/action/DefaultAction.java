@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.Action;
 public class DefaultAction implements Action {
     @Override
     public String execute() throws Exception {
+        System.out.println("access defaultACtion");
         return SUCCESS;
     }
 }

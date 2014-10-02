@@ -24,9 +24,11 @@ public class AuthInterceptor extends AbstractInterceptor {
         String mobile = getMobileFromCookie();
 
         // 只要 mobile 为空，能访问的只有 login.html
+/*
         if (mobile == null && !actionInvocation.getProxy().getMethod().equals("login.html")) {
             return Action.LOGIN;
         }
+*/
 
         // 如果不存在，则证明进行的是登录操作, 跳过即可
         if (mobile == null || subscriberService.isSubscribe(mobile)) {

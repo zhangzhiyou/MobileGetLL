@@ -70,6 +70,10 @@
         <!--<property name="creditLogService" ref="creditLogService"/>-->
     </bean>
 
+    <bean name="homeAction" class="com.xiayule.getll.action.HomeAction">
+
+    </bean>
+
     <bean name="redisDataSource" class="com.xiayule.getll.service.impl.RedisDataSourceImpl">
         <property name="jedisPool" ref="jedisPool"/>
     </bean>

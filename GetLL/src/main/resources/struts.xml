@@ -37,16 +37,20 @@
 
         <!-- 为了解决 默认首页 -->
         <action name="default" class="defaultAction">
-            <result name="success">/index.html</result>
+            <result name="success">/admin.jsp</result>
         </action>
 
     </package>
 
     <package name="xiayule" namespace="/" extends="all">
-        <default-interceptor-ref name="authStack"></default-interceptor-ref>
+        <default-interceptor-ref name="authStack"/>
 
         <action name="score" class="score">
             <result name="success">/score.jsp</result>
+        </action>
+
+        <action name="home" class="homeAction">
+            <result name="success">/admin.jsp</result>
         </action>
 
        <!-- <action name="subscribe" class="subscribeAction">

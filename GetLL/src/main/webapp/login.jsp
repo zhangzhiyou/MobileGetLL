@@ -82,8 +82,6 @@
     </div>
 </div>
 
-
-
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
@@ -93,6 +91,14 @@
 <script type="text/javascript" src="js/flowScore.js"></script>
 <script type="text/javascript" src="js/highcharts.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
+
+<script>
+    eventMan.checkLogin(function () {
+        if (eventMan.isLogin()) {
+            locationPage("/home.action")
+        }
+    });
+</script>
 
 </body>
 </html>

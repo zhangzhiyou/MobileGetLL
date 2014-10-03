@@ -5,6 +5,8 @@ import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
 import org.apache.http.client.CookieStore;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -271,9 +273,19 @@ public class PlayServiceImpl implements PlayService {
         if (cookieService.isExist(mobile)) {
             CookieStore cookieStore = cookieService.getCookieStore(mobile);
 
+            CookieStore cookieStore1 = new BasicCookieStore();
+            for (Cookie cookie : cookieStore.getCookies()) {
+                System.out.println(cookie);
 
+                if (cookie.getName().equals("JSESSIONID")) {
+//                    continue;
+                    cookieStore1.addCookie(cookie);
+                } else {
+                    cookieStore1.addCookie(cookie);
+                }
+            }
 
-            httpService.setCookieStore(cookieStore);
+            httpService.setCookieStore(cookieStore1);
         }
     }
 

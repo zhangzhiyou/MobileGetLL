@@ -235,6 +235,8 @@ public class AjaxAction {
 
         if (m == null) {
             // 返回空
+            jsonObj = new JSONObject();
+
             json.put("status", "ok");
             Map<String, String> result = new HashMap<String, String>();
             json.put("result", result);
@@ -242,12 +244,18 @@ public class AjaxAction {
             //todo: 测试
             json.put("api", "my");
 
+            // 为了兼容
+            jsonObj.putAll(json);
+
         } else {
             String rs = playService.loadLoginMobile(m);
 
             //todo: 可以在这里检测手机号是否匹配
+            System.out.println("loadloginiMobile:" +  rs);
 
-            json = JsonUtils.stringToJson(rs);
+            //todo: null
+//            jsonObj = JsonUtils.stringToJson(rs);
+            jsonObj = JsonUtils.stringToJson(rs);
         }
 
         return Action.SUCCESS;

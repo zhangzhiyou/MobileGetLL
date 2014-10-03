@@ -90,7 +90,7 @@
 
         <action name="loadLoginedMobile" class="ajaxAction" method="loadLoginedMobile">
             <result type="json">
-                <param name="root">json</param>
+                <param name="root">jsonObj</param>
             </result>
         </action>
 

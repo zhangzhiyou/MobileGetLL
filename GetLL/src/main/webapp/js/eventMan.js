@@ -227,24 +227,14 @@ EventMan.prototype.checkLogin = function(loginCallback, notLoginCallBack) {
         that.nickName_ = data.result.nickName;
 
         if (that.loginMobile_) {
-//            $("#loginContent").hide();
-//            $("#duoshuoContent").show();
-//            $("#mingxiListDiv").hide();
             if (loginCallback) {
                 loginCallback(data);
             }
         } else {
-            // 跳转 todo:
-//            locationPage("/login.jsp");
-
-//            $("#loginContent").show();
-//            $("#duoshuoContent").show();
             if (notLoginCallBack) {
                 notLoginCallBack(data);
             }
         }
-
-
     });
 };
 

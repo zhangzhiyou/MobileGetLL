@@ -26,11 +26,32 @@
 </head>
 <body>
 <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:;">流量汇管家</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#" id="bt_comment" onclick="locationPage('/comment.jsp')">留言</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- 登录框 -->
     <div id="loginContent">
         <div class="row">
             <form action="login.action" method="post" class="form-horizontal">
-                <span id="message"></span>
+                <div class="form-group">
+                    <span id="message" class="col-sm-offset-2 col-sm-4" style="color: red;"></span>
+                </div>
 
                 <div class="form-group">
                     <label for="mobile" class="col-sm-2 control-label">手机号:</label>

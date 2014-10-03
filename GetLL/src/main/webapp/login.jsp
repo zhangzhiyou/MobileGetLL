@@ -9,6 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link href="css/css.css" rel="stylesheet" type="text/css">
 
     <link href="css/my.css" rel="stylesheet" type="text/css">
 
@@ -78,44 +79,28 @@
                     </div>
                 </div>
             </form>
-
-            <%--<table>
-                <tr>
-                    <td width="30%" align="right">手机号码</td>
-                    <td width="70%"><input type="text" id="mobile" name="mobile"/></td>
-                </tr>
-                <tr id="passwordContent" class="hideme">
-                    <td align="right">动态密码</td>
-                    <td>
-                        <input type="text" class="pop_cinput" id="password" name="password"/>
-                        <a href="javascript:;" id="getPassword">免费获取动态密码</a>
-                        <a href="javascript:;" id="sendStatus" style="display:none;">已发送(<span
-                                id="seconds" style="display:inline;">0</span>秒)</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td><a href="javascript:;" id="loginDo" class="pop_ca">确认</a></td>
-                </tr>
-            </table>
-            <span id="message"></span>--%>
         </div>
     </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/eventMan.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+
+    <script>
+        eventMan.checkLogin(function () {
+            if (eventMan.isLogin()) {
+                locationPage("/home.action")
+            }
+        });
+    </script>
+
+
+    <jsp:include page="foot.html"></jsp:include>
+
+
 </div>
-
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-<script type="text/javascript" src="js/eventMan.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
-
-<script>
-    eventMan.checkLogin(function () {
-        if (eventMan.isLogin()) {
-            locationPage("/home.action")
-        }
-    });
-</script>
 
 </body>
 </html>

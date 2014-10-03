@@ -50,7 +50,7 @@
         </action>
 
         <action name="home" class="homeAction">
-            <result name="success">/index.html</result>
+            <result name="success">/index.jsp</result>
         </action>
 
         <action name="login" class="loginAction">

@@ -234,16 +234,20 @@ public class AjaxAction {
         String m = getMobileFromCookie();
 
         if (m == null) {
+            // 返回空
             json.put("status", "ok");
             Map<String, String> result = new HashMap<String, String>();
             json.put("result", result);
+
+            //todo: 测试
+            json.put("api", "my");
+
         } else {
-            json.put("status", "ok");
+            String rs = playService.loadLoginMobile(m);
 
-            Map<String, String> result = new HashMap<String, String>();
-            result.put("loginMobile", m);
+            //todo: 可以在这里检测手机号是否匹配
 
-            json.put("result", result);
+            json = JsonUtils.stringToJson(rs);
         }
 
         return Action.SUCCESS;

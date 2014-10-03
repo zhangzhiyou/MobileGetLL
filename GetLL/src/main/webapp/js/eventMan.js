@@ -213,7 +213,7 @@ EventMan.prototype.pwdInterval2 = function(seconds,type) {
  * 检测是否登录
  * 如果已经登录,刷新页面，隐藏登录框，如果没有登录，显示登录框
  */
-EventMan.prototype.checkLogin = function(callback) {
+EventMan.prototype.checkLogin = function(loginCallback, notLoginCallBack) {
     var that = this;
 
     $.getJSON("/ajax/loadLoginedMobile.action", {}, function(data) {
@@ -222,24 +222,29 @@ EventMan.prototype.checkLogin = function(callback) {
             return;
         }
 
+        // 已经登录的号码(存在则表示已经登录,否则未登录)
         that.loginMobile_ = data.result.loginMobile;
         that.nickName_ = data.result.nickName;
 
         if (that.loginMobile_) {
-            $("#loginContent").hide();
+//            $("#loginContent").hide();
 //            $("#duoshuoContent").show();
 //            $("#mingxiListDiv").hide();
+            if (loginCallback) {
+                loginCallback(data);
+            }
         } else {
             // 跳转 todo:
 //            locationPage("/login.jsp");
 
-            $("#loginContent").show();
+//            $("#loginContent").show();
 //            $("#duoshuoContent").show();
+            if (notLoginCallBack) {
+                notLoginCallBack(data);
+            }
         }
 
-        if (callback) {
-            callback(data);
-        }
+
     });
 };
 

@@ -100,7 +100,10 @@ public interface PlayService {
 
     /**
      * 获取流量套餐详细信息
+     *
      * @return
      */
     public String getPackage(String cookieMobile);
+
+    public String loadLoginMobile(String mobile);
 }

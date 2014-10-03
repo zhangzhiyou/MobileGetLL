@@ -24,86 +24,6 @@ public class PlayServiceImpl implements PlayService {
 
     private HttpService httpService;
     private CookieService cookieService;
-//    private CreditLogService creditLogService;
-
-    //private String mobile;
-
-//    public PlayServiceImpl(String mobile) {
-//        this.mobile = mobile;
-//    }
-
-    /*@Override
-    public void autoPlay(String mobile) {
-        logger.info("JobTask:" + "执行任务:" + "订阅者:" + mobile);
-
-        // 如果未登录, 就退出
-        if (!this.isLogined(mobile)) {
-            return ;
-        }
-
-        // 累加每日奖励, 并接收返回结果
-        double firstShakeGiveCredit = this.addDrawScore(mobile);
-
-        // 流量币计数, 在本站获取的流量币总数
-//        if (firstShakeGiveCredit > 0) {
-//            creditService.addCredit(mobile, firstShakeGiveCredit);
-//        }
-
-        // 获取剩余次数
-        int remainTimes = this.getRemainTimes(mobile);
-
-        logger.info(mobile + " 还剩 " + remainTimes + " 次");
-//        creditLogService.log(mobile, "还剩 " + remainTimes + " 次");
-
-        if (remainTimes > 0) {
-            int cnt = 0;
-
-            do {
-                String winName = this.draw(mobile);
-
-//                creditLogService.log(mobile, "第" + (++cnt) + "次摇奖,获得奖励:"
-//                        + winName);
-                logger.info(mobile + " 第" + (++cnt) + "次摇奖,获得奖励:"
-                        + winName);
-
-                // 如果获得的流量币，就要 计数
-                // 解析出来获得的流量币
-                // 如果获得流量币，一般都是 '0.1个流量币' 这样的形式
-                if (winName.contains("个流量币")) {
-                    double credit = Double.parseDouble(winName.replace("个流量币", ""));
-                    creditService.addCredit(mobile, credit);
-                }
-
-                this.addDrawScore(mobile);
-
-                remainTimes = Integer.parseInt(this.queryScore(mobile).getString("times"));
-
-                try {
-                    // 等待 3 秒，保险起见
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-//                creditLogService.log(mobile, " 剩余次数:" + remainTimes);
-                logger.info(mobile + " 剩余次数:" + remainTimes);
-            } while (remainTimes > 0);
-        }
-
-        // 总结性的日志，要放在 list 的最前面
-        // 查询分数
-        JSONObject queryScore = this.queryScore(mobile);
-
-//        creditService.setDayCredit(mobile, queryScore.getDouble("todayCredit"));
-
-//        creditLogService.log(mobile, "总计: 连续登录:" + queryScore.getString("count_1") + "天"
-//                + " 今日总计:" + queryScore.getString("todayCredit")
-//                + " 当前流量币: " + queryScore.getString("credit"));
-
-        logger.info(mobile + " 总计: 连续登录:" + queryScore.getString("count_1") + "天"
-                + " 今日总计:" + queryScore.getString("todayCredit")
-                + " 当前流量币: " + queryScore.getString("credit"));
-    }*/
 
     /**
      * 获取动态密码
@@ -266,18 +186,24 @@ public class PlayServiceImpl implements PlayService {
      * @return 返回登录手机号，如果未登录，返回 ""
      */
     public boolean isLogined(String mobile) {
-        String urlLoadMobile = "http://shake.sd.chinamobile.com/shake?method=loadLoginMobile&r=" + Math.random();
-
-        String rs = get(mobile, urlLoadMobile);
-
-        //todo: 检查返回信息
-        logger.info(mobile + " isLogin 返回信息: " + "(" + rs + ")");
-
-        System.out.println(mobile + " isLogin 返回信息: " + "(" + rs + ")");
+        String rs = loadLoginMobile(mobile);
 
         String loginMobile = getFromResult(rs, "loginMobile");
 
         return loginMobile.equals(mobile);
+    }
+
+    public String loadLoginMobile(String mobile) {
+        String urlLoadMobile = "http://shake.sd.chinamobile.com/shake?method=loadLoginMobile&r=" + new Date().getTime();
+
+        String rs = get(mobile, urlLoadMobile);
+
+        //todo: 检查返回信息
+        logger.info(mobile + " loadLoginMobile 返回信息: " + "(" + rs + ")");
+
+        System.out.println(mobile + " loadLoginMobile 返回信息: " + "(" + rs + ")");
+
+        return rs;
     }
 
     /**

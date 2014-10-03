@@ -253,8 +253,6 @@ public class AjaxAction {
             //todo: 可以在这里检测手机号是否匹配
             System.out.println("loadloginiMobile:" +  rs);
 
-            //todo: null
-//            jsonObj = JsonUtils.stringToJson(rs);
             jsonObj = JsonUtils.stringToJson(rs);
         }
 

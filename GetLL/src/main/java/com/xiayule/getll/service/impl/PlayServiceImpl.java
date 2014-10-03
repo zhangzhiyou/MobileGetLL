@@ -203,7 +203,7 @@ public class PlayServiceImpl implements PlayService {
         //todo: 检查返回信息
         logger.info(mobile + " loadLoginMobile 返回信息: " + "(" + rs + ")");
 
-        System.out.println(mobile + " loadLoginMobile 返回信息: " + "(" + rs + ")");
+//        System.out.println(mobile + " loadLoginMobile 返回信息: " + "(" + rs + ")");
 
         return rs;
     }
@@ -273,7 +273,7 @@ public class PlayServiceImpl implements PlayService {
         if (cookieService.isExist(mobile)) {
             CookieStore cookieStore = cookieService.getCookieStore(mobile);
 
-            CookieStore cookieStore1 = new BasicCookieStore();
+    /*        CookieStore cookieStore1 = new BasicCookieStore();
             for (Cookie cookie : cookieStore.getCookies()) {
                 System.out.println(cookie);
 
@@ -284,8 +284,8 @@ public class PlayServiceImpl implements PlayService {
                     cookieStore1.addCookie(cookie);
                 }
             }
-
-            httpService.setCookieStore(cookieStore1);
+*/
+            httpService.setCookieStore(cookieStore);
         }
     }
 

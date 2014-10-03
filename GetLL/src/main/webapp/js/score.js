@@ -27,9 +27,6 @@ function Score() {
 Score.prototype.showMyScore = function(callback) {
     var that = this;
 
-    // TODO: 不知道干啥的, 注释掉
-   /* $("#jia_head").show();*/
-
 //    $.post(that.queryScorePath_+Math.random(), {}, function(data) {
     $.getJSON(that.queryScorePath_, {}, function(data) {
         if (data.status != "ok") {

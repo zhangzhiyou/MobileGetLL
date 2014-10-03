@@ -115,8 +115,7 @@
         <div>
             <h2>您好，亲爱的
                 <span id="userMobile">&nbsp;</span>
-                <!--todo: 昵称-->
-                <!--<small>下雨了</small>-->
+                <small id="userNick"></small>
             </h2>
         </div>
 
@@ -258,10 +257,10 @@
 
             $("#personInfo").show();
 
-            if (eventMan.nickName_ == null || eventMan.nickName_ == "") {
-                $("#userMobile").html(eventMan.loginMobile_);
-            } else {
-                $("#userMobile").html(eventMan.nickName_);
+            $("#userMobile").html(eventMan.loginMobile_);
+
+            if (eventMan.nickName_ != null && eventMan.nickName_ != "") {
+                $("#userNick").html(eventMan.nickName_);
             }
 
             // 显示个人积分

@@ -50,8 +50,10 @@ EventMan.prototype.init = function() {
 
     // 登录
     $("#loginDo").click(function (){
-//        $("#passwordContent").show();
-        that.loginDo();
+        that.loginDo(function() {
+            // 登录成功，转到home页面
+            locationPage("/home.action")
+        });
     });
 
     // 返回
@@ -229,7 +231,7 @@ EventMan.prototype.checkLogin = function(callback) {
 //            $("#mingxiListDiv").hide();
         } else {
             // 跳转 todo:
-//            locationPage("/login.html");
+//            locationPage("/login.jsp");
 
             $("#loginContent").show();
 //            $("#duoshuoContent").show();
@@ -245,7 +247,7 @@ EventMan.prototype.checkLogin = function(callback) {
  * 登录
  * 登录成功后，刷新页面
  */
-EventMan.prototype.loginDo = function() {
+EventMan.prototype.loginDo = function(callback) {
     var that = this;
 
     // 取得参数
@@ -298,7 +300,11 @@ EventMan.prototype.loginDo = function() {
             }*/
 
         } else {
-            that.refresh();
+//            that.refresh();
+
+            if (callback) {
+                callback(data);
+            }
         }
     })
 };

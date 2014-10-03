@@ -1,5 +1,8 @@
 @charset "utf-8";
 
+.hideme {display:none;}
+
+
 .functions {
     text-align:center;
     border-top:#a21212 solid 1px;

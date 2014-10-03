@@ -19,7 +19,7 @@ function logoutSystem() {
             if (data.status != "ok") {
                 alert(data.message);
             } else {
-                location.href = "/";
+                location.href = "/login.jsp";
             }
         });
     }

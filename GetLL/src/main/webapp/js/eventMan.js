@@ -257,10 +257,6 @@ EventMan.prototype.loginDo = function(callback) {
         $message.html("要输入山东移动手机号哦");
         return;
     }
-    /*else if (!password) {
-        $message.html("密码不能为空");
-        return;
-    }*/
 
     var params = {
         "mobile" : mobile,

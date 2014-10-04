@@ -14,7 +14,7 @@
     <link href="css/my.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/flat-ui.min.css" rel="stylesheet">
+    <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css">
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -26,7 +26,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
 </head>
-<body>
+<body style="height: 100%">
 
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
@@ -38,7 +38,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="javascript:;">流量汇管家</a>
+            <a class="navbar-brand" href="/">流量汇管家</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -51,7 +51,6 @@
 
 
 <div class="container">
-
     <!-- 登录框 -->
     <div id="loginContent">
         <div class="row">
@@ -81,7 +80,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="button" title="登录, 开启神奇之旅" class="btn btn-default" id="loginDo" onclick="this.blur();">登录</button>
+                        <button type="button" title="登录, 开启神奇之旅" class="btn btn-primary" id="loginDo" onclick="this.blur();">登录</button>
                     </div>
                 </div>
             </form>
@@ -101,12 +100,10 @@
             }
         });
     </script>
-
-
-
-
 </div>
+
 <jsp:include page="foot.html"></jsp:include>
+
 
 </body>
 </html>

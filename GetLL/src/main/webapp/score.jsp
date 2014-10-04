@@ -12,6 +12,9 @@
 
     <link href="css/my.css" rel="stylesheet" type="text/css">
 
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css">
+
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
 
@@ -34,20 +37,35 @@
 </head>
 <body>
 
-<div class="jia_layout">
-    <div id="myaccount_mingxi_shouzhi">
-        <div class="jia_nav2">
-            <a href="/"><div class="jia_back"><img src="/image/go_back.png" width="21" height="19" align="absmiddle" /> 返回</div></a>
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">流量汇管家</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#" id="bt_comment" onclick="locationPage('/comment.jsp')">留言</a></li>
+            </ul>
         </div>
     </div>
+</nav>
 
-    <div class="zhuanzeng_layout">
+<div class="container">
+    <div>
         <div class="zhuanzeng_title" id="confirmDiv">使用${nc_n}流量币兑换${pn_n}。</div>
         <div class="zhuanzeng_title" id="pwdDiv">
             <div class="zhuanzeng_title2">动态密码：</div>
             <div class="zhuanzeng_inputbg2">
                 <label>
-                    <input type="text" id="passwordExchangeFlow" name="passwordExchangeFlow" class="pop_cinput zhuanzeng_input1" />
+                    <input type="text" id="passwordExchangeFlow" name="passwordExchangeFlow" class="form-control" />
                 </label>
             </div>
             <div class="zhuanzeng_title3">
@@ -56,11 +74,11 @@
                 <a href="javascript:;" id="sendStatusExchangeFlow" class="zhuanzeng_input_text" style="display:none;">已发送(<span id="secondsExchangeFlow" style="display:inline;">0</span>秒)</a>
             </div>
         </div>
-        <div class="lingqu_list">
-            <div class="zhuanzeng_but" onclick="exchangeFun();" id="exchangeButDiv"><a href="javascript:;">确认</a></div>
-            <div class="zhuanzeng_but hideme" onclick="javascript:location.href='/';"  id="yesButDiv"><a href="javascript:;">知道了</a></div>
-            <div class="zhuanzeng_but hideme" onclick="javascript:location.href='/';"  id="shakeTimeDiv"><a href="javascript:;">现在去摇奖</a></div>
-            <div class="zhuanzeng_but hideme" onclick="javascript:location.href='/';"  id="tigerTimeDiv"><a href="javascript:;">现在去玩幸运投</a></div>
+        <div>
+            <button type="button" class="btn btn-primary" onclick="exchangeFun();" style="width: 100%" id="exchangeButDiv">确认</button>
+            <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="yesButDiv">知道了</button>
+            <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="shakeTimeDiv">现在去摇奖</button>
+            <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="tigerTimeDiv">现在去玩幸运投</button>
             <div class="redfont" id="messageExchangeFlow"></div>
         </div>
         <div height="1143"><br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/></div>
@@ -75,6 +93,7 @@
 
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="js/eventMan.js"></script>
 <script type="text/javascript" src="js/score.js"></script>
@@ -182,6 +201,9 @@
     }
 
 </script>
+
+<jsp:include page="foot.html"></jsp:include>
+
 
 </body>
 </html>

@@ -179,6 +179,9 @@
             //加载待领取列表
             getFlowScoreTransferGiftsInfo();
         }
+    }, function () {
+        // 验证登录失败
+        locationPage("/login.jsp")
     });
 
     function checkAll (checked){

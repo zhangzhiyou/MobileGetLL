@@ -18,20 +18,6 @@
     <link rel="shortcut icon" href="image/icon.png">
 
     <title>账户明细</title>
-
-    <!-- 回顶部按钮样式 -->
-    <style type="text/css">
-        /** 返回顶部CSS **/
-        #gotop {
-            position: fixed;
-            bottom: 90px;
-            right: 50px;
-            top: auto;
-            display: none;
-            cursor: pointer;
-            z-index: 999;
-        }
-    </style>
 </head>
 
 <body>
@@ -51,16 +37,6 @@
 
     <!--列表-->
     <div id= "mingxiListDiv"></div>
-
-    <!-- 页脚 -->
-    <div class="foot">
-        <div class="smallfont">Auth:<a href="mailto:xiayule148@gmail.com">tanhe123</a> Version:0.9.2</div>
-
-        <div style="display: none">
-            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-            document.write(unescape("%3Cspan id='cnzz_stat_icon_5678078'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5678078' type='text/javascript'%3E%3C/script%3E"));</script>
-        </div>
-    </div>
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/flowScore.js"></script>
@@ -89,31 +65,8 @@
     </script>
 </div>
 
-<!-- 返回顶部按钮 -->
-<div id="gotop"><img src="image/top.png"/></div>
-<script>
-    /*返回顶部JS*/
-    backTop = function (btnId) {
-        var btn = document.getElementById(btnId);
-        var d = document.documentElement;
-        var b = document.body;
-        window.onscroll = btnDisplay;
-        btn.onclick = function () {
-            btn.style.display = "none";
-            window.onscroll = null;
-            this.timer = setInterval(function () {
-                d.scrollTop -= Math.ceil((d.scrollTop + b.scrollTop) * 0.1);
-                b.scrollTop -= Math.ceil((d.scrollTop + b.scrollTop) * 0.1);
-                if ((d.scrollTop + b.scrollTop) == 0)
-                    clearInterval(btn.timer, window.onscroll = btnDisplay);
-            }, 10);
-        };
-        function btnDisplay() {
-            btn.style.display = (d.scrollTop + b.scrollTop > 200) ? 'block' : "none";
-        }
-    };
-    backTop('gotop');//返回顶部调用
-</script>
+<jsp:include page="foot.html"/>
+
 
 </body>
 </html>

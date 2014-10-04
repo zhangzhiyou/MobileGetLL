@@ -51,8 +51,12 @@
             <appender-ref ref="exchangeRollingFile"/>
         </logger>
 
+        <logger name="com.xiayule.getll.service.impl.PlayServiceImpl" level="info">
+            <appender-ref ref="systemRollingFile"/>
+        </logger>
+
         <!-- 系统日志 -->
-        <root level="debug">
+        <root level="info">
             <appender-ref ref="systemRollingFile"/>
         </root>
     </loggers>

@@ -127,6 +127,7 @@ public class AjaxAction {
             //如果保存的 cookie不能登录，则需要删除 cookie 重新登录
             if (!playService.isLogined(m)) {// 如果登录状态失败
                 System.out.println("删除 cookie 成功");
+                logger.info(m + " 删除 cookie 成功");
                 cookieService.deleteCookie(m);
 
                 jsonObj.put("status", "error");
@@ -270,6 +271,12 @@ public class AjaxAction {
             System.out.println("loadloginiMobile:" +  rs);
 
             jsonObj = JsonUtils.stringToJson(rs);
+
+            // 测试 todo
+            if (jsonObj == null) {
+                jsonObj = new JSONObject();
+                System.out.println("jsonobj == nul");
+            }
         }
 
         return Action.SUCCESS;

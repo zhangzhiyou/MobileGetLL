@@ -14,6 +14,7 @@
     <link href="css/my.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/flat-ui.min.css" rel="stylesheet">
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -26,8 +27,9 @@
     <link rel="shortcut icon" href="image/icon.png">
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-default" role="navigation">
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#navbar-collapse">
@@ -44,7 +46,11 @@
                 <li><a href="#" id="bt_comment" onclick="locationPage('/comment.jsp')">留言</a></li>
             </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
+
+<div class="container">
 
     <!-- 登录框 -->
     <div id="loginContent">
@@ -75,7 +81,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="button" class="btn btn-default" id="loginDo" onclick="this.blur();">登录</button>
+                        <button type="button" title="登录, 开启神奇之旅" class="btn btn-default" id="loginDo" onclick="this.blur();">登录</button>
                     </div>
                 </div>
             </form>
@@ -97,10 +103,10 @@
     </script>
 
 
-    <jsp:include page="foot.html"></jsp:include>
 
 
 </div>
+<jsp:include page="foot.html"></jsp:include>
 
 </body>
 </html>

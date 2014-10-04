@@ -11,6 +11,8 @@
     <link href="css/my.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/flat-ui.min.css" rel="stylesheet">
+
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
@@ -22,52 +24,55 @@
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
 </head>
-<body>
+
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:;">流量汇管家</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                        兑换流量
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" id="convertList"></ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        兑换短信
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" id="convertSmsList"></ul>
+                </li>
+
+                <li><a href="javascript:;" id="bt_zhuanzeng" onclick="locationPage('/transferGifts.jsp')">转赠</a></li>
+                <li><a href="#" id="bt_mingxi" onclick="locationPage('/scoreDetails.jsp')">流量币明细</a></li>
+                <li><a href="#" id="bt_comment" onclick="locationPage('/comment.jsp')">留言</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" onclick="javascript:logoutSystem();" id="logoutSystem">注销</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--todo: 没有加入立即摇奖功能-->
+</nav>
 
 <div class="container">
 
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#navbar-collapse">
-            <span class="sr-only">切换导航</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="javascript:;">流量汇管家</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    兑换流量
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" id="convertList"></ul>
-            </li>
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    兑换短信
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" id="convertSmsList"></ul>
-            </li>
-
-            <li><a href="javascript:;" id="bt_zhuanzeng" onclick="locationPage('/transferGifts.jsp')">转赠</a></li>
-            <li><a href="#" id="bt_mingxi" onclick="locationPage('/scoreDetails.jsp')">流量币明细</a></li>
-            <li><a href="#" id="bt_comment" onclick="locationPage('/comment.jsp')">留言</a></li>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" onclick="javascript:logoutSystem();" id="logoutSystem">注销</a></li>
-        </ul>
-    </div>
-    <!--todo: 没有加入立即摇奖功能-->
-</nav>
 
     <!--
     &lt;!&ndash; 登录框 &ndash;&gt;
@@ -233,10 +238,11 @@
         });
     </script>
 
-    <jsp:include page="foot.html"></jsp:include>
 
 
 </div>
+
+<jsp:include page="foot.html"></jsp:include>
 
 
 </body>

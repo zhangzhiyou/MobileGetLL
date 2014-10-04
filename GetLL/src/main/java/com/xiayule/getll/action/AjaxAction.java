@@ -111,12 +111,14 @@ public class AjaxAction {
      *
      */
     public String login() {
-        jsonObj = new JSONObject();
-
         String m = mobile;
         String pass = password;
 
+
+
         cleanParams();
+
+        jsonObj = new JSONObject();
 
         Cookie cookie = CookieFactory.newCookie("mobile", m);
 
@@ -151,8 +153,6 @@ public class AjaxAction {
 
                 return Action.SUCCESS;
             }
-
-
         }
         // 如果不存在 cookie，且密码不为空 则需要登录
         else if (!cookieService.isExist(m) && (pass != null && !pass.equals(""))) {
@@ -204,6 +204,8 @@ public class AjaxAction {
      * @return
      */
     public String logout() {
+
+        System.out.println(mobile);
 
         // 退出登录，即清除 cookie
         Cookie[] cookies = ServletActionContext.getRequest().getCookies();

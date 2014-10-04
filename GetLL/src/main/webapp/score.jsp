@@ -37,7 +37,7 @@
 <div class="jia_layout">
     <div id="myaccount_mingxi_shouzhi">
         <div class="jia_nav2">
-            <a href="/old_index.html"><div class="jia_back"><img src="/image/go_back.png" width="21" height="19" align="absmiddle" /> 返回</div></a>
+            <a href="/"><div class="jia_back"><img src="/image/go_back.png" width="21" height="19" align="absmiddle" /> 返回</div></a>
         </div>
     </div>
 

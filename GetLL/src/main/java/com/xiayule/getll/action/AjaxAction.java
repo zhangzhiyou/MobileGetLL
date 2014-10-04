@@ -120,26 +120,40 @@ public class AjaxAction {
 
         Cookie cookie = CookieFactory.newCookie("mobile", m);
 
-        // 存在 cookie， 是订阅者
-        if (cookieService.isExist(m) && subscriberService.isSubscribe(m)) {
-            jsonObj.put("status", "ok");
+        // 存在 cookie
+        if (cookieService.isExist(m)) {
+            //如果保存的 cookie不能登录，则需要删除 cookie 重新登录
+            if (!playService.isLogined(m)) {// 如果登录状态失败
+                System.out.println("删除 cookie 成功");
+                cookieService.deleteCookie(m);
 
-            // 设置 cookie
-            ServletActionContext.getResponse().addCookie(cookie);
+                jsonObj.put("status", "error");
+                jsonObj.put("errorId", 0);
+                jsonObj.put("message", "请输入动态密码");
+                return Action.SUCCESS;
+            }
 
-            return Action.SUCCESS;
-        } else  if (cookieService.isExist(m) && !subscriberService.isSubscribe(m)) {// 存在 cookie，不是订阅者
-            // 订购本站业务
-            String registerCode = registerCodeService.generateRegisterCode();
-            subscriberService.subscribe(m, registerCode);
-            jsonObj.put("status", "ok");
+            if (subscriberService.isSubscribe(m)) {// 是订阅者
+                jsonObj.put("status", "ok");
 
-            // 设置 cookie
-            ServletActionContext.getResponse().addCookie(cookie);
+                // 设置 cookie
+                ServletActionContext.getResponse().addCookie(cookie);
 
-            return Action.SUCCESS;
+                return Action.SUCCESS;
+            } else {// 不是订阅者
+                // 订购本站业务
+                String registerCode = registerCodeService.generateRegisterCode();
+                subscriberService.subscribe(m, registerCode);
+                jsonObj.put("status", "ok");
+
+                // 设置 cookie
+                ServletActionContext.getResponse().addCookie(cookie);
+
+                return Action.SUCCESS;
+            }
+
+
         }
-
         // 如果不存在 cookie，且密码不为空 则需要登录
         else if (!cookieService.isExist(m) && (pass != null && !pass.equals(""))) {
             String strJson = playService.loginDo(m, pass);

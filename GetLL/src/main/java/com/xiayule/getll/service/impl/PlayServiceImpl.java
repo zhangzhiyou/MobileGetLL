@@ -190,9 +190,12 @@ public class PlayServiceImpl implements PlayService {
     public boolean isLogined(String mobile) {
         String rs = loadLoginMobile(mobile);
 
-        String loginMobile = getFromResult(rs, "loginMobile");
-
-        return loginMobile.equals(mobile);
+        try {
+            String loginMobile = getFromResult(rs, "loginMobile");
+            return loginMobile.equals(mobile);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public String loadLoginMobile(String mobile) {

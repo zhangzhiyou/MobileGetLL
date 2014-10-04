@@ -27,6 +27,14 @@ public class CookieServiceImpl implements CookieService {
     }
 
     /**
+     * 删除 redis 中缓存的 cookie
+     * @param mobile 需要删除的手机号
+     */
+    public void deleteCookie(String mobile) {
+        redisService.del(mobile);
+    }
+
+    /**
      * 存储 cookie
      * @param mobile 对应的手机号
      * @param cookies 要存储的 cookies

@@ -1,5 +1,6 @@
 package com.xiayule.getll;
 
+import com.xiayule.getll.action.AdminAction;
 import com.xiayule.getll.service.PlayService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,24 +16,9 @@ import java.util.concurrent.Executors;
 public class Test {
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
-        PlayService playService = ctx.getBean("playService", PlayService.class);
+        AdminAction adminAction = ctx.getBean("adminAction", AdminAction.class);
 
-        String mobile = "18369905136";
+        System.out.println(adminAction.countSubscribers());
 
-//        playService.get(mobile, "http://shake.sd.chinamobile.com/");
-
-        System.out.println(playService.isLogined(mobile));
-//        System.out.println(playService.queryScore(mobile));
-
-    }
-}
-
-
-class Run implements Runnable {
-    private static int c = 0;
-
-    @Override
-    public void run() {
-        System.out.println(c++);
     }
 }

@@ -17,7 +17,7 @@
     </bean>
 
     <bean name="httpService" class="com.xiayule.getll.service.impl.HttpServiceImpl"
-            scope="prototype">
+          scope="prototype">
 
     </bean>
 
@@ -47,6 +47,10 @@
         <property name="redisService" ref="redisService"/>
     </bean>
 
+    <bean name="defaultAction" class="com.xiayule.getll.action.DefaultAction">
+
+    </bean>
+
     <bean name="subscribeAction" class="com.xiayule.getll.action.SubscribeAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
     </bean>
@@ -64,6 +68,14 @@
         <property name="cookieService" ref="cookieService"/>
         <property name="drawRequest" ref="drawRequest"/>
         <!--<property name="creditLogService" ref="creditLogService"/>-->
+    </bean>
+
+    <bean id="adminAction" class="com.xiayule.getll.action.AdminAction">
+        <property name="subscriberService" ref="subscribeService"/>
+    </bean>
+
+    <bean name="homeAction" class="com.xiayule.getll.action.HomeAction" scope="prototype">
+
     </bean>
 
     <bean name="redisDataSource" class="com.xiayule.getll.service.impl.RedisDataSourceImpl">

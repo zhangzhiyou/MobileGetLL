@@ -83,4 +83,14 @@ public class SubscriberServiceImpl implements SubscriberService {
     public void setRegisterCodeService(RegisterCodeService registerCodeService) {
         this.registerCodeService = registerCodeService;
     }
+
+    /**
+     * 返回redis 中保存的 订阅者的数量
+     * @return
+     */
+    public int countNumbers() {
+        // todo： 这样会很耗费时间，建议修改方法
+        Set<String> numbers = redisService.keys("sub_*");
+        return numbers.size();
+    }
 }

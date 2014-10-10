@@ -37,4 +37,9 @@ public interface SubscriberService {
     public void setRedisService(RedisService redisService);
 
     public List<String> getAllSubscriber();
+
+    /**
+     * 返回redis 中保存的 订阅者的数量
+     */
+    public int countNumbers();
 }

@@ -70,6 +70,10 @@
         <!--<property name="creditLogService" ref="creditLogService"/>-->
     </bean>
 
+    <bean id="adminAction" class="com.xiayule.getll.action.AdminAction">
+        <property name="subscriberService" ref="subscribeService"/>
+    </bean>
+
     <bean name="homeAction" class="com.xiayule.getll.action.HomeAction" scope="prototype">
 
     </bean>

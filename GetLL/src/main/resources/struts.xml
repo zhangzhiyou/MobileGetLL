@@ -53,10 +53,6 @@
             <result name="success">/index.jsp</result>
         </action>
 
-        <action name="login" class="loginAction">
-            <result type="redirectAction">home</result>
-        </action>
-
        <!-- <action name="subscribe" class="subscribeAction">
             <result name="success" type="redirect">/success.jsp</result>
             <result name="error">/index.jsp</result>
@@ -66,6 +62,10 @@
             <result name="success">/search.jsp</result>
             <result name="error">/search.jsp</result>
         </action>-->
+
+        <action name="admin" class="adminAction">
+            <result name="success">/admin.jsp</result>
+        </action>
     </package>
 
     <package name="ajax" namespace="/ajax" extends="all">

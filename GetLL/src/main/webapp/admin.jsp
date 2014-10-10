@@ -12,7 +12,9 @@
 </head>
 <body>
 
-admin
+订阅者总数：${mSubscribCount} <br/>
+
+
 
 </body>
 </html>

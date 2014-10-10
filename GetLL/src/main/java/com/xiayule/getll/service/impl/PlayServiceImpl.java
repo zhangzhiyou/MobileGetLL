@@ -360,7 +360,7 @@ public class PlayServiceImpl implements PlayService {
      * @return
      */
     public String exchangePrize(String mobile, String exchangeID, String type, String password) {
-        String urlExchangePrize = "http://shake.sSd.chinamobile.com/score?method=exchangePrize&r=" + Math.random();
+        String urlExchangePrize = "http://shake.sd.chinamobile.com/score?method=exchangePrize";
 
         List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
         params.add(new BasicNameValuePair("exchangeID", exchangeID));

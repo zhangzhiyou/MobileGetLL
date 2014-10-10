@@ -1,5 +1,5 @@
 @charset "utf-8";
-body {
+/*body {
     margin:0;
     font-size:18px;
 }
@@ -10,7 +10,7 @@ body {
 }
 .clearfix{
     clear:both;
-}
+}*/
 #head{height:5%; max-height:70px; overflow:hidden; width:auto;}
 .logo{width:15%; min-width:105px;  float:left;}
 .logo .img{margin:15px 2px; bottom:1px; max-width:145px;}

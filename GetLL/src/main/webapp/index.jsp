@@ -105,12 +105,16 @@
     <div id="personInfo">
         <!-- 个人信息 -->
         <div class="jumbotron">
-            <div>
-                <h2>您好，亲爱的
-                    <span id="userMobile">&nbsp;</span>
-                    <small id="userNick"></small>
-                </h2>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>
+                        <span>您好，亲爱的</span>
+                        <span id="userMobile">&nbsp;</span>
+                        <small style="color: #b09fc9" id="userNick"></small>
+                    </h3>
+                </div>
             </div>
+
 
             <div class="row">
                 <!-- 个人详情 -->
@@ -137,7 +141,7 @@
         </div>
 
         <div class="row">
-            <!-- 流量图标 -->
+            <!-- 流量图表 -->
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <!--图表-->
                 <div class="jiafengge"><span class="line" style="color:#F33">流量图表</span></div>

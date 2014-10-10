@@ -71,37 +71,6 @@
 </nav>
 
 <div class="container">
-
-
-
-    <!--
-    &lt;!&ndash; 登录框 &ndash;&gt;
-<div class="pop hideme" id="loginContent">
-    <div class="pop_title">请先输入手机号</div>
-    <div class="pop_cont">
-        <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr>
-                <td width="30%" align="right">手机号码</td>
-                <td width="70%"><input type="text" id="mobile" name="mobile"/></td>
-            </tr>
-            <tr id="passwordContent" class="hideme">
-                <td align="right">动态密码</td>
-                <td>
-                    <input type="text" class="pop_cinput" id="password" name="password"/>
-                    <a href="javascript:;" id="getPassword">免费获取动态密码</a>
-                    <a href="javascript:;" id="sendStatus" style="display:none;">已发送(<span
-                            id="seconds" style="display:inline;">0</span>秒)</a>
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td><a href="javascript:;" id="loginDo" class="pop_ca">确认</a></td>
-            </tr>
-        </table>
-        <span id="message"></span>
-    </div>
-</div>-->
-
     <div id="personInfo">
         <!-- 个人信息 -->
         <div class="jumbotron">

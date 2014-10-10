@@ -18,6 +18,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
 
+    <!-- 响应式设计 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>兑换</title>
 
     <style>
@@ -37,58 +40,41 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#navbar-collapse">
-                <span class="sr-only">切换导航</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">流量汇管家</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#" id="bt_comment" onclick="locationPage('/comment.jsp')">留言</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="nav_simple.html"/>
 
 <div class="container">
-    <div>
-        <div class="zhuanzeng_title" id="confirmDiv">使用${nc_n}流量币兑换${pn_n}。</div>
-        <div class="zhuanzeng_title" id="pwdDiv">
-            <div class="zhuanzeng_title2">动态密码：</div>
-            <div class="zhuanzeng_inputbg2">
-                <label>
-                    <input type="text" id="passwordExchangeFlow" name="passwordExchangeFlow" class="form-control" />
-                </label>
+    <div class="row">
+        <div class="col-xs-12">
+            <div>
+                <div class="zhuanzeng_title" id="confirmDiv">使用${nc_n}流量币兑换${pn_n}。</div>
+                <div class="zhuanzeng_title" id="pwdDiv">
+                    <div class="zhuanzeng_title2">动态密码：</div>
+                    <div class="zhuanzeng_inputbg2">
+                        <label>
+                            <input type="text" id="passwordExchangeFlow" name="passwordExchangeFlow" class="form-control" />
+                        </label>
+                    </div>
+                    <div class="zhuanzeng_title3">
+                        <%--// 获取密码--%>
+                        <a href="javascript:;" id="getPasswordExchangeFlow" class="pwd" >免费获取动态密码</a>
+                        <a href="javascript:;" id="sendStatusExchangeFlow" class="zhuanzeng_input_text" style="display:none;">已发送(<span id="secondsExchangeFlow" style="display:inline;">0</span>秒)</a>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary" onclick="exchangeFun();" style="width: 100%" id="exchangeButDiv">确认</button>
+                    <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="yesButDiv">知道了</button>
+                    <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="shakeTimeDiv">现在去摇奖</button>
+                    <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="tigerTimeDiv">现在去玩幸运投</button>
+                    <div class="redfont" id="messageExchangeFlow"></div>
+                </div>
+                <div height="1143"><br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/></div>
             </div>
-            <div class="zhuanzeng_title3">
-                <%--// 获取密码--%>
-                <a href="javascript:;" id="getPasswordExchangeFlow" class="pwd" >免费获取动态密码</a>
-                <a href="javascript:;" id="sendStatusExchangeFlow" class="zhuanzeng_input_text" style="display:none;">已发送(<span id="secondsExchangeFlow" style="display:inline;">0</span>秒)</a>
-            </div>
+
+
+            <div id="mask" class="mask hideme"></div>
+            <div id="buying_tip" class="hideme" style="z-index: 101;color:#fff;text-align:center;position: absolute;">我们正在努力处理中，请稍候！</div>
         </div>
-        <div>
-            <button type="button" class="btn btn-primary" onclick="exchangeFun();" style="width: 100%" id="exchangeButDiv">确认</button>
-            <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="yesButDiv">知道了</button>
-            <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="shakeTimeDiv">现在去摇奖</button>
-            <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="tigerTimeDiv">现在去玩幸运投</button>
-            <div class="redfont" id="messageExchangeFlow"></div>
-        </div>
-        <div height="1143"><br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/></div>
     </div>
-
-
-    <div id="mask" class="mask hideme"></div>
-    <div id="buying_tip" class="hideme" style="z-index: 101;color:#fff;text-align:center;position: absolute;">我们正在努力处理中，请稍候！</div>
-
-
 </div>
 
 
@@ -97,6 +83,8 @@
 
 <script type="text/javascript" src="js/eventMan.js"></script>
 <script type="text/javascript" src="js/score.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
 
 <script>
     var $mask = $("#mask");

@@ -28,26 +28,7 @@
 </head>
 <body style="height: 100%">
 
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#navbar-collapse">
-                <span class="sr-only">切换导航</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">流量汇管家</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#" id="bt_comment" onclick="locationPage('/comment.jsp')">留言</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="nav_simple.html"/>
 
 
 <div class="container">
@@ -87,7 +68,6 @@
         </div>
     </div>
 
-    <%--<script type="text/javascript" src="js/jquery.min.js"></script>--%>
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 
     <script type="text/javascript" src="js/bootstrap.min.js"></script>

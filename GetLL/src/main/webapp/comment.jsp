@@ -15,6 +15,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/flat-ui.min.css" rel="stylesheet">
 
+    <!-- 响应式设计 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>留言</title>
 
@@ -46,27 +48,32 @@
 
 <div class="container">
 
-    <!-- 留言模块-->
-    <div id="duoshuoContent">
-        <!-- 多说评论框 start -->
-        <div class="ds-thread" id="duoshuoContent" data-thread-key="index" data-url="http://xiayule.net"></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- 留言模块-->
+            <div id="duoshuoContent">
+                <!-- 多说评论框 start -->
+                <div class="ds-thread" id="duoshuoContent" data-thread-key="index" data-url="http://xiayule.net"></div>
 
-        <!-- 多说评论框 end -->
-        <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-        <script type="text/javascript">
-            var duoshuoQuery = {short_name: "xiayule"};
-            (function () {
-                var ds = document.createElement('script');
-                ds.type = 'text/javascript';
-                ds.async = true;
-                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                ds.charset = 'UTF-8';
-                (document.getElementsByTagName('head')[0]
-                        || document.getElementsByTagName('body')[0]).appendChild(ds);
-            })();
-        </script>
-        <!-- 多说公共JS代码 end -->
+                <!-- 多说评论框 end -->
+                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                <script type="text/javascript">
+                    var duoshuoQuery = {short_name: "xiayule"};
+                    (function () {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0]
+                                || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- 多说公共JS代码 end -->
+            </div>
+        </div>
     </div>
+
 
 </div>
 
@@ -74,6 +81,8 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="js/eventMan.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
 
 <jsp:include page="foot.html"/>
 

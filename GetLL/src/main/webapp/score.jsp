@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <%--<link href="css/css.css" rel="stylesheet" type="text/css">--%>
 
     <link href="css/my.css" rel="stylesheet" type="text/css">
 
@@ -45,36 +45,36 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <div>
-                <div class="zhuanzeng_title" id="confirmDiv">使用${nc_n}流量币兑换${pn_n}。</div>
-                <div class="zhuanzeng_title" id="pwdDiv">
-                    <div>动态密码：</div>
-                    <div class="zhuanzeng_inputbg2">
-                        <label>
-                            <input type="text" id="passwordExchangeFlow" name="passwordExchangeFlow" class="form-control" />
-                        </label>
-                    </div>
-                    <div class="zhuanzeng_title3">
-                        <%--// 获取密码--%>
-                        <a href="javascript:;" id="getPasswordExchangeFlow" class="pwd" >免费获取动态密码</a>
-                        <a href="javascript:;" id="sendStatusExchangeFlow" class="zhuanzeng_input_text" style="display:none;">已发送(<span id="secondsExchangeFlow" style="display:inline;">0</span>秒)</a>
+            <div class="form-area">
+
+                <div class="form-title">
+                    <div class="form-group" id="confirmDiv">使用${nc_n}流量币兑换${pn_n}。</div>
+                </div>
+
+                <div class="form-group" id="pwdDiv">
+                    <div class="input-group">
+                        <input type="text" id="passwordExchangeFlow" name="passwordExchangeFlow" class="form-control" >
+
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" id="getPasswordExchangeFlow">获取动态密码</button>
+                            <button type="button" class="btn btn-default" style="display: none" id="sendStatusExchangeFlow">已发送(<span id="secondsExchangeFlow" style="display:inline;">0</span>秒)</button>
+                        </span>
                     </div>
                 </div>
-                <div>
+
+                <div class="form-group">
                     <button type="button" class="btn btn-primary" onclick="exchangeFun();" style="width: 100%" id="exchangeButDiv">确认</button>
                     <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="yesButDiv">知道了</button>
                     <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="shakeTimeDiv">现在去摇奖</button>
                     <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="tigerTimeDiv">现在去玩幸运投</button>
                     <div class="redfont" id="messageExchangeFlow"></div>
                 </div>
-                <div height="1143"><br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/></div>
             </div>
-
-
-            <div id="mask" class="mask hideme"></div>
-            <div id="buying_tip" class="hideme" style="z-index: 101;color:#fff;text-align:center;position: absolute;">我们正在努力处理中，请稍候！</div>
         </div>
     </div>
+
+    <div id="mask" class="mask hideme"></div>
+    <div id="buying_tip" class="hideme" style="z-index: 101;color:#fff;text-align:center;position: absolute;">我们正在努力处理中，请稍候！</div>
 </div>
 
 

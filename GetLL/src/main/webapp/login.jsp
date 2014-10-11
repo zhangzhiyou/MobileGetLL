@@ -40,7 +40,6 @@
                         <span>登录</span>
                     </div>
 
-
                     <div class="form-group">
                         <span id="message" style="color: red;"></span>
                     </div>
@@ -56,7 +55,7 @@
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" id="getPassword">获取动态密码</button>
                                 <button type="button" class="btn btn-default" style="display: none" id="sendStatus">已发送(<span
-                                        id="seconds" style="display: block;play:inline;">0</span>秒)</button>
+                                        id="seconds" style="display:inline;">0</span>秒)</button>
                             </span>
                         </div>
                     </div>

@@ -73,8 +73,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
@@ -82,7 +80,6 @@
 
 <script type="text/javascript" src="js/eventMan.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
-
 
 <jsp:include page="foot.html"/>
 

@@ -19,15 +19,11 @@
     <link rel="shortcut icon" href="image/icon.png">
 
     <!-- 响应式设计 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"x content="width=device-width, initial-scale=1.0">
 
     <title>转赠</title>
 
     <style type="text/css">
-        .pwd {
-            font-size: 12px;
-        }
-
         .mask {
             display: none;
             position: absolute;
@@ -47,74 +43,73 @@
 <jsp:include page="nav_simple.html"/>
 
 <div class="container">
-    <div class="row"></div>
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <div class="form-area">
+                <p class="search-title">转赠流量币</p>
 
-    <div id="message" style="color: #ff0000"></div>
+                <div class="form-group">
+                    <div id="message" style="color: #ff0000"></div>
+                </div>
 
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="mobile" class="col-sm-2 control-label">朋友手机号:</label>
 
-            <div class="col-sm-5">
-                <input type="text" name="textfield" id="mobile" placeholder="必须为本省手机号"/>
+                <div class="form-group">
+                    <input type="text" name="textfield" id="mobile" class="form-control" placeholder="朋友手机号:(必须为本省手机号)">
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="textfield2" id="transferGiftsText" placeholder="转赠金额数">
+
+                        <span class="input-group-addon">共 <span style="color: #ff0000" id="credit">0</span></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <select name="remarkSelect" id="remarkSelect" class="form-control">
+                        <option value="" disabled="disabled" selected="true">装土豪也要显摆几句(点击选择)</option>
+                        <option value="千里送流量，礼轻情谊深。">千里送流量，礼轻情谊深。</option>
+                        <option value="流量都去哪了？不够用咱给你补上！">流量都去哪了？不够用咱给你补上！</option>
+                        <option value="流量币送上，马上有流量！">流量币送上，马上有流量！</option>
+                        <option value="你问我爱你有多深，流量代表我的心。">你问我爱你有多深，流量代表我的心。</option>
+                        <option value="补充你的上网能量，我一直都这么够意思！">补充你的上网能量，我一直都这么够意思！</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="password" name="password" placeholder="动态密码">
+
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" id="getPassword">获取动态密码</button>
+                        <button type="button" class="btn btn-default" style="display: none" id="sendStatus">已发送(<span
+                                id="seconds" style="display:inline;">0</span>秒)</button>
+                    </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" onclick="submitFun()" style="width: 100%">确认</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6">
+            <div class="form-area">
+            <div class="text">1、转赠后，流量币将直接进入对方帐户，无法退回，请先核对亲友的手机号码。</div>
+            <div class="text">2、如亲友3天内未登录流量汇领取，流量币将自动退回您的帐户。</div>
+            <div class="text">3、每个用户每天最多能转赠 3 次，最多被赠予 3 次，每月最多向 10 位朋友赠送。</div>
+            <div class="text">4、每次转赠限额 1000 流量币。</div>
             </div>
         </div>
     </div>
 
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label for="mobile" class="col-sm-2 control-label">转赠数额<span class="notes">（当前余额</span><span style="color: #ff0000"
-                                                                                                         id="credit">0</span><span
-                    class="notes">流量币）</span>：</label>
-
-            <div class="col-sm-5">
-                <input type="text" name="textfield2" id="transferGiftsText" placeholder="转赠金额数"/>
-            </div>
-        </div>
-    </div>
-
-    <!-- todo: -->
-    <%--<span class="zhuanzeng_input_text">流量币</span></div>&ndash;%&gt;--%>
-
-    <select name="remarkSelect" id="remarkSelect" class="form-control">
-        <option value="" disabled="disabled" selected="true">装土豪也要显摆几句(点击选择)</option>
-        <option value="千里送流量，礼轻情谊深。">千里送流量，礼轻情谊深。</option>
-        <option value="流量都去哪了？不够用咱给你补上！">流量都去哪了？不够用咱给你补上！</option>
-        <option value="流量币送上，马上有流量！">流量币送上，马上有流量！</option>
-        <option value="你问我爱你有多深，流量代表我的心。">你问我爱你有多深，流量代表我的心。</option>
-        <option value="补充你的上网能量，我一直都这么够意思！">补充你的上网能量，我一直都这么够意思！</option>
-    </select>
-
-    <div>
-        <div class="zhuanzeng_title2">动态密码：</div>
-        <div class="zhuanzeng_inputbg2">
-            <label>
-                <input type="text" id="password" name="password" class="pop_cinput zhuanzeng_input1"/>
-            </label>
-        </div>
-        <div class="zhuanzeng_title3">
-            <a href="javascript:;" id="getPassword" class="pwd">免费获取动态密码</a>
-            <a href="javascript:;" id="sendStatus" class="zhuanzeng_input_text" style="display:none;">已发送(<span
-                    id="seconds" style="display:inline;">0</span>秒)</a>
-        </div>
 
 
-    </div>
-
-    <button type="button" class="btn btn-primary" onclick="submitFun()" style="width: 100%">确认</button>
-
-
-    <div class="zhuanzeng_layout2">
-        <div class="text">1、转赠后，流量币将直接进入对方帐户，无法退回，请先核对亲友的手机号码。</div>
-        <div class="text">2、如亲友3天内未登录流量汇领取，流量币将自动退回您的帐户。</div>
-        <div class="text">3、每个用户每天最多能转赠 3 次，最多被赠予 3 次，每月最多向 10 位朋友赠送。</div>
-        <div class="text">4、每次转赠限额 1000 流量币。</div>
-    </div>
 </div>
 
 <div id="mask" class="mask hide"></div>
-<div id="buying_tip" class="hide" style="z-index: 101;color:#fff;text-align:center;position: absolute;">我们正在努力处理中，请稍候！
-</div>
+<div id="buying_tip" class="hide" style="z-index: 101;color:#fff;text-align:center;position: absolute;">我们正在努力处理中，请稍候！</div>
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>

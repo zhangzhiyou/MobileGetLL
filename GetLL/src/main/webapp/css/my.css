@@ -2,6 +2,11 @@
 
 .hideme {display:none;}
 
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
 
 .functions {
     text-align:center;
@@ -44,4 +49,28 @@
     /*padding-bottom: 20px;*/
     text-align: center;
     padding-bottom: 20px;
+}
+
+.form-area {
+    /*set center*/
+    margin: 0 auto 20px;
+    float: none;
+
+    padding: 40px 29px 45px;
+    background-color: #FFFFFF;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.form-area .search-title {
+    font-size: 22.5px;
+    margin-bottom: 30px;
+    font-weight: 100;
+    line-height: 1.4;
+    text-align: center;
 }

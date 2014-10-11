@@ -35,7 +35,7 @@
     <!-- 登录框 -->
     <div id="loginContent">
         <div class="row">
-            <form action="login.action" method="post" class="form-horizontal">
+            <div class="form-horizontal">
                 <div class="form-group">
                     <span id="message" class="col-sm-offset-2 col-sm-4" style="color: red;"></span>
                 </div>
@@ -64,7 +64,7 @@
                         <button type="button" title="登录, 开启神奇之旅" class="btn btn-primary" id="loginDo" onclick="this.blur();">登录</button>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 

@@ -44,11 +44,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-md-offset-3 col-md-6 col-xs-12">
             <div class="form-area">
 
                 <div class="form-title">
                     <div class="form-group" id="confirmDiv">使用${nc_n}流量币兑换${pn_n}。</div>
+                </div>
+
+                <div class="form-group">
+                    <div class="redfont" id="messageExchangeFlow" style="color: #ff0000"></div>
                 </div>
 
                 <div class="form-group" id="pwdDiv">
@@ -67,7 +71,6 @@
                     <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="yesButDiv">知道了</button>
                     <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="shakeTimeDiv">现在去摇奖</button>
                     <button type="button" class="btn btn-primary hideme" onclick="javascript:location.href='/';" style="width: 100%; display: none" id="tigerTimeDiv">现在去玩幸运投</button>
-                    <div class="redfont" id="messageExchangeFlow"></div>
                 </div>
             </div>
         </div>

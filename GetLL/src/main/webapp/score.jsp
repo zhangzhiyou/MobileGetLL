@@ -48,7 +48,7 @@
             <div class="form-area">
 
                 <div class="form-title">
-                    <div class="form-group" id="confirmDiv">使用${nc_n}流量币兑换${pn_n}。</div>
+                    <div class="form-group" id="confirmDiv">使用${nc_n}流量币兑换${pn_n}</div>
                 </div>
 
                 <div class="form-group">

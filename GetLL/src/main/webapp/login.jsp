@@ -33,35 +33,36 @@
 
 <div class="container">
     <!-- 登录框 -->
-    <div id="loginContent">
-        <div class="row">
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <span id="message" class="col-sm-offset-2 col-sm-4" style="color: red;"></span>
-                </div>
+        <div class="row" >
+            <div class="col-md-offset-3 col-md-6 col-xs-offset-1 col-xs-10">
+                <div class="form-area">
+                    <div class="form-title">
+                        <span>登录</span>
+                    </div>
 
-                <div class="form-group">
-                    <label for="mobile" class="col-sm-2 control-label">手机号:</label>
-                    <div class="col-sm-5">
+
+                    <div class="form-group">
+                        <span id="message" style="color: red;"></span>
+                    </div>
+
+                    <div class="form-group">
                         <input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入手机号">
                     </div>
-                </div>
 
-                <div class="form-group hideme" id="passwordContent">
-                    <label for="password" class="col-sm-2 control-label">动态密码:</label>
+                    <div class="form-group hideme" id="passwordContent">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="password" name="password" placeholder="动态密码">
 
-                    <div class="col-sm-2">
-                        <input type="text"  name="password" class="form-control" id="password" placeholder="请输入动态密码">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" id="getPassword">获取动态密码</button>
+                                <button type="button" class="btn btn-default" style="display: none" id="sendStatus">已发送(<span
+                                        id="seconds" style="display: block;play:inline;">0</span>秒)</button>
+                            </span>
+                        </div>
                     </div>
 
-                    <a href="javascript:;" id="getPassword">免费获取动态密码</a>
-                    <a href="javascript:;" id="sendStatus" class="hideme">已发送(<span
-                            id="seconds" style="display:inline;">0</span>秒)</a>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="button" title="登录, 开启神奇之旅" class="btn btn-primary" id="loginDo" onclick="this.blur();">登录</button>
+                    <div class="form-group">
+                        <button type="button" title="登录, 开启神奇之旅" style="width: 100%" class="btn btn-primary" id="loginDo">登录</button>
                     </div>
                 </div>
             </div>

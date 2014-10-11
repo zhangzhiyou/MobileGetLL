@@ -48,7 +48,7 @@
             <div>
                 <div class="zhuanzeng_title" id="confirmDiv">使用${nc_n}流量币兑换${pn_n}。</div>
                 <div class="zhuanzeng_title" id="pwdDiv">
-                    <div class="zhuanzeng_title2">动态密码：</div>
+                    <div>动态密码：</div>
                     <div class="zhuanzeng_inputbg2">
                         <label>
                             <input type="text" id="passwordExchangeFlow" name="passwordExchangeFlow" class="form-control" />

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <%--<link href="css/css.css" rel="stylesheet" type="text/css">--%>
 
     <link href="css/my.css" rel="stylesheet" type="text/css">
 
@@ -45,8 +45,8 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-6">
-            <div class="form-area">
-                <p class="search-title">转赠流量币</p>
+            <div class="form-area form-horizontal">
+                <p class="form-title">转赠流量币</p>
 
                 <div class="form-group">
                     <div id="message" style="color: #ff0000"></div>

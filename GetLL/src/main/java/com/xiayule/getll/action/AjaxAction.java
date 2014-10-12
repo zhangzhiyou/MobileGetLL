@@ -268,7 +268,7 @@ public class AjaxAction {
             String rs = playService.loadLoginMobile(m);
 
             //todo: 可以在这里检测手机号是否匹配
-            System.out.println("loadloginiMobile:" +  rs);
+//            System.out.println("loadloginiMobile:" +  rs);
 
             jsonObj = JsonUtils.stringToJson(rs);
 

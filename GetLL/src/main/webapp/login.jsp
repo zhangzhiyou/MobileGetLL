@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -21,6 +23,9 @@
     <!-- 响应式设计 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="keywords" content="流量,移动,流量汇,流量汇管家,赚取流量,免费流量,摇流量,兑换,流量币,转赠,短信">
+    <meta name="description" content="流量汇,流量汇管家,免费赚取流量,兑换流量,兑换短信.">
+
     <title>流量汇自动管家-登录</title>
 
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
@@ -33,40 +38,40 @@
 
 <div class="container">
     <!-- 登录框 -->
-        <div class="row" >
-            <div class="col-md-offset-3 col-md-6 col-xs-offset-1 col-xs-10">
-                <div class="form-area">
-                    <div class="form-title">
-                        <span>登录</span>
-                    </div>
+    <div class="row" >
+        <div class="col-md-offset-3 col-md-6 col-xs-offset-1 col-xs-10">
+            <div class="form-area">
+                <div class="form-title">
+                    <span>登录</span>
+                </div>
 
-                    <div class="form-group">
-                        <span id="message" style="color: red;"></span>
-                    </div>
+                <div class="form-group">
+                    <span id="message" style="color: red;"></span>
+                </div>
 
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入手机号">
-                    </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入手机号">
+                </div>
 
-                    <div class="form-group hideme" id="passwordContent">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="password" name="password" placeholder="动态密码">
+                <div class="form-group hideme" id="passwordContent">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="password" name="password" placeholder="动态密码">
 
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" id="getPassword">获取动态密码</button>
-                                <button type="button" class="btn btn-default" style="display: none" id="sendStatus">已发送(<span
-                                        id="seconds" style="display:inline;">0</span>秒)</button>
-                            </span>
-                        </div>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" id="getPassword">获取动态密码</button>
+                            <button type="button" class="btn btn-default" style="display: none" id="sendStatus">已发送(<span
+                                    id="seconds" style="display:inline;">0</span>秒)</button>
+                        </span>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <button type="button" title="登录, 开启神奇之旅" style="width: 100%" class="btn btn-primary" id="loginDo">登录</button>
-                    </div>
+                <div class="form-group">
+                    <button type="button" title="登录, 开启神奇之旅" style="width: 100%" class="btn btn-primary" id="loginDo">登录</button>
                 </div>
             </div>
         </div>
     </div>
+
 
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 

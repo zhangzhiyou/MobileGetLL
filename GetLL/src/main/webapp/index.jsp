@@ -13,6 +13,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/flat-ui.min.css" rel="stylesheet">
 
+    <meta name="keywords" content="流量,移动,流量汇,流量汇管家,赚取流量,免费流量,摇流量,兑换,流量币,转赠,短信">
+    <meta name="description" content="流量汇,流量汇管家,免费赚取流量,兑换流量,兑换短信.">
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 

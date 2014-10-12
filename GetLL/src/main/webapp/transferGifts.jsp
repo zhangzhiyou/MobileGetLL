@@ -6,9 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <%--<link href="css/css.css" rel="stylesheet" type="text/css">--%>
 
     <link href="css/my.css" rel="stylesheet" type="text/css">
 
@@ -18,8 +18,11 @@
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
 
+    <meta name="keywords" content="流量,移动,流量汇,流量汇管家,赚取流量,免费流量,摇流量,兑换,流量币,转赠,短信">
+    <meta name="description" content="流量汇,流量汇管家,免费赚取流量,兑换流量,兑换短信.">
+
     <!-- 响应式设计 -->
-    <meta name="viewport"x content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>转赠</title>
 
@@ -61,7 +64,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="textfield2" id="transferGiftsText" placeholder="转赠金额数">
 
-                        <span class="input-group-addon">共 <span style="color: #ff0000" id="credit">0</span></span>
+                        <span class="input-group-addon">共 <span style="color: #ff0000" id="credit">0</span> 流量币</span>
                     </div>
                 </div>
 
@@ -254,7 +257,7 @@
         $buyingTip.show();
         $("html").css({overflow: "hidden"});
         window.ontouchmove = function (e) {
-            e.defaultPrevented && e.defaultPrevented();
+            e.defaultPreventffed && e.defaultPrevented();
             e.returnValue = false;
             e.stopPropagation && e.stopPropagation();
             return false;

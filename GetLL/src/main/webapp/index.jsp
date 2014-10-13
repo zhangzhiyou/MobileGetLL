@@ -1,3 +1,4 @@
+<%@ page import="com.xiayule.getll.utils.TimeUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
@@ -73,7 +74,6 @@
 </nav>
 
 <div class="container">
-
     <div class="row">
         <!-- 主要内容 -->
         <div class="col-md-9 col-xs-12">
@@ -82,7 +82,9 @@
                 <!-- 欢迎语 -->
                 <div class="col-xs-12">
                     <h3>
-                        <span>您好，亲爱的</span>
+                        <!-- 问候语 -->
+                        <span> <%= TimeUtils.getGreetings() %> !</span><br />
+
                         <span id="userMobile">&nbsp;</span>
                         <small style="color: #b09fc9" id="userNick"></small>
                     </h3>

@@ -2,6 +2,7 @@ package com.xiayule.getll.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by tan on 14-6-25.
@@ -18,6 +19,27 @@ public class TimeUtils {
         Calendar dt = Calendar.getInstance();
 
         return sdf_line.format(dt.getTime());
+    }
+
+
+    /**
+     * 获得问候语
+     * @return
+     */
+    public static String getGreetings() {
+        Calendar c = Calendar.getInstance();
+
+        // 当前的小时，24制
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+
+        if(hour >= 0 && hour < 6) return "凌晨好";
+        else if (hour < 9) return "早上好";
+        else if (hour < 12) return "上午好";
+        else if (hour < 14) return "中午好";
+        else if (hour < 17) return "下午好";
+        else if (hour < 19) return "傍晚好";
+        else if (hour < 24) return "晚上好";
+        else return "您好";
     }
 
     /**

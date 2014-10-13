@@ -73,10 +73,13 @@
 </nav>
 
 <div class="container">
-    <div id="personInfo">
-        <!-- 个人信息 -->
-        <div class="jumbotron">
-            <div class="row">
+
+    <div class="row">
+        <!-- 主要内容 -->
+        <div class="col-xs-9">
+            <!-- 个人信息 -->
+            <div class="jumbotron col-xs-12">
+                <!-- 欢迎语 -->
                 <div class="col-xs-12">
                     <h3>
                         <span>您好，亲爱的</span>
@@ -84,10 +87,7 @@
                         <small style="color: #b09fc9" id="userNick"></small>
                     </h3>
                 </div>
-            </div>
 
-
-            <div class="row">
                 <!-- 个人详情 -->
                 <div class="col-xs-12">
                     <div><!--style="text-align:left"-->
@@ -109,48 +109,75 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <!-- 流量图表 -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <!--图表-->
-                <div class="jiafengge"><span class="line" style="color:#F33">流量图表</span></div>
+            <!-- 其他信息 -->
+            <div class="col-xs-12">
+                <!-- 流量图表 -->
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <!--图表-->
+                    <div class="jiafengge"><span class="line" style="color:#F33">流量图表</span></div>
 
-                <div class="myaccount_chart">
-                    <div id="tipDiv" style="padding-bottom:5px;"></div>
-                    <div id="ReportDiv"></div>
-                    <div class="tishi2">计费数据有延时，仅供参考，请以月结数据为准。</div>
-                </div>
-            </div>
-
-
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <!--明细-->
-                <div id="listDiv"></div>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <!--套餐详情-->
-                <div class="col-xs-12">
-                    <div class="jiafengge"><span class="line" style="color:#F33">温馨提醒</span></div>
-
-                    <p>本月总流量<span id="TotalFlowDiv">0</span>MB</p>
-
-                    <p>剩余流量<span id="LeftFlowDiv">0</span>MB</p>
-
-                    <p>距结算日<span id="distanceDays">0</span>天</p>
-
-                    <p>日均可用<span id="dayNum">0</span>MB</p>
+                    <div class="myaccount_chart">
+                        <div id="tipDiv" style="padding-bottom:5px;"></div>
+                        <div id="ReportDiv"></div>
+                        <div class="tishi2">计费数据有延时，仅供参考，请以月结数据为准。</div>
+                    </div>
                 </div>
 
-                <!-- todo:会引发错误，暂时关闭该功能-->
-                <!--<button class="btn button" id="btShakeNow" type="button" onclick="this.blur()">立即摇奖</button>-->
 
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <!--明细-->
+                    <div id="listDiv"></div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <!--套餐详情-->
+                    <div class="col-xs-12">
+                        <div class="jiafengge"><span class="line" style="color:#F33">温馨提醒</span></div>
+
+                        <p>本月总流量<span id="TotalFlowDiv">0</span>MB</p>
+
+                        <p>剩余流量<span id="LeftFlowDiv">0</span>MB</p>
+
+                        <p>距结算日<span id="distanceDays">0</span>天</p>
+
+                        <p>日均可用<span id="dayNum">0</span>MB</p>
+                    </div>
+
+                    <!-- todo:会引发错误，暂时关闭该功能-->
+                    <!--<button class="btn button" id="btShakeNow" type="button" onclick="this.blur()">立即摇奖</button>-->
+                </div>
             </div>
         </div>
 
+        <!-- 最新评论 -->
+        <div class="col-xs-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">最新留言 <small style="float: right;"><a href="comment.jsp" style=" color: #398439">更多</a></small></h3>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <ul class="ds-recent-comments" data-num-items="6" data-show-avatars="1" data-show-time="1" data-show-admin="1" data-excerpt-length="50"></ul>
+                        <!--多说js加载开始，一个页面只需要加载一次 -->
+                        <script type="text/javascript">
+                            var duoshuoQuery = {short_name:"xiayule"};
+                            (function() {
+                                var ds = document.createElement('script');
+                                ds.type = 'text/javascript';ds.async = true;
+                                ds.src = 'http://static.duoshuo.com/embed.js';
+                                ds.charset = 'UTF-8';
+                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                            })();
+                        </script>
+                        <!--多说js加载结束，一个页面只需要加载一次 -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 
     <!-- 临时模板 -->
     <div id="jiaitem_tmp" class="hideme">
@@ -188,9 +215,6 @@
     <script>
         eventMan.checkLogin(function () {
             if (eventMan.isLogin()) {
-
-                $("#personInfo").show();
-
                 $("#userMobile").html(eventMan.loginMobile_);
 
                 if (eventMan.nickName_ != null && eventMan.nickName_ != "") {

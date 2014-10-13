@@ -208,9 +208,6 @@
 <script>
     eventMan.checkLogin(function () {
         if (eventMan.isLogin()) {
-
-            $("#personInfo").show();
-
             if (eventMan.nickName_ == null || eventMan.nickName_ == "") {
                 $("#userMobile").html(eventMan.loginMobile_);
             } else {

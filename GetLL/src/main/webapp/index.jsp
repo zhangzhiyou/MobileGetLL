@@ -76,7 +76,7 @@
 
     <div class="row">
         <!-- 主要内容 -->
-        <div class="col-xs-9">
+        <div class="col-md-9 col-xs-12">
             <!-- 个人信息 -->
             <div class="jumbotron col-xs-12">
                 <!-- 欢迎语 -->
@@ -151,7 +151,7 @@
         </div>
 
         <!-- 最新评论 -->
-        <div class="col-xs-3">
+        <div class="col-md-3 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">最新留言 <small style="float: right;"><a href="comment.jsp" style=" color: #398439">更多</a></small></h3>

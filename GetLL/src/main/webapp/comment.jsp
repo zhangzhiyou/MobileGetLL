@@ -12,7 +12,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <link href="css/my.css" rel="stylesheet" type="text/css">
+    <link href="css/my.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/flat-ui.min.css" rel="stylesheet">
@@ -82,8 +82,8 @@
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="js/eventMan.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/eventMan.min.js"></script>
+<script type="text/javascript" src="js/common.min.js"></script>
 
 <jsp:include page="foot.html"/>
 

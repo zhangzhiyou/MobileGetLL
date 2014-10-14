@@ -9,9 +9,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <link href="css/css.min.css" rel="stylesheet" type="text/css">
 
-    <link href="css/my.css" rel="stylesheet" type="text/css">
+    <link href="css/my.min.css" rel="stylesheet" type="text/css">
 
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
@@ -77,8 +77,8 @@
 <div id="buying_tip" class="hide" style="z-index: 101;color:#fff;text-align:center;position: absolute;">我们正在努力处理中，请稍候！</div>
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="js/tip.js"></script>
-<script type="text/javascript" src="js/eventMan.js"></script>
+<script type="text/javascript" src="js/tip.min.js"></script>
+<script type="text/javascript" src="js/eventMan.min.js"></script>
 
 <script>
     var $mask = $("#mask");

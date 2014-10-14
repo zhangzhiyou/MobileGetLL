@@ -7,9 +7,9 @@
 <head lang="en">
     <meta charset="UTF-8">
 
-    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <link href="css/css.min.css" rel="stylesheet" type="text/css">
 
-    <link href="css/my.css" rel="stylesheet" type="text/css">
+    <link href="css/my.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/flat-ui.min.css" rel="stylesheet">
@@ -206,12 +206,12 @@
 
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="js/eventMan.js"></script>
-    <script type="text/javascript" src="js/tip.js"></script>
-    <script type="text/javascript" src="js/score.js"></script>
-    <script type="text/javascript" src="js/flowScore.js"></script>
+    <script type="text/javascript" src="js/eventMan.min.js"></script>
+    <script type="text/javascript" src="js/tip.min.js"></script>
+    <script type="text/javascript" src="js/score.min.js"></script>
+    <script type="text/javascript" src="js/flowScore.min.js"></script>
     <script type="text/javascript" src="js/highcharts.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/common.min.js"></script>
 
 
     <script>

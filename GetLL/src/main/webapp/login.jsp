@@ -11,9 +11,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <link href="css/css.min.css" rel="stylesheet" type="text/css">
 
-    <link href="css/my.css" rel="stylesheet" type="text/css">
+    <link href="css/my.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css">
@@ -77,8 +77,8 @@
 
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="js/eventMan.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/eventMan.min.js"></script>
+    <script type="text/javascript" src="js/common.min.js"></script>
 
     <script>
         eventMan.checkLogin(function () {

@@ -1,13 +1,8 @@
 <component name="ArtifactManager">
   <artifact type="war" name="getll:war">
-    <output-path>$PROJECT_DIR$/GetLL/target</output-path>
-    <root id="archive" name="getll-1.0.war">
+    <output-path>$PROJECT_DIR$/out/artifacts/getll_war</output-path>
+    <root id="archive" name="getll_war.war">
       <element id="artifact" artifact-name="getll:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="lib">
-          <element id="library" level="application" name="Spring-4.0.5.RELEASE" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>

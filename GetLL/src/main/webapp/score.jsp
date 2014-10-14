@@ -10,7 +10,7 @@
 <html>
 <head>
 
-    <link href="css/my.css" rel="stylesheet" type="text/css">
+    <link href="css/my.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css">
@@ -87,9 +87,9 @@
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="js/eventMan.js"></script>
-<script type="text/javascript" src="js/score.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/eventMan.min.js"></script>
+<script type="text/javascript" src="js/score.min.js"></script>
+<script type="text/javascript" src="js/common.min.js"></script>
 
 
 <script>

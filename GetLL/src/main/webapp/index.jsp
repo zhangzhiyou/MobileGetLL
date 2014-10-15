@@ -154,32 +154,47 @@
 
         <!-- 最新评论 -->
         <div class="col-md-3 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">最新留言 <small style="float: right;"><a href="comment.jsp" style=" color: #398439">更多</a></small></h3>
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">网站赞助</h3>
+                    </div>
+                    <div class="panel-body">
+                        如果我们的服务对您有用，可以请我们喝杯茶
+                    </div>
+
+                    <div class="panel-footer">
+                        <a href="donate.jsp" class="btn btn-default btn-block" target="_blank">老板，上茶!!!</a>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <div>
-                        <ul class="ds-recent-comments" data-num-items="6" data-show-avatars="1" data-show-time="1" data-show-admin="1" data-excerpt-length="50"></ul>
-                        <!--多说js加载开始，一个页面只需要加载一次 -->
-                        <script type="text/javascript">
-                            var duoshuoQuery = {short_name:"xiayule"};
-                            (function() {
-                                var ds = document.createElement('script');
-                                ds.type = 'text/javascript';ds.async = true;
-                                ds.src = 'http://static.duoshuo.com/embed.js';
-                                ds.charset = 'UTF-8';
-                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-                            })();
-                        </script>
-                        <!--多说js加载结束，一个页面只需要加载一次 -->
+            </div>
+
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">最新留言 <small style="float: right;"><a href="comment.jsp" style=" color: #398439">更多</a></small></h3>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <ul class="ds-recent-comments" data-num-items="6" data-show-avatars="1" data-show-time="1" data-show-admin="1" data-excerpt-length="50"></ul>
+                            <!--多说js加载开始，一个页面只需要加载一次 -->
+                            <script type="text/javascript">
+                                var duoshuoQuery = {short_name:"xiayule"};
+                                (function() {
+                                    var ds = document.createElement('script');
+                                    ds.type = 'text/javascript';ds.async = true;
+                                    ds.src = 'http://static.duoshuo.com/embed.js';
+                                    ds.charset = 'UTF-8';
+                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                                })();
+                            </script>
+                            <!--多说js加载结束，一个页面只需要加载一次 -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 
     <!-- 临时模板 -->
     <div id="jiaitem_tmp" class="hideme">
@@ -212,7 +227,6 @@
     <script type="text/javascript" src="js/flowScore.min.js"></script>
     <script type="text/javascript" src="js/highcharts.js"></script>
     <script type="text/javascript" src="js/common.min.js"></script>
-
 
     <script>
         eventMan.checkLogin(function () {

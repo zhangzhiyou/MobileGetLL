@@ -152,8 +152,20 @@
             </div>
         </div>
 
-        <!-- 最新评论 -->
+        <!-- 侧边栏 -->
         <div class="col-md-3 col-xs-12">
+            <!-- 时钟 -->
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">时间</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="clock"></div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -227,6 +239,7 @@
     <script type="text/javascript" src="js/flowScore.min.js"></script>
     <script type="text/javascript" src="js/highcharts.js"></script>
     <script type="text/javascript" src="js/common.min.js"></script>
+    <script type="text/javascript" src="js/jquery.MyDigitclock.js"></script>
 
     <script>
         eventMan.checkLogin(function () {
@@ -253,6 +266,18 @@
             // 验证登录失败
             locationPage("/login.jsp")
         });
+
+        <!-- 显示时钟 -->
+        $("#clock").MyDigitClock({
+            fontSize:40,
+            fontFamily:"Century gothic",
+            fontColor: "#56ba98",
+            fontWeight:"bold",
+            bAmPm:false,
+            background:'#fff',
+            bShowHeartBeat:true
+        });
+
     </script>
 
 

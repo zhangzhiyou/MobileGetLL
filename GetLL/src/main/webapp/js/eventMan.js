@@ -218,6 +218,7 @@ EventMan.prototype.checkLogin = function(loginCallback, notLoginCallBack) {
 
     $.getJSON("/ajax/loadLoginedMobile.action", {}, function(data) {
         if (data.status != "ok") {
+            //todo: 登录失败跳转到 login?
             alert("登录失败");
             return;
         }

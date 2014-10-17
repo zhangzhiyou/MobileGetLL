@@ -7,7 +7,7 @@ function Score() {
     this.queryScorePath_ = "/ajax/queryScore.action?r=";
 
     // 获取积分兑换列表请求路径
-    this.queryPrizePath_ = "/ajax/queryPrize.action";
+    this.queryPrizePath_ = "/ajax/queryPrize.action?r=";
 
     //TODO:
     // 积分兑换请求路径
@@ -77,7 +77,7 @@ Score.prototype.showMyScore = function(callback) {
         }
 
         // 获得注册码有效期
-        $.getJSON("/ajax/getTTL.action", {}, function (data) {
+        $.getJSON("/ajax/getTTL.action?r=" + Math.random(), {}, function (data) {
             if (data.status != "ok") {
                 alert("获取个人服务信息失败")
             } else {
@@ -105,7 +105,7 @@ Score.prototype.showConvertList = function(callback) {
     var itemTmpSms = $("#jiaitem_tmp_sms").html();
 
 
-    $.getJSON(that.queryPrizePath_, {}, function(data) {
+    $.getJSON(that.queryPrizePath_ + Math.random(), {}, function(data) {
         if (data.status != "ok") {
             alert("兑换列表获取失败!");
             return;

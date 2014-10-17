@@ -269,7 +269,7 @@ FlowScore.prototype.getFlowScoreTransferGiftsInfo = function (callback) {
 // 流量详情
 FlowScore.prototype.getTotalFlow = function (callback) {
     var lazySeconds = 1;
-    $.post("/ajax/getPackage.action", {}, function (data) {
+    $.post("/ajax/getPackage.action?r=" + Math.random(), {}, function (data) {
 //            setTimeout(function () {
         if (data.status != "ok") {
             showErrorResult(data);

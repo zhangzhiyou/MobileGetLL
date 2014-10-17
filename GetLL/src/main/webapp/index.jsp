@@ -173,7 +173,7 @@
                     </div>
                     <div class="panel-body">
                         <div>
-                            <ul class="ds-recent-comments" data-num-items="6" data-show-avatars="1" data-show-time="1" data-show-admin="1" data-excerpt-length="50"></ul>
+                            <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-admin="1" data-excerpt-length="50"></ul>
                             <!--多说js加载开始，一个页面只需要加载一次 -->
                             <script type="text/javascript">
                                 var duoshuoQuery = {short_name:"xiayule"};

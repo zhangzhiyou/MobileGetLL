@@ -246,7 +246,7 @@ FlowScore.prototype.loadCreditDetail = function (type) {
 // 未领去的流量币加载
 FlowScore.prototype.getFlowScoreTransferGiftsInfo = function (callback) {
     var lazySeconds = 1;
-    $.post("/ajax/getTransferGiftsList.action?queryType=count&type=others&status=2", {}, function (data) {
+    $.post("/ajax/getTransferGiftsList.action?queryType=count&type=others&status=2&r=" + Math.random(), {}, function (data) {
 //        setTimeout(function () {
         if (data.status != "ok") {
             //showErrorResult(data);

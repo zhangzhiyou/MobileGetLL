@@ -4,7 +4,7 @@
 
 function Score() {
     // 获取用户积分信息请求路径
-    this.queryScorePath_ = "/ajax/queryScore.action";
+    this.queryScorePath_ = "/ajax/queryScore.action?r=";
 
     // 获取积分兑换列表请求路径
     this.queryPrizePath_ = "/ajax/queryPrize.action";
@@ -28,7 +28,7 @@ Score.prototype.showMyScore = function(callback) {
     var that = this;
 
 //    $.post(that.queryScorePath_+Math.random(), {}, function(data) {
-    $.getJSON(that.queryScorePath_, {}, function(data) {
+    $.getJSON(that.queryScorePath_ + Math.random(), {}, function(data) {
         if (data.status != "ok") {
             alert("流量币信息获取失败!!!");
             return;

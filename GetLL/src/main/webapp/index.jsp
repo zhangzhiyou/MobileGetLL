@@ -169,21 +169,6 @@
             <div class="col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">网站赞助</h3>
-                    </div>
-                    <div class="panel-body">
-                        如果我们的服务对您有用，可以请我们喝杯茶
-                    </div>
-
-                    <div class="panel-footer">
-                        <a href="donate.jsp" class="btn btn-default btn-block" target="_blank">老板，上茶!!!</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
                         <h3 class="panel-title">最新留言 <small style="float: right;"><a href="comment.jsp" style=" color: #398439">更多</a></small></h3>
                     </div>
                     <div class="panel-body">
@@ -202,6 +187,21 @@
                             </script>
                             <!--多说js加载结束，一个页面只需要加载一次 -->
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">网站赞助</h3>
+                    </div>
+                    <div class="panel-body">
+                        如果我们的服务对您有用，可以请我们喝杯茶
+                    </div>
+
+                    <div class="panel-footer">
+                        <a href="donate.jsp" class="btn btn-default btn-block" target="_blank">老板，上茶!!!</a>
                     </div>
                 </div>
             </div>

@@ -131,10 +131,16 @@ public class PlayServiceImpl implements PlayService {
     }
 
 
-    public double addDrawScore(String mobile) {
+    public String addDrawScoreWithSource(String cookieMobile) {
         String urlAddDrawScore = "http://shake.sd.chinamobile.com/score?method=addDrawScore&r=" + Math.random();
 
-        String json = get(mobile, urlAddDrawScore);
+        String json = get(cookieMobile, urlAddDrawScore);
+
+        return json;
+    }
+
+    public double addDrawScore(String cookieMobile) {
+        String json = addDrawScoreWithSource(cookieMobile);
 
         double firstShakeGiveCredit = JsonUtils.stringToJson(json).getJSONObject("result")
                 .getJSONArray("list")

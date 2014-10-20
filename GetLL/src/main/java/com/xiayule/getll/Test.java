@@ -21,12 +21,12 @@ public class Test {
         String cookieMobile = "18369905136";
         String friendMobile = "18369905506";
 
-        System.out.println(playService.get(cookieMobile, "http://shake.sd.chinamobile.com/"));
+//        System.out.println(playService.get(cookieMobile, "http://shake.sd.chinamobile.com/"));
         System.out.println(playService.loadLoginMobile(cookieMobile));
-        System.out.println(playService.queryScore(cookieMobile));
+//        System.out.println(playService.queryScore(cookieMobile));
         System.out.println(playService.setDrawMobile(cookieMobile, friendMobile));
         System.out.println(playService.drawWithSource(cookieMobile));
-        System.out.println(playService.addDrawScore(cookieMobile));
+        System.out.println(playService.addDrawScoreWithSource(cookieMobile));
 
     }
 }

@@ -18,6 +18,7 @@ public interface PlayService {
     public String loginDo(String mobile, String password);
 
     public double addDrawScore(String mobile);
+    public String addDrawScoreWithSource(String cookieMobile);
 
     public boolean isLogined(String mobile);
 

@@ -53,10 +53,14 @@ public class PlayServiceImpl implements PlayService {
 
         String result = post(mobile, urlGetRemainTimes, null);
 
-        // TODO: 如果解析错误，就认为0次
-        String drawCount = getFromResult(result, "drawCount");
 
-        return Integer.parseInt(drawCount);
+        try {
+            String drawCount = getFromResult(result, "drawCount");
+            return Integer.parseInt(drawCount);
+        } catch (Exception e) {
+            logger.info(mobile + " getRemainTimes 出错, 返回信息: " + "(" + result + ")");
+            return 0; //  如果解析错误，就认为0次
+        }
     }
 
     /**
@@ -80,28 +84,6 @@ public class PlayServiceImpl implements PlayService {
         return s;
     }
 
-    /**
-     * 通过手机号登录
-     *
-     * @return 如果非山东移动号码，返回空
-     */
-   /* public String loginDo(String mobile) {
-        String resultJson = getPassword(mobile);
-
-        JSONObject jsonObject = JsonUtils.stringToJson(resultJson);
-
-        // 非山东移动登录, 返回空
-        if ( !jsonObject.getString("status").equals("ok") ) {
-            return null;
-        }
-
-        String password = getFromResult(resultJson, "password");
-
-        System.out.println("获得动态密码:" + password);
-
-        String result = loginDo(mobile, password);
-        return result;
-    }*/
 
 
     /**
@@ -119,14 +101,22 @@ public class PlayServiceImpl implements PlayService {
         return value;
     }
 
+    /**
+     * 摇奖，返回 json 数据
+     * @return json 数据
+     */
+    public String drawWithSource(String cookieMobile) {
+        String urlDrawPath = "http://shake.sd.chinamobile.com/shake?method=draw&r=" + Math.random();
+        String json = post(cookieMobile, urlDrawPath, null);
+        return json;
+    }
 
     /**
      * 进行摇奖
      * @return 获得的金币数量
      */
-    public String draw(String mobile) {
-        String urlDrawPath = "http://shake.sd.chinamobile.com/shake?method=draw&r=" + Math.random();
-        String json = post(mobile, urlDrawPath, null);
+    public String draw(String cookieMobile) {
+        String json = drawWithSource(cookieMobile);
 
         String winName = getFromResult(json, "winName");
         //TODO: DRAW WIN ID
@@ -392,6 +382,25 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(cookieMobile, urlGetPackage, null);
 
+        return rs;
+    }
+
+    /**
+     * 设置朋友摇奖帐号
+     * 重复使用会覆盖之前设置的朋友帐号
+     * 摇奖完毕后，要再次使用该方法设置自己成的手机号
+     * @param cookieMobile 要使用该服务的手机号
+     * @param friendMobile 朋友的手机号
+     * @return 流量汇返回值
+     */
+    public String setDrawMobile(String cookieMobile, String friendMobile) {
+        String urlSetDrawMobile = "http://shake.sd.chinamobile.com/shake?method=setDrawMobile&r=" + Math.random();
+
+        // 设置朋友帐号参数
+        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("drawMobile", friendMobile));
+
+        String rs = post(cookieMobile, urlSetDrawMobile, params);
         return rs;
     }
 

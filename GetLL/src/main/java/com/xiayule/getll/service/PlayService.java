@@ -17,8 +17,6 @@ public interface PlayService {
      */
     public String loginDo(String mobile, String password);
 
-    public String draw(String mobile);
-
     public double addDrawScore(String mobile);
 
     public boolean isLogined(String mobile);
@@ -27,6 +25,18 @@ public interface PlayService {
     public String get(String mobile, String url);
 
     public JSONObject queryScore(String mobile);
+
+    /**
+     * 摇奖，返回 json 数据
+     * @return json 数据
+     */
+    public String drawWithSource(String cookieMobile);
+
+    /**
+     * 进行摇奖
+     * @return 获得的金币数量
+     */
+    public String draw(String cookieMobile);
 
     /**
      * 获取积分兑换列表请求路径
@@ -106,4 +116,14 @@ public interface PlayService {
     public String getPackage(String cookieMobile);
 
     public String loadLoginMobile(String mobile);
+
+    /**
+     * 设置朋友摇奖帐号
+     * 重复使用会覆盖之前设置的朋友帐号
+     * 摇奖完毕后，要再次使用该方法设置自己成的手机号
+     * @param cookieMobile 要使用该服务的手机号
+     * @param friendMobile 朋友的手机号
+     * @return 流量汇返回值
+     */
+    public String setDrawMobile(String cookieMobile, String friendMobile);
 }

@@ -19,6 +19,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    
     <!-- 会导致 struts 中的 defaultAciton 不能用 -->
     <welcome-file-list>
         <welcome-file>home!home.action</welcome-file>

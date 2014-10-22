@@ -27,7 +27,7 @@ public class Test {
 
         //todo: addDrawScore 是可以的
         //todo: 但是 load 和draw 不可以
-
+        //todo: 浏览器中的 cookie 设置都是正确的
         System.out.println(playService.addDrawScoreWithSource(cookieMobile));
 
         try {

@@ -44,7 +44,7 @@
                         <li>3. 使用支付宝直接支付至 18369905136</li>
                     </ul>
                     </p>
-                    <p>只要您的赞助 > 0, 就是对我们的理解与支持，我们会利用好您赞助的每一分钱</p>
+                    <p>只要您的赞助 > 0, 就是对我们的理解与支持</p>
                     <p>谢谢</p>
                 </div>
 
@@ -55,8 +55,27 @@
                 </div>
             </div>
         </div>
-    </div>
 
+        <div class="col-xs-12">
+            <table class="col-xs-12" style="text-align: center">
+                <caption><h3>赞助名单</h3></caption>
+
+                <tr>
+                    <th style="text-align: center">姓名</th>
+                    <th style="text-align: center">金额(元)</th>
+                </tr>
+
+                <tr>
+                    <td>李敏成</td>
+                    <td>1.00</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-xs-12" style="height: 200px">
+
+        </div>
+    </div>
 </div>
 
 

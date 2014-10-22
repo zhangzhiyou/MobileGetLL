@@ -63,6 +63,7 @@
                 <li><a href="javascript:;" id="bt_zhuanzeng" onclick="locationPage('/transferGifts.jsp')">转赠</a></li>
                 <li><a href="#" id="bt_mingxi" onclick="locationPage('/scoreDetails.jsp')">流量币明细</a></li>
                 <li><a href="#" id="bt_comment" onclick="locationPage('/comment.jsp')">留言</a></li>
+                <li><a href="#" id="bt_comment" onclick="locationPage('/donate.jsp')">赞助</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

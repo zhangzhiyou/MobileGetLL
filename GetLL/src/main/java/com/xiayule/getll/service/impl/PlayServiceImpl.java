@@ -272,7 +272,7 @@ public class PlayServiceImpl implements PlayService {
         if (cookieService.isExist(mobile)) {
             CookieStore cookieStore = cookieService.getCookieStore(mobile);
 
-/*            CookieStore cookieStore1 = new BasicCookieStore();
+            /*CookieStore cookieStore1 = new BasicCookieStore();
             for (Cookie cookie : cookieStore.getCookies()) {
                 System.out.println(cookie);
 
@@ -283,6 +283,7 @@ public class PlayServiceImpl implements PlayService {
                     cookieStore1.addCookie(cookie);
                 }
             }*/
+
             httpService.setCookieStore(cookieStore);
         }
     }

@@ -74,3 +74,11 @@ html, body {
     line-height: 1.4;
     text-align: center;
 }
+
+.rednum{color:#c31516;}
+
+.pos_right {float: right;}
+
+.grayfont{font-size:0.8em; color:#898989; padding-left:30px;}
+
+.smallfont{font-size:0.8em;}

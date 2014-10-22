@@ -9,17 +9,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="css/css.min.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <link href="css/my.min.css" rel="stylesheet" type="text/css">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css">
+
+    <!-- 响应式设计 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="流量,移动,流量汇,流量汇管家,赚取流量,免费流量,摇流量,兑换,流量币,转赠,短信">
+    <meta name="description" content="流量汇,流量汇管家,免费赚取流量,兑换流量,兑换短信.">
 
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
 
-    <meta name="keywords" content="流量,移动,流量汇,流量汇管家,赚取流量,免费流量,摇流量,兑换,流量币,转赠,短信">
-    <meta name="description" content="流量汇,流量汇管家,免费赚取流量,兑换流量,兑换短信.">
-
-    <title>领取</title>
+    <title>领取-流量汇管家</title>
 
     <style>
         .pwd {font-size:12px;}
@@ -38,47 +43,108 @@
 </head>
 <body>
 
-<div class="jia_layout">
-    <div id="myaccount_mingxi_shouzhi">
-        <div class="jia_nav2">
-            <a href="/"><div class="jia_back"><img src="/image/go_back.png" width="21" height="19" align="absmiddle" /> 返回</div></a>
+<jsp:include page="nav_simple.html"/>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-xs-12">
+            <table id="lingquList" class="col-xs-12 table table-striped table-bordered table-condensed table-hover">
+                <caption>
+                    <h4>未领取流量币：<span class="rednum" id="totalCredit">?</span></h4>
+                </caption>
+
+                <tr>
+                    <th>
+                        <label for="checkbox-a">
+                            <input name="sample-checkbox-a"  id="checkbox-a" value="a" type="checkbox" checked="false"/>
+                            全选
+                        </label>
+                    </th>
+
+                    <th>
+                        <div class="pos_right">合计：<span class="rednum" id="totalCredit_">?</span>流量币</div>
+                    </th>
+                </tr>
+
+<%--                <tr>
+                    <td>
+                        <label class="label_check" for="checkbox-1">
+                            <input name="sample-checkbox-01" id="checkbox-1" value="1" type="checkbox"  checked="false" />
+                            朋友转赠 <font class="smallfont">（18369905506）</font>
+                            <div class="grayfont">2014-10-22 20:22</div>
+                        </label>
+
+                    </td>
+
+                    <td><div class="pos_right"><span class="rednum">1.0</span>流量币</div></td>
+                </tr>--%>
+            </table>
+
+
+            <%--<div id="lingquList" ></div>--%>
+
+            <button style="width: 100%; margin-top: 50px" class="col-xs-12 btn btn-primary hideme" id="receiceDiv" onclick="receiveFun();">
+                领取
+            </button>
+
+
+            <div class="col-xs-12" style="margin-top: 40px">
+                <p>
+                    *朋友为您摇奖获赠的流量币，超过3天未领取将失效；朋友转赠的流量币，超过3天未领取将退回；请亲们及时来领取^_^
+                </p>
+            </div>
         </div>
-    </div>
-    <!--列表-->
-    <div class="lingqu_head">
-        未领取流量币：<span class="rednum" id="totalCredit">?</span>
+
+
+
+
+<%--        <div height="1143"><br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/></div>
+
+        <div style="height:55px;"></div>--%>
     </div>
 
-    <div class="lingqu_list" style="background-color:#efefef;">
-        <div>
-            <label class="label_check" for="checkbox-a">
-                <input name="sample-checkbox-a"  id="checkbox-a" value="a" type="checkbox" checked="false" />
-                全选
 
-                <div class="but_r">合计：<span class="rednum" id="totalCredit_">?</span>流量币</div>
-            </label>
-        </div>
-    </div>
-    <div id = "lingquList" ></div>
-    <div class="lingqu_list hide" id="receiceDiv">
-        <div class="zhuanzeng_but" onclick="receiveFun();"><a href="#">领取<a></div>
-    </div>
+<%--
+    &lt;%&ndash;条目&ndash;%&gt;
     <div class="lingqu_list">
-        <div class="text">
-            *朋友为您摇奖获赠的流量币，超过3天未领取将失效；朋友转赠的流量币，超过3天未领取将退回；请亲们及时来领取^_^
+        <div>
+            <label class="label_check" for="checkbox-1">
+                <input name="sample-checkbox-01" id="checkbox-1" value="1" type="checkbox"  checked="false" />
+                朋友转赠 <font class="smallfont">（18369905506）</font>
+                <div class="but_r"><span class="rednum">1.0</span>流量币</div>
+            </label>
+            <div class="grayfont">2014-10-22 20:22</div>
         </div>
     </div>
-    <div height="1143"><br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/></div>
+--%>
 
-    <div style="height:55px;"></div>
+    <%--                <tr>
+                    <td>
+                        <label class="label_check" for="checkbox-1">
+                            <input name="sample-checkbox-01" id="checkbox-1" value="1" type="checkbox"  checked="false" />
+                            朋友转赠 <font class="smallfont">（18369905506）</font>
+                            <div class="grayfont">2014-10-22 20:22</div>
+                        </label>
+
+                    </td>
+
+                    <td><div class="pos_right"><span class="rednum">1.0</span>流量币</div></td>
+                </tr>--%>
+
 </div>
+
 <div id="mask" class="mask hide"></div>
 
-<div id="buying_tip" class="hide" style="z-index: 101;color:#fff;text-align:center;position: absolute;">我们正在努力处理中，请稍候！</div>
+<div id="buying_tip" class="hideme" style="z-index: 101;color:#fff;text-align:center;position: absolute;">我们正在努力处理中，请稍候！</div>
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="js/tip.min.js"></script>
 <script type="text/javascript" src="js/eventMan.min.js"></script>
+
+<jsp:include page="foot.html"></jsp:include>
 
 <script>
     var $mask = $("#mask");
@@ -139,14 +205,16 @@
                         for(var i = 0;i<list.length;i++){
                             var obj = list[i];
                             htmls[i] =[
-                                        '<div class="lingqu_list"><div><label class="label_check" for="checkbox-'+obj.handselID+'">',
+                                        '<tr><td><label class="label_check" for="checkbox-'+obj.handselID+'">',
                                         '<input name="sample-checkbox-01" id="checkbox-'+obj.handselID+'" value="'+obj.handselID+'" type="checkbox"  checked="false" />',
                                         obj.typeName+'<font class="smallfont">（'+obj.handselMsisdn+'）</font> ',
-                                        '<div class="but_r"><span class="rednum">'+obj.credit+'</span>流量币</div>',
-                                        '</label><div class="grayfont">'+obj.handselDate+'</div></div></div>'].join('');
+                                        '<div class="grayfont">'+obj.handselDate+'</div></label></td>',
+                                        '<td><div class="pos_right"><span class="rednum">'+obj.credit+'</span>流量币</div></td></tr>'
+                            ].join('');
                         }
+
                         var htmlStr = htmls.join('');
-                        lingquList.html(htmlStr);
+                        lingquList.append(htmlStr);
                         $("#receiceDiv").show();
                         $("input[name='sample-checkbox-01']").click(function(){
                             var checkValue = this.checked;

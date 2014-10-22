@@ -94,16 +94,16 @@
                 <!-- 个人详情 -->
                 <div class="col-xs-12">
                     <div><!--style="text-align:left"-->
-                        帐户余额：<span id="credit">&nbsp;</span><img src="image/mb.png" width="25" height="23">
+                        帐户余额：<span id="credit" class="rednum">&nbsp;</span><img src="image/mb.png" width="25" height="23">
                     </div>
 
                     <div>
-                        今日收益：<span class="yellowfont" id="todayCredit">0.0</span>流量币
+                        今日收益：<span class="yellowfont rednum" id="todayCredit">0.0</span>流量币
                     </div>
 
                     <!--未领取的流量币 -->
                     <div class="hideme" id="receiveDiv">
-                        <span class="yellowfont" id="totalCredit">?</span>流量币未领
+                        <span class="rednum" id="totalCredit">?</span>流量币未领
                         <span class="but_lingqu" onclick="javascript:location.href='/receiveFlowScore.jsp'">领取</span>
                     </div>
 

@@ -39,13 +39,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">流量汇管家</a>
+            <a class="navbar-brand" title="立志做您的流量汇管家" href="/">流量汇管家</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="javascript:;" title="流量不够用了？兑换流量吧" class="dropdown-toggle" data-toggle="dropdown">
                         兑换流量
                         <b class="caret"></b>
                     </a>
@@ -53,21 +53,21 @@
                 </li>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" title="短信不够用了？兑换短信吧" class="dropdown-toggle" data-toggle="dropdown">
                         兑换短信
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" id="convertSmsList"></ul>
                 </li>
 
-                <li><a href="javascript:;" id="bt_zhuanzeng" onclick="locationPage('/transferGifts.jsp')">转赠</a></li>
-                <li><a href="#" id="bt_mingxi" onclick="locationPage('/scoreDetails.jsp')">流量币明细</a></li>
-                <li><a href="#" id="bt_comment" onclick="locationPage('/comment.jsp')">留言</a></li>
-                <li><a href="#" id="bt_comment" onclick="locationPage('/donate.jsp')">赞助</a></li>
+                <li><a href="javascript:;" title="可以将流量币转赠给亲人、好友" id="bt_zhuanzeng" onclick="locationPage('/transferGifts.jsp')">转赠</a></li>
+                <li><a href="#" id="bt_mingxi"  title="90天内的流量币获取消费明细" onclick="locationPage('/scoreDetails.jsp')">流量币明细</a></li>
+                <li><a href="#" id="bt_comment" title="有什么想对我们说的，可以留言哦" onclick="locationPage('/comment.jsp')">留言</a></li>
+                <li><a href="#" id="bt_comment" title="如果我们的服务对您有用，可以请我们喝杯茶" onclick="locationPage('/donate.jsp')">赞助</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" onclick="javascript:logoutSystem();" id="logoutSystem">注销</a></li>
+                <li><a href="#" title="注销登录后，依旧为您赚取流量而努力" onclick="javascript:logoutSystem();" id="logoutSystem">注销</a></li>
             </ul>
         </div>
     </div>
@@ -93,12 +93,14 @@
 
                 <!-- 个人详情 -->
                 <div class="col-xs-12">
-                    <div><!--style="text-align:left"-->
-                        帐户余额：<span id="credit" class="rednum">&nbsp;</span><img src="image/mb.png" width="25" height="23">
+                    <div>
+                        <span style="cursor: help" title="剩余的流量币数量">帐户余额：</span>
+                        <span id="credit" class="rednum">&nbsp;</span><img src="image/mb.png" width="25" height="23">
                     </div>
 
                     <div>
-                        今日收益：<span class="yellowfont rednum" id="todayCredit">0.0</span>流量币
+                        <span style="cursor: help" title="今日获得的收益">今日收益：</span>
+                        <span class="yellowfont rednum" id="todayCredit">0.0</span>流量币
                     </div>
 
                     <!--未领取的流量币 -->
@@ -108,7 +110,8 @@
                     </div>
 
                     <div>
-                        有效期：<span id="leavesDay">&nbsp;</span>
+                        <span style="cursor: help" title="少于30天时，可以点击免费延长至30天">有效期：</span>
+                        <span id="leavesDay">&nbsp;</span>
                     </div>
                 </div>
             </div>
@@ -279,6 +282,9 @@
             bShowHeartBeat:true
         });
 
+        $(function() {
+            $( document ).tooltip();
+        });
     </script>
 
 

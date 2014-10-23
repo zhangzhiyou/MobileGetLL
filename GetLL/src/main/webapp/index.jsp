@@ -281,10 +281,6 @@
             background:'#fff',
             bShowHeartBeat:true
         });
-
-        $(function() {
-            $( document ).tooltip();
-        });
     </script>
 
 

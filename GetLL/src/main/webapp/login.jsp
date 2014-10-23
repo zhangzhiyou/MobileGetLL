@@ -11,7 +11,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="css/css.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/my.min.css" rel="stylesheet" type="text/css">
 
@@ -39,7 +38,7 @@
 <div class="container">
     <!-- 登录框 -->
     <div class="row" >
-        <div class="col-md-offset-3 col-md-6 col-xs-offset-1 col-xs-10">
+        <div class="col-xs-12 col-md-6">
             <div class="form-area">
                 <div class="form-title">
                     <span>登录</span>
@@ -68,6 +67,17 @@
                 <div class="form-group">
                     <button type="button" title="登录, 开启神奇之旅" style="width: 100%" class="btn btn-primary" id="loginDo">登录</button>
                 </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6">
+            <div class="form-area">
+                <div class="form-title"><span>说明:</span></div>
+
+                <div class="text">1、登录即表示使用本站服务</div>
+                <div class="text">2、每日6点准时为您摇奖</div>
+                <div class="text">3、赚得流量币归手机号主所有</div>
+                <div class="text">4、鼠标放在不明白的地方，查看<a href="#" title="帮助说明">帮助</a></div>
             </div>
         </div>
     </div>

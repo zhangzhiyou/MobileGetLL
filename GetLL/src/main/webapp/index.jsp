@@ -282,9 +282,6 @@
             bShowHeartBeat:true
         });
     </script>
-
-
-
 </div>
 
 <jsp:include page="foot.html"></jsp:include>

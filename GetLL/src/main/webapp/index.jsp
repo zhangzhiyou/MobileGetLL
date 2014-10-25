@@ -22,12 +22,11 @@
     <!-- 响应式设计 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>流量汇自动管家</title>
+    <title>流量汇管家</title>
 
     <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
     <link rel="shortcut icon" href="image/icon.png">
 </head>
-
 
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
@@ -61,13 +60,14 @@
                 </li>
 
                 <li><a href="javascript:;" title="可以将流量币转赠给亲人、好友" id="bt_zhuanzeng" onclick="locationPage('/transferGifts.jsp')">转赠</a></li>
-                <li><a href="#" id="bt_mingxi"  title="90天内的流量币获取消费明细" onclick="locationPage('/scoreDetails.jsp')">流量币明细</a></li>
-                <li><a href="#" id="bt_comment" title="有什么想对我们说的，可以留言哦" onclick="locationPage('/comment.jsp')">留言</a></li>
-                <li><a href="#" id="bt_donate" title="如果我们的服务对您有用，可以请我们喝杯茶" onclick="locationPage('/donate.jsp')">赞助</a></li>
+                <li><a href="#" title="90天内的流量币获取消费明细" onclick="locationPage('/scoreDetails.jsp')">流量币明细</a></li>
+                <li><a href="#" title="有什么想对我们说的，可以留言哦" onclick="locationPage('/comment.jsp')">留言</a></li>
+                <li><a href="#" title="如果我们的服务对您有用，可以请我们喝杯茶" onclick="locationPage('/donate.jsp')">赞助</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" title="注销登录后，依旧为您赚取流量而努力" onclick="javascript:logoutSystem();" id="logoutSystem">注销</a></li>
+                <li><a href="#" title="您想知道的，都在这里" onclick="locationPage('/help.jsp')">帮助</a></li>
+                <li><a href="#" title="注销登录后，我们依旧为您赚取流量而努力" onclick="javascript:logoutSystem();" id="logoutSystem">注销</a></li>
             </ul>
         </div>
     </div>

@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    <title></title>
+    <title>搜索-流量汇管家</title>
 </head>
 <body>
 

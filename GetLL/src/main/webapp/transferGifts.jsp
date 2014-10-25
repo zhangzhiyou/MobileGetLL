@@ -24,7 +24,7 @@
     <!-- 响应式设计 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>转赠</title>
+    <title>转赠-流量汇管家</title>
 
     <style type="text/css">
         .mask {

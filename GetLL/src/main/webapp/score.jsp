@@ -24,7 +24,7 @@
     <!-- 响应式设计 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>兑换</title>
+    <title>兑换-流量汇管家</title>
 
     <style>
         .pwd {font-size:12px;}

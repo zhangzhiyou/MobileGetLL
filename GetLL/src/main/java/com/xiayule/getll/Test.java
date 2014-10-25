@@ -23,7 +23,7 @@ public class Test {
         PlayService playService = ctx.getBean("playService", PlayService.class);
 
         String cookieMobile = "18369905136";
-        String friendMobile = "18369905506";
+        String friendMobile = "15069890845";
 
         //todo: addDrawScore 是可以的
         //todo: 但是 load 和draw 不可以
@@ -52,6 +52,13 @@ public class Test {
                     drawCount = Integer.parseInt(strDrawCount);
 
                     System.out.println(cookieMobile + " addDrawScore 返回(" + playService.addDrawScoreWithSource(cookieMobile) + ")");
+
+
+                    try {
+                        Thread.sleep(3000);
+                    } catch (Exception e) {
+
+                    }
                 }
             } else {
                 System.out.println(cookieMobile + " 没有登录, 无法为" + friendMobile + "摇奖");

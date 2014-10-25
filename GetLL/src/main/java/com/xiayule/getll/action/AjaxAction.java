@@ -329,7 +329,7 @@ public class AjaxAction {
     public String shakeNow() {
         final String m = getMobileFromCookie();
 
-//        playService.autoPlay(m);
+//        playService.autoPlayForSelf(m);
 
         // 加入执行队列
         drawRequest.addRequest(m);
@@ -339,7 +339,7 @@ public class AjaxAction {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                playService.autoPlay(m);
+                playService.autoPlayForSelf(m);
             }
         }).start();
 */

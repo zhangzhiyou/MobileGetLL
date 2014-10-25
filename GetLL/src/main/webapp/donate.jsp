@@ -45,6 +45,7 @@
                     </ul>
                     </p>
                     <p>只要您的赞助 > 0, 就是对我们的理解与支持</p>
+                    <p>如果您不想出现在我们的赞助名单，请在在赞助时说明</p>
                     <p>谢谢</p>
                 </div>
 
@@ -63,6 +64,11 @@
                 <tr>
                     <th style="text-align: center">姓名</th>
                     <th style="text-align: center">金额(元)</th>
+                </tr>
+
+                <tr>
+                    <td>**南</td>
+                    <td>100.00</td>
                 </tr>
 
                 <tr>

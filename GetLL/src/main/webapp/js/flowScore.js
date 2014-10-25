@@ -269,11 +269,15 @@ FlowScore.prototype.getFlowScoreTransferGiftsInfo = function (callback) {
 // 流量详情
 FlowScore.prototype.getTotalFlow = function (callback) {
     var lazySeconds = 1;
+
     $.post("/ajax/getPackage.action?r=" + Math.random(), {}, function (data) {
 //            setTimeout(function () {
         if (data.status != "ok") {
+
             showErrorResult(data);
-            return;
+
+            //todo: 为了不影响其它回调函数，注释掉 return
+//            return;
         } else {
             var result = data.result;
             //流量总和展示
@@ -335,8 +339,8 @@ function showErrorResult(data) {
              } else {
              window.location.href = "/portal/app/personalCenter.jsp"
              }*/
-
-            window.location.href = "/"
+            alert(message);
+//            window.location.href = "/"
         } else {
             alert(message);
         }

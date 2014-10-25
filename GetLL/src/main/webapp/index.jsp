@@ -63,7 +63,7 @@
                 <li><a href="javascript:;" title="可以将流量币转赠给亲人、好友" id="bt_zhuanzeng" onclick="locationPage('/transferGifts.jsp')">转赠</a></li>
                 <li><a href="#" id="bt_mingxi"  title="90天内的流量币获取消费明细" onclick="locationPage('/scoreDetails.jsp')">流量币明细</a></li>
                 <li><a href="#" id="bt_comment" title="有什么想对我们说的，可以留言哦" onclick="locationPage('/comment.jsp')">留言</a></li>
-                <li><a href="#" id="bt_comment" title="如果我们的服务对您有用，可以请我们喝杯茶" onclick="locationPage('/donate.jsp')">赞助</a></li>
+                <li><a href="#" id="bt_donate" title="如果我们的服务对您有用，可以请我们喝杯茶" onclick="locationPage('/donate.jsp')">赞助</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

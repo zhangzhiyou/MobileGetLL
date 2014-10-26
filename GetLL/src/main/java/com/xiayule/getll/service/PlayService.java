@@ -82,7 +82,7 @@ public interface PlayService {
      */
     public String exchangePrize(String mobile, String exchangeID, String type, String password);
 
-//    public void autoPlayForSelf(String mobile);
+//    public void autoPlay(String mobile);
 
     /**
      * 转赠

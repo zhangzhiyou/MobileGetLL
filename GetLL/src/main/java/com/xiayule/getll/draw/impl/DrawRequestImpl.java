@@ -32,7 +32,7 @@ public class DrawRequestImpl implements DrawRequest{
 
                         logger.info("获得新的任务: " + mobile);
 
-                        autoPlayJob.autoPlayForSelf(mobile);
+                        autoPlayJob.autoPlay(mobile);
 
                     } catch (Exception e) {
                         logger.info("摇取时，发生了错误");

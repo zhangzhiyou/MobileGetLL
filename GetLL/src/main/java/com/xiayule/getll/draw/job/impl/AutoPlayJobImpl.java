@@ -1,6 +1,6 @@
 package com.xiayule.getll.draw.job.impl;
 
-import com.xiayule.getll.draw.job.AutoPlayService;
+import com.xiayule.getll.draw.job.AutoPlayJob;
 import com.xiayule.getll.service.CreditService;
 import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.utils.JsonUtils;
@@ -11,9 +11,9 @@ import org.apache.logging.log4j.Logger;
 /**
  * Created by tan on 14-9-8.
  */
-public class AutoPlayServiceImpl implements AutoPlayService {
+public class AutoPlayJobImpl implements AutoPlayJob {
 
-    private static Logger logger = LogManager.getLogger(AutoPlayService.class.getName());
+    private static Logger logger = LogManager.getLogger(AutoPlayJob.class.getName());
 
     private PlayService playService;
     private CreditService creditService;

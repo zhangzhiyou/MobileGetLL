@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean name="drawRequest" class="com.xiayule.getll.draw.impl.DrawRequestImpl" lazy-init="false" init-method="init">
-        <property name="autoPlayService" ref="autoPlay"/>
+        <property name="autoPlayJob" ref="autoPlay"/>
     </bean>
 
     <bean name="redisService" class="com.xiayule.getll.service.impl.RedisServiceImpl">
@@ -91,7 +91,7 @@
 
     </bean>
 
-    <bean name="autoPlay" class="com.xiayule.getll.draw.job.impl.AutoPlayServiceImpl">
+    <bean name="autoPlay" class="com.xiayule.getll.draw.job.impl.AutoPlayJobImpl">
         <property name="creditService" ref="creditService"/>
         <property name="playService" ref="playService"/>
     </bean>

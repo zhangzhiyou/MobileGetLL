@@ -1,7 +1,7 @@
 package com.xiayule.getll.draw.impl;
 
 import com.xiayule.getll.draw.DrawRequest;
-import com.xiayule.getll.draw.job.AutoPlayService;
+import com.xiayule.getll.draw.job.AutoPlayJob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +15,7 @@ public class DrawRequestImpl implements DrawRequest{
 
     private LinkedBlockingDeque<String> queue;// 存放手机号的阻塞队列
 
-    private AutoPlayService autoPlayService;
+    private AutoPlayJob autoPlayJob;
 
     public void init() {
         queue = new LinkedBlockingDeque<String>();
@@ -32,7 +32,7 @@ public class DrawRequestImpl implements DrawRequest{
 
                         logger.info("获得新的任务: " + mobile);
 
-                        autoPlayService.autoPlayForSelf(mobile);
+                        autoPlayJob.autoPlayForSelf(mobile);
 
                     } catch (Exception e) {
                         logger.info("摇取时，发生了错误");
@@ -60,7 +60,7 @@ public class DrawRequestImpl implements DrawRequest{
 
     }
 
-    public void setAutoPlayService(AutoPlayService autoPlayService) {
-        this.autoPlayService = autoPlayService;
+    public void setAutoPlayJob(AutoPlayJob autoPlayJob) {
+        this.autoPlayJob = autoPlayJob;
     }
 }

@@ -1,6 +1,6 @@
-package com.xiayule.getll.service.impl;
+package com.xiayule.getll.draw.job.impl;
 
-import com.xiayule.getll.service.AutoPlayService;
+import com.xiayule.getll.draw.job.AutoPlayService;
 import com.xiayule.getll.service.CreditService;
 import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.utils.JsonUtils;

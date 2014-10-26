@@ -91,7 +91,7 @@
 
     </bean>
 
-    <bean name="autoPlay" class="com.xiayule.getll.service.impl.AutoPlayServiceImpl">
+    <bean name="autoPlay" class="com.xiayule.getll.draw.job.impl.AutoPlayServiceImpl">
         <property name="creditService" ref="creditService"/>
         <property name="playService" ref="playService"/>
     </bean>

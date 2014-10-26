@@ -77,7 +77,7 @@
                 <div class="text">1、登录即表示使用本站服务</div>
                 <div class="text">2、每日6点准时为您摇奖</div>
                 <div class="text">3、赚得流量币归手机号主所有</div>
-                <div class="text">4、鼠标放在不明白的地方，查看<a href="#" title="帮助说明">帮助</a></div>
+                <div class="text">4、有不明白的地方查看<a href="#" onclick="locationPage('/help.jsp')" title="帮助说明">帮助</a></div>
             </div>
         </div>
     </div>

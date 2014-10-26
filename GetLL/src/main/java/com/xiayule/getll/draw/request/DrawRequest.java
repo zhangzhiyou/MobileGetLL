@@ -1,4 +1,4 @@
-package com.xiayule.getll.draw;
+package com.xiayule.getll.draw.request;
 
 /**
  * Created by tan on 14-9-8.

@@ -1,8 +1,7 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import com.xiayule.getll.draw.DrawRequest;
+import com.xiayule.getll.draw.request.DrawRequest;
 import com.xiayule.getll.factory.CookieFactory;
 import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.Constants;

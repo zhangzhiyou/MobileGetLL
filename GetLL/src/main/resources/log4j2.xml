@@ -37,7 +37,7 @@
 
     <loggers>
         <!-- 记录每日流量统计 -->
-        <logger name="com.xiayule.getll.service.PlayService" level="info" additivity="false">
+        <logger name="com.xiayule.getll.draw.job.AutoPlayJob" level="info" additivity="false">
             <appender-ref ref="shakeRollingFile"/>
         </logger>
 
@@ -51,9 +51,9 @@
             <appender-ref ref="exchangeRollingFile"/>
         </logger>
 
-        <logger name="com.xiayule.getll.service.impl.PlayServiceImpl" level="info">
+        <!--<logger name="com.xiayule.getll.service.PlayService" level="info">
             <appender-ref ref="systemRollingFile"/>
-        </logger>
+        </logger>-->
 
         <!-- 系统日志 -->
         <root level="info">

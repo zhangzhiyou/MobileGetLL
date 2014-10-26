@@ -4,7 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean name="drawRequest" class="com.xiayule.getll.draw.impl.DrawRequestImpl" lazy-init="false" init-method="init">
+    <bean name="drawRequest" class="com.xiayule.getll.draw.request.impl.DrawRequestImpl" lazy-init="false" init-method="init">
         <property name="autoPlayJob" ref="autoPlay"/>
     </bean>
 

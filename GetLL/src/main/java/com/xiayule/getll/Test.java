@@ -22,7 +22,11 @@ public class Test {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         PlayService playService = ctx.getBean("playService", PlayService.class);
 
-        String cookieMobile = "18369905136";
+        for (int i=0; i<30; i++) {
+            System.out.println(playService.loadLoginMobile("18369905136"));
+        }
+
+        /*String cookieMobile = "18369905136";
         String friendMobile = "15069890845";
 
         //todo: addDrawScore 是可以的
@@ -66,6 +70,6 @@ public class Test {
         } catch (Exception e) {
             // 设置回自己的 手机号
             System.out.println(cookieMobile + " 为朋友要去过程出错: 设置自己的手机号, 返回(" + playService.setDrawMobile(cookieMobile, cookieMobile) + ")");
-        }
+        }*/
     }
 }

@@ -36,25 +36,26 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
         try {
 
             if (playService.isLogined(myMobile)) {
-                logger.info(playService.setDrawMobile(myMobile, friendMobile));
+                logger.info(myMobile + " 为（" + friendMobile + ")摇奖 setDrawMobile返回(" + playService.setDrawMobile(myMobile, friendMobile) + ")");
 
                 // 累加每日奖励, 并接收返回结果
                 double firstShakeGiveCredit = playService.addDrawScore(myMobile);
 
                 // 获取剩余次数
                 int drawCount = playService.getRemainTimes(myMobile);
+                int cnt = 0;
 
                 while (drawCount > 0) {
                     String drawResult = playService.drawWithSource(myMobile);
 
-                    System.out.println(myMobile + " draw 返回(" + drawResult + ")");
+                    logger.info(myMobile + "为(" + friendMobile + ")第(" + ++cnt + ")次摇奖 draw 返回(" + drawResult + ")");
 
                     //todo: 这里有可能出错
                     String strDrawCount = JsonUtils.stringToJson(drawResult).getJSONObject("result").getString("drawCount");
 
                     drawCount = Integer.parseInt(strDrawCount);
 
-                    System.out.println(myMobile + " addDrawScore 返回(" + playService.addDrawScoreWithSource(myMobile) + ")");
+                    logger.info(myMobile + "为(" + friendMobile + ")摇奖 addDrawScore 返回(" + playService.addDrawScoreWithSource(myMobile) + ")");
 
 
                     try {
@@ -68,9 +69,9 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
             }
         } catch (Exception e) {
             // 设置回自己的 手机号
-            logger.info(myMobile + " 为朋友" + friendMobile + "摇取过程出错");
+            logger.info(myMobile + " 为朋友(" + friendMobile + ")摇取过程出错");
         } finally {// 无论是否出错，执行完毕后都要设置回自己的手机号
-            logger.info(myMobile + " 为朋友摇取完毕, 设置自己的手机号, 返回(" + playService.setDrawMobile(myMobile, myMobile) + ")");
+            logger.info(myMobile + " 为朋友(" + friendMobile + ")摇取完毕, 设置自己的手机号, 返回(" + playService.setDrawMobile(myMobile, myMobile) + ")");
         }
     }
 

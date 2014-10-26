@@ -1,6 +1,6 @@
-package com.xiayule.getll.draw.impl;
+package com.xiayule.getll.draw.request.impl;
 
-import com.xiayule.getll.draw.DrawRequest;
+import com.xiayule.getll.draw.request.DrawRequest;
 import com.xiayule.getll.draw.job.AutoPlayJob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

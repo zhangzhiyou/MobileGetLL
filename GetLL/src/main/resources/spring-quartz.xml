@@ -19,10 +19,27 @@
         <property name="drawRequest" ref="drawRequest"/>
     </bean>
 
+
+    <!-- 为朋友摇奖业务对象 -->
+    <bean id="autoPlayForFriendJob" class="com.xiayule.getll.draw.job.impl.AutoPlayForFriendJob">
+        <property name="playService" ref="playService"/>
+        <property name="creditService" ref="creditService"/>
+    </bean>
+
+    <bean id="forFriendJobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForFriendTaskImpl">
+        <property name="subscriberService" ref="subscribeService"/>
+        <property name="autoPlayJob" ref="autoPlayForFriendJob"/>
+    </bean>
+
     <!-- 调度业务 -->
     <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="jobTask" />
         <property name="targetMethod" value="doJob" />
+    </bean>
+
+    <bean id="playForFriendJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="forFriendJobTask"/>
+        <property name="targetMethod" value="doJob"/>
     </bean>
 
     <!-- 增加调度触发器 -->
@@ -37,7 +54,13 @@
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="jobDetail" />
         <!-- 每天6点执行任务 -->
-        <property name="cronExpression" value="0 0 6 * * ?" />
+        <property name="cronExpression" value="0 0 11 * * ?" />
+    </bean>
+    
+    <bean id="forFriendCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="playForFriendJobDetail"/>
+        <!-- 每天下午6 点执行任务 -->
+        <property name="cronExpression" value="0 0 18 * * ?"/>
     </bean>
 
     <!-- 设置调度 -->
@@ -45,6 +68,7 @@
         <property name="triggers">
             <list>
                 <ref bean="cronTrigger" />
+                <ref bean="forFriendCronTrigger"/>
             </list>
         </property>
         <property name="taskExecutor" ref="executor" />

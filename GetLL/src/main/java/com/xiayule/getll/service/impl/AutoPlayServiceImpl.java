@@ -18,7 +18,6 @@ public class AutoPlayServiceImpl implements AutoPlayService {
     private PlayService playService;
     private CreditService creditService;
 
-
     @Override
     public void autoPlayForSelf(String mobile) {
         logger.info("JobTask:" + "执行任务:" + "订阅者:" + mobile);

@@ -24,6 +24,9 @@ public class PlayServiceImpl implements PlayService {
     // 输出到系统日志
     private static Logger logger = LogManager.getLogger(PlayService.class.getName());
 
+    // 兑换日志
+    private static Logger exchangeLogger = LogManager.getLogger("com.xiayule.exchange");
+
     private HttpService httpService;
     private CookieService cookieService;
 
@@ -238,6 +241,8 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(cookieMobile, urlTransferGiftsReceive, params);
 
+        exchangeLogger.info(cookieMobile + ": 领取赠送的流量币 id:(" + paramId + ") " + " 返回信息:(" + rs + ")");
+
         return rs;
     }
 
@@ -317,6 +322,8 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(realMobile, urlGetOtherPassword, params);
 
+        exchangeLogger.info(realMobile + ": 获取动态密码, 返回信息:(" + rs + ")");
+
         return rs;
     }
 
@@ -330,6 +337,8 @@ public class PlayServiceImpl implements PlayService {
         params.add(new BasicNameValuePair("transferGifts", transferGifts));
 
         String rs = post(realMobile, urlTransferGifts, params);
+
+        exchangeLogger.info(realMobile + ": 转赠给 " + paramMobile + " smsContext:" + smsContext + " 转赠金额: " + transferGifts + " 返回信息:(" + rs + ")");
 
         return rs;
     }
@@ -365,6 +374,9 @@ public class PlayServiceImpl implements PlayService {
         params.add(new BasicNameValuePair("password", password));
 
         String rs = post(mobile, urlExchangePrize, params);
+
+        exchangeLogger.info(mobile + ": 使用动态(" + password + ") 兑换id(" + exchangeID + ") 兑换type(" + type + ") 返回信息:(" + rs + ")");
+
         return rs;
     }
 

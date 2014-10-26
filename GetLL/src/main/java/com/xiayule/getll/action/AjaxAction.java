@@ -21,7 +21,7 @@ import java.util.*;
 public class AjaxAction {
     private static Logger logger = LogManager.getLogger(PlayService.class.getName());
     // 兑换日志
-    private static Logger exchangeLogger = LogManager.getLogger("com.xiayule.exchange");
+//    private static Logger exchangeLogger = LogManager.getLogger("com.xiayule.exchange");
 
     private DrawRequest drawRequest;
 
@@ -481,7 +481,7 @@ public class AjaxAction {
 
         String rs = playService.getOtherPassword(realMobile, paramMobile, t, paramIsLogin);
 
-        exchangeLogger.info(realMobile + ": 获取动态密码, 返回信息:(" + rs + ")");
+//        exchangeLogger.info(realMobile + ": 获取动态密码, 返回信息:(" + rs + ")");
 
         jsonObj = JsonUtils.stringToJson(rs);
 
@@ -505,7 +505,7 @@ public class AjaxAction {
 
         String strJson = playService.exchangePrize(m, paramExchangeID, paramType, paramPassword);
 
-        exchangeLogger.info(m + ": 兑换id(" + paramExchangeID + ")" + " 兑换type(" + paramType + ")" + " 返回信息:(" + strJson + ")");
+//        exchangeLogger.info(m + ": 兑换id(" + paramExchangeID + ")" + " 兑换type(" + paramType + ")" + " 返回信息:(" + strJson + ")");
 
 
         jsonObj = JsonUtils.stringToJson(strJson);
@@ -528,7 +528,7 @@ public class AjaxAction {
 
         jsonObj = JsonUtils.stringToJson(strJson);
 
-        exchangeLogger.info(realMobile + ": 转赠给 " + paramMobile + " smsContext:" + paramSmsContext + " 转赠金额: " + paramTransferGifts + " 返回信息:(" + strJson + ")");
+//        exchangeLogger.info(realMobile + ": 转赠给 " + paramMobile + " smsContext:" + paramSmsContext + " 转赠金额: " + paramTransferGifts + " 返回信息:(" + strJson + ")");
 
         cleanParams();
 
@@ -576,7 +576,7 @@ public class AjaxAction {
 
         String strJson = playService.transferGiftsReceive(m, paramId);
 
-        exchangeLogger.info(m + ": 领取赠送的流量币 id:(" + id + ") " + " 返回信息:(" + strJson + ")");
+//        exchangeLogger.info(m + ": 领取赠送的流量币 id:(" + id + ") " + " 返回信息:(" + strJson + ")");
 
         jsonObj = JsonUtils.stringToJson(strJson);
 

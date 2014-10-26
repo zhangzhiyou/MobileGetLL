@@ -20,7 +20,7 @@
         <!-- 参数名为contextConfigLocation-->
         <param-name>contextConfigLocation</param-name>
         <!--多个配置文件之间以，隔开-->
-        <param-value>/WEB-INF/applicationContext.xml, classpath*:spring-quartz.xml</param-value>
+        <param-value>/WEB-INF/applicationContext.xml<!--, classpath*:spring-quartz.xml--></param-value>
     </context-param>
 
     <!-- 采用listener创建ApplicationContext 实例-->

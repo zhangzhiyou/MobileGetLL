@@ -19,6 +19,13 @@ public class JobTaskImpl implements JobTask {
 //    private PlayService playService;
     private SubscriberService subscriberService;
 
+    /**
+     * quartz 本身就会将任务开启多次,
+     * 而　spring　配置文件又会加载 ２次
+     * 因此会导致多次执行
+     * 增加下面配置只能使得 quartz 任务开启一次
+     * 不能保证　多次被加载任务开启多次
+     */
     private static boolean isRunning = false;
 
     public void doJob() {

@@ -23,21 +23,40 @@ public class JobForFriendTaskImpl implements JobTask {
      */
     private AutoPlayJob autoPlayJob;
 
+    /**
+     * quartz 本身就会将任务开启多次,
+     * 而　spring　配置文件又会加载 ２次
+     * 因此会导致多次执行
+     * 增加下面配置只能使得 quartz 任务开启一次
+     * 不能保证　多次被加载任务开启多次
+     */
+    private static boolean isRunning = false;
+
     @Override
     public void doJob() {
-        logger.info("开始为朋友摇奖");
+        logger.info("JobForFriendTaskImpl:开始为朋友摇奖");
 
-        List<String> subs = subscriberService.getAllSubscriber();
+        if (!isRunning) {
 
-        int cnt = 0;
+            isRunning = true;
 
-        for (String sub : subs) {
-            cnt++;
+            List<String> subs = subscriberService.getAllSubscriber();
 
-            autoPlayJob.autoPlay(sub);
+            int cnt = 0;
+
+            for (String sub : subs) {
+                cnt++;
+
+                autoPlayJob.autoPlay(sub);
+            }
+
+            logger.info("JobForFriendTaskImpl:" + "将 " + cnt + " 个任务加入队列");
+
+            isRunning = false;
+
+        } else {
+            logger.info("JobForFriendTaskImpl:" + "任务已经开启，无需再开启");
         }
-
-        logger.info("JobTask:" + "将 " + cnt + " 个任务加入队列");
     }
 
     public SubscriberService getSubscriberService() {

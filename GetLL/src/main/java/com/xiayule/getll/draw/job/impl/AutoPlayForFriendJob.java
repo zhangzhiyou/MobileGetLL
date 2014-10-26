@@ -38,11 +38,18 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
             if (playService.isLogined(myMobile)) {
                 logger.info(myMobile + " 为（" + friendMobile + ")摇奖 setDrawMobile返回(" + playService.setDrawMobile(myMobile, friendMobile) + ")");
 
+                Thread.sleep(3000);
+
                 // 累加每日奖励, 并接收返回结果
                 double firstShakeGiveCredit = playService.addDrawScore(myMobile);
 
+                Thread.sleep(3000);
+
                 // 获取剩余次数
                 int drawCount = playService.getRemainTimes(myMobile);
+
+                Thread.sleep(3000);
+
                 int cnt = 0;
 
                 while (drawCount > 0) {

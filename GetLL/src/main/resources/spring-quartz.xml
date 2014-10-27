@@ -71,7 +71,7 @@
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="jobDetail" />
         <!-- 每天6点执行任务 -->
-        <property name="cronExpression" value="0 0 11 * * ?" />
+        <property name="cronExpression" value="0 0 6 * * ?" />
     </bean>
     
     <bean id="forFriendCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">

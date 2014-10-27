@@ -91,13 +91,13 @@
 
     </bean>
 
-    <bean name="autoPlay" class="com.xiayule.getll.draw.job.impl.AutoPlayJobImpl">
+    <bean name="autoPlay" class="com.xiayule.getll.draw.job.impl.AutoPlayJobImpl" scope="prototype">
         <property name="creditService" ref="creditService"/>
         <property name="playService" ref="playService"/>
     </bean>
 
     <!--todo: 这个是需要优化的， drawRequest 传的参数可以是 autoPlay 或者是  autoPlayForFriend, 而不是 mobile -->
-    <bean name="autoPlayForFriend" class="com.xiayule.getll.draw.job.impl.AutoPlayForFriendJob">
+    <bean name="autoPlayForFriend" class="com.xiayule.getll.draw.job.impl.AutoPlayForFriendJob" scope="prototype">
         <property name="creditService" ref="creditService"/>
         <property name="playService" ref="playService"/>
     </bean>

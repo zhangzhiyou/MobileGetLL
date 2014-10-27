@@ -216,7 +216,7 @@ EventMan.prototype.pwdInterval2 = function(seconds,type) {
 EventMan.prototype.checkLogin = function(loginCallback, notLoginCallBack) {
     var that = this;
 
-    $.getJSON("/ajax/loadLoginedMobile.action?r=" + Math.random(), {}, function(data) {
+    $.getJSON("/ajax/loadLoginedMobile.action?r=" + new Date().getTime(), {}, function(data) {
         if (data.status != "ok") {
             //todo: 登录失败跳转到 login?
             alert("登录失败");

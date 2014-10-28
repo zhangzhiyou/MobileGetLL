@@ -47,7 +47,11 @@ public class JobForFriendTaskImpl implements JobTask {
             for (String sub : subs) {
                 cnt++;
 
-                autoPlayJob.autoPlay(sub);
+                try {
+                    autoPlayJob.autoPlay(sub);
+                } catch (Exception e) {
+                    logger.info("JobForFriendTaskImpl: 为(" + sub + ")朋友摇奖发生错误");
+                }
             }
 
             logger.info("JobForFriendTaskImpl:" + "将 " + cnt + " 个任务加入队列");

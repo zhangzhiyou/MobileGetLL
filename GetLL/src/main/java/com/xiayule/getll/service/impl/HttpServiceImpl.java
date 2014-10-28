@@ -24,10 +24,10 @@ import java.util.List;
  * Http 的 post 和 get，能够操作 cookie
  */
 public class HttpServiceImpl implements HttpService {
-    private static DefaultHttpClient defaultHttpClient;
-    private static CookieStore cookieStore;
+    private DefaultHttpClient defaultHttpClient;
+    private CookieStore cookieStore;
 
-    private static DefaultHttpClient getDefaultHttpClient() {
+    private DefaultHttpClient getDefaultHttpClient() {
         if (defaultHttpClient == null) {
             defaultHttpClient = new DefaultHttpClient();
 

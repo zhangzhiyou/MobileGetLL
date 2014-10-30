@@ -72,12 +72,12 @@
 
         <div class="col-xs-12 col-md-6">
             <div class="form-area">
-                <div class="form-title"><span>说明:</span></div>
-
-                <div class="text">1、登录即表示使用本站服务</div>
-                <div class="text">2、每日6点准时为您摇奖</div>
-                <div class="text">3、赚得流量币归手机号主所有</div>
-                <div class="text">4、有不明白的地方查看<a href="#" onclick="locationPage('/help.jsp')" title="帮助说明">帮助</a></div>
+                <div class="form-title"><span>本站功能:</span></div>
+                <ol>
+                    <li>每日凌晨6点,为您进行10次摇奖</li>
+                    <li>每日18点,使用本站手机号,为您进行5次摇奖</li>
+                    <li>登录本站可以兑换、转赠、领取流量币</li>
+                </ol>
             </div>
         </div>
     </div>

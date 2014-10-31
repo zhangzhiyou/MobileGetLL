@@ -23,7 +23,7 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
      */
     public void autoPlay(String friendMobile) {
 
-        final String myMobile = "18369905136";
+        final String myMobile = "15069890845";
 
         if (myMobile == friendMobile) return;
 

@@ -18,10 +18,8 @@
 
     <!-- 响应式设计 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%--
     <meta name="keywords" content="流量,移动,流量汇,流量汇管家,赚取流量,免费流量,摇流量,兑换,流量币,转赠,短信">
     <meta name="description" content="流量汇,流量汇管家,免费赚取流量,兑换流量,兑换短信.">
---%>
 
     <title>设置-流量汇管家</title>
 
@@ -31,28 +29,29 @@
 
 <body>
 
-<%--<jsp:include page="nav_simple.html"/>--%>
+<jsp:include page="nav_simple.html"/>
 
 <div class="container">
-12
 
-    <input class="checkbox" type="checkbox" checked data-toggle="switch" id="custom-switch-01" />
+    朋友为我摇奖时通知我: <input class="checkbox" type="checkbox" data-toggle="switch" id="fdShakeNotify" />
+
 
 </div>
 
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/flat-ui.min.js"></script>
-<%--
-<script type="text/javascript" src="js/eventMan.min.js"></script>
-<script type="text/javascript" src="js/common.min.js"></script>--%>
+<script type="text/javascript" src="js/application.min.js"></script>
 
-<%--<script>
+<script type="text/javascript" src="js/eventMan.min.js"></script>
+<script type="text/javascript" src="js/common.min.js"></script>
+
+<script>
     // 登录检查
     eventMan.checkLogin(function() {
         if(eventMan.isLogin()) {
             // 显示个人短信提醒设置
-            loadSmsSystemSet();
+//            loadSmsSystemSet();
         }
     });
 
@@ -65,7 +64,6 @@
                 alert(data.message);
             }else{
                 var result = data.result;
-
 
                 /*流量汇各类活动提醒状态
 
@@ -130,10 +128,10 @@
     }
 
 
-</script>--%>
+</script>
 
 
-<%--<jsp:include page="foot.html"/>--%>
+<jsp:include page="foot.html"/>
 
 </body>
 </html>

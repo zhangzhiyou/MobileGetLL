@@ -37,10 +37,10 @@
 <div class="container">
     <!-- 登录框 -->
     <div class="row" >
-        <div class="col-xs-offset-3 col-xs-6">
+        <div class="col-md-offset-2 col-md-8 col-xs-12">
             <div class="alert alert-danger" role="alert">
-                <span class="fui-volume-24"></span> 紧急通知:
-                <a href="http://shake.sd.chinamobile.com/" target="_blank">流量汇官方</a>最近有些不稳定，可能会导致登录失败
+                <span class="fui-volume"></span> 紧急通知:
+                <a href="http://shake.sd.chinamobile.com/" target="_blank">流量汇官方</a>最近有些不稳定，可能会导致登录失败, 请见谅
             </div>
         </div>
 
@@ -90,8 +90,9 @@
 
 
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-
     <script type="text/javascript" src="js/flat-ui.min.js"></script>
+    <script type="text/javascript" src="js/application.min.js"></script>
+
 
     <script type="text/javascript" src="js/eventMan.min.js"></script>
     <script type="text/javascript" src="js/common.min.js"></script>

@@ -423,6 +423,33 @@ public class PlayServiceImpl implements PlayService {
         return rs;
     }
 
+    /**
+     * 流量汇各类提醒状态
+     * @return
+     */
+    public String smsNoticeSetQuery(String cookieMobile) {
+        String urlSmsNoticeSetQuery = "http://shake.sd.chinamobile.com/systemSet?method=smsNoticeSetQuery";
+
+        String rs = post(cookieMobile, urlSmsNoticeSetQuery, null);
+
+        return rs;
+    }
+
+    /**
+     * 设置流量汇提醒
+     * @return
+     */
+    public String smsNoticeSet(String cookieMobile, String type, String value) {
+        String urlSmsNoticeSet = "http://shake.sd.chinamobile.com/systemSet?method=smsNoticeSet";
+        // 设置提醒参数
+        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("type", type));
+        params.add(new BasicNameValuePair("value", value));
+
+        String rs = post(cookieMobile, urlSmsNoticeSet, params);
+        return rs;
+    }
+
     // set and get methods
 
 //    public void setMobile(String mobile) {
@@ -436,6 +463,7 @@ public class PlayServiceImpl implements PlayService {
     public void setHttpService(HttpService httpService) {
         this.httpService = httpService;
     }
+
 
 //    public void setCreditLogService(CreditLogService creditLogService) {
 //        this.creditLogService = creditLogService;

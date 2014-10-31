@@ -127,4 +127,17 @@ public interface PlayService {
      * @return 流量汇返回值
      */
     public String setDrawMobile(String cookieMobile, String friendMobile);
+
+    /**
+     * 设置流量汇提醒
+     * @return
+     */
+    public String smsNoticeSet(String cookieMobile, String type, String value);
+
+
+    /**
+     * 流量汇各类提醒状态
+     * @return
+     */
+    public String smsNoticeSetQuery(String cookieMobile);
 }

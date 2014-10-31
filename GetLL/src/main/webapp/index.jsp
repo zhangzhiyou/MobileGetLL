@@ -246,7 +246,6 @@
 
     <%--<script type="text/javascript" src="js/jquery.min.js"></script>--%>
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="js/eventMan.min.js"></script>
@@ -284,7 +283,7 @@
         });
 
         <!-- 显示时钟 -->
-        $("#clock").MyDigitClock({
+        /*$("#clock").MyDigitClock({
             fontSize:40,
             fontFamily:"Century gothic",
             fontColor: "#56ba98",
@@ -292,7 +291,7 @@
             bAmPm:false,
             background:'#fff',
             bShowHeartBeat:true
-        });
+        });*/
     </script>
 </div>
 

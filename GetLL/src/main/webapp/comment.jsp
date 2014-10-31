@@ -36,9 +36,9 @@
     <div class="row">
         <div class="col-xs-12">
             <!-- 留言模块-->
-            <div id="duoshuoContent">
+            <div>
                 <!-- 多说评论框 start -->
-                <div class="ds-thread" id="duoshuoContent" data-thread-key="index" data-url="http://xiayule.net"></div>
+                <div class="ds-thread" data-thread-key="index" data-url="http://xiayule.net"></div>
 
                 <!-- 多说评论框 end -->
                 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->

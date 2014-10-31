@@ -49,6 +49,7 @@ public class AjaxAction {
     private String queryType;
     private String status;
     private String id;
+    private String value;
 
 //    private String registerCode;
 
@@ -597,6 +598,34 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
+    public String smsNoticeSetQuery() {
+        String m = getMobileFromCookie();
+
+        String strJson = playService.smsNoticeSetQuery(m);
+
+        jsonObj = JsonUtils.stringToJson(strJson);
+
+        cleanParams();
+
+        return Action.SUCCESS;
+    }
+
+    public String smsNoticeSet() {
+        String m = getMobileFromCookie();
+
+        String paramType = getType();
+
+        String paramValue = getValue();
+
+        String strJson = playService.smsNoticeSet(m, paramType, paramValue);
+
+        jsonObj = JsonUtils.stringToJson(strJson);
+
+        cleanParams();
+
+        return Action.SUCCESS;
+    }
+
     // set and get methods
 
 
@@ -758,5 +787,13 @@ public class AjaxAction {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

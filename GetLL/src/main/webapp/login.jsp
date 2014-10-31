@@ -34,10 +34,16 @@
 
 <jsp:include page="nav_simple.html"/>
 
-
 <div class="container">
     <!-- 登录框 -->
     <div class="row" >
+        <div class="col-xs-offset-3 col-xs-6">
+            <div class="alert alert-danger" role="alert">
+                <span class="fui-volume-24"></span> 紧急通知:
+                <a href="http://shake.sd.chinamobile.com/" target="_blank">流量汇官方</a>最近有些不稳定，可能会导致登录失败
+            </div>
+        </div>
+
         <div class="col-xs-12 col-md-6">
             <div class="form-area">
                 <div class="form-title">
@@ -85,7 +91,7 @@
 
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/flat-ui.min.js"></script>
 
     <script type="text/javascript" src="js/eventMan.min.js"></script>
     <script type="text/javascript" src="js/common.min.js"></script>

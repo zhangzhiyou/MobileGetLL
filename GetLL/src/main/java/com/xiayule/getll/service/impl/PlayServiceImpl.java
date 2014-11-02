@@ -35,15 +35,13 @@ public class PlayServiceImpl implements PlayService {
      * @return
      */
     public String getPassword(String mobile) {
-        String urlGetPassword = "http://shake.sd.chinamobile.com/shake?method=getPassword&r=";
-
-        urlGetPassword += Math.random();
+        String urlGetPassword = "http://shake.sd.chinamobile.com/shake?method=getPassword&r="+Math.random();
 
         List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
 
         params.add(new BasicNameValuePair("mobile", mobile));
 
-        String result = httpService.post(urlGetPassword, params);
+        String result = post(mobile, urlGetPassword, params);
 
         return result;
     }
@@ -80,7 +78,11 @@ public class PlayServiceImpl implements PlayService {
 
         // todo: 这里如果有多线程可能会除错, 因此加上线程锁
 
-        String s = httpService.post(urlLoginDo, params);
+//        String s = httpService.post(urlLoginDo, params);
+        String s = post(mobile, urlLoginDo, params);
+
+
+//        System.out.println("loginDo:(" + s + ")");
 
         updateCookieToLocal(mobile);
 
@@ -191,7 +193,12 @@ public class PlayServiceImpl implements PlayService {
 
         try {
             String loginMobile = getFromResult(rs, "loginMobile");
-            return loginMobile.equals(mobile);
+
+            if (!loginMobile.equals(mobile)) {
+                logger.info(mobile + " 删除 cookie 成功");
+                cookieService.deleteCookie(mobile);
+                return false;
+            } else return true;
         } catch (Exception e) {
             return false;
         }
@@ -277,24 +284,25 @@ public class PlayServiceImpl implements PlayService {
         if (cookieService.isExist(mobile)) {
             CookieStore cookieStore = cookieService.getCookieStore(mobile);
 
-            /*CookieStore cookieStore1 = new BasicCookieStore();
-            for (Cookie cookie : cookieStore.getCookies()) {
-                System.out.println(cookie);
+//            System.out.println("updateCookieToService");
 
-                if (cookie.getName().equals("JSESSIONID")) {
-//                    continue;
-                    cookieStore1.addCookie(cookie);
-                } else {
-                    cookieStore1.addCookie(cookie);
-                }
-            }*/
-
+//            for (Cookie cookie : cookieStore.getCookies()) {
+//                System.out.println(cookie);
+//            }
+//
             httpService.setCookieStore(cookieStore);
         }
     }
 
     public synchronized void updateCookieToLocal(String mobile) {
         CookieStore cookieStore = httpService.getCookieStore();
+
+//        System.out.println("updateCookieToLocal");
+//        for (Cookie cookie : cookieStore.getCookies()) {
+//            System.out.println(cookie);
+//        }
+
+
         cookieService.saveCookie(mobile, cookieStore);
     }
 

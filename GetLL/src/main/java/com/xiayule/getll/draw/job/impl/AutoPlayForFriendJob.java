@@ -23,7 +23,7 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
      */
     public void autoPlay(String friendMobile) {
 
-        final String myMobile = "15069890845";
+        final String myMobile = "18369905136";
 
         if (myMobile == friendMobile) return;
 
@@ -72,7 +72,7 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
                     }
                 }
             } else {
-                System.out.println(myMobile + " 没有登录, 无法为" + friendMobile + "摇奖");
+                logger.info(myMobile + " 没有登录, 无法为" + friendMobile + "摇奖");
             }
         } catch (Exception e) {
             // 设置回自己的 手机号

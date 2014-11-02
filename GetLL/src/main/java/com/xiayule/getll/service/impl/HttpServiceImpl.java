@@ -42,7 +42,7 @@ public class HttpServiceImpl implements HttpService {
         return defaultHttpClient;
     }
 
-    public String post(String url, List<BasicNameValuePair> params) {
+    public synchronized String post(String url, List<BasicNameValuePair> params) {
         try {
             HttpPost request = new HttpPost(url); // 根据内容来源地址创建一个Http请求
 
@@ -66,6 +66,8 @@ public class HttpServiceImpl implements HttpService {
                 // 设置 cookies
                 cookieStore = client.getCookieStore();
 
+
+
                 return result;
             }
         } catch (Exception e) {
@@ -74,7 +76,7 @@ public class HttpServiceImpl implements HttpService {
         return null;
     }
 
-    public String get(String url) {
+    public synchronized String get(String url) {
         try {
             // 根据内容来源地址创建一个Http请求
             HttpGet request = new HttpGet(url);
@@ -126,13 +128,15 @@ public class HttpServiceImpl implements HttpService {
 
     private void initHeaders(HttpRequest request) {
         request.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
-        request.setHeader("Accept-Encoding", "gzip,deflate,sdch");
-        request.setHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4");
+        request.setHeader("Accept-Encoding", "gzip, deflate");
+        request.setHeader("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
         request.setHeader("Connection", "keep-alive");
+        request.setHeader("Cache-Control", "no-cache");
         request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        request.setHeader("Host", "shake.sd.chinamobile.com");
         request.setHeader("Origin", "http://shake.sd.chinamobile.com");
         request.setHeader("Referer", "http://shake.sd.chinamobile.com/");
-        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36");
+        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0");
         request.setHeader("X-Requested-With", "XMLHttpRequest");
     }
 

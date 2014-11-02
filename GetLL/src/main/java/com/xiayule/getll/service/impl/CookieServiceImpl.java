@@ -44,6 +44,10 @@ public class CookieServiceImpl implements CookieService {
 
         for (Cookie cookie : cookies) {
             String key = cookie.getName();
+
+            //todo: 不用保存 jessionId, 好像不行, 获取密码时,和登录时,sessionId不统一,会提示请先获取动态密码
+//            if (key.equals("JSESSIONID")) continue;
+
             String value = cookie.getValue();
 
             data.put(key, value);

@@ -41,11 +41,13 @@
                     <ul>
                         <li>1. 使用支付宝客户端扫描二维码</li>
                         <li>2. 使用支付宝直接付款至 xiayule148@gmail.com</li>
-                        <%--<linli>3. 使用支付宝直接支付至 18369905136</li>--%>
+                        <li>3. 使用支付宝直接支付至 18369905136</li>
                     </ul>
                     </p>
                     <p>只要您的赞助 > 0, 就是对我们的理解与支持</p>
-                    <p>如果您不想出现在我们的赞助名单，请在在赞助时说明</p>
+                    <p>如果您不想出现在我们的赞助名单，请在赞助时说明</p>
+                    <p>非常欢迎在赞助时说些想说的,我会添加到赠言中</p>
+                    <p>赞助过的可以发送赠言到我的手机号18369905136,补加赠言</p>
                     <p>谢谢</p>
                 </div>
 
@@ -58,57 +60,90 @@
         </div>
 
         <div class="col-xs-12">
-            <table class="col-xs-12" style="text-align: center">
-                <caption><h3>赞助名单</h3></caption>
+            <table class="col-xs-12 col-xs-12 table table-striped table-bordered table-condensed table-hover" style="text-align: center; border: 1">
+                <caption style="text-align: center"><h3>赞助名单</h3></caption>
 
                 <tr>
                     <th style="text-align: center">姓名</th>
                     <th style="text-align: center">金额(元)</th>
+                    <th style="text-align: center">赠言</th>
+                </tr>
+
+                <tr>
+                    <td>刘培吉</td>
+                    <td>100.00</td>
+                    <td>&nbsp;</td>
                 </tr>
 
                 <tr>
                     <td>**南</td>
                     <td>100.00</td>
+                    <td>&nbsp;</td>
                 </tr>
 
                 <tr>
                     <td>刘春辉</td>
                     <td>20.00</td>
+                    <td>&nbsp;</td>
                 </tr>
 
                 <tr>
                     <td>赵巍</td>
                     <td>10.00</td>
+                    <td>&nbsp;</td>
                 </tr>
 
                 <tr>
                     <td>韩素珍</td>
                     <td>10.00</td>
+                    <td>加油!</td>
                 </tr>
 
                 <tr>
                     <td>**凤</td>
                     <td>5.00</td>
+                    <td>匿名的哦!加油加油.</td>
                 </tr>
 
                 <tr>
                     <td>李敏成</td>
                     <td>1.00</td>
+                    <td>&nbsp;</td>
                 </tr>
 
                 <tr>
                     <td>严晓声</td>
                     <td>0.50</td>
+                    <td>&nbsp;</td>
                 </tr>
             </table>
         </div>
 
-        <div class="col-xs-12" style="height: 200px">
+        <div class="col-xs-12">
+            <!-- 留言模块-->
+            <div>
+                <!-- 多说评论框 start -->
+                <div class="ds-thread" data-thread-key="donate" data-url="http://xiayule.net"></div>
 
+                <!-- 多说评论框 end -->
+                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                <script type="text/javascript">
+                    var duoshuoQuery = {short_name: "xiayule"};
+                    (function () {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0]
+                                || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- 多说公共JS代码 end -->
+            </div>
         </div>
     </div>
 </div>
-
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>

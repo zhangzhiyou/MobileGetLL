@@ -11,7 +11,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <%--<link href="css/my.min.css" rel="stylesheet" type="text/css">--%>
+    <link href="css/my.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css">
@@ -33,7 +33,35 @@
 
 <div class="container">
 
-    朋友为我摇奖时通知我: <input class="checkbox" type="checkbox" data-toggle="switch" id="fdShakeNotify" />
+    <div class="row">
+
+        <div class="col-xs-12">
+
+
+            <span>免提醒修改将于次日生效</span>
+
+            <table class="table table-striped table-bordered table-condensed table-hove" style="width: 100%; text-align: center; cellspacing: 100px; border: 1" >
+                <tr>
+                    <td>摇奖短信通知:</td>
+                    <td><input class="checkbox" type="checkbox" data-toggle="switch" id="fdShakeNotify"/></td>
+                </tr>
+
+                <tr style="margin-top: 100px">
+                    <td>停止本站服务:</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" style="width: 100%;" onclick="deleteService()">停止服务</button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        
+        <div style="height: 200px;">
+
+        </div>
+    </div>
+
+    
 
 
 </div>
@@ -41,93 +69,92 @@
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/flat-ui.min.js"></script>
+
 <script type="text/javascript" src="js/application.min.js"></script>
 
 <script type="text/javascript" src="js/eventMan.min.js"></script>
 <script type="text/javascript" src="js/common.min.js"></script>
 
 <script>
+
+    var flag = false;// 是否已经初始化 checkbox
+
+    //todo: 使用data-toggle实现?
+    $('input[id="fdShakeNotify"]').on({
+        'init.bootstrapSwitch': function() {
+
+        },
+        'switchChange.bootstrapSwitch': function(event, state) {
+            if (flag) {
+                smsNotifyUpdate("fdShakeNotify", state);
+                flag = true
+            } else {
+                flag = true;
+            }
+        }
+    });
+
     // 登录检查
     eventMan.checkLogin(function() {
         if(eventMan.isLogin()) {
             // 显示个人短信提醒设置
-//            loadSmsSystemSet();
+            loadSmsSystemSet();
         }
+    }, function () {
+        // 验证登录失败
+        locationPage("/login.jsp")
     });
 
-    var onStyle = "but_visible";
-    var offStyle = "but_disable";
     function loadSmsSystemSet(){
-        var lazySeconds = 1;
         $.post("/ajax/smsNoticeSetQuery",{}, function(data) {
             if (data.status != "ok") {
                 alert(data.message);
             }else{
                 var result = data.result;
 
-                /*流量汇各类活动提醒状态
-
-                 var otherActivityNotify = result.otherActivityNotify;
-                 updateDivStyle("otherActivityNotify",otherActivityNotify);
-                 */
-
                 //朋友为我摇奖时提醒
                 var fdShakeNotify = result.fdShakeNotify;
-                updateDivStyle("fdShakeNotify",fdShakeNotify);
-
-                //秒杀时提醒
-
-               /* var seckillNotify = result.seckillNotify;
-                updateDivStyle("seckillNotify",seckillNotify);*/
-
-                //摇奖提醒状态
-
-
-               /* var shakeNotify = result.shakeNotify;
-                updateDivStyle("shakeNotify",shakeNotify);*/
+                updateDivStyle("fdShakeNotify", fdShakeNotify);
             }
         },"json");
     }
 
     function updateDivStyle(type,value){
-        var styles = "";
-        if(value == "1"){
-            styles = onStyle;
-        }else{
-            styles = offStyle;
-        }
-
-        //根据不同的提醒类型获取对应的修改div
-        var  divId = "";
-        if(type=="otherActivityNotify"){
-            //divId = "shakeNewRemindDiv";
-        }else if(type=="fdShakeNotify"){
-            divId = "fdToMeShakeDiv";
-        }else if(type=="seckillNotify"){
-            divId = "spikeActivityDiv";
-        }else if(type=="shakeNotify"){
-            divId = "dayRemindShakeDiv";
-        }
-        if(divId != ""){
-            $("#"+divId).html([
-                        '<div class="'+styles+'" onclick="javascript:smsNotifyUpdate(\''+type+'\','+value+');"><div class="btn"></div></div>'
-            ].join(''));
+        if(type != ""){
+            $("#" + type).bootstrapSwitch("state", value == 1 ? true : false);
         }
     }
 
-    function smsNotifyUpdate(type,value){
-        if(value=="0"){value = "1";}else{value = "0";}
+    function smsNotifyUpdate(type,bvalue){
+        if (bvalue == true) {
+            value = 1;
+        } else {
+            value = 0;
+        }
+
         var lazySeconds = 1;
         $.post("/ajax/smsNoticeSet.action?r=" + new Date().getTime(),{"type":type,"value":value}, function(data) {
             if (data.status != "ok") {
                 alert(data.message);
             }else{
-                updateDivStyle(type,value);
+                // 成功
             }
         },"json");
     }
 
-
+    function deleteService() {
+        var confirmMessage = "退订服务是不可撤销的,您确定要停用本站服务吗?";
+        if (confirm(confirmMessage)) {
+            $.post("/ajax/deleteService.action?r=" + new Date().getTime(), function(data) {
+                if (data.status != "ok") {
+                    alert(data.message);
+                }else{
+                    // 退订成功
+                    locationPage("/home.action");
+                }
+            },"json");
+        }
+    }
 </script>
 
 

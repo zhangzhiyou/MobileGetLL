@@ -440,6 +440,10 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(cookieMobile, urlSmsNoticeSetQuery, null);
 
+//        System.out.println("smsNoticeSetQuery: " + rs);
+
+        logger.info(cookieMobile + " smsNoticeSetQuery: rs(" + rs + ")");
+
         return rs;
     }
 
@@ -455,6 +459,10 @@ public class PlayServiceImpl implements PlayService {
         params.add(new BasicNameValuePair("value", value));
 
         String rs = post(cookieMobile, urlSmsNoticeSet, params);
+
+        logger.info(cookieMobile + " smsNoticeSet: cookieMobile(" + cookieMobile
+                + ") type(" + type + ") value(" + value + ")" + " rs(" + rs + ")");
+
         return rs;
     }
 

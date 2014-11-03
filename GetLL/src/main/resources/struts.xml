@@ -112,6 +112,12 @@
             </result>
         </action>
 
+        <action name="deleteService" class="ajaxAction" method="deleteService">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
         <!--TODO:js调用该接口后，出现问题-->
         <action name="getRemainTimes" class="ajaxAction" method="getRemainTimes">
             <result type="json">

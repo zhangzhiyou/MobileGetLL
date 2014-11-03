@@ -76,6 +76,15 @@
 
 <div class="container">
     <div class="row">
+
+        <div class="col-md-offset-2 col-md-8 col-xs-12">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+                <span class="fui-volume"></span> <strong>通知: </strong>在设置里,可以取消摇奖通知, 和烦人短信说拜拜
+            </div>
+        </div>
+
         <!-- 主要内容 -->
         <div class="col-md-9 col-xs-12">
             <!-- 个人信息 -->
@@ -91,27 +100,35 @@
                     </h3>
                 </div>
 
-                <!-- 个人详情 -->
                 <div class="col-xs-12">
-                    <div>
-                        <span style="cursor: help" title="剩余的流量币数量">帐户余额：</span>
-                        <span id="credit" class="rednum">&nbsp;</span><img src="image/mb.png" width="25" height="23">
+                    <!-- 个人详情 -->
+                    <div class="col-xs-8">
+                        <div>
+                            <span style="cursor: help" title="剩余的流量币数量">帐户余额：</span>
+                            <span id="credit" class="rednum">&nbsp;</span><img src="image/mb.png" width="25" height="23">
+                        </div>
+
+                        <div>
+                            <span style="cursor: help" title="今日获得的收益">今日收益：</span>
+                            <span class="yellowfont rednum" id="todayCredit">0.0</span>流量币
+                        </div>
+
+                        <!--未领取的流量币 -->
+                        <div class="hideme" id="receiveDiv">
+                            <span class="rednum" id="totalCredit">?</span>流量币未领
+                            <span class="but_lingqu" onclick="javascript:location.href='/receiveFlowScore.jsp'">领取</span>
+                        </div>
+
+                        <div>
+                            <span style="cursor: help" title="少于30天时，可以点击免费延长至30天">有效期：</span>
+                            <span id="leavesDay">&nbsp;</span>
+                        </div>
                     </div>
 
-                    <div>
-                        <span style="cursor: help" title="今日获得的收益">今日收益：</span>
-                        <span class="yellowfont rednum" id="todayCredit">0.0</span>流量币
-                    </div>
+                    <div class="col-xs-4">
+                        <button type="button" class="btn btn-primary" style="width: 100%;" onclick="locationPage('/setting.jsp')">设置</button>
+                        <!--<button class="btn button" id="btShakeNow" type="button" onclick="this.blur()">立即摇奖</button>-->
 
-                    <!--未领取的流量币 -->
-                    <div class="hideme" id="receiveDiv">
-                        <span class="rednum" id="totalCredit">?</span>流量币未领
-                        <span class="but_lingqu" onclick="javascript:location.href='/receiveFlowScore.jsp'">领取</span>
-                    </div>
-
-                    <div>
-                        <span style="cursor: help" title="少于30天时，可以点击免费延长至30天">有效期：</span>
-                        <span id="leavesDay">&nbsp;</span>
                     </div>
                 </div>
             </div>

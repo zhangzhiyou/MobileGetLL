@@ -114,7 +114,7 @@ public class AjaxAction {
         String m = mobile;
         String pass = password;
 
-//        cleanParams();
+        cleanParams();
 
         jsonObj = new JSONObject();
 
@@ -229,17 +229,7 @@ public class AjaxAction {
 
 //        System.out.println(mobile);
 
-        // 退出登录，即清除 cookie
-        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                cookie.setPath("/");
-                cookie.setMaxAge(0);
-                // 设置 cookie
-                ServletActionContext.getResponse().addCookie(cookie);
-            }
-        }
+        clearCookie();
 
         json = new HashMap();
         json.put("status", "ok");
@@ -645,6 +635,41 @@ public class AjaxAction {
         cleanParams();
 
         return Action.SUCCESS;
+    }
+
+    /**
+     * 退订本站所有服务
+     * @return
+     */
+    public String deleteService() {
+        String m = getMobileFromCookie();
+
+        //todo: 删除服务
+        subscriberService.unSubscribe(m);
+        cookieService.deleteCookie(m);
+
+        json = new HashMap();
+        json.put("status", "ok");
+
+        cleanParams();
+
+        logger.info(m + " 退订服务");
+
+        return Action.SUCCESS;
+    }
+
+    private void clearCookie() {
+        // 退出登录，即清除 cookie
+        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                cookie.setPath("/");
+                cookie.setMaxAge(0);
+                // 设置 cookie
+                ServletActionContext.getResponse().addCookie(cookie);
+            }
+        }
     }
 
     // set and get methods

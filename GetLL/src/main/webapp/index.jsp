@@ -7,8 +7,6 @@
 <head lang="en">
     <meta charset="UTF-8">
 
-    <link href="css/css.min.css" rel="stylesheet" type="text/css">
-
     <link href="css/my.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -77,13 +75,7 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-md-offset-2 col-md-8 col-xs-12">
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-
-                <span class="fui-volume"></span> <strong>通知: </strong>在设置里,可以取消摇奖通知, 和烦人短信说拜拜
-            </div>
-        </div>
+        <jsp:include page="snap/notification.html"/>
 
         <!-- 主要内容 -->
         <div class="col-md-9 col-xs-12">
@@ -115,8 +107,9 @@
 
                         <!--未领取的流量币 -->
                         <div class="hideme" id="receiveDiv">
-                            <span class="rednum" id="totalCredit">?</span>流量币未领
-                            <span class="but_lingqu" onclick="javascript:location.href='/receiveFlowScore.jsp'">领取</span>
+                            <span class="rednum" id="totalCredit">?</span>流量币未领 &nbsp &nbsp
+                            <%--<span class="but_lingqu" onclick="javascript:location.href='/receiveFlowScore.jsp'">领取</span>--%>
+                            <button type="button" class="btn btn-danger" onclick="locationPage('/receiveFlowScore.jsp')">领取</button>
                         </div>
 
                         <div>
@@ -128,7 +121,6 @@
                     <div class="col-xs-4">
                         <button type="button" class="btn btn-primary" style="width: 100%;" onclick="locationPage('/setting.jsp')">设置</button>
                         <!--<button class="btn button" id="btShakeNow" type="button" onclick="this.blur()">立即摇奖</button>-->
-
                     </div>
                 </div>
             </div>
@@ -312,7 +304,7 @@
     </script>
 </div>
 
-<jsp:include page="foot.html"></jsp:include>
+<jsp:include page="snap/foot.html"></jsp:include>
 
 
 </body>

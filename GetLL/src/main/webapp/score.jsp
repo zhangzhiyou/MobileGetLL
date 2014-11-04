@@ -43,7 +43,7 @@
 </head>
 <body>
 
-<jsp:include page="nav_simple.html"/>
+<jsp:include page="snap/nav_simple.html"/>
 
 <div class="container">
     <div class="row">
@@ -196,7 +196,7 @@
 
 </script>
 
-<jsp:include page="foot.html"></jsp:include>
+<jsp:include page="snap/foot.html"></jsp:include>
 
 
 </body>

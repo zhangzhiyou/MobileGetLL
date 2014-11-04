@@ -43,7 +43,7 @@
 
 <body>
 
-<jsp:include page="nav_simple.html"/>
+<jsp:include page="snap/nav_simple.html"/>
 
 <div class="container">
     <div class="row">
@@ -123,7 +123,7 @@
 <script type="text/javascript" src="js/common.min.js"></script>
 
 
-<jsp:include page="foot.html"/>
+<jsp:include page="snap/foot.html"/>
 
 <script>
     var $mask = $("#mask");

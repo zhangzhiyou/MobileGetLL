@@ -32,18 +32,13 @@
 </head>
 <body style="height: 100%">
 
-<jsp:include page="nav_simple.html"/>
+<jsp:include page="snap/nav_simple.html"/>
 
 <div class="container">
     <!-- 登录框 -->
     <div class="row" >
-        <div class="col-md-offset-2 col-md-8 col-xs-12">
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
-                <span class="fui-volume"></span> <strong>通知: </strong>修复了不能登录的bug, 谢谢支持, 如果还有什么bug, 欢迎<a href="comment.jsp">留言</a>
-            </div>
-        </div>
+        <jsp:include page="snap/notification.html"/>
 
         <div class="col-xs-12 col-md-6">
             <div class="form-area">
@@ -107,7 +102,7 @@
     </script>
 </div>
 
-<jsp:include page="foot.html"></jsp:include>
+<jsp:include page="snap/foot.html"></jsp:include>
 
 
 </body>

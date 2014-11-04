@@ -29,7 +29,7 @@
 
 <body>
 
-<jsp:include page="nav_simple.html"/>
+<jsp:include page="snap/nav_simple.html"/>
 
 <div class="container">
 
@@ -158,7 +158,7 @@
 </script>
 
 
-<jsp:include page="foot.html"/>
+<jsp:include page="snap/foot.html"/>
 
 </body>
 </html>

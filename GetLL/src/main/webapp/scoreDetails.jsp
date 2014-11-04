@@ -10,6 +10,7 @@
 
 <html>
 <head>
+    <!-- todo: 还需要 -->
     <link href="css/css.min.css" rel="stylesheet" type="text/css">
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -33,7 +34,7 @@
 
 <body>
 
-<jsp:include page="nav_simple.html"/>
+<jsp:include page="snap/nav_simple.html"/>
 
 <div class="container">
     <div class="row">
@@ -78,7 +79,7 @@
     </script>
 </div>
 
-<jsp:include page="foot.html"/>
+<jsp:include page="snap/foot.html"/>
 
 
 </body>

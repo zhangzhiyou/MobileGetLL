@@ -43,7 +43,7 @@
 </head>
 <body>
 
-<jsp:include page="nav_simple.html"/>
+<jsp:include page="snap/nav_simple.html"/>
 
 <div class="container">
 
@@ -144,7 +144,7 @@
 <script type="text/javascript" src="js/tip.min.js"></script>
 <script type="text/javascript" src="js/eventMan.min.js"></script>
 
-<jsp:include page="foot.html"></jsp:include>
+<jsp:include page="snap/foot.html"></jsp:include>
 
 <script>
     var $mask = $("#mask");

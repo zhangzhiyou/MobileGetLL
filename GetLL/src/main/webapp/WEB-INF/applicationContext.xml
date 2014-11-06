@@ -18,7 +18,7 @@
 
     <bean name="httpService" class="com.xiayule.getll.service.impl.HttpServiceImpl"
             scope="prototype">
-
+        <property name="cookieService" ref="cookieService"/>
     </bean>
 
     <bean name="playService" class="com.xiayule.getll.service.impl.PlayServiceImpl"

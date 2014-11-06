@@ -1,5 +1,6 @@
 package com.xiayule.getll.service.impl;
 
+import com.xiayule.getll.service.CookieService;
 import com.xiayule.getll.service.HttpService;
 import org.apache.http.Header;
 import org.apache.http.HttpRequest;
@@ -24,11 +25,13 @@ import java.util.List;
  * Http 的 post 和 get，能够操作 cookie
  */
 public class HttpServiceImpl implements HttpService {
-    private DefaultHttpClient defaultHttpClient;
-    private CookieStore cookieStore;
+//    private DefaultHttpClient defaultHttpClient;
+//    private CookieStore cookieStore;
+    private CookieService cookieService;
+
 
     private DefaultHttpClient getDefaultHttpClient() {
-        if (defaultHttpClient == null) {
+        /*if (defaultHttpClient == null) {
             defaultHttpClient = new DefaultHttpClient();
 
             // 手冻管理 cookie
@@ -37,13 +40,23 @@ public class HttpServiceImpl implements HttpService {
             // 设置超时时间
             defaultHttpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 5000);
             defaultHttpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 30000);
-        }
+        }*/
+
+        // 每次都生成新的 httpclient, 防止 cookie 混乱
+        //todo: 如果再出问题,就手动管理 cookie
+        DefaultHttpClient defaultHttpClient = new DefaultHttpClient();
+
+        // 设置超时时间
+        defaultHttpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 5000);
+        defaultHttpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 30000);
 
         return defaultHttpClient;
     }
 
-    public synchronized String post(String url, List<BasicNameValuePair> params) {
+    public String post(String mobile, String url, List<BasicNameValuePair> params) {
         try {
+
+
             HttpPost request = new HttpPost(url); // 根据内容来源地址创建一个Http请求
 
             initHeaders(request);
@@ -54,19 +67,23 @@ public class HttpServiceImpl implements HttpService {
 
             DefaultHttpClient client = getDefaultHttpClient();
 
+            // 初始化cookie
+            updateCookieToService(client, mobile);
+
             // 保存 cookies
-            client.setCookieStore(cookieStore);
+//            client.setCookieStore(cookieStore);
 
             HttpResponse httpResponse = client.execute(request); // 发送请求并获取反馈
+
 
             // 解析返回的内容
             if (httpResponse.getStatusLine().getStatusCode() != 404) {
                 String result = EntityUtils.toString(httpResponse.getEntity());
 
                 // 设置 cookies
-                cookieStore = client.getCookieStore();
-
-
+//                cookieStore = client.getCookieStore();
+                // 保存 cookie
+                updateCookieToLocal(client, mobile);
 
                 return result;
             }
@@ -76,8 +93,9 @@ public class HttpServiceImpl implements HttpService {
         return null;
     }
 
-    public synchronized String get(String url) {
+    public String get(String mobile, String url) {
         try {
+
             // 根据内容来源地址创建一个Http请求
             HttpGet request = new HttpGet(url);
 
@@ -85,17 +103,23 @@ public class HttpServiceImpl implements HttpService {
 
             DefaultHttpClient client = getDefaultHttpClient();
 
-            client.setCookieStore(cookieStore);
+            // 使用 cookie
+            updateCookieToService(client, mobile);
+
 
             // 设置参数的编码
             HttpResponse httpResponse = client.execute(request); // 发送请求并获取反馈
+
+
             // 解析返回的内容
             if (httpResponse.getStatusLine().getStatusCode() != 404) {
 
                 String result = EntityUtils.toString(httpResponse.getEntity());
 
                 // 保存 cookie
-                cookieStore = client.getCookieStore();
+//                cookieStore = client.getCookieStore();
+                updateCookieToLocal(client, mobile);
+
 
                 return result;
             }
@@ -105,6 +129,31 @@ public class HttpServiceImpl implements HttpService {
         return null;
     }
 
+    public void updateCookieToService(DefaultHttpClient client, String mobile) {
+        if (cookieService.isExist(mobile)) {
+            CookieStore cookieStore = cookieService.getCookieStore(mobile);
+
+//            System.out.println("updateCookieToService");
+
+//            for (Cookie cookie : cookieStore.getCookies()) {
+//                System.out.println(cookie);
+//            }
+//
+            client.setCookieStore(cookieStore);
+        }
+    }
+
+    public void updateCookieToLocal(DefaultHttpClient client, String mobile) {
+        CookieStore cookieStore = client.getCookieStore();
+
+//        System.out.println("updateCookieToLocal");
+//        for (Cookie cookie : cookieStore.getCookies()) {
+//            System.out.println(cookie);
+//        }
+
+
+        cookieService.saveCookie(mobile, cookieStore);
+    }
 
     private void printHeaders(Header[] headers) {
         System.out.println("======Header Begin====");
@@ -143,11 +192,23 @@ public class HttpServiceImpl implements HttpService {
     // get and set methods
 
 
-    public void setCookieStore(CookieStore cookieStore) {
-        this.cookieStore = cookieStore;
+//    public void setCookieStore(CookieStore cookieStore) {
+//        this.cookieStore = cookieStore;
+//    }
+//
+//    public CookieStore getCookieStore() {
+//        return cookieStore;
+//    }
+
+//    public void setDefaultHttpClient(DefaultHttpClient defaultHttpClient) {
+//        this.defaultHttpClient = defaultHttpClient;
+//    }
+
+    public CookieService getCookieService() {
+        return cookieService;
     }
 
-    public CookieStore getCookieStore() {
-        return cookieStore;
+    public void setCookieService(CookieService cookieService) {
+        this.cookieService = cookieService;
     }
 }

@@ -10,7 +10,7 @@ public class CookieFactory {
         // 设置 cookie
         Cookie cookie = new Cookie(key, value);
         cookie.setPath("/");
-        cookie.setMaxAge(60*60*24*365);// cookie 默认一年
+        cookie.setMaxAge(60*60*24*365*10);// cookie 默认十年
 
         return cookie;
     }

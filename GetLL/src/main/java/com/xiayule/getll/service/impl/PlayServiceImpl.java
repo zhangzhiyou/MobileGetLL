@@ -84,7 +84,7 @@ public class PlayServiceImpl implements PlayService {
 
 //        System.out.println("loginDo:(" + s + ")");
 
-        updateCookieToLocal(mobile);
+//        updateCookieToLocal(mobile);
 
         return s;
     }
@@ -261,49 +261,18 @@ public class PlayServiceImpl implements PlayService {
      */
     private String post(String mobile, String url, List<BasicNameValuePair> params) {
 
-        updateCookieToService(mobile);
 
-        String rs = httpService.post(url, params);
+        String rs = httpService.post(mobile, url, params);
 
-        updateCookieToLocal(mobile);
 
         return rs;
     }
 
     public String get(String mobile, String url) {
-        updateCookieToService(mobile);
 
-        String rs = httpService.get(url);
-
-        updateCookieToLocal(mobile);
+        String rs = httpService.get(mobile, url);
 
         return rs;
-    }
-
-    public void updateCookieToService(String mobile) {
-        if (cookieService.isExist(mobile)) {
-            CookieStore cookieStore = cookieService.getCookieStore(mobile);
-
-//            System.out.println("updateCookieToService");
-
-//            for (Cookie cookie : cookieStore.getCookies()) {
-//                System.out.println(cookie);
-//            }
-//
-            httpService.setCookieStore(cookieStore);
-        }
-    }
-
-    public synchronized void updateCookieToLocal(String mobile) {
-        CookieStore cookieStore = httpService.getCookieStore();
-
-//        System.out.println("updateCookieToLocal");
-//        for (Cookie cookie : cookieStore.getCookies()) {
-//            System.out.println(cookie);
-//        }
-
-
-        cookieService.saveCookie(mobile, cookieStore);
     }
 
     /**

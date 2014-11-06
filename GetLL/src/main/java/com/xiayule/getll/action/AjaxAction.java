@@ -380,7 +380,7 @@ public class AjaxAction {
     }
 
     /**
-     * 提取成一个函数，方便 getTTL 和 freshRegisterCode 调用
+     * 提取成一个函数，方便 sgetTTL 和 freshRegisterCode 调用
      * @return
      */
     private String getStrTTL(String m) {

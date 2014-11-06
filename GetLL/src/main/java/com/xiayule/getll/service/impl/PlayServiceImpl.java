@@ -69,7 +69,7 @@ public class PlayServiceImpl implements PlayService {
      * @param password 动态密码
      * @return 原文
      */
-    public synchronized String loginDo(String mobile, String password) {
+    public /*synchronized*/ String loginDo(String mobile, String password) {
         String urlLoginDo = "http://shake.sd.chinamobile.com/shake?method=loginDo&r=" + Math.random();
 
         List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();

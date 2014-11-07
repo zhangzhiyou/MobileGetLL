@@ -43,6 +43,9 @@ public class PlayServiceImpl implements PlayService {
 
         String result = post(mobile, urlGetPassword, params);
 
+        exchangeLogger.info(mobile + ": getPassword, 返回信息:(" + result + ")");
+
+
         return result;
     }
 
@@ -80,6 +83,8 @@ public class PlayServiceImpl implements PlayService {
 
 //        String s = httpService.post(urlLoginDo, params);
         String s = post(mobile, urlLoginDo, params);
+
+        exchangeLogger.info(mobile + ": loginDo 返回信息:(" + s + ")");
 
 
 //        System.out.println("loginDo:(" + s + ")");
@@ -195,6 +200,7 @@ public class PlayServiceImpl implements PlayService {
             String loginMobile = getFromResult(rs, "loginMobile");
 
             //todo: 看了下日志,如果加载失败返回null,不应该删除cookie
+            //todo: 这个应该放到 loadLoginMobile 里面?
             if (loginMobile == null || loginMobile.equals("")) {
                 return false;
             }
@@ -305,7 +311,7 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(realMobile, urlGetOtherPassword, params);
 
-        exchangeLogger.info(realMobile + ": 获取动态密码, 返回信息:(" + rs + ")");
+        exchangeLogger.info(realMobile + ": getOtherPassword, 返回信息:(" + rs + ")");
 
         return rs;
     }

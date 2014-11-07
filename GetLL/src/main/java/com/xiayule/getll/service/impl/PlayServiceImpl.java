@@ -194,8 +194,14 @@ public class PlayServiceImpl implements PlayService {
         try {
             String loginMobile = getFromResult(rs, "loginMobile");
 
-            if (!loginMobile.equals(mobile)) {
-                logger.info(mobile + " 删除 cookie 成功");
+            //todo: 看了下日志,如果加载失败返回null,不应该删除cookie
+            if (loginMobile == null || loginMobile.equals("")) {
+                return false;
+            }
+
+            // 只有当加载出来手机号了,且加载的手机号不为null, 才删除cookie
+            if ( !loginMobile.equals(mobile)) {
+                logger.info(mobile + " loadLoginMobile返回mobile(" + loginMobile + ") 删除 cookie 成功");
                 cookieService.deleteCookie(mobile);
                 return false;
             } else return true;

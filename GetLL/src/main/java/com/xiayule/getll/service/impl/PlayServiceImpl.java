@@ -201,7 +201,9 @@ public class PlayServiceImpl implements PlayService {
 
             //todo: 看了下日志,如果加载失败返回null,不应该删除cookie
             //todo: 这个应该放到 loadLoginMobile 里面?
-            if (loginMobile == null || loginMobile.equals("")) {
+            //todo: 返回的信息为 {"message":"ok","result":{"loginMobile":null,"seconds":0,"nickName":null,"drawMobile":null,"loginMobileProvinceId":null,"drawMobileProvinceId":null},"status":"ok","class":"class com.aspire.portal.web.vo.JsonResult","code":""}
+            //todo: 但是 loginMobile 的值为 null
+            if (loginMobile == null || loginMobile.equals("") || loginMobile.equals("null")) {
                 return false;
             }
 

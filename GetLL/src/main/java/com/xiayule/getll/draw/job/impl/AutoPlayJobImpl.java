@@ -24,8 +24,19 @@ public class AutoPlayJobImpl implements AutoPlayJob {
 
         // 如果未登录, 就退出
         if (!playService.isLogined(mobile)) {
-            logger.info("JobTask:" + mobile + " 未登录，跳过该任务");
-            return ;
+            logger.info("JobTask:" + mobile + " 未登录(第一次尝试)");
+
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+
+            }
+
+            if (!playService.isLogined(mobile)) {
+                logger.info("JobTask:" + mobile + " 未登录(第二次尝试), 跳过任务");
+
+                return ;
+            }
         }
 
         // 累加每日奖励, 并接收返回结果

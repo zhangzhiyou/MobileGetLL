@@ -102,54 +102,6 @@
         <property name="playService" ref="playService"/>
     </bean>
 
-
-    <!-- mail 配置 -->
-    <!--<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        &lt;!&ndash; 服务器 &ndash;&gt;
-        <property name="host" value="smtp.163.com" />
-        &lt;!&ndash; 端口号 &ndash;&gt;
-        <property name="port" value="25" />
-        &lt;!&ndash; 用户名 &ndash;&gt;
-        <property name="username" value="443016215@163.com" />
-        &lt;!&ndash;  密码   &ndash;&gt;
-        <property name="password" value="~6224989a" />
-        &lt;!&ndash; SMTP服务器验证 &ndash;&gt;
-        <property name="javaMailProperties">
-            <props>
-                &lt;!&ndash; 验证身份 &ndash;&gt;
-                <prop key="mail.smtp.auth">true</prop>
-            </props>
-        </property>
-    </bean>
-
-    &lt;!&ndash;
-       目前我用过的EMAIL账号都是网易的,下面列出网易的SMTP服务器名和端口号:
-        网易邮箱          SMTP服务器     SMTP端口     POP3服务器       POP3端口
-        @126.com     smtp.126.com      25          pop3.126.com      110
-        @163.com     smtp.163.com      25          pop3.163.com      110
-        @yeah.net    smtp.yeah.net      25          pop3.yeah.net     110
-    &ndash;&gt;
-
-    <bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">
-        &lt;!&ndash; 发件人email &ndash;&gt;
-        <property name="from" value="443016215@163.com" />
-        &lt;!&ndash;
-         收件人email
-        <property name="to" value="to@yeah.net" />
-        email主题(标题)
-        <property name="subject" value="Subject" />
-        email主题内容
-        <property name="text">
-          <value>ContentText</value>
-        </property>
-        &ndash;&gt;
-    </bean>
-
-    <bean id="simpleMail" class="com.xiayule.getll.mail.Email">
-        <property name="mailSender" ref="mailSender" />
-        <property name="simpleMailMessage" ref="simpleMailMessage" />
-    </bean>-->
-
     <!-- redis 配置 -->
 
     <!-- 加载redis配置文件 -->

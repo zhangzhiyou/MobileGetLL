@@ -1,4 +1,4 @@
-package com.xiayule.getll.mail;
+package com.xiayule.getll.service.impl;
 
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -6,7 +6,7 @@ import org.springframework.mail.SimpleMailMessage;
 /**
  * Created by tan on 14-11-7.
  */
-public class Email {
+public class EmailServiceImpl {
 
     private MailSender mailSender;
     private SimpleMailMessage simpleMailMessage;

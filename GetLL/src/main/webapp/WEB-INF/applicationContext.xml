@@ -102,6 +102,9 @@
         <property name="playService" ref="playService"/>
     </bean>
 
+
+
+
     <!-- redis 配置 -->
 
     <!-- 加载redis配置文件 -->

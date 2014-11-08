@@ -1,12 +1,13 @@
 package com.xiayule.getll.service.impl;
 
+import com.xiayule.getll.service.EmailService;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
 /**
  * Created by tan on 14-11-7.
  */
-public class EmailServiceImpl {
+public class EmailServiceImpl implements EmailService {
 
     private MailSender mailSender;
     private SimpleMailMessage simpleMailMessage;

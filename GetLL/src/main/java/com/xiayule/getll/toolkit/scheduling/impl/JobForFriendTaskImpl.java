@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by tan on 14-10-26.
@@ -40,11 +41,16 @@ public class JobForFriendTaskImpl implements JobTask {
 
             isRunning = true;
 
-            List<String> subs = subscriberService.getAllSubscriber();
+            // 获取所有订阅下午摇奖的人
+            Set<String> subs = subscriberService.getAllSubscriberForFriend();
 
             int cnt = 0;
 
             for (String sub : subs) {
+
+                // 如果有效期到期, 则不执行
+                if (subscriberService.isSubscribe(sub)) continue;
+
                 cnt++;
 
                 try {

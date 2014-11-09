@@ -41,12 +41,18 @@
             <span>免提醒修改将于次日生效</span>
 
             <table class="table table-striped table-bordered table-condensed table-hove" style="width: 100%; text-align: center; cellspacing: 100px; border: 1" >
+
+                <tr>
+                    <td>朋友摇奖:</td>
+                    <td><input class="checkbox" type="checkbox" data-toggle="switch" id="forFriend"/></td>
+                </tr>
+
                 <tr>
                     <td>摇奖短信通知:</td>
                     <td><input class="checkbox" type="checkbox" data-toggle="switch" id="fdShakeNotify"/></td>
                 </tr>
 
-                <tr style="margin-top: 100px">
+                <tr>
                     <td>停止本站服务:</td>
                     <td>
                         <button type="button" class="btn btn-danger" style="width: 100%;" onclick="deleteService()">停止服务</button>
@@ -76,48 +82,63 @@
 <script type="text/javascript" src="js/common.min.js"></script>
 
 <script>
-
-    var flag = false;// 是否已经初始化 checkbox
-
     //todo: 使用data-toggle实现?
     $('input[id="fdShakeNotify"]').on({
         'init.bootstrapSwitch': function() {
+            // 更新 移动好友摇奖短信通知状态
+            $.post("/ajax/smsNoticeSetQuery",{}, function(data) {
+                if (data.status != "ok") {
+                    alert(data.message);
+                }else{
+                    var result = data.result;
 
+                    //朋友为我摇奖时提醒
+                    var fdShakeNotify = result.fdShakeNotify;
+                    updateDivStyle("fdShakeNotify", fdShakeNotify);
+                }
+            },"json");
         },
         'switchChange.bootstrapSwitch': function(event, state) {
-            if (flag) {
-                smsNotifyUpdate("fdShakeNotify", state);
-                flag = true
-            } else {
-                flag = true;
-            }
+
+            if ($("#fdShakeNotify").is(":focus") == false) return;
+            smsNotifyUpdate("fdShakeNotify", state);
+        }
+    });
+
+    $('input[id="forFriend"]').on({
+        'init.bootstrapSwitch': function() {
+            // 更新朋友摇奖状态
+            $.getJSON("/ajax/statusForFriend.action?r=" + new Date().getTime(), function(data) {
+                if (data.status != "ok") {
+                    alert(data.message);
+                }else{
+                    var result = data.result;
+
+                    //朋友为我摇奖时提醒
+                    var forFriendSuber = result.forFriendSuber;
+
+                    updateDivStyle("forFriend", forFriendSuber);
+                }
+            },"json");
+        },
+        'switchChange.bootstrapSwitch': function(event, state) {
+            //todo: 如果没有焦点，证明不是人控制的,　不做任何处理
+            if ($("#forFriend").is(":focus") == false) return;
+
+            forFriendUpdate(state);
         }
     });
 
     // 登录检查
     eventMan.checkLogin(function() {
         if(eventMan.isLogin()) {
-            // 显示个人短信提醒设置
-            loadSmsSystemSet();
+
         }
     }, function () {
         // 验证登录失败
         locationPage("/login.jsp")
     });
 
-    function loadSmsSystemSet(){
-        $.post("/ajax/smsNoticeSetQuery",{}, function(data) {
-            if (data.status != "ok") {
-                alert(data.message);
-            }else{
-                var result = data.result;
-
-                //朋友为我摇奖时提醒
-                var fdShakeNotify = result.fdShakeNotify;
-                updateDivStyle("fdShakeNotify", fdShakeNotify);
-            }
-        },"json");
-    }
 
     function updateDivStyle(type,value){
         if(type != ""){
@@ -134,6 +155,22 @@
 
         var lazySeconds = 1;
         $.post("/ajax/smsNoticeSet.action?r=" + new Date().getTime(),{"type":type,"value":value}, function(data) {
+            if (data.status != "ok") {
+                alert(data.message);
+            }else{
+                // 成功
+            }
+        },"json");
+    }
+
+    function forFriendUpdate(bvalue){
+        if (bvalue == true) {
+            value = 1;
+        } else {
+            value = 0;
+        }
+
+        $.post("/ajax/changeStatusForFriend.action?r=" + new Date().getTime(),{"status":value}, function(data) {
             if (data.status != "ok") {
                 alert(data.message);
             }else{

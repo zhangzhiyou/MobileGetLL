@@ -1,5 +1,6 @@
 package com.xiayule.getll;
 
+import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.impl.EmailServiceImpl;
 import com.xiayule.getll.toolkit.scheduling.impl.EmailJob;
 import org.springframework.context.ApplicationContext;
@@ -11,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Test {
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
-                "spring-mail.xml", "spring-quartz.xml", "applicationContext.xml"
+                "applicationContext.xml"
         });
 //        PlayService playService = ctx.getBean("playService", PlayService.class);
 
@@ -21,9 +22,15 @@ public class Test {
         emailServiceImpl.sendMail("xiayule148@gmail.com", "小测试", "测试");
         */
 
-        EmailJob emailJob = ctx.getBean("emailJob", EmailJob.class);
+        SubscriberService subscriberService = ctx.getBean("subscribeService", SubscriberService.class);
 
-        emailJob.doJob();
+        subscriberService.subForFriend("18369905136");
+
+
+
+        /*EmailJob emailJob = ctx.getBean("emailJob", EmailJob.class);
+
+        emailJob.doJob();*/
 
        /* JavaMailSenderImpl sender = new JavaMailSenderImpl();
 

@@ -1,6 +1,7 @@
 package com.xiayule.getll.service;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by tan on 14-7-22.
@@ -42,4 +43,27 @@ public interface SubscriberService {
      * 返回redis 中保存的 订阅者的数量
      */
     public int countNumbers();
+
+    /**
+     * 注册为朋友摇奖
+     */
+    public void subForFriend(String mobile);
+
+    /**
+     * 取消订阅为朋友摇奖
+     */
+    public void unsubForFriend(String mobile);
+
+    /**
+     * 是否订阅了为朋友摇奖
+     * @return
+     */
+    public Boolean isSubForFriend(String mobile);
+
+    /**
+     * 获得所有的订阅为朋友摇奖的服务
+     * @return
+     */
+    public Set<String> getAllSubscriberForFriend();
+
 }

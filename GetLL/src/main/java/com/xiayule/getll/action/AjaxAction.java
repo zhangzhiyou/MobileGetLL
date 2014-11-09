@@ -658,6 +658,46 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
+    public String statusForFriend() {
+        String m = getMobileFromCookie();
+
+        json = new HashMap();
+
+        json.put("status", "ok");
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        if (subscriberService.isSubForFriend(m)) {
+            result.put("forFriendSuber", true);
+        } else result.put("forFriendSuber", false);
+
+        json.put("result", result);
+
+        return Action.SUCCESS;
+    }
+
+    public String changeStatusForFriend() {
+        String m = getMobileFromCookie();
+
+        json = new HashMap();
+
+        json.put("status", "ok");
+
+        String s = getStatus();
+
+        System.out.println(s);
+
+        cleanParams();
+
+        if (s.trim().equals("1")) {
+            subscriberService.subForFriend(m);
+        } else subscriberService.unsubForFriend(m);
+
+        json.put("status", "ok");
+
+        return Action.SUCCESS;
+    }
+
     private void clearCookie() {
         // 退出登录，即清除 cookie
         Cookie[] cookies = ServletActionContext.getRequest().getCookies();
@@ -671,6 +711,7 @@ public class AjaxAction {
             }
         }
     }
+
 
     // set and get methods
 

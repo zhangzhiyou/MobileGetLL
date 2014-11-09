@@ -137,6 +137,18 @@
             </result>
         </action>
 
+        <action name="statusForFriend" class="ajaxAction" method="statusForFriend">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="changeStatusForFriend" class="ajaxAction" method="changeStatusForFriend">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
         <action name="*" class="ajaxAction" method="{1}">
             <result type="json">
                 <param name="root">jsonObj</param>

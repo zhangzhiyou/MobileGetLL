@@ -52,6 +52,36 @@ public class SubscriberServiceImpl implements SubscriberService {
     }
 
     /**
+     * 注册为朋友摇奖
+     */
+    public void subForFriend(String mobile) {
+        redisService.sadd("forFriend", mobile);
+    }
+
+    /**
+     * 取消订阅为朋友摇奖
+     */
+    public void unsubForFriend(String mobile) {
+        redisService.srem("forFriend", mobile);
+    }
+
+    /**
+     * 是否订阅了为朋友摇奖
+     * @return
+     */
+    public Boolean isSubForFriend(String mobile) {
+        return redisService.sismember("forFriend", mobile);
+    }
+
+    /**
+     * 获得所有的订阅为朋友摇奖的服务
+     * @return
+     */
+    public Set<String> getAllSubscriberForFriend() {
+        return redisService.smembers("forFriend");
+    }
+
+    /**
      * 获取注册码有效期剩余时间
      * @param mobile 要获取的手机号
      * @return 剩余时间，单位为 秒

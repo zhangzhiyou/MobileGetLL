@@ -174,7 +174,7 @@
                         <h3 class="panel-title">网站公告</h3>
                     </div>
                     <div class="panel-body">
-                        新增每日18:00,使用本站手机号为全站摇奖(测试功能)
+                        18点的好友摇奖功能默认不开启,可以在设置里开启
                     </div>
                 </div>
             </div>

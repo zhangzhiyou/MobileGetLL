@@ -261,6 +261,8 @@ public class AjaxAction {
 
         String m = getMobileFromCookie();
 
+
+
         if (m == null) {
             // 返回空
             jsonObj = new JSONObject();
@@ -277,9 +279,6 @@ public class AjaxAction {
 
         } else {
             String rs = playService.loadLoginMobile(m);
-
-            //todo: 可以在这里检测手机号是否匹配
-//            System.out.println("loadloginiMobile:" +  rs);
 
             jsonObj = JsonUtils.stringToJson(rs);
 

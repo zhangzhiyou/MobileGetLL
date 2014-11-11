@@ -36,46 +36,59 @@
     <div class="row">
 
         <div class="col-xs-12">
-
-            <table class="table table-striped table-bordered table-condensed table-hove" style="width: 100%; text-align: center; cellspacing: 100px; border: 1" >
-                <tr>
-                    <th style="text-align: center">功能:</th>
-                    <th style="text-align: center">开关:</th>
-                    <th style="text-align: center">说明:</th>
-                </tr>
-
-                <tr>
-                    <td>朋友摇奖:</td>
-                    <td><input class="checkbox" type="checkbox" data-toggle="switch" id="forFriend"/></td>
-                    <td>立即生效</td>
-                </tr>
-
-                <!-- todo: 不可用 -->
-                <tr>
-                    <td>摇奖短信通知:</td>
-                    <td><input class="checkbox" type="checkbox" data-toggle="switch" id="fdShakeNotify"/></td>
-                    <td>次日生效(该功能暂时不可用)</td>
-                </tr>
-
-                <tr>
-                    <td>停止本站服务:</td>
-                    <td>
-                        <button type="button" class="btn btn-danger" style="width: 100%;" onclick="deleteService()">停止服务</button>
-                    </td>
-                    <td>不可挽回!!!</td>
-                </tr>
-            </table>
-
+            <div style="color: #ff0000" id="result_msg">123</div>
         </div>
-        
-        <div style="height: 200px;">
 
+        <div class="col-md-4 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">设置昵称</h3>
+                </div>
+                <div class="panel-body">
+                    <input value="xiayule" name="nickname" id="nickname"><br/>
+                    4-10个字符，可由中英文、数字、"_" 、 "-"组成，不能全是数字
+                </div>
+                <div class="panel-footer" style="text-align: center"><button type="button" style="width: 100%;" class="btn btn-primary">保存</button></div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">朋友摇奖功能</h3>
+                </div>
+                <div class="panel-body">
+                    开启朋友摇奖,每天18点会使用本站手机号再为您摇奖5次,只不过摇到的需要来本站领取,同时还会有移动的短信通知
+                </div>
+                <div class="panel-footer" style="text-align: center"><input class="checkbox" type="checkbox" data-toggle="switch" id="forFriend"></div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">摇奖短信通知</h3>
+                </div>
+                <div class="panel-body">
+                    朋友摇奖会收到短信通知，开启该功能可以屏蔽短信通知，次日生效。<span style="color: #ff0000">注:该功能暂时不可用，请耐心等待修复</span>
+                </div>
+                <div class="panel-footer" style="text-align: center"><input class="checkbox" type="checkbox" data-toggle="switch" id="fdShakeNotify"/></div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">停止本站服务</h3>
+                </div>
+                <div class="panel-body">
+                    停止本站服务后，本站将清除所有与您相关的信息。届时，您也无法使用本站的服务。如果想要再次使用本站服务，重新登录即可。
+                </div>
+                <div class="panel-footer" style="text-align: center"><button type="button" class="btn btn-danger" style="width: 100%;" onclick="deleteService()">停止服务</button></div>
+            </div>
         </div>
     </div>
-
-    
-
-
 </div>
 
 

@@ -47,9 +47,8 @@ public class JobForFriendTaskImpl implements JobTask {
             int cnt = 0;
 
             for (String sub : subs) {
-
                 // 如果有效期到期, 则不执行
-                if (subscriberService.isSubscribe(sub)) continue;
+                if (!subscriberService.isSubscribe(sub)) continue;
 
                 cnt++;
 

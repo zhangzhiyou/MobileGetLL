@@ -37,19 +37,24 @@
 
         <div class="col-xs-12">
 
-
-            <span>免提醒修改将于次日生效</span>
-
             <table class="table table-striped table-bordered table-condensed table-hove" style="width: 100%; text-align: center; cellspacing: 100px; border: 1" >
+                <tr>
+                    <th style="text-align: center">功能:</th>
+                    <th style="text-align: center">开关:</th>
+                    <th style="text-align: center">说明:</th>
+                </tr>
 
                 <tr>
                     <td>朋友摇奖:</td>
                     <td><input class="checkbox" type="checkbox" data-toggle="switch" id="forFriend"/></td>
+                    <td>立即生效</td>
                 </tr>
 
+                <!-- todo: 不可用 -->
                 <tr>
                     <td>摇奖短信通知:</td>
                     <td><input class="checkbox" type="checkbox" data-toggle="switch" id="fdShakeNotify"/></td>
+                    <td>次日生效(该功能暂时不可用)</td>
                 </tr>
 
                 <tr>
@@ -57,6 +62,7 @@
                     <td>
                         <button type="button" class="btn btn-danger" style="width: 100%;" onclick="deleteService()">停止服务</button>
                     </td>
+                    <td>不可挽回!!!</td>
                 </tr>
             </table>
 

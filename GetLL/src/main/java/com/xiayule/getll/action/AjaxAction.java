@@ -685,13 +685,15 @@ public class AjaxAction {
 
         String s = getStatus();
 
-        System.out.println(s);
+//              System.out.println(s);
 
         cleanParams();
 
         if (s.trim().equals("1")) {
             subscriberService.subForFriend(m);
         } else subscriberService.unsubForFriend(m);
+
+        logger.info(m + " changeStatusForFriend: status(" + s + ")");
 
         json.put("status", "ok");
 

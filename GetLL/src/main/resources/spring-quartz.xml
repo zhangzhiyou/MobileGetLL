@@ -19,7 +19,6 @@
         <property name="drawRequest" ref="drawRequest"/>
     </bean>
 
-
     <!-- 为朋友摇奖业务对象 -->
     <!--todo: 这个是需要优化的， drawRequest 传的参数可以是 autoPlay 或者是  autoPlayForFriend, 而不是 mobile -->
     <bean id="autoPlayForFriendJob" class="com.xiayule.getll.draw.job.impl.AutoPlayForFriendJob">
@@ -37,7 +36,6 @@
         <property name="emailService" ref="emailService"/>
         <property name="subscriberService" ref="subscribeService"/>
     </bean>
-
 
 
     <!-- 调度业务 -->
@@ -94,7 +92,7 @@
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="jobDetail" />
         <!-- 每天6点执行任务 -->
-        <property name="cronExpression" value="0 0 6 * * ?" />
+        <property name="cronExpression" value="0 0 5 * * ?" />
     </bean>
     
     <bean id="forFriendCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">

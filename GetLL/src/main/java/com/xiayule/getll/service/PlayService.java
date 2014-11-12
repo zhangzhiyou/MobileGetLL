@@ -140,4 +140,16 @@ public interface PlayService {
      * @return
      */
     public String smsNoticeSetQuery(String cookieMobile);
+
+    /**
+     * 校验昵称是否存在
+     */
+    public String ifExistNickName(String cookieMobile, String nickName);
+
+    /**
+     * 修改昵称
+     */
+    public String changeNickName(String cookieMobile, String nickName);
+
+    public String refreshNickName(String cookieMobile);
 }

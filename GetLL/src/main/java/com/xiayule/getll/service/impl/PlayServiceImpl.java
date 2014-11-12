@@ -15,6 +15,7 @@ import org.apache.struts2.ServletActionContext;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by tan on 14-7-20.
@@ -445,6 +446,50 @@ public class PlayServiceImpl implements PlayService {
 
         logger.info(cookieMobile + " smsNoticeSet: cookieMobile(" + cookieMobile
                 + ") type(" + type + ") value(" + value + ")" + " rs(" + rs + ")");
+
+        return rs;
+    }
+
+    /**
+     * 校验昵称是否存在
+     */
+    public String ifExistNickName(String cookieMobile, String nickName) {
+        String urlIfExistNickName = "http://shake.sd.chinamobile.com/flowScore?method=ifExistNickName";
+
+        // 设置参数
+        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("nickname", nickName));
+
+        String rs = post(cookieMobile, urlIfExistNickName, params);
+
+        logger.info(cookieMobile + " ifExistNickName: nickName(" + nickName + ") 返回(" + rs + ")");
+
+        return rs;
+    }
+
+    /**
+     * 修改昵称
+     */
+    public String changeNickName(String cookieMobile, String nickName) {
+        String urlChangeNickName = "http://shake.sd.chinamobile.com/flowScore?method=changeNickName";
+
+        // 设置参数
+        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("nickname", nickName));
+
+        String rs = post(cookieMobile, urlChangeNickName, params);
+
+        logger.info(cookieMobile + " changeNickName: nickName(" + nickName + ") 返回(" + rs + ")");
+
+        return rs;
+    }
+
+    public String refreshNickName(String cookieMobile) {
+        String urlRefreshNickName = "http://shake.sd.chinamobile.com/shake?method=refreshNickName&r=" + Math.random();
+
+        String rs = post(cookieMobile, urlRefreshNickName, null);
+
+        logger.info(cookieMobile + " refreshNickName 返回(" + rs + ")");
 
         return rs;
     }

@@ -50,6 +50,7 @@ public class AjaxAction {
     private String status;
     private String id;
     private String value;
+    private String nickname;
 
 //    private String registerCode;
 
@@ -699,6 +700,37 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
+    public String ifExistNickName() {
+        String cookieMobile = getMobileFromCookie();
+
+        String strJson = playService.ifExistNickName(cookieMobile, nickname);
+
+        jsonObj = JsonUtils.stringToJson(strJson);
+
+        return Action.SUCCESS;
+    }
+
+    public String changeNickName() {
+        String cookieMobile = getMobileFromCookie();
+
+        String strJson = playService.changeNickName(cookieMobile, nickname);
+
+        jsonObj = JsonUtils.stringToJson(strJson);
+
+        return Action.SUCCESS;
+    }
+
+
+    public String refreshNickName() {
+        String cookieMobile = getMobileFromCookie();
+
+        String strJson = playService.refreshNickName(cookieMobile);
+
+        jsonObj = JsonUtils.stringToJson(strJson);
+
+        return Action.SUCCESS;
+    }
+
     private void clearCookie() {
         // 退出登录，即清除 cookie
         Cookie[] cookies = ServletActionContext.getRequest().getCookies();
@@ -712,6 +744,7 @@ public class AjaxAction {
             }
         }
     }
+
 
 
     // set and get methods
@@ -883,5 +916,13 @@ public class AjaxAction {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

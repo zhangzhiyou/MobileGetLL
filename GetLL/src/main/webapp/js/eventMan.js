@@ -20,10 +20,14 @@ function EventMan() {
 
     this.getOtherPasswordPath_ = "/ajax/getOtherPassword.action";
 
+    this.refreshNickName_ = "/ajax/refreshNickName.action"
+
+
     // 重发动态密码倒计时线程ID
     this.pwdIntervalIndex_ = -1;
     // 重发动态密码倒计时线程ID
     this.pwdIntervalIndex2_ = -1;
+
 }
 
 EventMan.prototype.init = function() {
@@ -340,6 +344,16 @@ EventMan.prototype.getPassword2 = function(type, isLogin, isVeriMobile) {
     }, "json");
 };
 
+EventMan.prototype.refreshNickName = function() {
+    var that = this;
+    var postUrl = that.refreshNickName_;
+
+    $.post(postUrl + "?r=" + Math.random(), {}, function(data) {
+        if (data.status == "ok") {
+            that.nickName_ = data.result.nickname;
+        }
+    }, "json");
+};
 
 /**
  * 立即摇奖

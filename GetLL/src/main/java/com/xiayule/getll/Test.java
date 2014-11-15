@@ -2,9 +2,14 @@ package com.xiayule.getll;
 
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.impl.EmailServiceImpl;
-import com.xiayule.getll.toolkit.scheduling.impl.EmailJob;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.mail.SimpleMailMessage;
+
+import java.io.UnsupportedEncodingException;
+
 
 /**
  * Created by tan on 14-7-20.
@@ -12,20 +17,42 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Test {
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
-                "applicationContext.xml"
+                "spring-mail.xml"
         });
 //        PlayService playService = ctx.getBean("playService", PlayService.class);
 
 //        System.out.println(playService.smsNoticeSet("18369905136", "fdShakeNotify", "1"));
 
-        /*EmailServiceImpl emailServiceImpl = ctx.getBean("emailService", EmailServiceImpl.class);
-        emailServiceImpl.sendMail("xiayule148@gmail.com", "小测试", "测试");
-        */
+        EmailServiceImpl emailServiceImpl = ctx.getBean("emailService", EmailServiceImpl.class);
+        MailSender mailSender = ctx.getBean("mailSender", MailSender.class);
 
+        SimpleMailMessage simpleMessage = ctx.getBean("simpleMailMessage", SimpleMailMessage.class);
+
+        // 设置昵称
+        try {
+            String nick = javax.mail.internet.MimeUtility.encodeText("流量汇管家");
+            System.out.println(nick);
+            simpleMessage.setFrom(nick + "<443016215@163.com>");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        simpleMessage.setSubject("哈"); //设置邮件主题
+        simpleMessage.setTo("443016215@qq.com");             //设定收件人
+        simpleMessage.setText("哈");  //设置邮件主题内容
+
+        mailSender.send(simpleMessage);
+
+//        emailServiceImpl.sendMail("443016215@qq.com", "小测试", "测试");
+
+
+
+/*
         SubscriberService subscriberService = ctx.getBean("subscribeService", SubscriberService.class);
 
         subscriberService.subForFriend("18369905136");
 
+*/
 
 
         /*EmailJob emailJob = ctx.getBean("emailJob", EmailJob.class);

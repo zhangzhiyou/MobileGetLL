@@ -32,7 +32,7 @@
 
     <bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">
         <!-- 发件人email -->
-        <property name="from" value="443016215@163.com" />
+        <property name="from" value="#{T(javax.mail.internet.MimeUtility).encodeText('流量汇管家') + '&lt;443016215@163.com>'}" />
         <!--
          收件人email
         <property name="to" value="to@yeah.net" />

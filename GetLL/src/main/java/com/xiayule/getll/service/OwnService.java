@@ -1,6 +1,5 @@
-package com.xiayule.getll.action;
+package com.xiayule.getll.service;
 
-import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
 

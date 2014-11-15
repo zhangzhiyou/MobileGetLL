@@ -1,5 +1,6 @@
 package com.xiayule.getll;
 
+import com.xiayule.getll.action.OwnService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.impl.EmailServiceImpl;
 import org.springframework.mail.MailSender;
@@ -15,18 +16,22 @@ import java.io.UnsupportedEncodingException;
  * Created by tan on 14-7-20.
  */
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
-                "spring-mail.xml"
+                "applicationContext.xml"
         });
+
+        OwnService ownService = ctx.getBean("ownService", OwnService.class);
+        System.out.println(ownService.isHasFlowScoreTransferGifts("18369905136"));
+
 //        PlayService playService = ctx.getBean("playService", PlayService.class);
 
 //        System.out.println(playService.smsNoticeSet("18369905136", "fdShakeNotify", "1"));
 
-        EmailServiceImpl emailServiceImpl = ctx.getBean("emailService", EmailServiceImpl.class);
+      /*  EmailServiceImpl emailServiceImpl = ctx.getBean("emailService", EmailServiceImpl.class);
         MailSender mailSender = ctx.getBean("mailSender", MailSender.class);
-
-        SimpleMailMessage simpleMessage = ctx.getBean("simpleMailMessage", SimpleMailMessage.class);
+*/
+        /*SimpleMailMessage simpleMessage = ctx.getBean("simpleMailMessage", SimpleMailMessage.class);
 
         // 设置昵称
         try {
@@ -41,10 +46,9 @@ public class Test {
         simpleMessage.setTo("443016215@qq.com");             //设定收件人
         simpleMessage.setText("哈");  //设置邮件主题内容
 
-        mailSender.send(simpleMessage);
+        mailSender.send(simpleMessage);*/
 
 //        emailServiceImpl.sendMail("443016215@qq.com", "小测试", "测试");
-
 
 
 /*

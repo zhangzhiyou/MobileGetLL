@@ -135,7 +135,7 @@
     <bean id="receiveGiftsCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="receiveGiftsDetail"/>
         <!-- 每天晚上9点执行任务 -->
-        <property name="cronExpression" value="0  21 * * ?"/>
+        <property name="cronExpression" value="0 0 21 * * ?"/>
     </bean>
 
     <!-- 设置调度 -->

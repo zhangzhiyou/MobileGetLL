@@ -1,5 +1,6 @@
 package com.xiayule.getll.service.impl;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.xiayule.getll.service.CookieService;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.service.RegisterCodeService;
@@ -71,6 +72,18 @@ public class SubscriberServiceImpl implements SubscriberService {
      */
     public Boolean isSubForFriend(String mobile) {
         return redisService.sismember("forFriend", mobile);
+    }
+
+    public void subAutoReceiveGifts(String mobile) {
+        redisService.sadd("autoReceive", mobile);
+    }
+
+    public void unsubAutoReceiveGifts(String mobile) {
+        redisService.srem("autoReceive", mobile);
+    }
+
+    public Boolean isSubAutoReceiveGifts(String mobile) {
+        return redisService.sismember("autoReceive", mobile);
     }
 
     /**

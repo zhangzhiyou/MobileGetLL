@@ -42,19 +42,6 @@
         <div class="col-md-4 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">设置昵称</h3>
-                </div>
-                <div class="panel-body">
-                    <input name="nickname" id="nickname"><br/>
-                    4-10个字符，可由中英文、数字、"_" 、 "-"组成，不能全是数字
-                </div>
-                <div class="panel-footer" style="text-align: center"><button type="button" style="width: 100%;" onclick="submitNickName()" class="btn btn-primary">保存</button></div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
                     <h3 class="panel-title">朋友摇奖功能</h3>
                 </div>
                 <div class="panel-body">
@@ -64,16 +51,41 @@
             </div>
         </div>
 
+        <div class="col-md-4 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">流量币自动领取</h3>
+                </div>
+                <div class="panel-body">
+                    开启流量币自动领取后，无论是朋友赠送的、还是朋友摇奖的流量币，系统都会在每天21点为您领取。
+                </div>
+                <div class="panel-footer" style="text-align: center"><input class="checkbox" type="checkbox" data-toggle="switch" id="autoReceive"></div>
+            </div>
+        </div>
+
 
         <div class="col-md-4 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">摇奖短信通知</h3>
+                    <h3 class="panel-title">屏蔽朋友摇奖短信</h3>
                 </div>
                 <div class="panel-body">
                     朋友摇奖会收到短信通知，开启该功能可以屏蔽短信通知，次日生效。<span style="color: #ff0000">注:该功能暂时不可用，请耐心等待修复</span>
                 </div>
                 <div class="panel-footer" style="text-align: center"><input class="checkbox" type="checkbox" data-toggle="switch" id="fdShakeNotify"/></div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">设置昵称</h3>
+                </div>
+                <div class="panel-body">
+                    <input name="nickname" id="nickname" class="form-control"><br/>
+                    4-10个字符，可由中英文、数字、"_" 、 "-"组成，不能全是数字
+                </div>
+                <div class="panel-footer" style="text-align: center"><button type="button" style="width: 100%;" onclick="submitNickName()" class="btn btn-primary">保存</button></div>
             </div>
         </div>
 
@@ -148,6 +160,32 @@
         }
     });
 
+    $('input[id="autoReceive"]').on({
+        'init.bootstrapSwitch': function() {
+            //　更新自动领取状态
+//            todo:
+            $.getJSON("/ajax/statusAutoReceiveGifts.action?r=" + new Date().getTime(), function(data) {
+                if (data.status != "ok") {
+                    alert(data.message);
+                }else{
+                    var result = data.result;
+
+                    //朋友为我摇奖时提醒
+                    var autoReceive = result.autoReceive;
+
+                    updateDivStyle("autoReceive", autoReceive);
+                }
+            },"json");
+        },
+        'switchChange.bootstrapSwitch': function(event, state) {
+            //todo: 如果没有焦点，证明不是人控制的,　不做任何处理
+            if ($("#autoReceive").is(":focus") == false) return;
+
+            autoReceiveUpdate(state);
+//            forFriendUpdate(state);
+        }
+    });
+
     // 登录检查
     eventMan.checkLogin(function() {
         if(eventMan.isLogin()) {
@@ -197,6 +235,24 @@
                 alert(data.message);
             }else{
                 // 成功
+            }
+        },"json");
+    }
+
+
+    function autoReceiveUpdate(bvalue) {
+        if (bvalue == true) {
+            value = 1;
+        } else {
+            value = 0;
+        }
+
+        $.post("/ajax/changeStatusAutoReceiveGifts.action?r=" + new Date().getTime(),{"status":value}, function(data) {
+            if (data.status != "ok") {
+                alert(data.message);
+            }else{
+                // 成功
+                alert(data.message);
             }
         },"json");
     }

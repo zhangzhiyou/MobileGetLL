@@ -149,6 +149,18 @@
             </result>
         </action>
 
+        <action name="statusAutoReceiveGifts" class="ajaxAction" method="statusAutoReceiveGifts">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="changeStatusAutoReceiveGifts" class="ajaxAction" method="changeStatusAutoReceive">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+        
         <action name="*" class="ajaxAction" method="{1}">
             <result type="json">
                 <param name="root">jsonObj</param>

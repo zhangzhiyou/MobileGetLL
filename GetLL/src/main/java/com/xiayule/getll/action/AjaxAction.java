@@ -731,6 +731,54 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
+
+    public String statusAutoReceiveGifts() {
+        String m = getMobileFromCookie();
+
+        json = new HashMap();
+
+        json.put("status", "ok");
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        if (subscriberService.isSubAutoReceiveGifts(m)) {
+            result.put("autoReceive", true);
+        } else result.put("autoReceive", false);
+
+        json.put("result", result);
+
+        return Action.SUCCESS;
+    }
+
+    public String changeStatusAutoReceive() {
+        String m = getMobileFromCookie();
+
+        json = new HashMap();
+
+        json.put("status", "ok");
+
+        String s = getStatus();
+
+//              System.out.println(s);
+
+        cleanParams();
+
+        if (s.trim().equals("1")) {
+            subscriberService.subAutoReceiveGifts(m);
+            json.put("message", "成功开启自动领取流量币功能");
+        } else {
+            subscriberService.unsubAutoReceiveGifts(m);
+            json.put("message", "成功关闭自动领取流量币功能");
+
+        }
+
+        logger.info(m + " changeStatusAutoReceive: status(" + s + ")");
+
+        json.put("status", "ok");
+
+        return Action.SUCCESS;
+    }
+
     private void clearCookie() {
         // 退出登录，即清除 cookie
         Cookie[] cookies = ServletActionContext.getRequest().getCookies();

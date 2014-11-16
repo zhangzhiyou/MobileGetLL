@@ -66,4 +66,24 @@ public interface SubscriberService {
      */
     public Set<String> getAllSubscriberForFriend();
 
+
+    /**
+     * 开启自动领取流量币功能
+     * @param mobile
+     */
+    public void subAutoReceiveGifts(String mobile);
+
+    /**
+     * 关闭自动领取流量币功能
+     * @param mobile
+     */
+    public void unsubAutoReceiveGifts(String mobile);
+
+    /**
+     * 是否开启了自动领取流量币功能
+     * @param mobile
+     * @return
+     */
+    public Boolean isSubAutoReceiveGifts(String mobile);
+
 }

@@ -17,7 +17,13 @@ public class AutoReceiveJob implements AutoPlayJob {
 
     @Override
     public void autoPlay(String mobile) {
-
+        try {
+            if (ownService.isHasFlowScoreTransferGifts(mobile)){
+                ownService.transferGiftsReceiveAll(mobile);
+            }
+        } catch (Exception e) {
+            logger.info(mobile + " AutoReceiveJob: 出错");
+        }
     }
 
     public static Logger getLogger() {

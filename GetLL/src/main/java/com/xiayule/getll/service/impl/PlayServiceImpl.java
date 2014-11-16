@@ -263,7 +263,7 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(cookieMobile, urlTransferGiftsReceive, params);
 
-        exchangeLogger.info(cookieMobile + ": 领取赠送的流量币 id:(" + paramId + ") " + " 返回信息:(" + rs + ")");
+        logger.info(cookieMobile + ": 领取赠送的流量币 id:(" + paramId + ") " + " 返回信息:(" + rs + ")");
 
         return rs;
     }
@@ -347,6 +347,9 @@ public class PlayServiceImpl implements PlayService {
         params.add(new BasicNameValuePair("status", status));
 
         String rs = post(cookieMobile, urlGetTransferGiftsList, params);
+
+        logger.info(cookieMobile + " getTransferGiftsList: 参数(queryType:" + queryType
+                + ", type:" + type + ",status:" + status + ") 返回(" + rs + ")");
 
         return rs;
     }

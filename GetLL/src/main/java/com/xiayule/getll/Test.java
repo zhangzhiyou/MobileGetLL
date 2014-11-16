@@ -1,15 +1,8 @@
 package com.xiayule.getll;
 
-import com.xiayule.getll.action.OwnService;
-import com.xiayule.getll.service.SubscriberService;
-import com.xiayule.getll.service.impl.EmailServiceImpl;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+import com.xiayule.getll.service.OwnService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.mail.SimpleMailMessage;
-
-import java.io.UnsupportedEncodingException;
 
 
 /**
@@ -22,7 +15,7 @@ public class Test {
         });
 
         OwnService ownService = ctx.getBean("ownService", OwnService.class);
-        System.out.println(ownService.isHasFlowScoreTransferGifts("18369905136"));
+        ownService.transferGiftsReceiveAll("18369905136");
 
 //        PlayService playService = ctx.getBean("playService", PlayService.class);
 

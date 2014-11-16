@@ -86,4 +86,10 @@ public interface SubscriberService {
      */
     public Boolean isSubAutoReceiveGifts(String mobile);
 
+    /**
+     * 获得所有订阅自动领取流量币的用户
+     * @return
+     */
+    public Set<String> getAllSubscriberAutoReceive();
+
 }

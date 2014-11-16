@@ -95,6 +95,15 @@ public class SubscriberServiceImpl implements SubscriberService {
     }
 
     /**
+     * 获得所有订阅自动领取流量币的用户
+     * @return
+     */
+    public Set<String> getAllSubscriberAutoReceive() {
+        return redisService.smembers("autoReceive");
+    }
+
+
+    /**
      * 获取注册码有效期剩余时间
      * @param mobile 要获取的手机号
      * @return 剩余时间，单位为 秒

@@ -31,11 +31,14 @@ public class JobForAutoReceiveGiftsTaskImpl implements JobTask {
             isRunning = true;
 
             // 获取所有订阅下午摇奖的人
-            List<String> subs = subscriberService.getAllSubscriber();
+            Set<String> subs = subscriberService.getAllSubscriberAutoReceive();
 
             int cnt = 0;
 
             for (String sub : subs) {
+                // 如果有效期到期, 则不执行
+                if (!subscriberService.isSubscribe(sub)) continue;
+
                 cnt++;
 
                 try {

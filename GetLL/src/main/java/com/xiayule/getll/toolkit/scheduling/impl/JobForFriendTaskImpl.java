@@ -18,7 +18,6 @@ public class JobForFriendTaskImpl implements JobTask {
 
     private SubscriberService subscriberService;
 
-
     /**
      * 该 autoPlay 需要传入的额是 AutoPlayForFriend
      */

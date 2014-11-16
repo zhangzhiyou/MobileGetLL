@@ -31,6 +31,16 @@
         <property name="autoPlayJob" ref="autoPlayForFriendJob"/>
     </bean>
 
+    <!-- 自动领取业务对象 -->
+    <bean id="autoPlayForReceiveGiftsJob" class="com.xiayule.getll.draw.job.impl.AutoReceiveJob">
+        <property name="ownService" ref="ownService"/>
+    </bean>
+
+    <bean id="autoPlayForReceiveGiftsTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForAutoReceiveGiftsTaskImpl">
+        <property name="autoPlayJob" ref="autoPlayForReceiveGiftsJob"/>
+        <property name="subscriberService" ref="subscribeService"/>
+    </bean>
+
     <!-- Email 服务业务对象 -->
     <bean id="emailJob" class="com.xiayule.getll.toolkit.scheduling.impl.EmailJob">
         <property name="emailService" ref="emailService"/>
@@ -80,6 +90,19 @@
         <property name="concurrent" value="false"/>
     </bean>
 
+    <bean id="receiveGiftsDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="autoPlayForReceiveGiftsTask"/>
+        <property name="targetMethod" value="doJob"/>
+
+        <!--对于相同的JobDetail，当指定多个Trigger时,
+        很可能第一个job完成之前，第二个job就开始了。
+        指定concurrent设为false，
+        多个job不会并发运行，
+        第二个job将不会在第一个job完成之前开始。-->
+
+        <property name="concurrent" value="false"/>
+    </bean>
+
     <!-- 增加调度触发器 -->
     <!-- 1.8 以前的配置
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
@@ -108,6 +131,13 @@
         <property name="cronExpression" value="0 0 8,22 * * ?"/>
     </bean>
 
+    <!-- 每天晚上9点自动领取 -->
+    <bean id="receiveGiftsCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="receiveGiftsDetail"/>
+        <!-- 每天晚上9点执行任务 -->
+        <property name="cronExpression" value="0  21 * * ?"/>
+    </bean>
+
     <!-- 设置调度 -->
     <bean lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
@@ -115,6 +145,7 @@
                 <ref bean="cronTrigger" />
                 <ref bean="forFriendCronTrigger"/>
                 <ref bean="emailCronTrigger"/>
+                <ref bean="receiveGiftsCronTrigger"/>
             </list>
         </property>
         <property name="taskExecutor" ref="executor" />

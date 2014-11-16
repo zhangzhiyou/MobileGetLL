@@ -73,7 +73,7 @@ public class OwnService {
     /**
      * 接收所有的流量币
      */
-    public void transferGiftsReceiveAll(String mobile) {
+    public void transferGiftsReceiveAll(String mobile) throws Exception {
         //数据如下
         //{"message":"ok","result":{"totalCredit":"0.20","list":[{"typeName":"朋友摇奖","msisdn":"18369905136","handselDate":"2014-11-15 01:07","type":"2","credit":"0.2","handselMsisdn":"18753363865","handselID":"15050534"}]},"status":"ok","class":"class com.aspire.portal.web.vo.JsonResult","code":""}
 
@@ -111,6 +111,7 @@ public class OwnService {
             }
         } catch (Exception e) {
             logger.info(mobile + " 自动领取过程发生错误");
+            throw e;
         }
     }
 

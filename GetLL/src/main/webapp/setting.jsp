@@ -34,7 +34,6 @@
 <div class="container">
 
     <div class="row">
-
         <div class="col-xs-12">
             <div style="color: #ff0000" id="result_msg"></div>
         </div>
@@ -57,12 +56,11 @@
                     <h3 class="panel-title">流量币自动领取</h3>
                 </div>
                 <div class="panel-body">
-                    开启流量币自动领取后，无论是朋友赠送的、还是朋友摇奖的流量币，系统都会在每天21点为您领取。
+                    开启流量币自动领取后，无论是朋友赠送的、还是朋友摇奖获得的流量币，系统都会在每天21点为您领取。
                 </div>
                 <div class="panel-footer" style="text-align: center"><input class="checkbox" type="checkbox" data-toggle="switch" id="autoReceive"></div>
             </div>
         </div>
-
 
         <div class="col-md-4 col-xs-12">
             <div class="panel panel-default">
@@ -235,6 +233,7 @@
                 alert(data.message);
             }else{
                 // 成功
+                alert(data.message);
             }
         },"json");
     }

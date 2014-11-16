@@ -691,7 +691,11 @@ public class AjaxAction {
 
         if (s.trim().equals("1")) {
             subscriberService.subForFriend(m);
-        } else subscriberService.unsubForFriend(m);
+            json.put("message", "成功开启朋友摇奖功能");
+        } else {
+            subscriberService.unsubForFriend(m);
+            json.put("message", "成功关闭朋友摇奖功能");
+        }
 
         logger.info(m + " changeStatusForFriend: status(" + s + ")");
 
@@ -758,8 +762,6 @@ public class AjaxAction {
         json.put("status", "ok");
 
         String s = getStatus();
-
-//              System.out.println(s);
 
         cleanParams();
 

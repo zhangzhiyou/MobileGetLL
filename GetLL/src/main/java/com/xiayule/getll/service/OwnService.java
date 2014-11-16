@@ -46,7 +46,7 @@ public class OwnService {
     public boolean isHasFlowScoreTransferGifts(String mobile) throws Exception {
         String rs = playService.getTransferGiftsList(mobile, "count", "others", "2");
 
-        System.out.println(rs);
+//        System.out.println(rs);
 
         try {
             JSONObject jsonObj = JsonUtils.stringToJson(rs);

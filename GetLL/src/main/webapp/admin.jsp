@@ -18,7 +18,8 @@
 <body>
 
 订阅者总数：${mSubscribCount} <br/>
-
+订阅朋友摇奖总数: ${mSubscribForFriendCount} <br/>
+订阅自动领取总数: ${mSubscribAutoReceiveCount} <br/>
 
 
 </body>

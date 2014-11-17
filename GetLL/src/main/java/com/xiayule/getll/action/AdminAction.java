@@ -16,14 +16,19 @@ public class AdminAction implements Action {
         return subscriberService.countNumbers();
     }
 
-    private int mSubscribCount;
-
     @Override
     public String execute() throws Exception {
-        mSubscribCount = subscriberService.countNumbers();
+        int mSubscribCount = subscriberService.countNumbers();
 
         HttpServletRequest request = ServletActionContext.getRequest();
+
+        int mSubscribForFriendCount = subscriberService.getAllSubscriberForFriend().size();
+
+        int mSubscribAutoReceiveCount = subscriberService.getAllSubscriberAutoReceive().size();
+
         request.setAttribute("mSubscribCount", mSubscribCount);
+        request.setAttribute("mSubscribForFriendCount", mSubscribForFriendCount);
+        request.setAttribute("mSubscribAutoReceiveCount", mSubscribAutoReceiveCount);
 
         return Action.SUCCESS;
     }

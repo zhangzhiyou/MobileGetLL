@@ -7,7 +7,7 @@
 <head lang="en">
     <meta charset="UTF-8">
 
-    <link href="css/my.css" rel="stylesheet" type="text/css">
+    <link href="css/my.min.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css">
@@ -86,10 +86,9 @@
                 <div class="col-xs-12">
                     <h3>
                         <!-- 问候语 -->
-                        <span> <%= TimeUtils.getGreetings() %> !</span><br />
+                        <span style="font-size: 25px"> <%= TimeUtils.getGreetings() %> &nbsp;<span id="userNick" style="font-size: 45px;"></span>&nbsp;</span><br />
 
-                        <span id="userMobile">&nbsp;</span>
-                        <small style="color: #b09fc9" id="userNick"></small>
+                        <small style="color: #b09fc9" id="userMobile">&nbsp;</small>
                     </h3>
                 </div>
 
@@ -127,16 +126,16 @@
             </div>
 
             <!-- 其他信息 -->
-            
+
             <div class="col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">温馨提示</h3>
                     </div>
                     <div class="panel-body">
-                        <p>距结算日<span class="rednum" id="distanceDays">0</span>天</p>
+                        <div class="col-xs-12 col-md-6" style="text-align:center; font-size: 20px">距结算日<span class="rednum" id="distanceDays" style="font-size: 30px">0</span>天</div>
 
-                        <p>日均可用<span class="rednum" id="dayNum">0</span>MB</p>
+                        <div class="col-xs-12 col-md-6" style="text-align:center; font-size: 20px">日均可用<span class="rednum" id="dayNum" style="font-size: 30px">0</span>MB</div>
                     </div>
                 </div>
             </div>
@@ -158,7 +157,7 @@
                         <h3 class="panel-title">套餐明细</h3>
                     </div>
                     <div class="panel-body">
-                        <div id="listDiv"></div>
+                        <div id="listDiv" style="text-align: center"></div>
                     </div>
                 </div>
             </div>
@@ -256,7 +255,7 @@
             <%--图表--%>
 
             <%--<tr><td><div id="tubiao0" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="200" data-part="20"></div></tr>--%>
-            <tr class="center">
+            <tr>
                 <td class="center">
                     <div id="taocan#id#" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="30" data-fgcolor="#fgcolor#"
                                                        data-bgcolor="#eee"  data-total="#data-total#" data-part="#data-part#" data-text="#data-text#M" data-animationstep="0"></div>
@@ -285,14 +284,14 @@
     <script type="text/javascript" src="js/eventMan.min.js"></script>
     <script type="text/javascript" src="js/tip.min.js"></script>
     <script type="text/javascript" src="js/score.min.js"></script>
-    <script type="text/javascript" src="js/flowScore.js"></script>
+    <script type="text/javascript" src="js/flowScore.min.js"></script>
 
     <%--todo:--%>
     <%--<script type="text/javascript" src="js/highcharts.js"></script>--%>
     <script type="text/javascript" src="js/jquery.circliful.min.js"></script>
 
     <script type="text/javascript" src="js/common.min.js"></script>
-    <script type="text/javascript" src="js/jquery.MyDigitclock.js"></script>
+    <%--<script type="text/javascript" src="js/jquery.MyDigitclock.js"></script>--%>
 
     <script>
         eventMan.checkLogin(function () {

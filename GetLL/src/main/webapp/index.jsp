@@ -270,8 +270,14 @@
                 <%--上方文字说明--%>
                 <tr><td class="center">#top_desc#</td></tr>
                 <%--图表--%>
+
                 <%--<tr><td><div id="tubiao0" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="200" data-part="20"></div></tr>--%>
-                <tr class="center"><td class="center"><div id="taocan#id#" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="#data-total#" data-part="#data-part#" data-text="#data-text#M" data-animationstep="0"></div></td></tr>
+                <tr class="center">
+                    <td class="center">
+                        <div id="taocan#id#" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#fgcolor#"
+                                                           data-bgcolor="#eee"  data-total="#data-total#" data-part="#data-part#" data-text="#data-text#M" data-animationstep="0"></div>
+                    </td>
+                </tr>
                 <%--下方文字说明--%>
                 <tr><td class="center"><div>#botton_desc#</div></td></tr>
             </table>

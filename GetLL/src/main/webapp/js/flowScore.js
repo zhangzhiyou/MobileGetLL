@@ -314,7 +314,6 @@ FlowScore.prototype.getTotalFlow = function (callback) {
 
             //newChart();
 
-
             // 显示总流量详情
             var $totalDiv = $('#totalDiv').html("");
 
@@ -323,6 +322,7 @@ FlowScore.prototype.getTotalFlow = function (callback) {
                 .replace(/#data-total#/g, result.sumNumTotal)
                 .replace(/#data-part#/g, result.usedNumTotal)
                 .replace(/#data-text#/g, result.leftNumTotal)
+                .replace(/#fgcolor#/g, '#61a9dc')
                 .replace(/#top_desc#/g, result.usedNumTotal + '/' + result.sumNumTotal + 'M')
                 .replace(/#botton_desc#/g, "计费数据有延时，仅供参考，请以月结数据为准。");
 
@@ -386,6 +386,12 @@ FlowScore.prototype.getTotalFlow = function (callback) {
             $("#listDiv").append(htmls);*/
 
 
+            var colorsResult = new Array();
+            colorsResult.push('#dc9e3e');
+            colorsResult.push('#01b678');
+            colorsResult.push('#dc70d8');
+            colorsResult.push('#dc8b87');
+
             for (var i = 0; i < list.length; i++) {
                 var obj = list[i];
 
@@ -395,7 +401,9 @@ FlowScore.prototype.getTotalFlow = function (callback) {
                     .replace(/#data-part#/g, obj.USEDNUM)
                     .replace(/#data-text#/g, obj.LEFTNUM)
                     .replace(/#top_desc#/g, obj.USEDNUM + '/' + obj.SUMNUM + 'M')
-                    .replace(/#botton_desc#/g, obj.PRIVSET);
+                    .replace(/#botton_desc#/g, obj.PRIVSET)
+                    .replace(/#fgcolor#/g, colorsResult[i]);
+
 
                 $htmls.append(itemStr);
             }

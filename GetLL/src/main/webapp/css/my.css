@@ -77,6 +77,8 @@ html, body {
 
 .rednum{color:#c31516;}
 
+.center{text-align: center}
+
 .pos_right {float: right;}
 
 .grayfont{font-size:0.8em; color:#898989; padding-left:30px;}

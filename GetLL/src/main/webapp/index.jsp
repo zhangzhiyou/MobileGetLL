@@ -7,10 +7,11 @@
 <head lang="en">
     <meta charset="UTF-8">
 
-    <link href="css/my.min.css" rel="stylesheet" type="text/css">
+    <link href="css/my.css" rel="stylesheet" type="text/css">
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/flat-ui.min.css" rel="stylesheet">
+    <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.circliful.css" rel="stylesheet" type="text/css" />
 
     <meta name="keywords" content="流量,移动,流量汇,流量汇管家,赚取流量,免费流量,摇流量,兑换,流量币,转赠,短信">
     <meta name="description" content="流量汇,流量汇管家,免费赚取流量,兑换流量,兑换短信.">
@@ -126,41 +127,59 @@
             </div>
 
             <!-- 其他信息 -->
+
             <div class="col-xs-12">
-                <!-- 流量图表 -->
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <!--图表-->
-                    <div class="jiafengge"><span class="line" style="color:#F33">流量图表</span></div>
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">流量概况</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12 col-md-5" id="totalDiv"></div>
+                            <div class="col-xs-12 col-md-7">
+                                <p>本月总流量<span id="TotalFlowDiv">0</span>MB</p>
 
-                    <div class="myaccount_chart">
-                        <div id="tipDiv" style="padding-bottom:5px;"></div>
-                        <div id="ReportDiv"></div>
-                        <div class="tishi2">计费数据有延时，仅供参考，请以月结数据为准。</div>
+                                <p>剩余流量<span id="LeftFlowDiv">0</span>MB</p>
+
+                                <p>距结算日<span id="distanceDays">0</span>天</p>
+
+                                <p>日均可用<span id="dayNum">0</span>MB</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
+                <%--<div class="col-xs-12 col-sm-6 col-md-8">
 
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <!--明细-->
-                    <div id="listDiv"></div>
-                </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">温馨提醒</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>本月总流量<span id="TotalFlowDiv">0</span>MB</p>
 
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <!--套餐详情-->
-                    <div class="col-xs-12">
-                        <div class="jiafengge"><span class="line" style="color:#F33">温馨提醒</span></div>
+                            <p>剩余流量<span id="LeftFlowDiv">0</span>MB</p>
 
-                        <p>本月总流量<span id="TotalFlowDiv">0</span>MB</p>
+                            <p>距结算日<span id="distanceDays">0</span>天</p>
 
-                        <p>剩余流量<span id="LeftFlowDiv">0</span>MB</p>
-
-                        <p>距结算日<span id="distanceDays">0</span>天</p>
-
-                        <p>日均可用<span id="dayNum">0</span>MB</p>
+                            <p>日均可用<span id="dayNum">0</span>MB</p>
+                        </div>
                     </div>
+                </div>--%>
 
-                    <!-- todo:会引发错误，暂时关闭该功能-->
-                    <!--<button class="btn button" id="btShakeNow" type="button" onclick="this.blur()">立即摇奖</button>-->
+                <div class='col-xs-12'>
+                    <%--<span style="color:#F33">套餐明细</span>
+
+                    <div id="listDiv"></div>--%>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">套餐明细</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="listDiv"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -242,6 +261,24 @@
         <li><a href="javascript:;" id="convert_#id#">#prizeName#(需#nowLostCredit#流量币)</a></li>
     </div>
 
+    <!-- 图表临时模板 -->
+    <div id="jiaitem_tmp_tubiao" class="hideme">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <!--图表-->
+
+            <table>
+                <%--上方文字说明--%>
+                <tr><td class="center">#top_desc#</td></tr>
+                <%--图表--%>
+                <%--<tr><td><div id="tubiao0" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="200" data-part="20"></div></tr>--%>
+                <tr class="center"><td class="center"><div id="taocan#id#" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="#data-total#" data-part="#data-part#" data-text="#data-text#M" data-animationstep="0"></div></td></tr>
+                <%--下方文字说明--%>
+                <tr><td class="center"><div>#botton_desc#</div></td></tr>
+            </table>
+        </div>
+    </div>
+<%--<div id="taocan_#id#" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="#data-total#" data-part="#data-part#" data-text="#data-text#"></div>--%>
+
     <!-- 兑换申请表单 -->
     <form action="/score" method="POST" name="flowScoreCfPage" id="flowScoreCfPage" class='hide'>
         <input type="text" value="flowScoreCfPage" name="redirect"/>
@@ -260,8 +297,12 @@
     <script type="text/javascript" src="js/eventMan.min.js"></script>
     <script type="text/javascript" src="js/tip.min.js"></script>
     <script type="text/javascript" src="js/score.min.js"></script>
-    <script type="text/javascript" src="js/flowScore.min.js"></script>
-    <script type="text/javascript" src="js/highcharts.js"></script>
+    <script type="text/javascript" src="js/flowScore.js"></script>
+
+    <%--todo:--%>
+    <%--<script type="text/javascript" src="js/highcharts.js"></script>--%>
+    <script type="text/javascript" src="js/jquery.circliful.min.js"></script>
+
     <script type="text/javascript" src="js/common.min.js"></script>
     <script type="text/javascript" src="js/jquery.MyDigitclock.js"></script>
 

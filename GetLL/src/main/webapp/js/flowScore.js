@@ -271,6 +271,10 @@ FlowScore.prototype.getTotalFlow = function (callback) {
     var lazySeconds = 1;
 
     $.post("/ajax/getPackage.action?r=" + Math.random(), {}, function (data) {
+
+        // 返回
+        //{"message":"ok","result":{"dayNum":1.34,"sumNumTotal":415,"usedNumTotal":406.95,"flag":false,"per":2,"isWarning":true,"list":[{"SUMNUM":"280.00","UNIT":"M","FEENAME":"","LEFTNUM":"0.00","SERVTYPE":"2","STARTTIME":"20141025","ENDTIME":"20141124","TYPE":"GPRS","PRIVSET":"套餐费18元/月","USEDNUM":280},{"SUMNUM":"135.00","UNIT":"M","FEENAME":"","LEFTNUM":"8.05","SERVTYPE":"2","STARTTIME":"20141025","ENDTIME":"20141124","TYPE":"GPRS","PRIVSET":"100条国内点对点短信+100M省内数据流量+3元亲情包+和阅读包，赠送12个月（含专属叠加包）","USEDNUM":126.95}],"leftNumTotal":8.05,"distDay":"6"},"status":"ok","class":"class com.aspire.portal.web.vo.JsonResult","code":""}
+
 //            setTimeout(function () {
         if (data.status != "ok") {
 
@@ -286,9 +290,9 @@ FlowScore.prototype.getTotalFlow = function (callback) {
             $("#distanceDays").html(result.distDay);
             $("#dayNum").html(result.dayNum);
 
-            var colorsResult = new Array();
-            colorsResult.push('#e2e2e2');
-            colorsResult.push('#feba01');
+            //var colorsResult = new Array();
+            //colorsResult.push('#e2e2e2');
+            //colorsResult.push('#feba01');
 
             //是否告警
             /*if(result.isWarning == true){
@@ -303,24 +307,106 @@ FlowScore.prototype.getTotalFlow = function (callback) {
              }*/
 
             //饼状图展示
-            var statResult = new Array();
-            statResult.push(['已用', result.usedNumTotal]);
-            statResult.push(['剩余', result.leftNumTotal]);
-            newChart(statResult, colorsResult);
+            //var statResult = new Array();
+            //statResult.push(['已用', result.usedNumTotal]);
+            //statResult.push(['剩余', result.leftNumTotal]);
+            //newChart(statResult, colorsResult);
 
-            //列表展示
+            //newChart();
+
+
+            // 显示总流量详情
+            var $totalDiv = $('#totalDiv').html("");
+
+            var itemTmp = $("#jiaitem_tmp_tubiao").html();
+            var itemStr = itemTmp.replace(/#id#/g, "")
+                .replace(/#data-total#/g, result.sumNumTotal)
+                .replace(/#data-part#/g, result.usedNumTotal)
+                .replace(/#data-text#/g, result.leftNumTotal)
+                .replace(/#top_desc#/g, result.usedNumTotal + '/' + result.sumNumTotal + 'M')
+                .replace(/#botton_desc#/g, "计费数据有延时，仅供参考，请以月结数据为准。");
+
+            $totalDiv.append(itemStr);
+
+            /*//列表展示
             var list = result.list;
-            var htmls = '<div class="jiafengge"><span class="line" style="color:#F33">套餐明细</span></div>';
+            var htmls = '<div><span class="line" style="color:#F33">套餐明细</span></div>';
             for (var i = 0; i < list.length; i++) {
                 var obj = list[i];
                 htmls = [htmls,
-                        '<div class="myaccount_mingxi_list"><div>套餐' + getNumTip(i) + '</div>',
+                        '<div><div>套餐' + getNumTip(i) + '</div>',
                         '<div>' + obj.PRIVSET + '</div>',//（'+obj.TYPE+'）
 
                         '<div><span class="detail">剩余：' + obj.LEFTNUM + 'M</span><span class="detail">已用：' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</span></div></div>'
                 ].join('');
             }
             $("#listDiv").html(htmls);
+            */
+
+            //列表展示
+            // 显示总流量详情
+            var $htmls = $('#listDiv').html("");
+            var list = result.list;
+
+            /*for (var i = 0; i < list.length; i++) {
+                var obj = list[i];
+                htmls = [htmls,
+                    //todo: 要加上id
+                    '<div class="col-xs-12 col-sm-6 col-md-4">',
+                    '<div style="text-align: center">' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</div>',
+                    '<div id="taocan' + i + '" data-dimension="200" data-info="剩余量" data-width="15" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="'+ parseInt(obj.SUMNUM) + '" data-part="' + parseInt(obj.USEDNUM) + '" data-text="' + obj.LEFTNUM + 'M"></div>',
+                    '<div>' + obj.PRIVSET + '</div>',
+                    '</div>',
+
+                    //'<div><div>套餐' + getNumTip(i) + '</div>',
+                    //'<div>' + obj.PRIVSET + '</div>',//（'+obj.TYPE+'）
+                    //
+                    //'<div><span class="detail">剩余：' + obj.LEFTNUM + 'M</span><span class="detail">已用：' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</span></div></div>'
+                ].join('');
+            }*/
+
+            /*for (var i = 0; i < list.length; i++) {
+                var obj = list[i];
+                htmls = [htmls,
+                    '<div class="col-xs-12 col-sm-6 col-md-4">',
+                    '<table>',
+                    '<tr><td style="text-align: center">' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</td></tr>',
+                    '<tr><td style="text-align: center"><div id="taocan' + i + '" data-dimension="200" data-info="剩余量" data-width="15" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="'+ parseInt(obj.SUMNUM) + '" data-part="' + parseInt(obj.USEDNUM) + '" data-text="' + obj.LEFTNUM + 'M"></div></td></tr>',
+                    '<tr><td style="text-align: center">' + obj.PRIVSET + '</td></tr>',
+                    '</table>',
+                    '</div>',
+
+                    //'<div><div>套餐' + getNumTip(i) + '</div>',
+                    //'<div>' + obj.PRIVSET + '</div>',//（'+obj.TYPE+'）
+                    //
+                    //'<div><span class="detail">剩余：' + obj.LEFTNUM + 'M</span><span class="detail">已用：' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</span></div></div>'
+                ].join('');
+            }
+
+            $("#listDiv").append(htmls);*/
+
+
+            for (var i = 0; i < list.length; i++) {
+                var obj = list[i];
+
+                itemTmp = $("#jiaitem_tmp_tubiao").html();
+                itemStr = itemTmp.replace(/#id#/g, i)
+                    .replace(/#data-total#/g, obj.SUMNUM)
+                    .replace(/#data-part#/g, obj.USEDNUM)
+                    .replace(/#data-text#/g, obj.LEFTNUM)
+                    .replace(/#top_desc#/g, obj.USEDNUM + '/' + obj.SUMNUM + 'M')
+                    .replace(/#botton_desc#/g, obj.PRIVSET);
+
+                $htmls.append(itemStr);
+            }
+
+            // 显示图表
+            for (var i = 0; i < list.length; i++) {
+                $('#taocan' + i).circliful();
+            }
+
+            $('#taocan').circliful();
+
         }
 
         if (callback) {
@@ -349,7 +435,7 @@ function showErrorResult(data) {
 }
 
 function newChart(data, colorsResult) {
-    $('#ReportDiv').highcharts({
+    /*$('#ReportDiv').highcharts({
         chart: {
             height: 200
         },
@@ -381,7 +467,13 @@ function newChart(data, colorsResult) {
                 data: data
             }
         ]
-    });
+    });*/
+
+    $('#ReportDiv').attr('data-text', '测试');
+
+    //todo:
+    $('#ReportDiv').circliful();
+
 }
 
 var flowScore = new FlowScore();

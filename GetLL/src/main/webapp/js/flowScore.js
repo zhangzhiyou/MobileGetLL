@@ -268,14 +268,11 @@ FlowScore.prototype.getFlowScoreTransferGiftsInfo = function (callback) {
 
 // 流量详情
 FlowScore.prototype.getTotalFlow = function (callback) {
-    var lazySeconds = 1;
-
     $.post("/ajax/getPackage.action?r=" + Math.random(), {}, function (data) {
 
         // 返回
         //{"message":"ok","result":{"dayNum":1.34,"sumNumTotal":415,"usedNumTotal":406.95,"flag":false,"per":2,"isWarning":true,"list":[{"SUMNUM":"280.00","UNIT":"M","FEENAME":"","LEFTNUM":"0.00","SERVTYPE":"2","STARTTIME":"20141025","ENDTIME":"20141124","TYPE":"GPRS","PRIVSET":"套餐费18元/月","USEDNUM":280},{"SUMNUM":"135.00","UNIT":"M","FEENAME":"","LEFTNUM":"8.05","SERVTYPE":"2","STARTTIME":"20141025","ENDTIME":"20141124","TYPE":"GPRS","PRIVSET":"100条国内点对点短信+100M省内数据流量+3元亲情包+和阅读包，赠送12个月（含专属叠加包）","USEDNUM":126.95}],"leftNumTotal":8.05,"distDay":"6"},"status":"ok","class":"class com.aspire.portal.web.vo.JsonResult","code":""}
 
-//            setTimeout(function () {
         if (data.status != "ok") {
 
             showErrorResult(data);
@@ -289,30 +286,6 @@ FlowScore.prototype.getTotalFlow = function (callback) {
             $("#LeftFlowDiv").html(result.leftNumTotal);
             $("#distanceDays").html(result.distDay);
             $("#dayNum").html(result.dayNum);
-
-            //var colorsResult = new Array();
-            //colorsResult.push('#e2e2e2');
-            //colorsResult.push('#feba01');
-
-            //是否告警
-            /*if(result.isWarning == true){
-             $("#tipDiv").html(' • 剩余流量不多了，快去<a href="/portal/app/buy.jsp">加流量</a>吧');
-             colorsResult = new Array();
-             colorsResult.push('#c5c5c5');
-             colorsResult.push('#dc0000');
-             }
-             //剩余流量大于80%或者大于200M时的提示
-             if(result.flag == true){
-             $("#tipDiv").html(' • 流量用不完？看看<a href="/portal/app/gain.jsp">高帅富流量指南</a><span class="but_arrow">&nbsp;</span>');
-             }*/
-
-            //饼状图展示
-            //var statResult = new Array();
-            //statResult.push(['已用', result.usedNumTotal]);
-            //statResult.push(['剩余', result.leftNumTotal]);
-            //newChart(statResult, colorsResult);
-
-            //newChart();
 
             // 显示总流量详情
             var $totalDiv = $('#totalDiv').html("");
@@ -328,63 +301,11 @@ FlowScore.prototype.getTotalFlow = function (callback) {
 
             $totalDiv.append(itemStr);
 
-            /*//列表展示
-            var list = result.list;
-            var htmls = '<div><span class="line" style="color:#F33">套餐明细</span></div>';
-            for (var i = 0; i < list.length; i++) {
-                var obj = list[i];
-                htmls = [htmls,
-                        '<div><div>套餐' + getNumTip(i) + '</div>',
-                        '<div>' + obj.PRIVSET + '</div>',//（'+obj.TYPE+'）
-
-                        '<div><span class="detail">剩余：' + obj.LEFTNUM + 'M</span><span class="detail">已用：' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</span></div></div>'
-                ].join('');
-            }
-            $("#listDiv").html(htmls);
-            */
 
             //列表展示
-            // 显示总流量详情
+            //显示套餐详情
             var $htmls = $('#listDiv').html("");
             var list = result.list;
-
-            /*for (var i = 0; i < list.length; i++) {
-                var obj = list[i];
-                htmls = [htmls,
-                    //todo: 要加上id
-                    '<div class="col-xs-12 col-sm-6 col-md-4">',
-                    '<div style="text-align: center">' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</div>',
-                    '<div id="taocan' + i + '" data-dimension="200" data-info="剩余量" data-width="15" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="'+ parseInt(obj.SUMNUM) + '" data-part="' + parseInt(obj.USEDNUM) + '" data-text="' + obj.LEFTNUM + 'M"></div>',
-                    '<div>' + obj.PRIVSET + '</div>',
-                    '</div>',
-
-                    //'<div><div>套餐' + getNumTip(i) + '</div>',
-                    //'<div>' + obj.PRIVSET + '</div>',//（'+obj.TYPE+'）
-                    //
-                    //'<div><span class="detail">剩余：' + obj.LEFTNUM + 'M</span><span class="detail">已用：' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</span></div></div>'
-                ].join('');
-            }*/
-
-            /*for (var i = 0; i < list.length; i++) {
-                var obj = list[i];
-                htmls = [htmls,
-                    '<div class="col-xs-12 col-sm-6 col-md-4">',
-                    '<table>',
-                    '<tr><td style="text-align: center">' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</td></tr>',
-                    '<tr><td style="text-align: center"><div id="taocan' + i + '" data-dimension="200" data-info="剩余量" data-width="15" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="'+ parseInt(obj.SUMNUM) + '" data-part="' + parseInt(obj.USEDNUM) + '" data-text="' + obj.LEFTNUM + 'M"></div></td></tr>',
-                    '<tr><td style="text-align: center">' + obj.PRIVSET + '</td></tr>',
-                    '</table>',
-                    '</div>',
-
-                    //'<div><div>套餐' + getNumTip(i) + '</div>',
-                    //'<div>' + obj.PRIVSET + '</div>',//（'+obj.TYPE+'）
-                    //
-                    //'<div><span class="detail">剩余：' + obj.LEFTNUM + 'M</span><span class="detail">已用：' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</span></div></div>'
-                ].join('');
-            }
-
-            $("#listDiv").append(htmls);*/
-
 
             var colorsResult = new Array();
             colorsResult.push('#dc9e3e');
@@ -404,7 +325,6 @@ FlowScore.prototype.getTotalFlow = function (callback) {
                     .replace(/#botton_desc#/g, obj.PRIVSET)
                     .replace(/#fgcolor#/g, colorsResult[i]);
 
-
                 $htmls.append(itemStr);
             }
 
@@ -415,12 +335,25 @@ FlowScore.prototype.getTotalFlow = function (callback) {
 
             $('#taocan').circliful();
 
+            /*//列表展示
+            var list = result.list;
+            var htmls = '<div><span class="line" style="color:#F33">套餐明细</span></div>';
+            for (var i = 0; i < list.length; i++) {
+                var obj = list[i];
+                htmls = [htmls,
+                        '<div><div>套餐' + getNumTip(i) + '</div>',
+                        '<div>' + obj.PRIVSET + '</div>',//（'+obj.TYPE+'）
+
+                        '<div><span class="detail">剩余：' + obj.LEFTNUM + 'M</span><span class="detail">已用：' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</span></div></div>'
+                ].join('');
+            }
+            $("#listDiv").html(htmls);
+            */
         }
 
         if (callback) {
             callback(data);
         }
-//            }, lazySeconds * 1000);
     }, "json");
 }
 
@@ -440,48 +373,6 @@ function showErrorResult(data) {
         }
         return;
     }
-}
-
-function newChart(data, colorsResult) {
-    /*$('#ReportDiv').highcharts({
-        chart: {
-            height: 200
-        },
-        title: {
-            text: ''
-        },
-        tooltip: {
-            pointFormat: '{point.percentage:.2f}%</b>'
-        },
-        colors: colorsResult,
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    color: '#000000',
-                    connectorColor: '#000000',
-                    format: '<b>{point.name}: </b>{point.y:.2f}M'
-                }
-            }
-        },
-        credits: {
-            enabled: false
-        },
-        series: [
-            {
-                type: 'pie',
-                data: data
-            }
-        ]
-    });*/
-
-    $('#ReportDiv').attr('data-text', '测试');
-
-    //todo:
-    $('#ReportDiv').circliful();
-
 }
 
 var flowScore = new FlowScore();

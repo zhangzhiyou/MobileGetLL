@@ -127,27 +127,41 @@
             </div>
 
             <!-- 其他信息 -->
-
+            
             <div class="col-xs-12">
-                <div class="col-xs-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">流量概况</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-xs-12 col-md-5" id="totalDiv"></div>
-                            <div class="col-xs-12 col-md-7">
-                                <p>本月总流量<span id="TotalFlowDiv">0</span>MB</p>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">温馨提示</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>距结算日<span class="rednum" id="distanceDays">0</span>天</p>
 
-                                <p>剩余流量<span id="LeftFlowDiv">0</span>MB</p>
-
-                                <p>距结算日<span id="distanceDays">0</span>天</p>
-
-                                <p>日均可用<span id="dayNum">0</span>MB</p>
-                            </div>
-                        </div>
+                        <p>日均可用<span class="rednum" id="dayNum">0</span>MB</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">流量概况</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-xs-12" id="totalDiv"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-xs-12 col-md-8'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">套餐明细</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="listDiv"></div>
+                    </div>
+                </div>
+            </div>
 
                 <%--<div class="col-xs-12 col-sm-6 col-md-8">
 
@@ -166,22 +180,6 @@
                         </div>
                     </div>
                 </div>--%>
-
-                <div class='col-xs-12'>
-                    <%--<span style="color:#F33">套餐明细</span>
-
-                    <div id="listDiv"></div>--%>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">套餐明细</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="listDiv"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- 侧边栏 -->
@@ -251,25 +249,22 @@
 
     <!-- 图表临时模板 -->
     <div id="jiaitem_tmp_tubiao" class="hideme">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <!--图表-->
+        <!--图表-->
+        <table>
+            <%--上方文字说明--%>
+            <tr><td class="center" style="color: gray">#top_desc#</td></tr>
+            <%--图表--%>
 
-            <table>
-                <%--上方文字说明--%>
-                <tr><td class="center" style="color: gray">#top_desc#</td></tr>
-                <%--图表--%>
-
-                <%--<tr><td><div id="tubiao0" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="200" data-part="20"></div></tr>--%>
-                <tr class="center">
-                    <td class="center">
-                        <div id="taocan#id#" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="30" data-fgcolor="#fgcolor#"
-                                                           data-bgcolor="#eee"  data-total="#data-total#" data-part="#data-part#" data-text="#data-text#M" data-animationstep="0"></div>
-                    </td>
-                </tr>
-                <%--下方文字说明--%>
-                <tr><td class="center"><div style="color: #1198c8">#botton_desc#</div></td></tr>
-            </table>
-        </div>
+            <%--<tr><td><div id="tubiao0" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="200" data-part="20"></div></tr>--%>
+            <tr class="center">
+                <td class="center">
+                    <div id="taocan#id#" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="30" data-fgcolor="#fgcolor#"
+                                                       data-bgcolor="#eee"  data-total="#data-total#" data-part="#data-part#" data-text="#data-text#M" data-animationstep="0"></div>
+                </td>
+            </tr>
+            <%--下方文字说明--%>
+            <tr><td class="center"><div style="color: #1198c8">#botton_desc#</div></td></tr>
+        </table>
     </div>
 
     <!-- 兑换申请表单 -->

@@ -327,7 +327,7 @@ FlowScore.prototype.getTotalFlow = function (callback) {
                     .replace(/#botton_desc#/g, obj.PRIVSET)
                     .replace(/#fgcolor#/g, colorsResult[i]);
 
-                $htmls.append(itemStr);
+                $htmls.append('<div class="col-xs-12 col-md-' + parseInt(12/list.length) + '">' + itemStr + '</div>');
             }
 
             // 显示图表

@@ -268,22 +268,21 @@
 
             <table>
                 <%--上方文字说明--%>
-                <tr><td class="center">#top_desc#</td></tr>
+                <tr><td class="center" style="color: gray">#top_desc#</td></tr>
                 <%--图表--%>
 
                 <%--<tr><td><div id="tubiao0" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="200" data-part="20"></div></tr>--%>
                 <tr class="center">
                     <td class="center">
-                        <div id="taocan#id#" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#fgcolor#"
+                        <div id="taocan#id#" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="30" data-fgcolor="#fgcolor#"
                                                            data-bgcolor="#eee"  data-total="#data-total#" data-part="#data-part#" data-text="#data-text#M" data-animationstep="0"></div>
                     </td>
                 </tr>
                 <%--下方文字说明--%>
-                <tr><td class="center"><div>#botton_desc#</div></td></tr>
+                <tr><td class="center"><div style="color: #1198c8">#botton_desc#</div></td></tr>
             </table>
         </div>
     </div>
-<%--<div id="taocan_#id#" data-dimension="200" data-info="剩余量" data-width="8" data-fontsize="15" data-fgcolor="#61a9dc" data-bgcolor="#eee"  data-total="#data-total#" data-part="#data-part#" data-text="#data-text#"></div>--%>
 
     <!-- 兑换申请表单 -->
     <form action="/score" method="POST" name="flowScoreCfPage" id="flowScoreCfPage" class='hide'>

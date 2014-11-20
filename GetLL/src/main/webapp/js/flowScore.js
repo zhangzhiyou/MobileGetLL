@@ -310,8 +310,10 @@ FlowScore.prototype.getTotalFlow = function (callback) {
             var colorsResult = new Array();
             colorsResult.push('#dc9e3e');
             colorsResult.push('#01b678');
-            colorsResult.push('#dc70d8');
-            colorsResult.push('#dc8b87');
+            colorsResult.push('#DC7294');
+            colorsResult.push('#DC7A5A');
+            colorsResult.push('#B6376E');
+            colorsResult.push('#7E3BDC');
 
             for (var i = 0; i < list.length; i++) {
                 var obj = list[i];

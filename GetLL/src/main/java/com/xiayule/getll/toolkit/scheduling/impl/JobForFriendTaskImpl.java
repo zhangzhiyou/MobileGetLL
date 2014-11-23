@@ -1,6 +1,7 @@
 package com.xiayule.getll.toolkit.scheduling.impl;
 
 import com.xiayule.getll.draw.job.AutoPlayJob;
+import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.toolkit.scheduling.JobTask;
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +23,8 @@ public class JobForFriendTaskImpl implements JobTask {
      * 该 autoPlay 需要传入的额是 AutoPlayForFriend
      */
     private AutoPlayJob autoPlayJob;
+
+    private PlayService playService;
 
     /**
      * quartz 本身就会将任务开启多次,
@@ -46,8 +49,8 @@ public class JobForFriendTaskImpl implements JobTask {
             int cnt = 0;
 
             for (String sub : subs) {
-                // 如果有效期到期, 则不执行
-                if (!subscriberService.isSubscribe(sub)) continue;
+                // 如果有效期到期或者登录不成功, 则不执行
+                if (!subscriberService.isSubscribe(sub) && !playService.isLogined(sub)) continue;
 
                 cnt++;
 
@@ -81,5 +84,9 @@ public class JobForFriendTaskImpl implements JobTask {
 
     public void setAutoPlayJob(AutoPlayJob autoPlayJob) {
         this.autoPlayJob = autoPlayJob;
+    }
+
+    public void setPlayService(PlayService playService) {
+        this.playService = playService;
     }
 }

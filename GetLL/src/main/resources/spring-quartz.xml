@@ -29,6 +29,7 @@
     <bean id="forFriendJobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForFriendTaskImpl">
         <property name="subscriberService" ref="subscribeService"/>
         <property name="autoPlayJob" ref="autoPlayForFriendJob"/>
+        <property name="playService" ref="playService"/>
     </bean>
 
     <!-- 自动领取业务对象 -->
@@ -39,6 +40,7 @@
     <bean id="autoPlayForReceiveGiftsTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForAutoReceiveGiftsTaskImpl">
         <property name="autoPlayJob" ref="autoPlayForReceiveGiftsJob"/>
         <property name="subscriberService" ref="subscribeService"/>
+        <property name="playService" ref="playService"/>
     </bean>
 
     <!-- Email 服务业务对象 -->

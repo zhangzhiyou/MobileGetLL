@@ -2,6 +2,7 @@ package com.xiayule.getll.toolkit.scheduling.impl;
 
 import com.xiayule.getll.draw.job.AutoPlayJob;
 import com.xiayule.getll.draw.job.impl.AutoReceiveJob;
+import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.toolkit.scheduling.JobTask;
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +20,7 @@ public class JobForAutoReceiveGiftsTaskImpl implements JobTask {
 
     private AutoPlayJob autoPlayJob;
     private SubscriberService subscriberService;
+    private PlayService playService;
 
     private static boolean isRunning = false;
 
@@ -36,8 +38,8 @@ public class JobForAutoReceiveGiftsTaskImpl implements JobTask {
             int cnt = 0;
 
             for (String sub : subs) {
-                // 如果有效期到期, 则不执行
-                if (!subscriberService.isSubscribe(sub)) continue;
+                // 如果有效期到期或者登录不成功, 则不执行
+                if (!subscriberService.isSubscribe(sub) && !playService.isLogined(sub)) continue;
 
                 cnt++;
 
@@ -66,5 +68,9 @@ public class JobForAutoReceiveGiftsTaskImpl implements JobTask {
 
     public void setSubscriberService(SubscriberService subscriberService) {
         this.subscriberService = subscriberService;
+    }
+
+    public void setPlayService(PlayService playService) {
+        this.playService = playService;
     }
 }

@@ -19,6 +19,8 @@ public class AuthInterceptor extends AbstractInterceptor {
 
     private SubscriberService subscriberService;
 
+//    <!-- todo: 这里没有起到效果,拦截器没有拦截到一开始的get,可以考虑使用过滤器 -->
+
     @Override
     public String intercept(ActionInvocation actionInvocation) throws Exception {
         // 如果存在 cookie 证明已经登录过了， 则取出手机号，

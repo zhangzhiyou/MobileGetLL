@@ -76,6 +76,7 @@
 
     <bean name="homeAction" class="com.xiayule.getll.action.HomeAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
+        <property name="playService" ref="playService"/>
     </bean>
 
     <bean name="redisDataSource" class="com.xiayule.getll.service.impl.RedisDataSourceImpl">

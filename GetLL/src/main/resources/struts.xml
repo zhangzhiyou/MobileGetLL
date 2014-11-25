@@ -32,7 +32,7 @@
         <global-results>
             <!-- 逻辑名为login的结果，映射到/login.jsp页面 -->
             <!-- 修改掉 -->
-            <result name="login">/login.jsp</result>
+            <result name="login" type="redirect">/login.jsp</result>
         </global-results>
 
         <!-- 为了解决 默认首页 -->
@@ -51,6 +51,7 @@
 
         <action name="home" class="homeAction">
             <result name="success">/index.jsp</result>
+            <!--<result name="login">/admin.jsp</result>-->
         </action>
 
        <!-- <action name="subscribe" class="subscribeAction">

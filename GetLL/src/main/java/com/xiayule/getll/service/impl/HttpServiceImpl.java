@@ -1,5 +1,6 @@
 package com.xiayule.getll.service.impl;
 
+import com.xiayule.getll.factory.HttpClientFactory;
 import com.xiayule.getll.service.CookieService;
 import com.xiayule.getll.service.HttpService;
 import org.apache.http.Header;
@@ -43,11 +44,7 @@ public class HttpServiceImpl implements HttpService {
 
         // 每次都生成新的 httpclient, 防止 cookie 混乱
         //todo: 如果再出问题,就手动管理 cookie
-        DefaultHttpClient defaultHttpClient = new DefaultHttpClient();
-
-        // 设置超时时间
-        defaultHttpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 5000);
-        defaultHttpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 30000);
+        DefaultHttpClient defaultHttpClient = HttpClientFactory.createHttpClient();
 
         if (cookieService.isExist(mobile)) {
             CookieStore cookieStore = cookieService.getCookieStore(mobile);

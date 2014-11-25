@@ -20,11 +20,11 @@ public class AutoReceiveJob implements AutoPlayJob {
         try {
             if (ownService.isHasFlowScoreTransferGifts(mobile)){
 
-                Thread.sleep(2000);
+                Thread.sleep(1000);
 
                 ownService.transferGiftsReceiveAll(mobile);
 
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             }
         } catch (Exception e) {
             logger.info(mobile + " AutoReceiveJob: 出错");

@@ -29,11 +29,11 @@ public class HomeAction implements Action{
     public String execute() throws Exception {
 //        System.out.println("access HOme Action");
 
-
         String mobile = UserUtils.getMobileFromCookie();
 
         if (mobile == null) {
             System.out.println("需要重新登录");
+
             return LOGIN;
         } /*else if (!playService.isLogined(mobile)) {// 这个还是在js里面检测
 

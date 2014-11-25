@@ -28,6 +28,51 @@ public class FlowMoneyCost {
      */
     private Date time;
 
+    /**
+     * todo: 消费的种类(待完善):
+     * 1 为兑换流量
+     */
+    private Date type;
 
+    // set and get methods
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Double getCost() {
+        return cost;
+    }
+
+    public void setCost(Double cost) {
+        this.cost = cost;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public Date getType() {
+        return type;
+    }
+
+    public void setType(Date type) {
+        this.type = type;
+    }
 }

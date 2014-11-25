@@ -4,6 +4,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 
 /**
+ * 用于创建HttpClient的工厂类
  * Created by tan on 14-11-25.
  */
 public class HttpClientFactory {

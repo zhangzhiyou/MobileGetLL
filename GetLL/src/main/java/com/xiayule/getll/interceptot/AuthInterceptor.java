@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.xiayule.getll.service.SubscriberService;
+import com.xiayule.getll.utils.UserUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -21,7 +22,7 @@ public class AuthInterceptor extends AbstractInterceptor {
     @Override
     public String intercept(ActionInvocation actionInvocation) throws Exception {
         // 如果存在 cookie 证明已经登录过了， 则取出手机号，
-        String mobile = getMobileFromCookie();
+        String mobile = UserUtils.getMobileFromCookie();
 
         // 只要 mobile 为空，能访问的只有 login.jsp
 /*        if (mobile == null && !actionInvocation.getProxy().getMethod().equals("login.jsp")) {
@@ -37,42 +38,11 @@ public class AuthInterceptor extends AbstractInterceptor {
         }
 
         // 否则，证明非法用户，清空cookie，重定向到登录页面
-        clearCookies();
+        UserUtils.clearCookie();
 
         // TOO: 设置 tip
 
         return Action.LOGIN;
-    }
-
-    /**
-     * 从请求中获取Cookie中存储的手机号
-     * @return
-     */
-    private String getMobileFromCookie() {
-        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("mobile"))
-                    return cookie.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    private void clearCookies() {
-        // 退出登录，即清除 cookie
-        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                cookie.setPath("/");
-                cookie.setMaxAge(0);
-                // 设置 cookie
-                ServletActionContext.getResponse().addCookie(cookie);
-            }
-        }
     }
 
     // set and get methods

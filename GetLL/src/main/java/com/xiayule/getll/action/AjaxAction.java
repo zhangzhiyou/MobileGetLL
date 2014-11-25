@@ -6,6 +6,7 @@ import com.xiayule.getll.factory.CookieFactory;
 import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.Constants;
 import com.xiayule.getll.utils.JsonUtils;
+import com.xiayule.getll.utils.UserUtils;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -73,22 +74,6 @@ public class AjaxAction {
 //        registerCode = null;
     }
 
-    /**
-     * 从请求中获取Cookie中存储的手机号
-     * @return
-     */
-    private String getMobileFromCookie() {
-        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("mobile"))
-                    return cookie.getValue();
-            }
-        }
-
-        return null;
-    }
 
 
     public String getRankByTotal(){
@@ -224,14 +209,12 @@ public class AjaxAction {
 
     /**
      * 退出登录，即清除 cookie
-     * @return
      */
     public String logout() {
 
 //        System.out.println(mobile);
 
-        clearCookie();
-
+        UserUtils.clearCookie();
         json = new HashMap();
         json.put("status", "ok");
 
@@ -242,7 +225,6 @@ public class AjaxAction {
 
     /**
      * 获取当前登录的手机号，官方的服务
-     * @return
      */
     /*public String loadLoginMobile() {
 
@@ -260,7 +242,7 @@ public class AjaxAction {
 
         Cookie[] cookies = ServletActionContext.getRequest().getCookies();
 
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
 
 
@@ -295,7 +277,6 @@ public class AjaxAction {
 
     /**
      * 由本应用获取的总流量排行
-     * @return
      */
    /* public String getRankByTotalAtHere() {
 
@@ -304,10 +285,9 @@ public class AjaxAction {
 */
     /**
      * 从官网上获取数据后，再转发回去
-     * @return
      */
     public String queryScore() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
 //        playService.setMobile(m);
 
@@ -335,10 +315,9 @@ public class AjaxAction {
 
     /**
      * 立刻摇奖
-     * @return
      */
     public String shakeNow() {
-        final String m = getMobileFromCookie();
+        final String m = UserUtils.getMobileFromCookie();
 
 //        playService.autoPlay(m);
 
@@ -364,7 +343,7 @@ public class AjaxAction {
      * 获取注册码有效期剩余天数
      */
     public String getTTL() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         String strDays = subscriberService.getTTLDays(m);
 
@@ -381,10 +360,9 @@ public class AjaxAction {
 
     /**
      * 获得剩余摇奖次数
-     * @return
      */
     public String getRemainTimes() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
 //        playService.setMobile(m);
 
@@ -404,10 +382,9 @@ public class AjaxAction {
 
     /**
      * 加载收支总和信息, 返回原json信息
-     * @return
      */
     public String queryCreditSum() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         String rs = playService.queryCreditSum(m);
         jsonObj = JsonUtils.stringToJson(rs);
@@ -420,7 +397,7 @@ public class AjaxAction {
      * @return
      */
     public String queryCreditDetail() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
         String t = type;
         String startN = startNum;
 
@@ -439,7 +416,7 @@ public class AjaxAction {
      * @return
      */
     public String freshRegisterCode() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         // 生成注册码
         String registerCode = registerCodeService.generateRegisterCode();
@@ -466,7 +443,7 @@ public class AjaxAction {
         // 获取动态密码
 
         String paramMobile = mobile;
-        String realMobile = getMobileFromCookie();
+        String realMobile = UserUtils.getMobileFromCookie();
         Boolean paramIsLogin = isLogin;
 
         String t = type;
@@ -488,7 +465,7 @@ public class AjaxAction {
      */
     public String exchangePrize() {
         // 获取动态密码
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
         String paramPassword = password;
 
         String paramExchangeID = exchangeID;
@@ -511,7 +488,7 @@ public class AjaxAction {
      * 转赠流量币
      */
     public String transferGifts() {
-        String realMobile = getMobileFromCookie();
+        String realMobile = UserUtils.getMobileFromCookie();
         String paramMobile = mobile;
         String paramSmsContext = smsContext;
         String paramTransferGifts = transferGifts;
@@ -531,7 +508,7 @@ public class AjaxAction {
      * 	获取积分兑换列表请求路径
      */
     public String queryPrize() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         String rs = playService.queryPrize(m);
 
@@ -542,7 +519,7 @@ public class AjaxAction {
 
     // 未领流量查询
     public String getTransferGiftsList() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
         String paramQueryType = queryType;
         String paramType = type;
         String paramStatus = status;
@@ -562,7 +539,7 @@ public class AjaxAction {
      */
     public String transferGiftsReceive() {
 
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         String paramId = id;
 
@@ -579,7 +556,7 @@ public class AjaxAction {
 
     //todo: 找不到对应的 action
     public String getPackage() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         String strJson = playService.getPackage(m);
 
@@ -591,7 +568,7 @@ public class AjaxAction {
     }
 
     public String smsNoticeSetQuery() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         String strJson = playService.smsNoticeSetQuery(m);
 
@@ -603,7 +580,7 @@ public class AjaxAction {
     }
 
     public String smsNoticeSet() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         String paramType = getType();
 
@@ -623,7 +600,7 @@ public class AjaxAction {
      * @return
      */
     public String deleteService() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         //todo: 删除服务
         subscriberService.unSubscribe(m);
@@ -640,7 +617,7 @@ public class AjaxAction {
     }
 
     public String statusForFriend() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         json = new HashMap();
 
@@ -658,7 +635,7 @@ public class AjaxAction {
     }
 
     public String changeStatusForFriend() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         json = new HashMap();
 
@@ -686,7 +663,7 @@ public class AjaxAction {
     }
 
     public String ifExistNickName() {
-        String cookieMobile = getMobileFromCookie();
+        String cookieMobile = UserUtils.getMobileFromCookie();
 
         String strJson = playService.ifExistNickName(cookieMobile, nickname);
 
@@ -696,7 +673,7 @@ public class AjaxAction {
     }
 
     public String changeNickName() {
-        String cookieMobile = getMobileFromCookie();
+        String cookieMobile = UserUtils.getMobileFromCookie();
 
         String strJson = playService.changeNickName(cookieMobile, nickname);
 
@@ -707,7 +684,7 @@ public class AjaxAction {
 
 
     public String refreshNickName() {
-        String cookieMobile = getMobileFromCookie();
+        String cookieMobile = UserUtils.getMobileFromCookie();
 
         String strJson = playService.refreshNickName(cookieMobile);
 
@@ -718,7 +695,7 @@ public class AjaxAction {
 
 
     public String statusAutoReceiveGifts() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         json = new HashMap();
 
@@ -736,7 +713,7 @@ public class AjaxAction {
     }
 
     public String changeStatusAutoReceive() {
-        String m = getMobileFromCookie();
+        String m = UserUtils.getMobileFromCookie();
 
         json = new HashMap();
 
@@ -760,20 +737,6 @@ public class AjaxAction {
         json.put("status", "ok");
 
         return Action.SUCCESS;
-    }
-
-    private void clearCookie() {
-        // 退出登录，即清除 cookie
-        Cookie[] cookies = ServletActionContext.getRequest().getCookies();
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                cookie.setPath("/");
-                cookie.setMaxAge(0);
-                // 设置 cookie
-                ServletActionContext.getResponse().addCookie(cookie);
-            }
-        }
     }
 
 

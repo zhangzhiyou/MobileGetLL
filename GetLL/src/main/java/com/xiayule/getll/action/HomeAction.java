@@ -20,6 +20,8 @@ import java.util.Map;
  */
 public class HomeAction implements Action{
 
+    //todo: 日志
+
     private SubscriberService subscriberService;
     private PlayService playService;
 
@@ -30,8 +32,6 @@ public class HomeAction implements Action{
 
         String mobile = UserUtils.getMobileFromCookie();
 
-
-
         if (mobile == null) {
             System.out.println("需要重新登录");
             return LOGIN;
@@ -40,10 +40,8 @@ public class HomeAction implements Action{
         }
 */
 
-
+        // 查询有效期
         String ttl = subscriberService.getTTLDays(mobile);
-
-        System.out.println(ttl);
 
         // 将参数封装到 model
         Map<String, String> model = new HashMap<String, String>();

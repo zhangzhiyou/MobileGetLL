@@ -10,25 +10,13 @@
 
 <html>
 <head>
+
+    <jsp:include page="snap/head.html"/>
+
     <!-- todo: 还需要 -->
     <link href="css/css.min.css" rel="stylesheet" type="text/css">
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-    <link href="css/my.min.css" rel="stylesheet" type="text/css">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="css/flat-ui.min.css" rel="stylesheet">
-
-    <!-- 响应式设计 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="流量,移动,流量汇,流量汇管家,赚取流量,免费流量,摇流量,兑换,流量币,转赠,短信">
-    <meta name="description" content="流量汇,流量汇管家,免费赚取流量,兑换流量,兑换短信.">
-
     <title>账户明细-流量汇管家</title>
-
-    <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
-    <link rel="shortcut icon" href="image/icon.png">
 
 </head>
 

@@ -5,26 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <jsp:include page="snap/head.html"/>
 
-    <link href="css/my.min.css" rel="stylesheet" type="text/css">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css">
     <link href="css/jquery.circliful.css" rel="stylesheet" type="text/css" />
 
-    <meta name="keywords" content="流量,移动,流量汇,流量汇管家,赚取流量,免费流量,摇流量,兑换,流量币,转赠,短信">
-    <meta name="description" content="流量汇,流量汇管家,免费赚取流量,兑换流量,兑换短信.">
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-    <!-- 响应式设计 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>流量汇管家</title>
-
-    <link rel="apple-touch-icon-precomposed" sizes="512x512" href="image/icon.png">
-    <link rel="shortcut icon" href="image/icon.png">
 </head>
 
 <nav class="navbar navbar-default" role="navigation">

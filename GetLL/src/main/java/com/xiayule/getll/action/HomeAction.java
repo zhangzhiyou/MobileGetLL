@@ -1,9 +1,15 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
+import com.sun.glass.ui.mac.MacPasteboard;
 import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.utils.UserUtils;
+import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 处理主页的Action
@@ -34,7 +40,18 @@ public class HomeAction implements Action{
         }
 */
 
-        
+
+        String ttl = subscriberService.getTTLDays(mobile);
+
+        System.out.println(ttl);
+
+        // 将参数封装到 model
+        Map<String, String> model = new HashMap<String, String>();
+        model.put("ttl", ttl);
+
+        // 传递参数到jsp
+        HttpServletRequest request = ServletActionContext.getRequest();
+        request.setAttribute("model", model);
 
         return SUCCESS;
     }

@@ -114,7 +114,7 @@
 
                         <div>
                             <span style="cursor: help" title="少于30天时，可以点击免费延长至30天">有效期：</span>
-                            <span id="leavesDay">&nbsp;</span>
+                            <span id="leavesDay">${model.ttl}</span>
                         </div>
                     </div>
 

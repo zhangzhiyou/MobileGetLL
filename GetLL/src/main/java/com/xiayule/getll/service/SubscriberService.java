@@ -33,6 +33,12 @@ public interface SubscriberService {
      */
     public Long getTTL(String mobile);
 
+    /**
+     * 获取有效期对应的天数
+     * 如果少于规定的天数,则自动在后面添加文字(点我续期)
+     */
+    public String getTTLDays(String m);
+
     // get and set methods
 
     public void setRedisService(RedisService redisService);

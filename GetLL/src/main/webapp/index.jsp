@@ -161,24 +161,6 @@
                     </div>
                 </div>
             </div>
-
-                <%--<div class="col-xs-12 col-sm-6 col-md-8">
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">温馨提醒</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>本月总流量<span id="TotalFlowDiv">0</span>MB</p>
-
-                            <p>剩余流量<span id="LeftFlowDiv">0</span>MB</p>
-
-                            <p>距结算日<span id="distanceDays">0</span>天</p>
-
-                            <p>日均可用<span id="dayNum">0</span>MB</p>
-                        </div>
-                    </div>
-                </div>--%>
         </div>
 
         <!-- 侧边栏 -->
@@ -279,7 +261,8 @@
 
     <%--<script type="text/javascript" src="js/jquery.min.js"></script>--%>
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <%--<script type="text/javascript" src="js/bootstrap.min.js"></script>--%>
+    <script type="text/javascript" src="js/flat-ui.min.js"></script>
 
     <script type="text/javascript" src="js/eventMan.min.js"></script>
     <script type="text/javascript" src="js/tip.min.js"></script>

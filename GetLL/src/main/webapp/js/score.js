@@ -77,18 +77,18 @@ Score.prototype.showMyScore = function(callback) {
         }
 
         // 获得注册码有效期
-        $.getJSON("/ajax/getTTL.action?r=" + Math.random(), {}, function (data) {
-            if (data.status != "ok") {
-                alert("获取个人服务信息失败")
-            } else {
-                $("#leavesDay").text(data.result.ttl);
-            }
+        //$.getJSON("/ajax/getTTL.action?r=" + Math.random(), {}, function (data) {
+        //    if (data.status != "ok") {
+        //        alert("获取个人服务信息失败")
+        //    } else {
+        //        $("#leavesDay").text(data.result.ttl);
+        //    }
 
             // 回调
             if (callback) {
                 callback(data);
             }
-        })
+        //})
     });
 };
 

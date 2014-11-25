@@ -366,7 +366,7 @@ public class AjaxAction {
     public String getTTL() {
         String m = getMobileFromCookie();
 
-        String strDays = getStrTTL(m);
+        String strDays = subscriberService.getTTLDays(m);
 
         json = new HashMap();
         json.put("status", "ok");
@@ -377,25 +377,6 @@ public class AjaxAction {
         json.put("result", result);
 
         return Action.SUCCESS;
-    }
-
-    /**
-     * 提取成一个函数，方便 sgetTTL 和 freshRegisterCode 调用
-     * @return
-     */
-    private String getStrTTL(String m) {
-        // 如果没有订阅，或者到期，会被 struts 拦截，因此不用考虑到期的情况
-        Long remainSeconds = subscriberService.getTTL(m);
-
-        // 将秒数转换为天
-        Long days = remainSeconds / 60 / 60 / 24 + 1;
-
-        String strDays = null;
-
-        if (days <= Constants.TTL_XUQI_DAY) strDays = days + "天(点我续期)";
-        else strDays = days + "天";
-
-        return strDays;
     }
 
     /**
@@ -466,7 +447,7 @@ public class AjaxAction {
         subscriberService.subscribe(m, registerCode);
 
         // 获得更新后得到有效时间
-        String strDays = getStrTTL(m);
+        String strDays = subscriberService.getTTLDays(m);
 
         json = new HashMap();
         json.put("status", "ok");

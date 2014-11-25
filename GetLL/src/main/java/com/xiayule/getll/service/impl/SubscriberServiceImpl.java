@@ -5,6 +5,7 @@ import com.xiayule.getll.service.CookieService;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.service.RegisterCodeService;
 import com.xiayule.getll.service.SubscriberService;
+import com.xiayule.getll.utils.Constants;
 import com.xiayule.getll.utils.TimeUtils;
 
 import java.util.ArrayList;
@@ -112,6 +113,25 @@ public class SubscriberServiceImpl implements SubscriberService {
      */
     public Long getTTL(String mobile) {
         return redisService.ttl("sub_" + mobile);
+    }
+
+    /**
+     * 获取有效期对应的天数
+     * 如果少于规定的天数,则自动在后面添加文字(点我续期)
+     */
+    public String getTTLDays(String m) {
+        // 如果没有订阅，或者到期，会被 struts 拦截，因此不用考虑到期的情况
+        Long remainSeconds = getTTL(m);
+
+        // 将秒数转换为天
+        Long days = remainSeconds / 60 / 60 / 24 + 1;
+
+        String strDays = null;
+
+        if (days <= Constants.TTL_XUQI_DAY) strDays = days + "天(点我续期)";
+        else strDays = days + "天";
+
+        return strDays;
     }
 
     public List<String> getAllSubscriber() {

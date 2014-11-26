@@ -32,7 +32,7 @@ public class FlowMoneyCost {
      * todo: 消费的种类(待完善):
      * 1 为兑换流量
      */
-    private Date type;
+    private Integer type;
 
     // set and get methods
 
@@ -68,11 +68,11 @@ public class FlowMoneyCost {
         this.time = time;
     }
 
-    public Date getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(Date type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 }

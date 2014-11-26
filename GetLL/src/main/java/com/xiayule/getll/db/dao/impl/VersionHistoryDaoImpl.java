@@ -19,6 +19,10 @@ public class VersionHistoryDaoImpl extends HibernateDaoSupport implements Versio
                 .save(versionHistory);
     }
 
+    public void saveOrUpdate(VersionHistory versionHistory) {
+        getHibernateTemplate().saveOrUpdate(versionHistory);
+    }
+
     public void update(VersionHistory versionHistory) {
         getHibernateTemplate().update(versionHistory);
     }

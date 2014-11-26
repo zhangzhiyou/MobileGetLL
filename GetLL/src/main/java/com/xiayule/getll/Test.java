@@ -1,8 +1,15 @@
 package com.xiayule.getll;
 
+import com.xiayule.getll.db.dao.VersionHistoryDao;
+import com.xiayule.getll.db.model.VersionHistory;
+import com.xiayule.getll.db.service.VersionHistoryService;
 import com.xiayule.getll.service.OwnService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import sun.misc.Version;
+
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -11,11 +18,33 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Test {
     public static void main(String[] args) throws Exception {
         ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
-                "applicationContext.xml"
+                "spring-hibernate.xml"
         });
 
-        OwnService ownService = ctx.getBean("ownService", OwnService.class);
-        ownService.transferGiftsReceiveAll("18369905136");
+        /*OwnService ownService = ctx.getBean("ownService", OwnService.class);
+        ownService.transferGiftsReceiveAll("18369905136");*/
+
+        VersionHistoryService versionHistoryService = ctx.getBean("versionHistoryServicve", VersionHistoryService.class);
+
+        VersionHistory versionHistory = new VersionHistory();
+        versionHistory.setTitle("第版本");
+        versionHistory.setContent("修复了一些bug");
+        versionHistory.setVersionName("3.7.2");
+        versionHistory.setTime(new Date());
+
+        versionHistory.setId(1);
+
+        versionHistoryService.saveVersionHistory(versionHistory);
+        System.out.println(versionHistoryService.getVersionHistory(1));
+
+        versionHistoryService.deleteVersionHistory(2);
+        versionHistoryService.deleteVersionHistory(versionHistory);
+
+        List<VersionHistory> versionHistories = versionHistoryService.findAllVersionHistory();
+        for (VersionHistory v : versionHistories) {
+            System.out.println(v);
+        }
+
 
 //        PlayService playService = ctx.getBean("playService", PlayService.class);
 

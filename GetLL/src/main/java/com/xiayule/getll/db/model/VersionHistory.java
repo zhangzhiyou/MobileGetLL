@@ -29,6 +29,12 @@ public class VersionHistory {
      */
     private Date time;
 
+    @Override
+    public String toString() {
+        return "id:" + id + " versionName:" + versionName + " title:" + title + " contnt:" + content
+                + " time:" + time;
+    }
+
     // set and get methods
 
 

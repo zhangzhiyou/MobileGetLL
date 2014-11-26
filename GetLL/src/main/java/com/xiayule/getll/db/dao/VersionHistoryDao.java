@@ -12,6 +12,8 @@ public interface VersionHistoryDao {
 
     public Integer save(VersionHistory versionHistory);
 
+    public void saveOrUpdate(VersionHistory versionHistory);
+
     public void update(VersionHistory versionHistory);
 
     public void delete(Integer id);

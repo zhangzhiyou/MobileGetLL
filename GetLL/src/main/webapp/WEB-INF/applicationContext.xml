@@ -88,6 +88,10 @@
     </bean>
 
 
+    <bean name="historyVersionAction" class="com.xiayule.getll.action.HistoryVersionAction">
+        <property name="historyVersionService" ref="versionHistoryServicve"/>
+    </bean>
+
     <bean name="score" class="com.xiayule.getll.action.Score">
 
     </bean>

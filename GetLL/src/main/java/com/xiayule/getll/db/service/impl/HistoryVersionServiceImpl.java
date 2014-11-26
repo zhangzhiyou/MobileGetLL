@@ -2,14 +2,14 @@ package com.xiayule.getll.db.service.impl;
 
 import com.xiayule.getll.db.dao.VersionHistoryDao;
 import com.xiayule.getll.db.model.VersionHistory;
-import com.xiayule.getll.db.service.VersionHistoryService;
+import com.xiayule.getll.db.service.HistoryVersionService;
 
 import java.util.List;
 
 /**
  * Created by tan on 14-11-26.
  */
-public class VersionHistoryServiceImpl implements VersionHistoryService {
+public class HistoryVersionServiceImpl implements HistoryVersionService {
     private VersionHistoryDao versionHistoryDao;
 
     public VersionHistory getVersionHistory(Integer id) {

@@ -1,12 +1,9 @@
 package com.xiayule.getll;
 
-import com.xiayule.getll.db.dao.VersionHistoryDao;
 import com.xiayule.getll.db.model.VersionHistory;
-import com.xiayule.getll.db.service.VersionHistoryService;
-import com.xiayule.getll.service.OwnService;
+import com.xiayule.getll.db.service.HistoryVersionService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import sun.misc.Version;
 
 import java.util.Date;
 import java.util.List;
@@ -24,7 +21,7 @@ public class Test {
         /*OwnService ownService = ctx.getBean("ownService", OwnService.class);
         ownService.transferGiftsReceiveAll("18369905136");*/
 
-        VersionHistoryService versionHistoryService = ctx.getBean("versionHistoryServicve", VersionHistoryService.class);
+        HistoryVersionService historyVersionService = ctx.getBean("versionHistoryServicve", HistoryVersionService.class);
 
         VersionHistory versionHistory = new VersionHistory();
         versionHistory.setTitle("第版本");
@@ -34,13 +31,13 @@ public class Test {
 
         versionHistory.setId(1);
 
-        versionHistoryService.saveVersionHistory(versionHistory);
-        System.out.println(versionHistoryService.getVersionHistory(1));
+        historyVersionService.saveVersionHistory(versionHistory);
+        System.out.println(historyVersionService.getVersionHistory(1));
 
-        versionHistoryService.deleteVersionHistory(2);
-        versionHistoryService.deleteVersionHistory(versionHistory);
+        historyVersionService.deleteVersionHistory(2);
+        historyVersionService.deleteVersionHistory(versionHistory);
 
-        List<VersionHistory> versionHistories = versionHistoryService.findAllVersionHistory();
+        List<VersionHistory> versionHistories = historyVersionService.findAllVersionHistory();
         for (VersionHistory v : versionHistories) {
             System.out.println(v);
         }

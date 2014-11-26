@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by tan on 14-11-26.
  */
-public interface VersionHistoryService {
+public interface HistoryVersionService {
     public VersionHistory getVersionHistory(Integer id);
 
     /**

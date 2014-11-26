@@ -1,3 +1,4 @@
+<%@ page import="java.util.Map" %>
 <%--
   Created by IntelliJ IDEA.
   User: tan
@@ -39,6 +40,16 @@
 
 <div class="container">
   <div class="row">
+
+    <%--todo:--%>
+
+
+      ${1+2}
+      1
+
+
+      <%= ((Map)request.getAttribute("model")).get("versionHistories") %>
+
     <div class="col-md-offset-3 col-md-9">
 
       <h5>流量汇管家<span style="font-size: 40px; color: #d34754;"> 历程</span></h5>

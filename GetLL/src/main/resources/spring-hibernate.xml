@@ -60,7 +60,7 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="versionHistoryServicve" class="com.xiayule.getll.db.service.impl.VersionHistoryServiceImpl">
+    <bean id="versionHistoryServicve" class="com.xiayule.getll.db.service.impl.HistoryVersionServiceImpl">
         <property name="versionHistoryDao" ref="versionHistoryDao"/>
     </bean>
 

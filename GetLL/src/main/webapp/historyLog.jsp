@@ -35,38 +35,19 @@
 </head>
 <body>
 
+<jsp:include page="snap/nav_simple.html"></jsp:include>
+
 <div class="container">
-  <div class="row history-date">
-    <div class="col-xs-offset-3 col-xs-3" style="text-align: right;">
-      3月26日
-    </div>
-
-    <div class="col-xs-6" style="border-left: 1px #cccccc solid; text-align: left">
-      <p>微俱聚硬件微美图正式推出</p>
-      <p>12</p>
-      <p>34</p>
-    </div>
-  </div>
-
   <div class="row">
-    <div class="col-xs-offset-3 col-xs-3" style="text-align: right;">
-      3月26日
-    </div>
+    <div class="col-md-offset-3 col-md-9">
 
-    <div class="col-xs-6" style="border-left: 1px #cccccc solid; text-align: left">
-      <p>微俱聚硬件微美图正式推出</p>
-      <p>12</p>
-      <p>34</p>
-    </div>
-  </div>
+      <h5>流量汇管家<span style="font-size: 40px; color: #d34754;"> 历程</span></h5>
 
-  <div class="row">
-    <div class="col-xs-offset-1 col-xs-10">
       <ul class="timeline">
         <li>
           <div class="time">时间</div>
           <div class="version">V3.7.7</div>
-          <div class="number">第几个版本</div>
+          <div class="number">&nbsp;</div>
           <div class="detail">
 
             <div class="content-title">title</div>
@@ -103,6 +84,48 @@
             </div>
           </div>
         </li>
+
+        <li>
+          <div class="time">时间</div>
+          <div class="version">V3.7.7</div>
+          <div class="number">&nbsp;</div>
+          <div class="detail">
+
+            <div class="content-title">title</div>
+
+            <div class="content">
+              更新记录
+              122112
+              fwelfjwe
+              wef
+              wef
+              wef
+              we
+              f
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="time">时间</div>
+          <div class="version">V3.7.7</div>
+          <div class="number">&nbsp;</div>
+          <div class="detail">
+
+            <div class="content-title">title</div>
+
+            <div class="content">
+              更新记录
+              122112
+              fwelfjwe
+              wef
+              wef
+              wef
+              we
+              f
+            </div>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
@@ -120,10 +143,12 @@
       var liNodes = ulNode.find('li'), count = liNodes.length, i, liNode;
       for(i=0; i<count; i++) {
         liNode = $(liNodes.get(i));
-        if(i % 2 !== 0) {
-          liNode.addClass('alt');
-        } else {
-          liNode.removeClass('alt');
+        if(i % 3 == 0) {
+//          liNode.removeClass('alt1');
+        } else if (i % 3 == 1) {
+          liNode.addClass('alt1');
+        } else if (i % 3 == 2) {
+          liNode.addClass('alt2');
         }
 
         liNode.find('.number').text(count - i);
@@ -133,6 +158,8 @@
     initLiNodes();
   });
 </script>
+
+<jsp:include page="snap/foot.html"></jsp:include>
 
 
 </body>

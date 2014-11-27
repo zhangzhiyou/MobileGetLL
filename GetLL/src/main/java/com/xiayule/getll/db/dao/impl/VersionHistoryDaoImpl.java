@@ -36,6 +36,6 @@ public class VersionHistoryDaoImpl extends HibernateDaoSupport implements Versio
     }
 
     public List<HistoryVersion> findAllVersionHistory() {
-        return (List<HistoryVersion>)getHibernateTemplate().find("from HistoryVersion");
+        return (List<HistoryVersion>)getHibernateTemplate().find("from HistoryVersion h order by h.time desc");
     }
 }

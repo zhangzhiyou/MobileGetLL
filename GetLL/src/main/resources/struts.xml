@@ -37,7 +37,7 @@
 
         <!-- 为了解决 默认首页 -->
         <action name="default" class="defaultAction">
-            <result type="redirectAction">home</result>
+            <result type="redirectAction">/home.action</result>
         </action>
 
     </package>
@@ -76,15 +76,23 @@
 
             <result name="login">/admin.jsp</result>
         </action>
+    </package>
 
-        <action name="historyVersion" class="historyVersionAction">
-            <result name="success">/historyVersion.jsp</result>
+    <!--对应 historyVersion 的增删改查-->
+    <package name="historyVersion" namespace="/historyVersion" extends="all">
+        <action name="show" class="historyVersionAction" method="show">
+            <result name="success">/WEB-INF/views/historyVersion/show.jsp</result>
         </action>
-        
-        <action name="newHistoryVersion" class="adminAction" method="newHistoryVersion">
-            <result name="success" type="redirect">/historyVersion.jsp</result>
+
+        <action name="new" class="historyVersionAction" method="newHistoryVersion">
+            <result name="success">/WEB-INF/views/historyVersion/new.jsp</result>
+        </action>
+
+        <action name="create" class="historyVersionAction" method="createHistoryVersion">
+
         </action>
     </package>
+
 
     <package name="ajax" namespace="/ajax" extends="all">
 

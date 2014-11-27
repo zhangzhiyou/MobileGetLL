@@ -14,15 +14,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <jsp:include page="snap/head.html"/>
+  <jsp:include page="/snap/head.html"/>
 
   <title>更新历史-流量汇管家</title>
 
-  <link href="css/history-log.css" rel="stylesheet" type="text/css">
+  <link href="/css/history-log.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<jsp:include page="snap/nav_simple.html"></jsp:include>
+<jsp:include page="/snap/nav_simple.html"></jsp:include>
 
 <div class="container">
   <div class="row">
@@ -49,8 +49,8 @@
   </div>
 </div>
 
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="js/flat-ui.min.js"></script>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/flat-ui.min.js"></script>
 
 <script>
 
@@ -77,7 +77,7 @@
   });
 </script>
 
-<jsp:include page="snap/foot.html"></jsp:include>
+<jsp:include page="/snap/foot.html"></jsp:include>
 
 
 </body>

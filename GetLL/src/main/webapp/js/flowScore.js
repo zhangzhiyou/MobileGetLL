@@ -150,7 +150,7 @@ FlowScore.prototype.getDetailHtml = function(data){
 
         htmls[i] =[
             '<div class="myaccount_mingxi_shouzhi_list">',
-                '<div class="myaccount_mingxi_shouzhi_logo"><img src="/image/'+imageName+'" width="60" height="60" /></div>',
+                '<div class="myaccount_mingxi_shouzhi_logo"><img src="/images/'+imageName+'" width="60" height="60" /></div>',
             '<div class="text_m">',
                 '<div>'+obj.operDesc+'</div>',
                 '<div class="myaccount_mingxi_gray">'+obj.accessTime+'</div>',

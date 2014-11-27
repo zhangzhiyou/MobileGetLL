@@ -34,13 +34,12 @@
 
 <c:if test="${sessionScope.admin}">
 
+    <%--操作 historyVersion --%>
+
+    <%--登录之后,在admin.jsp可以发布 history--%>
 
 
 </c:if>
-
-<script>
-
-</script>
 
 </body>
 </html>

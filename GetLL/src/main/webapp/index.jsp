@@ -7,7 +7,8 @@
 <head lang="en">
     <jsp:include page="snap/head.html"/>
 
-    <link href="css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+    <link href="/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+    <link href="/css/animation.css" rel="stylesheet" type="text/css"/>
 
     <title>流量汇管家</title>
 </head>
@@ -45,6 +46,7 @@
 
                 <li><a href="javascript:;" title="可以将流量币转赠给亲人、好友" id="bt_zhuanzeng" onclick="locationPage('/transferGifts.jsp')">转赠</a></li>
                 <li><a href="#" title="90天内的流量币获取消费明细" onclick="locationPage('/scoreDetails.jsp')">流量币明细</a></li>
+                <li><a href="#" title="一起来见证我们的成长" onclick="locationPage('/historyVersion/show.action')">历程</a></li>
                 <li><a href="#" title="有什么想对我们说的，可以留言哦" onclick="locationPage('/comment.jsp')">留言</a></li>
                 <li><a href="#" title="如果我们的服务对您有用，可以请我们喝杯茶" onclick="locationPage('/donate.jsp')">赞助</a></li>
             </ul>
@@ -60,6 +62,51 @@
 
 <div class="container">
     <div class="row">
+
+        <div class="col-xs-12">
+            <div class="wrapper">
+                <div class="border-circle" id="one"></div>
+                <div class="border-circle" id="two"></div>
+                <div class="background-circle">
+                    <div class="triangle-light"></div>
+                    <div class="body"></div>
+                    <span class="shirt-text">流</span>
+                    <span class="shirt-text">量</span>
+                    <span class="shirt-text">汇</span>
+                    <span class="shirt-text">管</span>
+                    <span class="shirt-text">家</span>
+                    <div class="triangle-dark"></div>
+                </div>
+                <div class="head">
+                    <div class="ear" id="left"></div>
+                    <div class="ear" id="right"></div>
+                    <div class="hair-main">
+                        <div class="sideburn" id="left"></div>
+                        <div class="sideburn" id="right"></div>
+                        <div class="hair-top"></div>
+                    </div>
+                    <div class="face">
+                        <div class="hair-bottom"></div>
+                        <div class="nose"></div>
+                        <div class="eye-shadow" id="left">
+                            <div class="eyebrow"></div>
+                            <div class="eye"></div>
+                        </div>
+                        <div class="eye-shadow" id="right">
+                            <div class="eyebrow"></div>
+                            <div class="eye"></div>
+                        </div>
+                        <div class="mouth"></div>
+                        <div class="shadow-wrapper">
+                            <div class="shadow"></div>
+                        </div>
+                    </div>
+                </div>
+                <span class="music-note" id="one">&#9835;</span>
+                <span class="music-note" id="two">&#9834;</span>
+            </div>
+        </div>
+
 
         <jsp:include page="snap/notification.html"/>
 
@@ -78,6 +125,8 @@
                 </div>
 
                 <div class="col-xs-12">
+
+
                     <!-- 个人详情 -->
                     <div class="col-xs-8">
                         <div>

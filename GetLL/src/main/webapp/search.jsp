@@ -8,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="nav.html"/>
+<!DOCTYPE html>
 
 <html>
 <head>

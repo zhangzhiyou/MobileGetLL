@@ -40,6 +40,11 @@ public class HomeAction implements Action{
         }
 */
 
+        HttpServletRequest request = ServletActionContext.getRequest();
+
+        System.out.println(request.getHeader("User-Agent"));
+
+
         // 查询有效期
         String ttl = subscriberService.getTTLDays(mobile);
 
@@ -48,7 +53,7 @@ public class HomeAction implements Action{
         model.put("ttl", ttl);
 
         // 传递参数到jsp
-        HttpServletRequest request = ServletActionContext.getRequest();
+
         request.setAttribute("model", model);
 
         return SUCCESS;

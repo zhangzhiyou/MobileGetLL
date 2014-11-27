@@ -2,14 +2,18 @@ package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
 import com.sun.glass.ui.mac.MacPasteboard;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.utils.UserUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 处理主页的Action
@@ -21,6 +25,7 @@ import java.util.Map;
 public class HomeAction implements Action{
 
     //todo: 日志
+    private static Logger logger = LogManager.getLogger(HomeAction.class.getName());
 
     private SubscriberService subscriberService;
     private PlayService playService;
@@ -40,20 +45,27 @@ public class HomeAction implements Action{
         }
 */
 
+        // 取得 request
         HttpServletRequest request = ServletActionContext.getRequest();
 
-        System.out.println(request.getHeader("User-Agent"));
+        // 创建模型
+        Map<String, Object> model = new HashMap<String, Object>();
+
+        // 取得 user-agent, 判断是否为手机用户
+        String userAgent = request.getHeader("User-Agent");
+        Boolean isMobile = UserUtils.isMobile(userAgent);
+        model.put("isMobile", isMobile);
+
+        logger.info("useragent:" + userAgent);
 
 
         // 查询有效期
         String ttl = subscriberService.getTTLDays(mobile);
 
         // 将参数封装到 model
-        Map<String, String> model = new HashMap<String, String>();
         model.put("ttl", ttl);
 
         // 传递参数到jsp
-
         request.setAttribute("model", model);
 
         return SUCCESS;

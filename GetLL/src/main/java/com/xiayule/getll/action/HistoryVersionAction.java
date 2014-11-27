@@ -61,7 +61,7 @@ public class HistoryVersionAction {
 
         historyVersionService.saveVersionHistory(historyVersion);
 
-        System.out.println(historyVersion);
+//        System.out.println(historyVersion);
 
         return Action.SUCCESS;
     }

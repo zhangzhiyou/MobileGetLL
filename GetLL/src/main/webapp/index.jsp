@@ -1,14 +1,19 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.xiayule.getll.utils.TimeUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
     <jsp:include page="snap/head.html"/>
 
     <link href="/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
-    <link href="/css/animation.css" rel="stylesheet" type="text/css"/>
+
+    <%--检测到是电脑,显示小人--%>
+    <c:if test="${model.isMobile eq false}">
+        <link href="/css/animation.css" rel="stylesheet" type="text/css"/>
+    </c:if>
 
     <title>流量汇管家</title>
 </head>
@@ -63,52 +68,54 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-xs-12">
-            <div class="wrapper">
-                <div class="border-circle" id="one"></div>
-                <div class="border-circle" id="two"></div>
-                <div class="background-circle">
-                    <div class="triangle-light"></div>
-                    <div class="body"></div>
-                    <span class="shirt-text">流</span>
-                    <span class="shirt-text">量</span>
-                    <span class="shirt-text">汇</span>
-                    <span class="shirt-text">管</span>
-                    <span class="shirt-text">家</span>
-                    <div class="triangle-dark"></div>
-                </div>
-                <div class="head">
-                    <div class="ear" id="left"></div>
-                    <div class="ear" id="right"></div>
-                    <div class="hair-main">
-                        <div class="sideburn" id="left"></div>
-                        <div class="sideburn" id="right"></div>
-                        <div class="hair-top"></div>
-                    </div>
-                    <div class="face">
-                        <div class="hair-bottom"></div>
-                        <div class="nose"></div>
-                        <div class="eye-shadow" id="left">
-                            <div class="eyebrow"></div>
-                            <div class="eye"></div>
-                        </div>
-                        <div class="eye-shadow" id="right">
-                            <div class="eyebrow"></div>
-                            <div class="eye"></div>
-                        </div>
-                        <div class="mouth"></div>
-                        <div class="shadow-wrapper">
-                            <div class="shadow"></div>
-                        </div>
-                    </div>
-                </div>
-                <span class="music-note" id="one">&#9835;</span>
-                <span class="music-note" id="two">&#9834;</span>
-            </div>
-        </div>
-
-
         <jsp:include page="snap/notification.html"/>
+
+        <%--检测到是电脑,显示小人--%>
+        <c:if test="${model.isMobile eq false}">
+            <div class="col-xs-12">
+                <div class="wrapper">
+                    <div class="border-circle" id="one"></div>
+                    <div class="border-circle" id="two"></div>
+                    <div class="background-circle">
+                        <div class="triangle-light"></div>
+                        <div class="body"></div>
+                        <span class="shirt-text">流</span>
+                        <span class="shirt-text">量</span>
+                        <span class="shirt-text">汇</span>
+                        <span class="shirt-text">管</span>
+                        <span class="shirt-text">家</span>
+                        <div class="triangle-dark"></div>
+                    </div>
+                    <div class="head">
+                        <div class="ear" id="left"></div>
+                        <div class="ear" id="right"></div>
+                        <div class="hair-main">
+                            <div class="sideburn" id="left"></div>
+                            <div class="sideburn" id="right"></div>
+                            <div class="hair-top"></div>
+                        </div>
+                        <div class="face">
+                            <div class="hair-bottom"></div>
+                            <div class="nose"></div>
+                            <div class="eye-shadow" id="left">
+                                <div class="eyebrow"></div>
+                                <div class="eye"></div>
+                            </div>
+                            <div class="eye-shadow" id="right">
+                                <div class="eyebrow"></div>
+                                <div class="eye"></div>
+                            </div>
+                            <div class="mouth"></div>
+                            <div class="shadow-wrapper">
+                                <div class="shadow"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="music-note" id="one">&#9835;</span>
+                    <span class="music-note" id="two">&#9834;</span>
+                </div>
+            </div>
+        </c:if>
 
         <!-- 主要内容 -->
         <div class="col-md-9 col-xs-12">

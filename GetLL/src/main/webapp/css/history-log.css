@@ -35,7 +35,7 @@ ul.timeline li .version {
 
 ul.timeline li .number {
     position: absolute;
-    background: url("../images/log/version_dot.png") no-repeat scroll 0 0 transparent;
+    background: url("../image/log/version_dot.png") no-repeat scroll 0 0 transparent;
     width: 56px;
     height: 56px;
     left: 97px;
@@ -46,7 +46,7 @@ ul.timeline li .number {
 }
 
 ul.timeline li.alt .number {
-    background-image: url("../images/log/version_dot_alt.png");
+    background-image: url("../image/log/version_dot_alt.png");
 }
 
 ul.timeline li .detail {

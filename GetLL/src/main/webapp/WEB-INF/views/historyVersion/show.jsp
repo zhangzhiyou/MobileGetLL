@@ -19,6 +19,7 @@
   <title>更新历史-流量汇管家</title>
 
   <link href="/css/history-log.css" rel="stylesheet" type="text/css">
+  <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -51,6 +52,7 @@
 
 <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="/js/flat-ui.min.js"></script>
+
 
 <script>
 

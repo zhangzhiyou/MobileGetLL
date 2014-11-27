@@ -11,23 +11,43 @@
 
 <html>
 <head>
-    <title></title>
+  <jsp:include page="/snap/head.html"/>
+
+  <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+
+
 </head>
 <body>
 
 <c:if test="${sessionScope.admin}">
 
-  <form action="/admin/newHistoryVersion.action" method="post">
+  <form action="/historyVersion/create.action" method="post">
     Title: <input type="text" name="title">  <br/>
     VersionName: <input type="text" name="versionName"><br/>
     Content: <textarea name="content"></textarea> <br/>
-    Time: <input type="time" name="time"> <br/>
+    Time: <input type="datetime" id="datetimepicker" name="time" data-date-format="yyyy-mm-dd hh:ii">    <br/>
+
 
     <input type="submit" value="提交">
 
   </form>
 
 </c:if>
+
+
+
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/flat-ui.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+
+
+<script>
+  $('#datetimepicker').datetimepicker();
+
+</script>
+
+<jsp:include page="/snap/foot.html"></jsp:include>
+
 
 </body>
 </html>

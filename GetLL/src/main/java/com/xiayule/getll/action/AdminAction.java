@@ -38,6 +38,10 @@ public class AdminAction {
         return Action.SUCCESS;
     }
 
+    /**
+     * todo:没有显示信息
+     * @return
+     */
     public String adminLogin() {
 
         if (password != null && password.equals("123")) {

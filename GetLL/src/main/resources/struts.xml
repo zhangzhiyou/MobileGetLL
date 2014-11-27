@@ -37,7 +37,7 @@
 
         <!-- 为了解决 默认首页 -->
         <action name="default" class="defaultAction">
-            <result type="redirectAction">/home.action</result>
+            <result type="redirectAction">home</result>
         </action>
 
     </package>
@@ -72,7 +72,7 @@
 
         <action name="adminLogin" class="adminAction" method="adminLogin">
             <!--登录成功,则重定向-->
-            <result name="success" type="redirect">/admin.jsp</result>
+            <result name="success">/admin.jsp</result>
 
             <result name="login">/admin.jsp</result>
         </action>
@@ -89,7 +89,8 @@
         </action>
 
         <action name="create" class="historyVersionAction" method="createHistoryVersion">
-
+            <result name="success" type="redirectAction">show</result>
+            <result name="error">/WEB-INF/views/historyVersion/new.jsp</result>
         </action>
     </package>
 

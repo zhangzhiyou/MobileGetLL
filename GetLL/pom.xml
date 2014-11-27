@@ -21,7 +21,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springversion>4.0.5.RELEASE</springversion>
         <junitversion>3.8.1</junitversion>
-        <hibernateversion>4.3.5.Final</hibernateversion>
     </properties>
 
     <dependencies>
@@ -176,7 +175,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>${hibernateversion}</version>
+            <version>4.3.5.Final</version>
         </dependency>
 
         <!-- Redis -->

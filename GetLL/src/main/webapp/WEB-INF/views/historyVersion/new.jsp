@@ -48,6 +48,5 @@
 
 <jsp:include page="/snap/foot.html"></jsp:include>
 
-
 </body>
 </html>

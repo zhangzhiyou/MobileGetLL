@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tan
@@ -10,9 +11,9 @@
 
 <html>
 <head>
-    <title>后台管理</title>
-    <meta name="keywords" content="流量,移动,流量汇,流量汇管家,赚取流量,免费流量,摇流量,兑换,流量币,转赠,短信">
-    <meta name="description" content="流量汇,流量汇管家,免费赚取流量,兑换流量,兑换短信.">
+    <jsp:include page="snap/head.html"/>
+
+    <title>后台管理-流量汇管家</title>
 </head>
 <body>
 
@@ -21,6 +22,23 @@
 订阅自动领取总数: ${mSubscribAutoReceiveCount} <br/>
 
 
+<form method="post" action="/adminLogin.action">
+    <input type="password" name="password">
+
+    <input type="submit" value="登录">
+
+</form>
+
+
+<%--管理员的一些权利--%>
+
+<c:if test="${sessionScope.admin}">
+    ${123}
+</c:if>
+
+<script>
+
+</script>
 
 </body>
 </html>

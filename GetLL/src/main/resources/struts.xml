@@ -64,7 +64,11 @@
             <result name="error">/search.jsp</result>
         </action>-->
 
-        <action name="admin" class="adminAction">
+        <action name="admin" class="adminAction" method="admin">
+            <result name="success">/admin.jsp</result>
+        </action>
+
+        <action name="adminLogin" class="adminAction" method="adminLogin">
             <result name="success">/admin.jsp</result>
         </action>
 

@@ -1,4 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.xiayule.getll.db.model.VersionHistory" %>
+<%@ page import="sun.misc.Version" %>
 <%--
   Created by IntelliJ IDEA.
   User: tan
@@ -41,20 +46,25 @@
 <div class="container">
   <div class="row">
 
-    <%--todo:--%>
-
-
-      ${1+2}
-      1
-
-
-      <%= ((Map)request.getAttribute("model")).get("versionHistories") %>
-
     <div class="col-md-offset-3 col-md-9">
 
       <h5>流量汇管家<span style="font-size: 40px; color: #d34754;"> 历程</span></h5>
 
       <ul class="timeline">
+
+        <c:forEach var="versionHistory" items="${model.versionHistories}">
+          <li>
+            <div class="time"><fmt:formatDate value="${versionHistory.time}" pattern="yyyy-MM-dd" /></div>
+            <div class="version">${versionHistory.versionName}</div>
+            <div class="number">&nbsp;</div>
+            <div class="detail">
+              <div class="content-title">${versionHistory.title}</div>
+              <div class="content">${versionHistory.content}</div>
+            </div>
+          </li>
+        </c:forEach>
+
+
         <li>
           <div class="time">时间</div>
           <div class="version">V3.7.7</div>

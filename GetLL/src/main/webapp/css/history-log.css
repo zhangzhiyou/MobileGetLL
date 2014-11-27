@@ -18,6 +18,7 @@ ul.timeline li .time {
     left: 0;
     top: 10px;
     color: #999;
+    font-size: 14px;
 }
 
 ul.timeline li .version {

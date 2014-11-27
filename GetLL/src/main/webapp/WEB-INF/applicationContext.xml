@@ -70,7 +70,7 @@
         <!--<property name="creditLogService" ref="creditLogService"/>-->
     </bean>
 
-    <bean id="adminAction" class="com.xiayule.getll.action.AdminAction">
+    <bean id="adminAction" class="com.xiayule.getll.action.AdminAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
     </bean>
 
@@ -88,11 +88,12 @@
     </bean>
 
 
-    <bean name="historyVersionAction" class="com.xiayule.getll.action.HistoryVersionAction">
+    <bean name="historyVersionAction" class="com.xiayule.getll.action.HistoryVersionAction"
+            scope="prototype">
         <property name="historyVersionService" ref="versionHistoryServicve"/>
     </bean>
 
-    <bean name="score" class="com.xiayule.getll.action.Score">
+    <bean name="score" class="com.xiayule.getll.action.Score" scope="prototype">
 
     </bean>
 

@@ -55,10 +55,15 @@ public class HistoryVersionAction {
     public String createHistoryVersion() {
 //        todo: time 没有传过来
 
-        System.out.println("title:" + title
-                + " contnt:" + content
-                + " versionName:" + versionName
-                + " time:" + time);
+        VersionHistory versionHistory = new VersionHistory();
+        versionHistory.setTitle(title);
+        versionHistory.setContent(content);
+        versionHistory.setVersionName(versionName);
+        versionHistory.setTime(time);
+
+        historyVersionService.saveVersionHistory(versionHistory);
+
+        System.out.println(versionHistory);
 
         return Action.SUCCESS;
     }

@@ -30,7 +30,7 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-offset-3 col-md-9">
+    <div class="col-md-offset-3 col-md-9 col-xs-12">
 
       <h5>流量汇管家<span style="font-size: 40px; color: #d34754;"> 历程</span></h5>
 
@@ -43,7 +43,7 @@
             <div class="number">&nbsp;</div>
             <div class="detail">
               <div class="content-title">${historyVersion.title}</div>
-              <div class="content">${historyVersion.content}</div>
+              <pre class="content">${historyVersion.content}</pre>
             </div>
           </li>
         </c:forEach>

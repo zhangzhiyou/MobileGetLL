@@ -59,7 +59,7 @@ ul.timeline li .detail .content-title {
     color: #a24d20;
 }
 
-ul.timeline li .detail .content {
+ul.timeline li .detail pre.content {
     /*background-color: #3594cb;*/
     padding: 20px;
     color: #519421;

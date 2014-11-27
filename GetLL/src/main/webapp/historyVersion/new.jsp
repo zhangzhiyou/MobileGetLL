@@ -17,7 +17,7 @@
 
 <c:if test="${sessionScope.admin}">
 
-  <form action="/newHistoryVersion.action" method="post">
+  <form action="/admin/newHistoryVersion.action" method="post">
     Title: <input type="text" name="title">  <br/>
     VersionName: <input type="text" name="versionName"><br/>
     Content: <textarea name="content"></textarea> <br/>

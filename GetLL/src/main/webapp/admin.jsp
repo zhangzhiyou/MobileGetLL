@@ -22,7 +22,7 @@
 订阅自动领取总数: ${mSubscribAutoReceiveCount} <br/>
 
 
-<form method="post" action="/adminLogin.action">
+<form method="post" action="/admin/adminLogin.action">
     <input type="password" name="password">
 
     <input type="submit" value="登录">

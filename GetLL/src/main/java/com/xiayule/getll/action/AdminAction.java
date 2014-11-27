@@ -6,6 +6,7 @@ import com.xiayule.getll.service.SubscriberService;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -15,6 +16,11 @@ public class AdminAction {
     private SubscriberService subscriberService;
 
     private String password;
+
+    private String title;
+    private String content;
+    private String versionName;
+    private Date time;
 
     public int countSubscribers() {
         return subscriberService.countNumbers();
@@ -48,6 +54,17 @@ public class AdminAction {
         return Action.SUCCESS;
     }
 
+    public String newHistoryVersion() {
+//        todo: time 没有传过来
+
+        System.out.println("title:" + title
+                + " contnt:" + content
+                + " versionName:" + versionName
+                + " time:" + time);
+
+        return Action.SUCCESS;
+    }
+
     // set and get method
 
     public SubscriberService getSubscriberService() {
@@ -64,5 +81,37 @@ public class AdminAction {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getVersionName() {
+        return versionName;
+    }
+
+    public void setVersionName(String versionName) {
+        this.versionName = versionName;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 }

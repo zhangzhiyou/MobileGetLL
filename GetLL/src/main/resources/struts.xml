@@ -63,7 +63,9 @@
             <result name="success">/search.jsp</result>
             <result name="error">/search.jsp</result>
         </action>-->
+    </package>
 
+    <package name="admin" namespace="/admin" extends="all">
         <action name="admin" class="adminAction" method="admin">
             <result name="success">/admin.jsp</result>
         </action>
@@ -77,6 +79,10 @@
 
         <action name="historyVersion" class="historyVersionAction">
             <result name="success">/historyVersion.jsp</result>
+        </action>
+        
+        <action name="newHistoryVersion" class="adminAction" method="newHistoryVersion">
+            <result name="success" type="redirect">/historyVersion.jsp</result>
         </action>
     </package>
 

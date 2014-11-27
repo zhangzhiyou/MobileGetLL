@@ -1,6 +1,6 @@
 package com.xiayule.getll.db.service;
 
-import com.xiayule.getll.db.model.VersionHistory;
+import com.xiayule.getll.db.model.HistoryVersion;
 
 import java.util.List;
 
@@ -8,16 +8,16 @@ import java.util.List;
  * Created by tan on 14-11-26.
  */
 public interface HistoryVersionService {
-    public VersionHistory getVersionHistory(Integer id);
+    public HistoryVersion getVersionHistory(Integer id);
 
     /**
-     * 更新 versionHistory
+     * 更新 historyVersion
      */
-    public void saveVersionHistory(VersionHistory versionHistory);
+    public void saveVersionHistory(HistoryVersion historyVersion);
 
     public void deleteVersionHistory(Integer id);
 
-    public void deleteVersionHistory(VersionHistory versionHistory);
+    public void deleteVersionHistory(HistoryVersion historyVersion);
 
-    public List<VersionHistory> findAllVersionHistory();
+    public List<HistoryVersion> findAllVersionHistory();
 }

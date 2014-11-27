@@ -1,7 +1,7 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
-import com.xiayule.getll.db.model.VersionHistory;
+import com.xiayule.getll.db.model.HistoryVersion;
 import com.xiayule.getll.db.service.HistoryVersionService;
 import org.apache.struts2.ServletActionContext;
 
@@ -26,7 +26,7 @@ public class HistoryVersionAction {
 
     public String show() throws Exception {
 
-        List<VersionHistory> versionHistories = historyVersionService.findAllVersionHistory();
+        List<HistoryVersion> versionHistories = historyVersionService.findAllVersionHistory();
 
         System.out.println(versionHistories);
 
@@ -53,17 +53,15 @@ public class HistoryVersionAction {
     }
 
     public String createHistoryVersion() {
-//        todo: time 没有传过来
+        HistoryVersion historyVersion = new HistoryVersion();
+        historyVersion.setTitle(title);
+        historyVersion.setContent(content);
+        historyVersion.setVersionName(versionName);
+        historyVersion.setTime(time);
 
-        VersionHistory versionHistory = new VersionHistory();
-        versionHistory.setTitle(title);
-        versionHistory.setContent(content);
-        versionHistory.setVersionName(versionName);
-        versionHistory.setTime(time);
+        historyVersionService.saveVersionHistory(historyVersion);
 
-        historyVersionService.saveVersionHistory(versionHistory);
-
-        System.out.println(versionHistory);
+        System.out.println(historyVersion);
 
         return Action.SUCCESS;
     }

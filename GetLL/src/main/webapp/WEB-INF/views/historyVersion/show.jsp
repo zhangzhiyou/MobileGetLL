@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.xiayule.getll.db.model.VersionHistory" %>
+<%@ page import="com.xiayule.getll.db.model.HistoryVersion" %>
 <%@ page import="sun.misc.Version" %>
 <%--
   Created by IntelliJ IDEA.
@@ -34,14 +34,14 @@
 
       <ul class="timeline">
 
-        <c:forEach var="versionHistory" items="${model.versionHistories}">
+        <c:forEach var="historyVersion" items="${model.versionHistories}">
           <li>
-            <div class="time"><fmt:formatDate value="${versionHistory.time}" pattern="yyyy-MM-dd" /></div>
-            <div class="version">${versionHistory.versionName}</div>
+            <div class="time"><fmt:formatDate value="${historyVersion.time}" pattern="yyyy-MM-dd" /></div>
+            <div class="version">${historyVersion.versionName}</div>
             <div class="number">&nbsp;</div>
             <div class="detail">
-              <div class="content-title">${versionHistory.title}</div>
-              <div class="content">${versionHistory.content}</div>
+              <div class="content-title">${historyVersion.title}</div>
+              <div class="content">${historyVersion.content}</div>
             </div>
           </li>
         </c:forEach>

@@ -1,7 +1,7 @@
 
 ul.timeline {
     list-style-type: none;
-    background: url("../images/log/version_line.png") repeat-y scroll 120px 0 transparent;
+    background: url("../image/log/version_line.png") repeat-y scroll 120px 0 transparent;
     margin: 50px 0;
     padding: 0;
 }

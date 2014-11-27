@@ -1,7 +1,7 @@
 package com.xiayule.getll.db.dao.impl;
 
 import com.xiayule.getll.db.dao.VersionHistoryDao;
-import com.xiayule.getll.db.model.VersionHistory;
+import com.xiayule.getll.db.model.HistoryVersion;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import java.util.List;
@@ -10,32 +10,32 @@ import java.util.List;
  * Created by tan on 14-11-26.
  */
 public class VersionHistoryDaoImpl extends HibernateDaoSupport implements VersionHistoryDao {
-    public VersionHistory get(Integer id) {
-        return getHibernateTemplate().get(VersionHistory.class, id);
+    public HistoryVersion get(Integer id) {
+        return getHibernateTemplate().get(HistoryVersion.class, id);
     }
 
-    public Integer save(VersionHistory versionHistory) {
+    public Integer save(HistoryVersion historyVersion) {
         return (Integer) getHibernateTemplate()
-                .save(versionHistory);
+                .save(historyVersion);
     }
 
-    public void saveOrUpdate(VersionHistory versionHistory) {
-        getHibernateTemplate().saveOrUpdate(versionHistory);
+    public void saveOrUpdate(HistoryVersion historyVersion) {
+        getHibernateTemplate().saveOrUpdate(historyVersion);
     }
 
-    public void update(VersionHistory versionHistory) {
-        getHibernateTemplate().update(versionHistory);
+    public void update(HistoryVersion historyVersion) {
+        getHibernateTemplate().update(historyVersion);
     }
 
     public void delete(Integer id) {
         getHibernateTemplate().delete(get(id));
     }
 
-    public void delete(VersionHistory versionHistory) {
-        getHibernateTemplate().delete(versionHistory);
+    public void delete(HistoryVersion historyVersion) {
+        getHibernateTemplate().delete(historyVersion);
     }
 
-    public List<VersionHistory> findAllVersionHistory() {
-        return (List<VersionHistory>)getHibernateTemplate().find("from VersionHistory");
+    public List<HistoryVersion> findAllVersionHistory() {
+        return (List<HistoryVersion>)getHibernateTemplate().find("from HistoryVersion");
     }
 }

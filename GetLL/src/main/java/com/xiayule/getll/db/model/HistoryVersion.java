@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by tan on 14-11-26.
  */
-public class VersionHistory {
+public class HistoryVersion {
 
     private Integer id;
 

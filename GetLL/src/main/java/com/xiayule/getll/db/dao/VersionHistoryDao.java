@@ -1,6 +1,6 @@
 package com.xiayule.getll.db.dao;
 
-import com.xiayule.getll.db.model.VersionHistory;
+import com.xiayule.getll.db.model.HistoryVersion;
 
 import java.util.List;
 
@@ -8,17 +8,17 @@ import java.util.List;
  * Created by tan on 14-11-26.
  */
 public interface VersionHistoryDao {
-    public VersionHistory get(Integer id);
+    public HistoryVersion get(Integer id);
 
-    public Integer save(VersionHistory versionHistory);
+    public Integer save(HistoryVersion historyVersion);
 
-    public void saveOrUpdate(VersionHistory versionHistory);
+    public void saveOrUpdate(HistoryVersion historyVersion);
 
-    public void update(VersionHistory versionHistory);
+    public void update(HistoryVersion historyVersion);
 
     public void delete(Integer id);
 
-    public void delete(VersionHistory versionHistory);
+    public void delete(HistoryVersion historyVersion);
 
-    public List<VersionHistory> findAllVersionHistory();
+    public List<HistoryVersion> findAllVersionHistory();
 }

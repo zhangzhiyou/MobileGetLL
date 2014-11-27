@@ -1,7 +1,7 @@
 package com.xiayule.getll.db.service.impl;
 
 import com.xiayule.getll.db.dao.VersionHistoryDao;
-import com.xiayule.getll.db.model.VersionHistory;
+import com.xiayule.getll.db.model.HistoryVersion;
 import com.xiayule.getll.db.service.HistoryVersionService;
 
 import java.util.List;
@@ -12,15 +12,15 @@ import java.util.List;
 public class HistoryVersionServiceImpl implements HistoryVersionService {
     private VersionHistoryDao versionHistoryDao;
 
-    public VersionHistory getVersionHistory(Integer id) {
+    public HistoryVersion getVersionHistory(Integer id) {
         return versionHistoryDao.get(id);
     }
 
     /**
-     * 更新 versionHistory
+     * 更新 historyVersion
      */
-    public void saveVersionHistory(VersionHistory versionHistory) {
-        versionHistoryDao.saveOrUpdate(versionHistory);
+    public void saveVersionHistory(HistoryVersion historyVersion) {
+        versionHistoryDao.saveOrUpdate(historyVersion);
     }
 
 
@@ -28,11 +28,11 @@ public class HistoryVersionServiceImpl implements HistoryVersionService {
         versionHistoryDao.delete(id);
     }
 
-    public void deleteVersionHistory(VersionHistory versionHistory) {
-        versionHistoryDao.delete(versionHistory);
+    public void deleteVersionHistory(HistoryVersion historyVersion) {
+        versionHistoryDao.delete(historyVersion);
     }
 
-    public List<VersionHistory> findAllVersionHistory() {
+    public List<HistoryVersion> findAllVersionHistory() {
         return versionHistoryDao.findAllVersionHistory();
     }
 

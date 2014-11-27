@@ -1,6 +1,6 @@
 package com.xiayule.getll;
 
-import com.xiayule.getll.db.model.VersionHistory;
+import com.xiayule.getll.db.model.HistoryVersion;
 import com.xiayule.getll.db.service.HistoryVersionService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -23,22 +23,22 @@ public class Test {
 
         HistoryVersionService historyVersionService = ctx.getBean("versionHistoryServicve", HistoryVersionService.class);
 
-        VersionHistory versionHistory = new VersionHistory();
-        versionHistory.setTitle("第版本");
-        versionHistory.setContent("修复了一些bug");
-        versionHistory.setVersionName("3.7.2");
-        versionHistory.setTime(new Date());
+        HistoryVersion historyVersion = new HistoryVersion();
+        historyVersion.setTitle("第版本");
+        historyVersion.setContent("修复了一些bug");
+        historyVersion.setVersionName("3.7.2");
+        historyVersion.setTime(new Date());
 
-        versionHistory.setId(1);
+        historyVersion.setId(1);
 
-        historyVersionService.saveVersionHistory(versionHistory);
+        historyVersionService.saveVersionHistory(historyVersion);
         System.out.println(historyVersionService.getVersionHistory(1));
 
         historyVersionService.deleteVersionHistory(2);
-        historyVersionService.deleteVersionHistory(versionHistory);
+        historyVersionService.deleteVersionHistory(historyVersion);
 
-        List<VersionHistory> versionHistories = historyVersionService.findAllVersionHistory();
-        for (VersionHistory v : versionHistories) {
+        List<HistoryVersion> versionHistories = historyVersionService.findAllVersionHistory();
+        for (HistoryVersion v : versionHistories) {
             System.out.println(v);
         }
 

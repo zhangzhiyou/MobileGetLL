@@ -38,11 +38,11 @@ public class AdminAction {
 
     public String adminLogin() {
 
-        if (password != null && password.equals("6224989a")) {
-
+        if (password != null && password.equals("123")) {
             Map session = ActionContext.getContext().getSession();
             session.put("admin", true);
-
+        } else {
+            return Action.LOGIN;
         }
 
         return Action.SUCCESS;

@@ -33,7 +33,9 @@
 <%--管理员的一些权利--%>
 
 <c:if test="${sessionScope.admin}">
-    ${123}
+
+
+
 </c:if>
 
 <script>

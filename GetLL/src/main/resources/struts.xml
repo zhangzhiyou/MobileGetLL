@@ -69,7 +69,10 @@
         </action>
 
         <action name="adminLogin" class="adminAction" method="adminLogin">
-            <result name="success">/admin.jsp</result>
+            <!--登录成功,则重定向-->
+            <result name="success" type="redirect">/admin.jsp</result>
+
+            <result name="login">/admin.jsp</result>
         </action>
 
         <action name="historyVersion" class="historyVersionAction">

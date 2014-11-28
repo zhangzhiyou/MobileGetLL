@@ -27,7 +27,7 @@ public class AutoPlayJobImpl implements AutoPlayJob {
             logger.info("JobTask:" + mobile + " 未登录(第一次尝试)");
 
             try {
-                Thread.sleep(3000);
+                Thread.sleep(AutoPlayJob.PLAY_LAZY);
             } catch (InterruptedException e) {
 
             }
@@ -78,7 +78,7 @@ public class AutoPlayJobImpl implements AutoPlayJob {
 
                 try {
                     // 等待 3 秒，保险起见
-                    Thread.sleep(3000);
+                    Thread.sleep(AutoPlayJob.PLAY_LAZY);
                 } catch (InterruptedException e) {
                     logger.info(mobile + " Thread.sleep error");
                 }

@@ -6,6 +6,7 @@ import net.sf.json.JSONObject;
  * Created by tan on 14-7-21.
  */
 public interface PlayService {
+
     public String getPassword(String mobile);
 
     public int getRemainTimes(String mobile);

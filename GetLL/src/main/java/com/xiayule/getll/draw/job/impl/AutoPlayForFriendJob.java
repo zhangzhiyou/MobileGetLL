@@ -38,17 +38,17 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
             if (playService.isLogined(myMobile)) {
                 logger.info(myMobile + " 为（" + friendMobile + ")摇奖 setDrawMobile返回(" + playService.setDrawMobile(myMobile, friendMobile) + ")");
 
-                Thread.sleep(3000);
+                Thread.sleep(AutoPlayJob.PLAY_LAZY);
 
                 // 累加每日奖励, 并接收返回结果
                 double firstShakeGiveCredit = playService.addDrawScore(myMobile);
 
-                Thread.sleep(3000);
+                Thread.sleep(AutoPlayJob.PLAY_LAZY);
 
                 // 获取剩余次数
                 int drawCount = playService.getRemainTimes(myMobile);
 
-                Thread.sleep(3000);
+                Thread.sleep(AutoPlayJob.PLAY_LAZY);
 
                 int cnt = 0;
 
@@ -66,7 +66,7 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
 
 
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(AutoPlayJob.PLAY_LAZY);
                     } catch (Exception e) {
                         logger.info(myMobile + "为朋友摇奖(" + friendMobile + ")" + "Thread.sleep error");
                     }

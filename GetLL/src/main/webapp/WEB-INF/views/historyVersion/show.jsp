@@ -32,7 +32,7 @@
 
     <div class="col-md-offset-3 col-md-9 col-xs-12">
 
-      <h5>流量汇管家<span style="font-size: 40px; color: #d34754;"> 历程</span></h5>
+      <h5 style="text-shadow: 6px 6px 10px">流量汇管家<span style="font-size: 40px; color: #d34754;"> 历程</span></h5>
 
       <ul class="timeline">
 

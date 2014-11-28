@@ -65,13 +65,13 @@
       var liNodes = ulNode.find('li'), count = liNodes.length, i, liNode;
       for(i=0; i<count; i++) {
         liNode = $(liNodes.get(i));
-        if(i % 3 == 0) {
+        /*if(i % 3 == 0) {
 //          liNode.removeClass('alt1');
         } else if (i % 3 == 1) {
           liNode.addClass('alt1');
         } else if (i % 3 == 2) {
           liNode.addClass('alt2');
-        }
+        }*/
 
         liNode.find('.number').text(count - i);
       }

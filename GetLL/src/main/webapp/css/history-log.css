@@ -45,10 +45,6 @@ ul.timeline li .number {
     font-size: 18px;
 }
 
-ul.timeline li.alt .number {
-    background-image: url("../image/log/version_dot_alt.png");
-}
-
 ul.timeline li .detail {
     margin-left: 180px;
 }
@@ -56,7 +52,6 @@ ul.timeline li .detail {
 ul.timeline li .detail .content-title {
     font-size: 35px;
     line-height: 56px;
-    color: #a24d20;
 }
 
 ul.timeline li .detail pre.content {
@@ -69,10 +64,15 @@ ul.timeline li .detail pre.content {
 
 
 /*多定义几套主题*/
-ul.timeline li.alt1 .detail .content-title {
+ul.timeline li:nth-child(3n+1) .detail .content-title {
+    color: #a24d20;
+
+}
+
+ul.timeline li:nth-child(3n+2) .detail .content-title {
     color: #0062a2;
 }
 
-ul.timeline li.alt2 .detail .content-title {
+ul.timeline li:nth-child(3n+3) .detail .content-title {
     color: #991ba2;
 }

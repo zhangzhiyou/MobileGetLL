@@ -18,6 +18,8 @@
     <title>流量汇管家</title>
 </head>
 
+<body>
+
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -74,7 +76,7 @@
         <%--检测到是电脑,显示小人--%>
         <c:if test="${model.isMobile eq false}">
             <div class="col-xs-12">
-                <div class="wrapper">
+                <div class="wrapper" style="-webkit-transform: scale(0.8);">
                     <div class="border-circle" id="one"></div>
                     <div class="border-circle" id="two"></div>
                     <div class="background-circle">
@@ -215,7 +217,7 @@
                         <h3 class="panel-title">网站公告</h3>
                     </div>
                     <div class="panel-body">
-                        新增功能:　添加"历程"页面,与我们一起见证成长
+                        如果您在官方登录并点击了官方的退出登录，那么也会导致本站的服务不可用，这时可以重新登录本站，便可恢复服务
                     </div>
                 </div>
             </div>
@@ -348,7 +350,6 @@
 </div>
 
 <jsp:include page="snap/foot.html"></jsp:include>
-
 
 </body>
 </html>

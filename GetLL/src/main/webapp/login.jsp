@@ -13,16 +13,21 @@
     <jsp:include page="snap/head.html"/>
     <title>登录-流量汇管家</title>
 </head>
+
 <body style="height: 100%">
 
 <jsp:include page="snap/nav_simple.html"/>
 
 <div class="container">
     <!-- 登录框 -->
-    <div class="row" >
+    <div class="row">
 
+        <%--公告--%>
         <jsp:include page="snap/notification.html"/>
 
+    </div>
+
+    <div class="row">
         <div class="col-xs-12 col-md-6">
             <div class="form-area">
                 <div class="form-title">
@@ -41,11 +46,11 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="password" name="password" placeholder="动态密码">
 
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" id="getPassword">获取动态密码</button>
-                            <button type="button" class="btn btn-default" style="display: none" id="sendStatus">已发送(<span
-                                    id="seconds" style="display:inline;">0</span>秒)</button>
-                        </span>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" id="getPassword">获取动态密码</button>
+                        <button type="button" class="btn btn-default" style="display: none" id="sendStatus">已发送(<span
+                                id="seconds" style="display:inline;">0</span>秒)</button>
+                    </span>
                     </div>
                 </div>
 
@@ -65,6 +70,7 @@
                 </ol>
             </div>
         </div>
+
     </div>
 
 

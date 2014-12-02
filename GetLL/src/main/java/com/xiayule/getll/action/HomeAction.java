@@ -36,6 +36,7 @@ public class HomeAction implements Action{
 
         String mobile = UserUtils.getMobileFromCookie();
 
+//        todo:
         if (mobile == null) {
             System.out.println("需要重新登录");
 

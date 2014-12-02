@@ -28,7 +28,7 @@ public class HistoryVersionAction {
 
         List<HistoryVersion> versionHistories = historyVersionService.findAllVersionHistory();
 
-        System.out.println(versionHistories);
+//        System.out.println(versionHistories);
 
         // 封装数据
         Map<String, Object> model = new HashMap<String, Object>();

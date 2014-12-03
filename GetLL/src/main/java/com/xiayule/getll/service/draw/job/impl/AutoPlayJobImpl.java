@@ -15,7 +15,7 @@ public class AutoPlayJobImpl implements AutoPlayJob {
     private static Logger logger = LogManager.getLogger(AutoPlayJob.class.getName());
 
     private PlayService playService;
-    private CreditService creditService;
+//    private CreditService creditService;
 
     @Override
     public void autoPlay(String mobile) {
@@ -68,7 +68,7 @@ public class AutoPlayJobImpl implements AutoPlayJob {
                 // 如果获得流量币，一般都是 '0.1个流量币' 这样的形式
                 if (winName.contains("个流量币")) {
                     double credit = Double.parseDouble(winName.replace("个流量币", ""));
-                    creditService.addCredit(mobile, credit);
+//                    creditService.addCredit(mobile, credit);
                 }
 
                 playService.addDrawScore(mobile);
@@ -106,7 +106,7 @@ public class AutoPlayJobImpl implements AutoPlayJob {
         this.playService = playService;
     }
 
-    public void setCreditService(CreditService creditService) {
-        this.creditService = creditService;
-    }
+//    public void setCreditService(CreditService creditService) {
+//        this.creditService = creditService;
+//    }
 }

@@ -54,15 +54,15 @@
             <!--<result name="login">/admin.jsp</result>-->
         </action>
 
-       <!-- <action name="subscribe" class="subscribeAction">
+        <!--<action name="subscribe" class="subscribeAction">
             <result name="success" type="redirect">/success.jsp</result>
             <result name="error">/index.jsp</result>
-        </action>
+        </action>-->
 
         <action name="search" class="searchAction">
             <result name="success">/search.jsp</result>
             <result name="error">/search.jsp</result>
-        </action>-->
+        </action>
     </package>
 
     <package name="admin" namespace="/admin" extends="all">

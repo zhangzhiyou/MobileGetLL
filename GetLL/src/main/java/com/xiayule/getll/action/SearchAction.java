@@ -17,7 +17,7 @@ import java.util.Map;
 public class SearchAction implements Action {
     private SubscriberService subscriberService;
     private CreditService creditService;
-    private CreditLogService creditLogService;
+//    private CreditLogService creditLogService;
 
     private String mobile;
     private String tip;
@@ -33,7 +33,7 @@ public class SearchAction implements Action {
             Long rank = creditService.getRankByTotalAtHere(mobile);
 
             // 取得日志
-            Map<String, List<String>> logs = creditLogService.readLog(mobile);
+//            Map<String, List<String>> logs = creditLogService.readLog(mobile);
 
 
             HttpServletRequest request = ServletActionContext.getRequest();
@@ -44,7 +44,7 @@ public class SearchAction implements Action {
             // 获得的数据
             request.setAttribute("credit", credit);
             request.setAttribute("rank", rank);
-            request.setAttribute("logs", logs);
+//            request.setAttribute("logs", logs);
 
             return SUCCESS;
         } else {
@@ -79,7 +79,7 @@ public class SearchAction implements Action {
         this.creditService = creditService;
     }
 
-    public void setCreditLogService(CreditLogService creditLogService) {
-        this.creditLogService = creditLogService;
-    }
+//    public void setCreditLogService(CreditLogService creditLogService) {
+//        this.creditLogService = creditLogService;
+//    }
 }

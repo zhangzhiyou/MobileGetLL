@@ -23,7 +23,6 @@
     <!--todo: 这个是需要优化的， drawRequest 传的参数可以是 autoPlay 或者是  autoPlayForFriend, 而不是 mobile -->
     <bean id="autoPlayForFriendJob" class="com.xiayule.getll.service.draw.job.impl.AutoPlayForFriendJob">
         <property name="playService" ref="playService"/>
-        <property name="creditService" ref="creditService"/>
     </bean>
 
     <bean id="forFriendJobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForFriendTaskImpl">

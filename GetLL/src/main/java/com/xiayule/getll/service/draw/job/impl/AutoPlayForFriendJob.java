@@ -1,7 +1,6 @@
 package com.xiayule.getll.service.draw.job.impl;
 
 import com.xiayule.getll.service.draw.job.AutoPlayJob;
-import com.xiayule.getll.service.CreditService;
 import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.utils.JsonUtils;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +14,6 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
     private static Logger logger = LogManager.getLogger(AutoPlayJob.class.getName());
 
     private PlayService playService;
-    private CreditService creditService;
 
     /**
      * 为朋友摇奖，自己的手机号永远都是固定的。
@@ -96,13 +94,5 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
 
     public void setPlayService(PlayService playService) {
         this.playService = playService;
-    }
-
-    public CreditService getCreditService() {
-        return creditService;
-    }
-
-    public void setCreditService(CreditService creditService) {
-        this.creditService = creditService;
     }
 }

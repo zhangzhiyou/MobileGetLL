@@ -55,11 +55,11 @@
         <property name="subscriberService" ref="subscribeService"/>
     </bean>
 
-    <bean name="searchAction" class="com.xiayule.getll.action.SearchAction" scope="prototype">
+<!--    <bean name="searchAction" class="com.xiayule.getll.action.SearchAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
         <property name="creditService" ref="creditService"/>
         <property name="creditLogService" ref="creditLogService"/>
-    </bean>
+    </bean>-->
 
     <bean name="ajaxAction" class="com.xiayule.getll.action.AjaxAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
@@ -98,7 +98,6 @@
     </bean>
 
     <bean name="autoPlay" class="com.xiayule.getll.service.draw.job.impl.AutoPlayJobImpl" scope="prototype">
-        <property name="creditService" ref="creditService"/>
         <property name="playService" ref="playService"/>
     </bean>
 

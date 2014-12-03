@@ -1,10 +1,9 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
-import com.xiayule.getll.draw.request.DrawRequest;
+import com.xiayule.getll.service.draw.request.DrawRequest;
 import com.xiayule.getll.factory.CookieFactory;
 import com.xiayule.getll.service.*;
-import com.xiayule.getll.utils.Constants;
 import com.xiayule.getll.utils.JsonUtils;
 import com.xiayule.getll.utils.UserUtils;
 import net.sf.json.JSONObject;

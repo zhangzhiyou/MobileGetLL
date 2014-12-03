@@ -1,4 +1,4 @@
-package com.xiayule.getll.draw.job;
+package com.xiayule.getll.service.draw.job;
 
 /**
  * Created by tan on 14-9-8.

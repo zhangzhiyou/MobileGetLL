@@ -1,6 +1,6 @@
 package com.xiayule.getll.toolkit.scheduling.impl;
 
-import com.xiayule.getll.draw.request.DrawRequest;
+import com.xiayule.getll.service.draw.request.DrawRequest;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.toolkit.scheduling.JobTask;
 import org.apache.logging.log4j.LogManager;

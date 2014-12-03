@@ -21,7 +21,7 @@
 
     <!-- 为朋友摇奖业务对象 -->
     <!--todo: 这个是需要优化的， drawRequest 传的参数可以是 autoPlay 或者是  autoPlayForFriend, 而不是 mobile -->
-    <bean id="autoPlayForFriendJob" class="com.xiayule.getll.draw.job.impl.AutoPlayForFriendJob">
+    <bean id="autoPlayForFriendJob" class="com.xiayule.getll.service.draw.job.impl.AutoPlayForFriendJob">
         <property name="playService" ref="playService"/>
         <property name="creditService" ref="creditService"/>
     </bean>
@@ -33,7 +33,7 @@
     </bean>
 
     <!-- 自动领取业务对象 -->
-    <bean id="autoPlayForReceiveGiftsJob" class="com.xiayule.getll.draw.job.impl.AutoReceiveJob">
+    <bean id="autoPlayForReceiveGiftsJob" class="com.xiayule.getll.service.draw.job.impl.AutoReceiveJob">
         <property name="ownService" ref="ownService"/>
     </bean>
 

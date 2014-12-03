@@ -37,7 +37,7 @@
 
     <loggers>
         <!-- 记录每日流量统计 -->
-        <logger name="com.xiayule.getll.draw.job.AutoPlayJob" level="info" additivity="false">
+        <logger name="com.xiayule.getll.service.draw.job.AutoPlayJob" level="info" additivity="false">
             <appender-ref ref="shakeRollingFile"/>
         </logger>
 

@@ -1,7 +1,7 @@
-package com.xiayule.getll.draw.request.impl;
+package com.xiayule.getll.service.draw.request.impl;
 
-import com.xiayule.getll.draw.request.DrawRequest;
-import com.xiayule.getll.draw.job.AutoPlayJob;
+import com.xiayule.getll.service.draw.request.DrawRequest;
+import com.xiayule.getll.service.draw.job.AutoPlayJob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,7 +25,7 @@ public class DrawRequestImpl implements DrawRequest{
             @Override
             public void run() {
 
-                while (true) {// 不挺的取
+                while (true) {// 不停的取
                     // try 在里面，有异常 不会影响其它任务的执行
                     try {
                         String mobile = queue.take();

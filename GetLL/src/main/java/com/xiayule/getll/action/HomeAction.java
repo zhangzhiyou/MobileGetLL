@@ -41,7 +41,7 @@ public class HomeAction implements Action{
             System.out.println("需要重新登录");
 
             return LOGIN;
-        } /*else if (!playService.isLogined(mobile)) {// 这个还是在js里面检测
+        } /*ed -lse if (!playService.isLogined(mobile)) {// 这个还是在js里面检测
 
         }
 */

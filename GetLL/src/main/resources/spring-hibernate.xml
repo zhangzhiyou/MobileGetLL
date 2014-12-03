@@ -70,7 +70,9 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-
+    <bean id="shakeLogService" class="com.xiayule.getll.db.service.impl.ShakeLogServiceImpl">
+        <property name="shakeLogDao" ref="shakeLogDao"/>
+    </bean>
 
     <!-- 配置 Hibernate 的局部事务管理器，使用 HibernateTransactionManager 类 -->
     <!-- 该类实现 PlatformTransactionManager 接口，是针对 Hibernate 的特定实现 -->
@@ -93,7 +95,7 @@
     <aop:config>
           <!-- 配置一个切入点 -->
           <aop:pointcut id="ajaxPointcut"
-                        expression="bean(versionHistoryServicve)||bean(shakeLogDao)"/>
+                        expression="bean(versionHistoryServicve)||bean(shakeLogService)"/>
           <!-- 指定在 leePointcut 切入点应用 txAdvice 事务增强处理 -->
           <aop:advisor advice-ref="txAdvice"
                        pointcut-ref="ajaxPointcut"/>

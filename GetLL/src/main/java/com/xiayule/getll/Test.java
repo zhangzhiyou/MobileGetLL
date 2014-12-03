@@ -4,6 +4,7 @@ import com.xiayule.getll.db.dao.ShakeLogDao;
 import com.xiayule.getll.db.model.HistoryVersion;
 import com.xiayule.getll.db.model.ShakeLog;
 import com.xiayule.getll.db.service.HistoryVersionService;
+import com.xiayule.getll.db.service.ShakeLogService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -20,20 +21,20 @@ public class Test {
                 "spring-hibernate.xml"
         });
 
-        ShakeLogDao shakeLogDao = ctx.getBean("shakeLogDao", ShakeLogDao.class);
+        ShakeLogService shakeLogService = ctx.getBean("shakeLogService", ShakeLogService.class);
 
 //        ShakeLog shakeLog = new ShakeLog("18369905136", 1.2);
 //        shakeLogDao.saveOrUpdate(shakeLog);
 
-        ShakeLog shakeLog = shakeLogDao.get(1);
-
-        shakeLog.setCredit(2.2);
+//        ShakeLog shakeLog = shakeLogDao.get(1);
+//
+//        shakeLog.setCredit(2.2);
 //        System.out.println(shakeLogDao.get(1));
 
-        shakeLogDao.saveOrUpdate(shakeLog);
-
-        System.out.println(shakeLogDao.findAllVersionHistory());
-
+//        shakeLogDao.saveOrUpdate(shakeLog);
+//
+//        System.out.println(shakeLogDao.findAllVersionHistory());
+        shakeLogService.log("18369905136", 3.35);
 
         /*OwnService ownService = ctx.getBean("ownService", OwnService.class);
         ownService.transferGiftsReceiveAll("18369905136");*/

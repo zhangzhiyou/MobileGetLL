@@ -45,6 +45,7 @@
                 <value>com/xiayule/getll/db/model/User.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/FlowMoneyCost.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/HistoryVersion.hbm.xml</value>
+                <value>com/xiayule/getll/db/model/ShakeLog.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -64,30 +65,37 @@
         <property name="versionHistoryDao" ref="versionHistoryDao"/>
     </bean>
 
-       <!-- 配置 Hibernate 的局部事务管理器，使用 HibernateTransactionManager 类 -->
-       <!-- 该类实现 PlatformTransactionManager 接口，是针对 Hibernate 的特定实现 -->
-       <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-              <!-- 配置 HibernateTransactionManager 时需要注入 SessionFactory 的引用 -->
-              <property name="sessionFactory" ref="sessionFactory"/>
-       </bean>
 
-       <!-- 配置事务增强处理 Bean，指定事务管理器 -->
-       <tx:advice id="txAdvice" transaction-manager="transactionManager">
-              <!-- 用于配置详细的事务语义 -->
-              <tx:attributes>
-                     <!-- 所有以 'get' 开头的方法是 read-only 的 -->
-                     <tx:method name="get*" read-only="true"/>
-                     <!-- 其他方法使用默认的事务配置 -->
-                     <tx:method name="*"/>
-              </tx:attributes>
-       </tx:advice>
+    <bean id="shakeLogDao" class="com.xiayule.getll.db.dao.impl.ShakeLogDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
-       <aop:config>
-              <!-- 配置一个切入点 -->
-              <aop:pointcut id="ajaxPointcut"
-                            expression="bean(versionHistoryServicve)"/>
-              <!-- 指定在 leePointcut 切入点应用 txAdvice 事务增强处理 -->
-              <aop:advisor advice-ref="txAdvice"
-                           pointcut-ref="ajaxPointcut"/>
-       </aop:config>
+
+
+    <!-- 配置 Hibernate 的局部事务管理器，使用 HibernateTransactionManager 类 -->
+    <!-- 该类实现 PlatformTransactionManager 接口，是针对 Hibernate 的特定实现 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+          <!-- 配置 HibernateTransactionManager 时需要注入 SessionFactory 的引用 -->
+          <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- 配置事务增强处理 Bean，指定事务管理器 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+          <!-- 用于配置详细的事务语义 -->
+          <tx:attributes>
+                 <!-- 所有以 'get' 开头的方法是 read-only 的 -->
+                 <tx:method name="get*" read-only="true"/>
+                 <!-- 其他方法使用默认的事务配置 -->
+                 <tx:method name="*"/>
+          </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+          <!-- 配置一个切入点 -->
+          <aop:pointcut id="ajaxPointcut"
+                        expression="bean(versionHistoryServicve)||bean(shakeLogDao)"/>
+          <!-- 指定在 leePointcut 切入点应用 txAdvice 事务增强处理 -->
+          <aop:advisor advice-ref="txAdvice"
+                       pointcut-ref="ajaxPointcut"/>
+    </aop:config>
 </beans>

@@ -18,6 +18,7 @@ public class User {
     // 是否开启朋友摇奖
     private Boolean isForFriend;
 
+//    todo: valid?
 
     // set and get methods
 

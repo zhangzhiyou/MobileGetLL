@@ -1,6 +1,8 @@
 package com.xiayule.getll;
 
+import com.xiayule.getll.db.dao.ShakeLogDao;
 import com.xiayule.getll.db.model.HistoryVersion;
+import com.xiayule.getll.db.model.ShakeLog;
 import com.xiayule.getll.db.service.HistoryVersionService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,10 +20,25 @@ public class Test {
                 "spring-hibernate.xml"
         });
 
+        ShakeLogDao shakeLogDao = ctx.getBean("shakeLogDao", ShakeLogDao.class);
+
+//        ShakeLog shakeLog = new ShakeLog("18369905136", 1.2);
+//        shakeLogDao.saveOrUpdate(shakeLog);
+
+        ShakeLog shakeLog = shakeLogDao.get(1);
+
+        shakeLog.setCredit(2.2);
+//        System.out.println(shakeLogDao.get(1));
+
+        shakeLogDao.saveOrUpdate(shakeLog);
+
+        System.out.println(shakeLogDao.findAllVersionHistory());
+
+
         /*OwnService ownService = ctx.getBean("ownService", OwnService.class);
         ownService.transferGiftsReceiveAll("18369905136");*/
 
-        HistoryVersionService historyVersionService = ctx.getBean("versionHistoryServicve", HistoryVersionService.class);
+/*        HistoryVersionService historyVersionService = ctx.getBean("versionHistoryServicve", HistoryVersionService.class);
 
         HistoryVersion historyVersion = new HistoryVersion();
         historyVersion.setTitle("第版本");
@@ -40,7 +57,8 @@ public class Test {
         List<HistoryVersion> versionHistories = historyVersionService.findAllVersionHistory();
         for (HistoryVersion v : versionHistories) {
             System.out.println(v);
-        }
+        }*/
+
 
 
 //        PlayService playService = ctx.getBean("playService", PlayService.class);

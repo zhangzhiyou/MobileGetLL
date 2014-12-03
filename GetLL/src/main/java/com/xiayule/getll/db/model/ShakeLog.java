@@ -15,6 +15,19 @@ public class ShakeLog {
 
     private Date time;
 
+    public ShakeLog() {}
+
+    public ShakeLog(String mobile, Double credit) {
+        this.mobile = mobile;
+        this.credit = credit;
+        this.time = new Date();
+    }
+
+    @Override
+    public String toString() {
+        return "id:" + id + " mobile:" + mobile + " credit:" + credit + " time:" + time;
+    }
+
     // set and get methods
 
     public Integer getId() {

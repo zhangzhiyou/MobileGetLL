@@ -6,7 +6,7 @@ import java.util.Date;
  * 摇奖获得流量币记录
  * Created by tan on 14-12-3.
  */
-public class ShakeLog {
+public class CreditLog {
 
     /**
      * 摇奖获得的流量币
@@ -28,9 +28,9 @@ public class ShakeLog {
 
     private Integer type;
 
-    public ShakeLog() {}
+    public CreditLog() {}
 
-    public ShakeLog(String mobile, Double credit, Integer type) {
+    public CreditLog(String mobile, Double credit, Integer type) {
         this.mobile = mobile;
         this.credit = credit;
         this.type = type;

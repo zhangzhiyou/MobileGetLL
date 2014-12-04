@@ -1,9 +1,7 @@
 package com.xiayule.getll.service.draw.job.impl;
 
-import com.xiayule.getll.db.model.ShakeLog;
-import com.xiayule.getll.db.service.ShakeLogService;
+import com.xiayule.getll.db.service.CreditLogService;
 import com.xiayule.getll.service.draw.job.AutoPlayJob;
-import com.xiayule.getll.service.CreditService;
 import com.xiayule.getll.service.PlayService;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +17,7 @@ public class AutoPlayJobImpl implements AutoPlayJob {
     private PlayService playService;
 //    private CreditService creditService;
 
-    private ShakeLogService shakeLogService;
+    private CreditLogService creditLogService;
 
     @Override
     public void autoPlay(String mobile) {
@@ -46,9 +44,8 @@ public class AutoPlayJobImpl implements AutoPlayJob {
 
         // 每日登录获得的流量币
         if (firstShakeGiveCredit > 0) {
-//            creditService.addCredit(mobile, firstShakeGiveCredit);
-//            shakeLogService.log(mobile, firstShakeGiveCredit, ShakeLog.LOG_LOGIN);
-            shakeLogService.logLoginCredit(mobile, firstShakeGiveCredit);
+//            creditLogService.log(mobile, firstShakeGiveCredit, CreditLog.LOG_LOGIN);
+            creditLogService.logLoginCredit(mobile, firstShakeGiveCredit);
         }
 
         // 获取剩余次数
@@ -71,7 +68,7 @@ public class AutoPlayJobImpl implements AutoPlayJob {
                 if (winName.contains("个流量币")) {
                     double credit = Double.parseDouble(winName.replace("个流量币", ""));
 
-                    shakeLogService.logShakeCredit(mobile, credit);
+                    creditLogService.logShakeCredit(mobile, credit);
                 }
 
                 playService.addDrawScore(mobile);
@@ -100,7 +97,7 @@ public class AutoPlayJobImpl implements AutoPlayJob {
         this.playService = playService;
     }
 
-    public void setShakeLogService(ShakeLogService shakeLogService) {
-        this.shakeLogService = shakeLogService;
+    public void setCreditLogService(CreditLogService creditLogService) {
+        this.creditLogService = creditLogService;
     }
 }

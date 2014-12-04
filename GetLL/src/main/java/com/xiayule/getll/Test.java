@@ -1,16 +1,5 @@
 package com.xiayule.getll;
 
-import com.xiayule.getll.db.dao.ShakeLogDao;
-import com.xiayule.getll.db.model.HistoryVersion;
-import com.xiayule.getll.db.model.ShakeLog;
-import com.xiayule.getll.db.service.HistoryVersionService;
-import com.xiayule.getll.db.service.ShakeLogService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Date;
-import java.util.List;
-
 
 /**
  * Created by tan on 14-7-20.
@@ -32,12 +21,12 @@ public class Test {
             System.out.println(creidt);
         }
 
-//        ShakeLogService shakeLogService = ctx.getBean("shakeLogService", ShakeLogService.class);
+//        CreditLogService shakeLogService = ctx.getBean("shakeLogService", CreditLogService.class);
 
-//        ShakeLog shakeLog = new ShakeLog("18369905136", 1.2);
+//        CreditLog shakeLog = new CreditLog("18369905136", 1.2);
 //        shakeLogDao.saveOrUpdate(shakeLog);
 
-//        ShakeLog shakeLog = shakeLogDao.get(1);
+//        CreditLog shakeLog = shakeLogDao.get(1);
 //
 //        shakeLog.setCredit(2.2);
 //        System.out.println(shakeLogDao.get(1));

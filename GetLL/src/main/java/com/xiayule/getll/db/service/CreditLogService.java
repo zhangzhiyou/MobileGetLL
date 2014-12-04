@@ -3,7 +3,7 @@ package com.xiayule.getll.db.service;
 /**
  * Created by tan on 14-12-3.
  */
-public interface ShakeLogService {
+public interface CreditLogService {
     /**
      * 记录日志
      * @param mobile 要记录的手机号

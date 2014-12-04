@@ -22,7 +22,7 @@ public class AjaxAction {
     // 兑换日志
 //    private static Logger exchangeLogger = LogManager.getLogger("com.xiayule.exchange");
 
-    private DrawRequest drawRequest;
+//    private DrawRequest drawRequest;
 
     private SubscriberService subscriberService;
     private PlayService playService;
@@ -315,7 +315,7 @@ public class AjaxAction {
     /**
      * 立刻摇奖
      */
-    public String shakeNow() {
+ /*   public String shakeNow() {
         final String m = UserUtils.getMobileFromCookie();
 
 //        playService.autoPlay(m);
@@ -323,7 +323,7 @@ public class AjaxAction {
         // 加入执行队列
         drawRequest.addRequest(m);
 
-/*
+*//*
 
         new Thread(new Runnable() {
             @Override
@@ -331,13 +331,13 @@ public class AjaxAction {
                 playService.autoPlay(m);
             }
         }).start();
-*/
+*//*
         json = new HashMap();
         json.put("status", "ok");
 
         return Action.SUCCESS;
     }
-
+*/
     /**
      * 获取注册码有效期剩余天数
      */
@@ -738,18 +738,16 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
-
-
     // set and get methods
 
 
-    public DrawRequest getDrawRequest() {
-        return drawRequest;
-    }
+//    public DrawRequest getDrawRequest() {
+//        return drawRequest;
+//    }
 
-    public void setDrawRequest(DrawRequest drawRequest) {
-        this.drawRequest = drawRequest;
-    }
+//    public void setDrawRequest(DrawRequest drawRequest) {
+//        this.drawRequest = drawRequest;
+//    }
 
     public Map getJson() {
         return json;

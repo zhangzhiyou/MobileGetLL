@@ -39,7 +39,7 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
                 Thread.sleep(AutoPlayJob.PLAY_LAZY);
 
                 // 累加每日奖励, 并接收返回结果
-                double firstShakeGiveCredit = playService.addDrawScore(myMobile);
+                playService.addDrawScore(myMobile);
 
                 Thread.sleep(AutoPlayJob.PLAY_LAZY);
 

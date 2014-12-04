@@ -20,8 +20,6 @@ public class ShakeLogServiceImpl implements ShakeLogService {
         shakeLogDao.saveOrUpdate(shakeLog);
     }
 
-
-
     // set and get methods
 
     public ShakeLogDao getShakeLogDao() {

@@ -38,11 +38,6 @@
         <property name="registerCodeService" ref="registerCodeService"/>
     </bean>
 
-    <bean name="creditLogService" class="com.xiayule.getll.service.impl.CreditLogServiceImpl">
-        <property name="redisService" ref="redisService"/>
-    </bean>
-
-
     <bean name="creditService" class="com.xiayule.getll.service.impl.CreditServiceImpl">
         <property name="redisService" ref="redisService"/>
     </bean>

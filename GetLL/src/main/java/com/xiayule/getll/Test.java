@@ -34,7 +34,7 @@ public class Test {
 //        shakeLogDao.saveOrUpdate(shakeLog);
 //
 //        System.out.println(shakeLogDao.findAllVersionHistory());
-        shakeLogService.log("18369905136", 3.35);
+        shakeLogService.log("18369905136", 3.3);
 
         /*OwnService ownService = ctx.getBean("ownService", OwnService.class);
         ownService.transferGiftsReceiveAll("18369905136");*/

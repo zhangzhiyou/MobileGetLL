@@ -8,8 +8,6 @@ import com.xiayule.getll.utils.DecimalUtils;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by tan on 14-7-22.

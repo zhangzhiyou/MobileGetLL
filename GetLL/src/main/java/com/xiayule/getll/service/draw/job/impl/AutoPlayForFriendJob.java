@@ -62,7 +62,6 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
 
                     logger.info(myMobile + "为(" + friendMobile + ")摇奖 addDrawScore 返回(" + playService.addDrawScoreWithSource(myMobile) + ")");
 
-
                     try {
                         Thread.sleep(AutoPlayJob.PLAY_LAZY);
                     } catch (Exception e) {

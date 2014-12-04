@@ -94,6 +94,7 @@
 
     <bean name="autoPlay" class="com.xiayule.getll.service.draw.job.impl.AutoPlayJobImpl" scope="prototype">
         <property name="playService" ref="playService"/>
+        <property name="shakeLogService" ref="shakeLogService"/>
     </bean>
 
     <bean name="ownService" class="com.xiayule.getll.service.OwnService">

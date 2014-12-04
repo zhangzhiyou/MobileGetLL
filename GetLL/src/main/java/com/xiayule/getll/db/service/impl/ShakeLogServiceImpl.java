@@ -15,8 +15,8 @@ public class ShakeLogServiceImpl implements ShakeLogService {
      * @param mobile 要记录的手机号
      * @param credit 摇到的手机号
      */
-    public void log(String mobile, double credit) {
-        ShakeLog shakeLog = new ShakeLog(mobile, credit);
+    public void log(String mobile, Double credit, Integer type) {
+        ShakeLog shakeLog = new ShakeLog(mobile, credit, type);
         shakeLogDao.saveOrUpdate(shakeLog);
     }
 

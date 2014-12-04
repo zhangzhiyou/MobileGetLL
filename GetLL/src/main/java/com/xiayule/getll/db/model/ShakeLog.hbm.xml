@@ -16,5 +16,6 @@
         <property name="mobile" type="java.lang.String" not-null="true"/>
         <property name="credit" type="java.lang.Double" not-null="true"/>
         <property name="time" type="java.util.Date" not-null="true"/>
+        <property name="type" type="java.lang.Integer" not-null="true"/>
     </class>
 </hibernate-mapping>

@@ -151,6 +151,8 @@ public class PlayServiceImpl implements PlayService {
 
         String json = get(cookieMobile, urlAddDrawScore);
 
+        logger.info(cookieMobile + " addDrawScore 返回(" + json + ")");
+
         return json;
     }
 

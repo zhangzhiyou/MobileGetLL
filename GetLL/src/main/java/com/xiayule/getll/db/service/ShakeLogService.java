@@ -11,4 +11,18 @@ public interface ShakeLogService {
      */
     public void log(String mobile, Double credit, Integer type);
 
+    /**
+     *
+     * 记录登录获取流量币记录
+     * @param mobile 手机号
+     * @param credit 获得的流量币
+     */
+    public void logLoginCredit(String mobile, Double credit);
+
+    /**
+     * 记录摇奖获取流量币
+     * @param mobile 手机号
+     * @param credit 获得的流量币
+     */
+    public void logShakeCredit(String mobile, Double credit);
 }

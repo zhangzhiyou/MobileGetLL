@@ -47,7 +47,8 @@ public class AutoPlayJobImpl implements AutoPlayJob {
         // 每日登录获得的流量币
         if (firstShakeGiveCredit > 0) {
 //            creditService.addCredit(mobile, firstShakeGiveCredit);
-//            shakeLogService.log(mobile);
+//            shakeLogService.log(mobile, firstShakeGiveCredit, ShakeLog.LOG_LOGIN);
+            shakeLogService.logLoginCredit(mobile, firstShakeGiveCredit);
         }
 
         // 获取剩余次数
@@ -70,7 +71,7 @@ public class AutoPlayJobImpl implements AutoPlayJob {
                 if (winName.contains("个流量币")) {
                     double credit = Double.parseDouble(winName.replace("个流量币", ""));
 
-                    shakeLogService.log(mobile, credit);
+                    shakeLogService.logShakeCredit(mobile, credit);
                 }
 
                 playService.addDrawScore(mobile);

@@ -3,6 +3,7 @@ package com.xiayule.getll.service.draw.job.impl;
 import com.xiayule.getll.db.service.CreditLogService;
 import com.xiayule.getll.service.draw.job.AutoPlayJob;
 import com.xiayule.getll.service.PlayService;
+import com.xiayule.getll.utils.CreditUtils;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +45,6 @@ public class AutoPlayJobImpl implements AutoPlayJob {
 
         // 每日登录获得的流量币
         if (firstShakeGiveCredit > 0) {
-//            creditLogService.log(mobile, firstShakeGiveCredit, CreditLog.LOG_LOGIN);
             creditLogService.logLoginCredit(mobile, firstShakeGiveCredit);
         }
 
@@ -62,12 +62,8 @@ public class AutoPlayJobImpl implements AutoPlayJob {
                 logger.info(mobile + " 第" + (++cnt) + "次摇奖,获得奖励:"
                         + winName);
 
-                // 如果获得的流量币，就要 计数
-                // 解析出来获得的流量币
-                // 如果获得流量币，一般都是 '0.1个流量币' 这样的形式
-                if (winName.contains("个流量币")) {
-                    double credit = Double.parseDouble(winName.replace("个流量币", ""));
-
+                if (CreditUtils.hasCredit(winName)) {
+                    double credit = CreditUtils.parseCredit(winName);
                     creditLogService.logShakeCredit(mobile, credit);
                 }
 

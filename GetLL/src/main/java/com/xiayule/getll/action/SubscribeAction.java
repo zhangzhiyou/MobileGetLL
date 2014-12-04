@@ -2,11 +2,17 @@ package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
 import com.xiayule.getll.service.SubscriberService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by tan on 14-7-22.
  */
+@Component
+@Scope("prototype")
 public class SubscribeAction implements Action {
+    @Autowired
     private SubscriberService subscriberService;
 
     private String mobile;

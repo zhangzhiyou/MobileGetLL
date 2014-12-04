@@ -59,10 +59,10 @@
             <result name="error">/index.jsp</result>
         </action>-->
 
-        <action name="search" class="searchAction">
+        <!--<action name="search" class="searchAction">
             <result name="success">/search.jsp</result>
             <result name="error">/search.jsp</result>
-        </action>
+        </action>-->
     </package>
 
     <package name="admin" namespace="/admin" extends="all">
@@ -133,11 +133,13 @@
             </result>
         </action>
 
+<!--
         <action name="shakeNow" class="ajaxAction" method="shakeNow">
             <result type="json">
                 <param name="root">json</param>
             </result>
         </action>
+-->
 
         <action name="deleteService" class="ajaxAction" method="deleteService">
             <result type="json">

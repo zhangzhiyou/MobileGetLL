@@ -3,6 +3,8 @@ package com.xiayule.getll.service.impl;
 import com.xiayule.getll.service.CreditService;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.utils.TimeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
@@ -10,7 +12,9 @@ import java.util.*;
  * Created by tan on 14-7-24.
  * 流量币 计数
  */
+@Component("creditService")
 public class CreditServiceImpl implements CreditService {
+    @Autowired
     private RedisService redisService;
 
     /**

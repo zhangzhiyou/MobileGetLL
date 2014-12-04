@@ -1,10 +1,14 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by tan on 14-8-19.
  */
+@Component
+@Scope("prototype")
 public class Score implements Action {
     private String productType_n;
     //id

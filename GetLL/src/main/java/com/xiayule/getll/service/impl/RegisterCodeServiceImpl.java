@@ -3,13 +3,17 @@ package com.xiayule.getll.service.impl;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.service.RegisterCodeService;
 import com.xiayule.getll.utils.RegisterCodeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by tan on 14-7-29.
  */
+@Component
 public class RegisterCodeServiceImpl implements RegisterCodeService {
     private int EXPIRE_TIME = 15*24*60*60;// 15天的秒数
 
+    @Autowired
     private RedisService redisService;
 
     /**

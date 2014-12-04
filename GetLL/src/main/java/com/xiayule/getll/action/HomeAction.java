@@ -9,6 +9,9 @@ import com.xiayule.getll.utils.UserUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -22,12 +25,17 @@ import java.util.Objects;
  * 2. 有效期未到期,因为登录时,如果发现有效期到期,会自动续期.
  * Created by tan on 14-10-2.
  */
+@Component
+@Scope("prototype")
 public class HomeAction implements Action{
 
     //todo: 日志
     private static Logger logger = LogManager.getLogger(HomeAction.class.getName());
 
+    @Autowired
     private SubscriberService subscriberService;
+
+    @Autowired
     private PlayService playService;
 
     @Override

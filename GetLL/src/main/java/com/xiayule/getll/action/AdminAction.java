@@ -4,6 +4,9 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.xiayule.getll.service.SubscriberService;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -12,7 +15,10 @@ import java.util.Map;
 /**
  * Created by tan on 14-10-10.
  */
+@Component
+@Scope("prototype")
 public class AdminAction {
+    @Autowired
     private SubscriberService subscriberService;
 
     private String password;

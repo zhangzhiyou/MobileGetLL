@@ -10,6 +10,9 @@ import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.Cookie;
 import java.util.*;
@@ -17,16 +20,24 @@ import java.util.*;
 /**
  * Created by tan on 14-7-27.
  */
+@Component
+@Scope("prototype")
 public class AjaxAction {
     private static Logger logger = LogManager.getLogger(PlayService.class.getName());
     // 兑换日志
 //    private static Logger exchangeLogger = LogManager.getLogger("com.xiayule.exchange");
 
 //    private DrawRequest drawRequest;
-
+    @Autowired
     private SubscriberService subscriberService;
+
+    @Autowired
     private PlayService playService;
+
+    @Autowired
     private RegisterCodeService registerCodeService;
+
+    @Autowired
     private CookieService cookieService;
 //    private CreditLogService creditLogService;
 

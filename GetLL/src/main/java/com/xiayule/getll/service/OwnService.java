@@ -6,6 +6,8 @@ import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
@@ -14,6 +16,7 @@ import java.util.ListIterator;
  * Created by tan on 14-11-15.
  * 存放一些自己定义的 service
  */
+@Component
 public class OwnService {
     private static Logger logger = LogManager.getLogger(OwnService.class.getName());
 
@@ -35,6 +38,7 @@ public class OwnService {
         }, "json");
     }*/
 
+    @Autowired
     private PlayService playService;
 
     /**

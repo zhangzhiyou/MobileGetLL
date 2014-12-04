@@ -8,15 +8,19 @@ import com.xiayule.getll.utils.UserUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.Cookie;
 
 /**
  * Created by tan on 14-8-1.
  */
+@Component
 public class AuthInterceptor extends AbstractInterceptor {
     private static Logger logger = LogManager.getLogger(AuthInterceptor.class.getName());
 
+    @Autowired
     private SubscriberService subscriberService;
 
 //    <!-- todo: 这里没有起到效果,拦截器没有拦截到一开始的get,可以考虑使用过滤器 -->

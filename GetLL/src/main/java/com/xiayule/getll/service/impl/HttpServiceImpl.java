@@ -16,6 +16,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -24,9 +27,12 @@ import java.util.List;
  * Created by tan on 14-7-20.
  * Http 的 post 和 get，能够操作 cookie
  */
+@Component
+@Scope("prototype")
 public class HttpServiceImpl implements HttpService {
 //    private DefaultHttpClient defaultHttpClient;
 //    private CookieStore cookieStore;
+    @Autowired
     private CookieService cookieService;
 
 

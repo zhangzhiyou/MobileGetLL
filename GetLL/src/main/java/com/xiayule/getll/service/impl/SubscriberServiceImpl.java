@@ -1,12 +1,12 @@
 package com.xiayule.getll.service.impl;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import com.xiayule.getll.service.CookieService;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.service.RegisterCodeService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.utils.Constants;
 import com.xiayule.getll.utils.TimeUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +15,13 @@ import java.util.Set;
 /**
  * Created by tan on 14-7-22.
  */
+@Component
 public class SubscriberServiceImpl implements SubscriberService {
+    @Autowired
     private RedisService redisService;
+
+    @Autowired
     private RegisterCodeService registerCodeService;
-    private CookieService cookieService;
 
     /**
      * 某个 手机号 是否已经订购服务

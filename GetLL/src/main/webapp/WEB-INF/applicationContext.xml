@@ -4,51 +4,62 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--启用注解-->
+    <context:component-scan base-package="com.xiayule.getll"/>
+
     <bean name="drawRequest" class="com.xiayule.getll.service.draw.request.impl.DrawRequestImpl" lazy-init="false" init-method="init">
         <property name="autoPlayJob" ref="autoPlay"/>
     </bean>
 
+<!--
     <bean name="redisService" class="com.xiayule.getll.service.impl.RedisServiceImpl">
-        <property name="redisDataSource" ref="redisDataSource"/>
+        <property name="redisDataSource" ref="redisDataSourceImpl"/>
     </bean>
+-->
 
-    <bean name="cookieService" class="com.xiayule.getll.service.impl.CookieServiceImpl">
+    <!--<bean name="cookieService" class="com.xiayule.getll.service.impl.CookieServiceImpl">
         <property name="redisService" ref="redisService"/>
-    </bean>
+    </bean>-->
 
+<!--
     <bean name="httpService" class="com.xiayule.getll.service.impl.HttpServiceImpl"
             scope="prototype">
         <property name="cookieService" ref="cookieService"/>
     </bean>
+-->
 
-    <bean name="playService" class="com.xiayule.getll.service.impl.PlayServiceImpl"
+<!--    <bean name="playService" class="com.xiayule.getll.service.impl.PlayServiceImpl"
           scope="prototype">
 
         <property name="cookieService" ref="cookieService"/>
         <property name="httpService" ref="httpService"/>
-        <!--<property name="creditLogService" ref="creditLogService"/>-->
-    </bean>
+        &lt;!&ndash;<property name="creditLogService" ref="creditLogService"/>&ndash;&gt;
+    </bean>-->
 
-    <bean name="registerCodeService" class="com.xiayule.getll.service.impl.RegisterCodeServiceImpl">
+<!--    <bean name="registerCodeService" class="com.xiayule.getll.service.impl.RegisterCodeServiceImpl">
         <property name="redisService" ref="redisService"/>
-    </bean>
+    </bean>-->
 
-    <bean name="subscribeService" class="com.xiayule.getll.service.impl.SubscriberServiceImpl">
+    <!--<bean name="subscribeService" class="com.xiayule.getll.service.impl.SubscriberServiceImpl">
         <property name="redisService" ref="redisService"/>
         <property name="registerCodeService" ref="registerCodeService"/>
-    </bean>
+    </bean>-->
 
+<!--
     <bean name="creditService" class="com.xiayule.getll.service.impl.CreditServiceImpl">
         <property name="redisService" ref="redisService"/>
     </bean>
+-->
 
+<!--
     <bean name="defaultAction" class="com.xiayule.getll.action.DefaultAction">
 
     </bean>
+-->
 
-    <bean name="subscribeAction" class="com.xiayule.getll.action.SubscribeAction" scope="prototype">
+    <!--<bean name="subscribeAction" class="com.xiayule.getll.action.SubscribeAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
-    </bean>
+    </bean>-->
 
 <!--    <bean name="searchAction" class="com.xiayule.getll.action.SearchAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
@@ -56,50 +67,49 @@
         <property name="creditLogService" ref="creditLogService"/>
     </bean>-->
 
-    <bean name="ajaxAction" class="com.xiayule.getll.action.AjaxAction" scope="prototype">
+    <!--<bean name="ajaxAction" class="com.xiayule.getll.action.AjaxAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
         <property name="playService" ref="playService"/>
         <property name="registerCodeService" ref="registerCodeService"/>
         <property name="cookieService" ref="cookieService"/>
-        <property name="drawRequest" ref="drawRequest"/>
-        <!--<property name="creditLogService" ref="creditLogService"/>-->
-    </bean>
+    </bean>-->
 
-    <bean id="adminAction" class="com.xiayule.getll.action.AdminAction" scope="prototype">
+<!--    <bean id="adminAction" class="com.xiayule.getll.action.AdminAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
-    </bean>
+    </bean>-->
 
-    <bean name="homeAction" class="com.xiayule.getll.action.HomeAction" scope="prototype">
+<!--    <bean name="homeAction" class="com.xiayule.getll.action.HomeAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
         <property name="playService" ref="playService"/>
-    </bean>
+    </bean>-->
 
-    <bean name="redisDataSource" class="com.xiayule.getll.service.impl.RedisDataSourceImpl">
+<!--    <bean name="redisDataSource" class="com.xiayule.getll.service.impl.RedisDataSourceImpl">
         <property name="jedisPool" ref="jedisPool"/>
-    </bean>
+    </bean>-->
 
-    <bean name="authInterceptor" class="com.xiayule.getll.interceptot.AuthInterceptor">
+<!--    <bean name="authInterceptor" class="com.xiayule.getll.interceptot.AuthInterceptor">
         <property name="subscriberService" ref="subscribeService"/>
-    </bean>
-
+    </bean>-->
 
     <bean name="historyVersionAction" class="com.xiayule.getll.action.HistoryVersionAction"
             scope="prototype">
         <property name="historyVersionService" ref="versionHistoryServicve"/>
     </bean>
 
-    <bean name="score" class="com.xiayule.getll.action.Score" scope="prototype">
+    <!--<bean name="score" class="com.xiayule.getll.action.Score" scope="prototype">
 
     </bean>
-
+-->
     <bean name="autoPlay" class="com.xiayule.getll.service.draw.job.impl.AutoPlayJobImpl" scope="prototype">
-        <property name="playService" ref="playService"/>
+        <property name="playService" ref="playServiceImpl"/>
         <property name="creditLogService" ref="creditLogService"/>
     </bean>
 
+<!--
     <bean name="ownService" class="com.xiayule.getll.service.OwnService">
         <property name="playService" ref="playService"/>
     </bean>
+-->
 
     <!-- redis 配置 -->
 

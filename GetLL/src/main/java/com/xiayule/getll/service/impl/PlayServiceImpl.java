@@ -11,6 +11,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +23,7 @@ import java.util.Random;
  * Created by tan on 14-7-20.
  * 摇奖等进行操作的类
  */
+@Component
 public class PlayServiceImpl implements PlayService {
     // 输出到系统日志
     private static Logger logger = LogManager.getLogger(PlayService.class.getName());
@@ -28,7 +31,10 @@ public class PlayServiceImpl implements PlayService {
     // 兑换日志
     private static Logger exchangeLogger = LogManager.getLogger("com.xiayule.exchange");
 
+    @Autowired
     private HttpService httpService;
+
+    @Autowired
     private CookieService cookieService;
 
     /**

@@ -2,6 +2,9 @@ package com.xiayule.getll.service.impl;
 
 import com.xiayule.getll.service.RedisDataSource;
 import com.xiayule.getll.service.RedisService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Tuple;
 
@@ -13,9 +16,10 @@ import java.util.Set;
  * Created by tan on 14-7-21.
  * Redis 操作的类
  */
+@Component
 public class RedisServiceImpl implements RedisService {
 
-
+    @Autowired
     private RedisDataSource redisDataSource;
 /*    private static Jedis jedis;
 

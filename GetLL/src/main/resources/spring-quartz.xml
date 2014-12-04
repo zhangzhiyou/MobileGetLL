@@ -15,7 +15,7 @@
     <!-- 业务对象 -->
     <bean id="jobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobTaskImpl">
         <!--<property name="playService" ref="playService"/>-->
-        <property name="subscriberService" ref="subscribeService"/>
+        <property name="subscriberService" ref="subscriberServiceImpl"/>
         <property name="drawRequest" ref="drawRequest"/>
     </bean>
 
@@ -26,7 +26,7 @@
     </bean>
 
     <bean id="forFriendJobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForFriendTaskImpl">
-        <property name="subscriberService" ref="subscribeService"/>
+        <property name="subscriberService" ref="subscriberServiceImpl"/>
         <property name="autoPlayJob" ref="autoPlayForFriendJob"/>
         <property name="playService" ref="playService"/>
     </bean>
@@ -38,14 +38,14 @@
 
     <bean id="autoPlayForReceiveGiftsTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForAutoReceiveGiftsTaskImpl">
         <property name="autoPlayJob" ref="autoPlayForReceiveGiftsJob"/>
-        <property name="subscriberService" ref="subscribeService"/>
+        <property name="subscriberService" ref="subscriberServiceImpl"/>
         <property name="playService" ref="playService"/>
     </bean>
 
     <!-- Email 服务业务对象 -->
     <bean id="emailJob" class="com.xiayule.getll.toolkit.scheduling.impl.EmailJob">
         <property name="emailService" ref="emailService"/>
-        <property name="subscriberService" ref="subscribeService"/>
+        <property name="subscriberService" ref="subscriberServiceImpl"/>
     </bean>
 
 

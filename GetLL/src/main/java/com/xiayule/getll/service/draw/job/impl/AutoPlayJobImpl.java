@@ -7,10 +7,12 @@ import com.xiayule.getll.utils.CreditUtils;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by tan on 14-9-8.
  */
+
 public class AutoPlayJobImpl implements AutoPlayJob {
 
     private static Logger logger = LogManager.getLogger(AutoPlayJob.class.getName());

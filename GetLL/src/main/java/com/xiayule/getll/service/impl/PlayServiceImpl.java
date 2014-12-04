@@ -119,6 +119,9 @@ public class PlayServiceImpl implements PlayService {
     public String drawWithSource(String cookieMobile) {
         String urlDrawPath = "http://shake.sd.chinamobile.com/shake?method=draw&r=" + Math.random();
         String json = post(cookieMobile, urlDrawPath, null);
+
+        logger.info(cookieMobile + " draw 返回(" + json + ")");
+
         return json;
     }
 
@@ -130,6 +133,7 @@ public class PlayServiceImpl implements PlayService {
         String json = drawWithSource(cookieMobile);
 
         String winName = getFromResult(json, "winName");
+
         //TODO: DRAW WIN ID
         //TODO:如果想要订购业务，可以在这里增加代码
         String winId = getFromResult(json, "winID");

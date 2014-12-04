@@ -17,11 +17,22 @@ import java.util.List;
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
-                "spring-hibernate.xml"
-        });
+//        ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
+//                "spring-hibernate.xml"
+//        });
 
-        ShakeLogService shakeLogService = ctx.getBean("shakeLogService", ShakeLogService.class);
+
+        String winName = "0.1个流量币";
+        if (winName.contains("个流量币")) {
+
+            winName = winName.replace("个流量币", "");
+
+            double creidt = Double.valueOf(winName);
+
+            System.out.println(creidt);
+        }
+
+//        ShakeLogService shakeLogService = ctx.getBean("shakeLogService", ShakeLogService.class);
 
 //        ShakeLog shakeLog = new ShakeLog("18369905136", 1.2);
 //        shakeLogDao.saveOrUpdate(shakeLog);
@@ -34,7 +45,7 @@ public class Test {
 //        shakeLogDao.saveOrUpdate(shakeLog);
 //
 //        System.out.println(shakeLogDao.findAllVersionHistory());
-        shakeLogService.log("18369905136", 3.3);
+//        shakeLogService.log("18369905136", 3.3);
 
         /*OwnService ownService = ctx.getBean("ownService", OwnService.class);
         ownService.transferGiftsReceiveAll("18369905136");*/

@@ -33,7 +33,6 @@ public class AutoPlayJobImpl implements AutoPlayJob {
 
             if (!playService.isLogined(mobile)) {
                 logger.info("JobTask:" + mobile + " 未登录(第二次尝试), 跳过任务");
-
                 return ;
             }
         }

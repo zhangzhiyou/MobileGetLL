@@ -1,15 +1,21 @@
 package com.xiayule.getll.service.impl;
 
 import com.xiayule.getll.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by tan on 14-11-7.
  */
+@Component
 public class EmailServiceImpl implements EmailService {
 
+    @Autowired
     private MailSender mailSender;
+
+    @Autowired
     private SimpleMailMessage simpleMailMessage;
 
     /**

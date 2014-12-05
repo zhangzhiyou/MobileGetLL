@@ -30,6 +30,8 @@ public class DrawRequestImpl implements DrawRequest{
                     try {
                         String mobile = queue.take();
 
+                        if (mobile == null || mobile.equals("")) continue;
+
                         logger.info("获得新的任务: " + mobile);
 
                         autoPlayJob.autoPlay(mobile);

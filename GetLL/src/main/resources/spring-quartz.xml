@@ -6,21 +6,24 @@
     <!-- spring 集成 QuartZ 2.x-->
 
     <!-- 线程执行器配置，用于任务注册 -->
+<!--
     <bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <property name="corePoolSize" value="10" />
         <property name="maxPoolSize" value="100" />
         <property name="queueCapacity" value="500" />
     </bean>
+-->
 
     <!-- 业务对象 -->
-    <bean id="jobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobTaskImpl">
-        <!--<property name="playService" ref="playService"/>-->
+<!--    <bean id="jobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobTaskImpl">
+        &lt;!&ndash;<property name="playService" ref="playService"/>&ndash;&gt;
         <property name="subscriberService" ref="subscriberServiceImpl"/>
         <property name="drawRequest" ref="drawRequest"/>
-    </bean>
+    </bean>-->
 
     <!-- 为朋友摇奖业务对象 -->
     <!--todo: 这个是需要优化的， drawRequest 传的参数可以是 autoPlay 或者是  autoPlayForFriend, 而不是 mobile -->
+<!--
     <bean id="autoPlayForFriendJob" class="com.xiayule.getll.service.draw.job.impl.AutoPlayForFriendJob">
         <property name="playService" ref="playServiceImpl"/>
     </bean>
@@ -30,8 +33,10 @@
         <property name="autoPlayJob" ref="autoPlayForFriendJob"/>
         <property name="playService" ref="playServiceImpl"/>
     </bean>
+-->
 
     <!-- 自动领取业务对象 -->
+<!--
     <bean id="autoPlayForReceiveGiftsJob" class="com.xiayule.getll.service.draw.job.impl.AutoReceiveJob">
         <property name="ownService" ref="ownService"/>
     </bean>
@@ -41,69 +46,72 @@
         <property name="subscriberService" ref="subscriberServiceImpl"/>
         <property name="playService" ref="playServiceImpl"/>
     </bean>
+-->
 
-    <!-- Email 服务业务对象 -->
+<!--    &lt;!&ndash; Email 服务业务对象 &ndash;&gt;
     <bean id="emailJob" class="com.xiayule.getll.toolkit.scheduling.impl.EmailJob">
         <property name="emailService" ref="emailService"/>
         <property name="subscriberService" ref="subscriberServiceImpl"/>
-    </bean>
+    </bean>-->
 
 
     <!-- 调度业务 -->
-    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+<!--    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="jobTask" />
         <property name="targetMethod" value="doJob" />
 
-        <!--对于相同的JobDetail，当指定多个Trigger时,
+        &lt;!&ndash;对于相同的JobDetail，当指定多个Trigger时,
        很可能第一job完成之前，第二个job就开始了。
        指定concurrent设为false，
        多个job不会并发运行，
-       第二个job将不会在第一个job完成之前开始。-->
+       第二个job将不会在第一个job完成之前开始。&ndash;&gt;
 
         <property name="concurrent" value="false"/>
-    </bean>
+    </bean>-->
 
+<!--
     <bean id="playForFriendJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="forFriendJobTask"/>
         <property name="targetMethod" value="doJob"/>
 
 
-        <!--对于相同的JobDetail，当指定多个Trigger时,
+        &lt;!&ndash;对于相同的JobDetail，当指定多个Trigger时,
         很可能第一个job完成之前，第二个job就开始了。
         指定concurrent设为false，
         多个job不会并发运行，
-        第二个job将不会在第一个job完成之前开始。-->
+        第二个job将不会在第一个job完成之前开始。&ndash;&gt;
 
         <property name="concurrent" value="false"/>
     </bean>
+-->
 
-    <bean id="emailJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    <!--<bean id="emailJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="emailJob"/>
         <property name="targetMethod" value="doJob"/>
 
 
-        <!--对于相同的JobDetail，当指定多个Trigger时,
+        &lt;!&ndash;对于相同的JobDetail，当指定多个Trigger时,
         很可能第一个job完成之前，第二个job就开始了。
         指定concurrent设为false，
         多个job不会并发运行，
-        第二个job将不会在第一个job完成之前开始。-->
+        第二个job将不会在第一个job完成之前开始。&ndash;&gt;
 
         <property name="concurrent" value="false"/>
-    </bean>
+    </bean>-->
 
-    <bean id="receiveGiftsDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+   <!-- <bean id="receiveGiftsDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="autoPlayForReceiveGiftsTask"/>
         <property name="targetMethod" value="doJob"/>
 
-        <!--对于相同的JobDetail，当指定多个Trigger时,
+        &lt;!&ndash;对于相同的JobDetail，当指定多个Trigger时,
         很可能第一个job完成之前，第二个job就开始了。
         指定concurrent设为false，
         多个job不会并发运行，
-        第二个job将不会在第一个job完成之前开始。-->
+        第二个job将不会在第一个job完成之前开始。&ndash;&gt;
 
         <property name="concurrent" value="false"/>
     </bean>
-
+-->
     <!-- 增加调度触发器 -->
     <!-- 1.8 以前的配置
     <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
@@ -113,42 +121,44 @@
     </bean>-->
 
     <!-- 2.x 的配置 -->
-    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+<!--    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="jobDetail" />
-        <!-- 每天6点执行任务 -->
+        &lt;!&ndash; 每天6点执行任务 &ndash;&gt;
         <property name="cronExpression" value="0 0 5 * * ?" />
-    </bean>
+    </bean>-->
     
-    <bean id="forFriendCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+<!--    <bean id="forFriendCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="playForFriendJobDetail"/>
-        <!-- 每天下午6 点执行任务 -->
+        &lt;!&ndash; 每天下午6 点执行任务 &ndash;&gt;
         <property name="cronExpression" value="0 0 18 * * ?"/>
-    </bean>
+    </bean>-->
 
-    <!-- 每天上午8点和晚上10点发送系统邮件 -->
+<!--    &lt;!&ndash; 每天上午8点和晚上10点发送系统邮件 &ndash;&gt;
     <bean id="emailCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="emailJobDetail"/>
-        <!-- 每天下午6 点执行任务 -->
+        &lt;!&ndash; 每天下午6 点执行任务 &ndash;&gt;
         <property name="cronExpression" value="0 0 8,22 * * ?"/>
-    </bean>
+    </bean>-->
 
     <!-- 每天晚上9点自动领取 -->
+<!--
     <bean id="receiveGiftsCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="receiveGiftsDetail"/>
-        <!-- 每天晚上9点执行任务 -->
+        &lt;!&ndash; 每天晚上9点执行任务 &ndash;&gt;
         <property name="cronExpression" value="0 0 21 * * ?"/>
     </bean>
+-->
 
-    <!-- 设置调度 -->
+<!--    &lt;!&ndash; 设置调度 &ndash;&gt;
     <bean lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
-                <ref bean="cronTrigger" />
-                <ref bean="forFriendCronTrigger"/>
-                <ref bean="emailCronTrigger"/>
-                <ref bean="receiveGiftsCronTrigger"/>
+                &lt;!&ndash;<ref bean="cronTrigger" />&ndash;&gt;
+                &lt;!&ndash;<ref bean="forFriendCronTrigger"/>&ndash;&gt;
+                &lt;!&ndash;<ref bean="emailCronTrigger"/>&ndash;&gt;
+                &lt;!&ndash;<ref bean="receiveGiftsCronTrigger"/>&ndash;&gt;
             </list>
         </property>
         <property name="taskExecutor" ref="executor" />
-    </bean>
+    </bean>-->
 </beans>

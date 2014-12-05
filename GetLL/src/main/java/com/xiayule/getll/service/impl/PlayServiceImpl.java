@@ -261,7 +261,7 @@ public class PlayServiceImpl implements PlayService {
      * 加载收支明细
      * @return
      */
-    public String  queryCreditDetail(String mobile, String type, String startNum) {
+    public String queryCreditDetail(String mobile, String type, String startNum) {
         String urlQueryCreditDetail = "http://shake.sd.chinamobile.com/flowScore?method=queryCreditDetail&type=" +  type + "&startNum=" + startNum;
 
         String rs = post(mobile, urlQueryCreditDetail, null);

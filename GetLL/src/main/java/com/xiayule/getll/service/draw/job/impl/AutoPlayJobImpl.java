@@ -1,26 +1,42 @@
 package com.xiayule.getll.service.draw.job.impl;
 
 import com.xiayule.getll.db.service.CreditLogService;
+import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.job.AutoPlayJob;
 import com.xiayule.getll.service.PlayService;
+import com.xiayule.getll.service.draw.request.DrawRequest;
+import com.xiayule.getll.toolkit.scheduling.JobTask;
 import com.xiayule.getll.utils.CreditUtils;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Created by tan on 14-9-8.
  */
-
-public class AutoPlayJobImpl implements AutoPlayJob {
+@Component
+public class AutoPlayJobImpl implements AutoPlayJob, JobTask {
 
     private static Logger logger = LogManager.getLogger(AutoPlayJob.class.getName());
 
+    @Autowired
     private PlayService playService;
-//    private CreditService creditService;
 
+    @Autowired
     private CreditLogService creditLogService;
+
+    @Autowired
+    private SubscriberService subscriberService;
+
+    private static boolean isRunning = false;
+
+    @Autowired
+    private DrawRequest drawRequest;
 
     @Override
     public void autoPlay(String mobile) {
@@ -91,8 +107,43 @@ public class AutoPlayJobImpl implements AutoPlayJob {
                 + " 当前流量币: " + queryScore.getString("credit"));
     }
 
+
+    @Scheduled(cron = "0 0 5 * * ?")
+    @Override
+    public void doJob() {
+        if (!isRunning) {
+            isRunning = true;
+
+            List<String> subs = subscriberService.getAllSubscriber();
+
+            int cnt = 0;
+
+            for (String sub : subs) {
+
+                cnt++;
+
+                drawRequest.addRequest(sub);
+            }
+
+            logger.info("JobTask:" + "将 " + cnt + " 个任务加入队列");
+
+            isRunning = false;
+        } else {
+            logger.info("Jobtask:" + "任务已经开启，无需再开启");
+        }
+    }
+
+
+    public void setSubscriberService(SubscriberService subscriberService) {
+        this.subscriberService = subscriberService;
+    }
+
     public void setPlayService(PlayService playService) {
         this.playService = playService;
+    }
+
+    public void setDrawRequest(DrawRequest drawRequest) {
+        this.drawRequest = drawRequest;
     }
 
     public void setCreditLogService(CreditLogService creditLogService) {

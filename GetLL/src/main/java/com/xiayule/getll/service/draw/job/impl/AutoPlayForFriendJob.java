@@ -1,19 +1,32 @@
 package com.xiayule.getll.service.draw.job.impl;
 
+import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.job.AutoPlayJob;
 import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.utils.JsonUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 /**
  * Created by tan on 14-10-26.
  */
+@Component
 public class AutoPlayForFriendJob implements AutoPlayJob {
 
     private static Logger logger = LogManager.getLogger(AutoPlayJob.class.getName());
 
+    @Autowired
     private PlayService playService;
+
+    @Autowired
+    private SubscriberService subscriberService;
+
+    private static boolean isRunning = false;
 
     /**
      * 为朋友摇奖，自己的手机号永远都是固定的。
@@ -76,6 +89,42 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
             logger.info(myMobile + " 为朋友(" + friendMobile + ")摇取过程出错");
         } finally {// 无论是否出错，执行完毕后都要设置回自己的手机号
             logger.info(myMobile + " 为朋友(" + friendMobile + ")摇取完毕, 设置自己的手机号, 返回(" + playService.setDrawMobile(myMobile, myMobile) + ")");
+        }
+    }
+
+
+    @Scheduled(cron = "0 0 19 * * ?")
+    public void doJob() {
+        logger.info("JobForFriendTaskImpl:开始为朋友摇奖");
+
+        if (!isRunning) {
+
+            isRunning = true;
+
+            // 获取所有订阅下午摇奖的人
+            Set<String> subs = subscriberService.getAllSubscriberForFriend();
+
+            int cnt = 0;
+
+            for (String sub : subs) {
+                // 如果有效期到期或者登录不成功, 则不执行
+                if (!subscriberService.isSubscribe(sub) && !playService.isLogined(sub)) continue;
+
+                cnt++;
+
+                try {
+                    autoPlay(sub);
+                } catch (Exception e) {
+                    logger.info("JobForFriendTaskImpl: 为(" + sub + ")朋友摇奖发生错误");
+                }
+            }
+
+            logger.info("JobForFriendTaskImpl:" + "将 " + cnt + " 个任务加入队列");
+
+            isRunning = false;
+
+        } else {
+            logger.info("JobForFriendTaskImpl:" + "任务已经开启，无需再开启");
         }
     }
 

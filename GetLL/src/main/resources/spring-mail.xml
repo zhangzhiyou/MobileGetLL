@@ -45,8 +45,8 @@
         -->
     </bean>
 
-    <bean id="emailService" class="com.xiayule.getll.service.impl.EmailServiceImpl">
+<!--    <bean id="emailService" class="com.xiayule.getll.service.impl.EmailServiceImpl">
         <property name="mailSender" ref="mailSender" />
         <property name="simpleMailMessage" ref="simpleMailMessage" />
-    </bean>
+    </bean>-->
 </beans>

@@ -15,7 +15,6 @@ import java.util.Set;
 public class JobForAutoReceiveGiftsTaskImpl implements JobTask {
     private static Logger logger = LogManager.getLogger(JobTask.class.getName());
 
-
     private AutoPlayJob autoPlayJob;
     private SubscriberService subscriberService;
     private PlayService playService;

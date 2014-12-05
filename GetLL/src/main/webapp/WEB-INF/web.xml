@@ -25,6 +25,7 @@
             classpath:spring-quartz.xml,
             classpath:spring-mail.xml,
             classpath:spring-hibernate.xml
+            classpath:spring-redis.xml
         </param-value>
     </context-param>
 

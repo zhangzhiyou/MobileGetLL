@@ -91,10 +91,10 @@
         <property name="subscriberService" ref="subscribeService"/>
     </bean>-->
 
-    <bean name="historyVersionAction" class="com.xiayule.getll.action.HistoryVersionAction"
+<!--    <bean name="historyVersionAction" class="com.xiayule.getll.action.HistoryVersionAction"
             scope="prototype">
         <property name="historyVersionService" ref="versionHistoryServicve"/>
-    </bean>
+    </bean>-->
 
     <!--<bean name="score" class="com.xiayule.getll.action.Score" scope="prototype">
 

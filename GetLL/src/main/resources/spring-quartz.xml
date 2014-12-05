@@ -22,13 +22,13 @@
     <!-- 为朋友摇奖业务对象 -->
     <!--todo: 这个是需要优化的， drawRequest 传的参数可以是 autoPlay 或者是  autoPlayForFriend, 而不是 mobile -->
     <bean id="autoPlayForFriendJob" class="com.xiayule.getll.service.draw.job.impl.AutoPlayForFriendJob">
-        <property name="playService" ref="playService"/>
+        <property name="playService" ref="playServiceImpl"/>
     </bean>
 
     <bean id="forFriendJobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForFriendTaskImpl">
         <property name="subscriberService" ref="subscriberServiceImpl"/>
         <property name="autoPlayJob" ref="autoPlayForFriendJob"/>
-        <property name="playService" ref="playService"/>
+        <property name="playService" ref="playServiceImpl"/>
     </bean>
 
     <!-- 自动领取业务对象 -->
@@ -39,7 +39,7 @@
     <bean id="autoPlayForReceiveGiftsTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForAutoReceiveGiftsTaskImpl">
         <property name="autoPlayJob" ref="autoPlayForReceiveGiftsJob"/>
         <property name="subscriberService" ref="subscriberServiceImpl"/>
-        <property name="playService" ref="playService"/>
+        <property name="playService" ref="playServiceImpl"/>
     </bean>
 
     <!-- Email 服务业务对象 -->

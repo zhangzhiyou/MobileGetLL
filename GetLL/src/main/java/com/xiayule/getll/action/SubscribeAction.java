@@ -21,7 +21,6 @@ public class SubscribeAction implements Action {
     @Override
     public String execute() throws Exception {
         if (mobile.equals("")) {
-
             return ERROR;
         }
 
@@ -35,7 +34,6 @@ public class SubscribeAction implements Action {
     }
 
     // set and get methods
-
 
     public void setSubscriberService(SubscriberService subscriberService) {
         this.subscriberService = subscriberService;

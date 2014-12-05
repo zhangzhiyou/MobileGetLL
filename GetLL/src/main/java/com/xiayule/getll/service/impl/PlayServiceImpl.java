@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import java.util.Random;
  * 摇奖等进行操作的类
  */
 @Component
+@Scope("prototype")
 public class PlayServiceImpl implements PlayService {
     // 输出到系统日志
     private static Logger logger = LogManager.getLogger(PlayService.class.getName());

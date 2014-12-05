@@ -4,6 +4,9 @@ import com.opensymphony.xwork2.Action;
 import com.xiayule.getll.db.model.HistoryVersion;
 import com.xiayule.getll.db.service.HistoryVersionService;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -14,6 +17,8 @@ import java.util.Map;
 /**
  * Created by tan on 14-11-27.
  */
+@Component
+@Scope("prototype")
 public class HistoryVersionAction {
 
 
@@ -22,6 +27,7 @@ public class HistoryVersionAction {
     private String versionName;
     private Date time;
 
+    @Autowired
     private HistoryVersionService historyVersionService;
 
     public String show() throws Exception {

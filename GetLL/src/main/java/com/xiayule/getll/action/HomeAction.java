@@ -67,7 +67,6 @@ public class HomeAction implements Action{
 
         logger.info("useragent:" + userAgent);
 
-
         // 查询有效期
         String ttl = subscriberService.getTTLDays(mobile);
 

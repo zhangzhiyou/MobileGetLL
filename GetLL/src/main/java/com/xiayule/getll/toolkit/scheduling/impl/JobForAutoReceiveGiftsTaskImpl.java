@@ -3,7 +3,7 @@ package com.xiayule.getll.toolkit.scheduling.impl;
 import com.xiayule.getll.service.draw.job.AutoPlayJob;
 import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.service.SubscriberService;
-import com.xiayule.getll.toolkit.scheduling.JobTask;
+import com.xiayule.getll.service.draw.job.JobTask;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

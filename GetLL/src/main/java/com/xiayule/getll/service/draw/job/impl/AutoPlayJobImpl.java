@@ -5,7 +5,7 @@ import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.job.AutoPlayJob;
 import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.service.draw.request.DrawRequest;
-import com.xiayule.getll.toolkit.scheduling.JobTask;
+import com.xiayule.getll.service.draw.job.JobTask;
 import com.xiayule.getll.utils.CreditUtils;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;

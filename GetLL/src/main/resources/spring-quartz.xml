@@ -49,7 +49,7 @@
 -->
 
 <!--    &lt;!&ndash; Email 服务业务对象 &ndash;&gt;
-    <bean id="emailJob" class="com.xiayule.getll.toolkit.scheduling.impl.EmailJob">
+    <bean id="emailJob" class="com.xiayule.getll.service.draw.job.impl.EmailJob">
         <property name="emailService" ref="emailService"/>
         <property name="subscriberService" ref="subscriberServiceImpl"/>
     </bean>-->

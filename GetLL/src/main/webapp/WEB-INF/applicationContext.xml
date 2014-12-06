@@ -11,6 +11,8 @@
     <!-- 启用@Scheduled注解 -->
     <task:annotation-driven/>
 
+
+
 <!--
     <bean name="drawRequest" class="com.xiayule.getll.service.draw.request.impl.DrawRequestImpl" lazy-init="false" init-method="init">
         <property name="shakeTask" ref="autoPlayJobImpl"/>

@@ -30,11 +30,11 @@ import java.util.List;
 @Component
 @Scope("prototype")
 public class HttpServiceImpl implements HttpService {
-//    private DefaultHttpClient defaultHttpClient;
-//    private CookieStore cookieStore;
     @Autowired
     private CookieService cookieService;
 
+    @Autowired
+    private HttpClientFactory httpClientFactory;
 
     private DefaultHttpClient getDefaultHttpClient(String mobile) {
         /*if (defaultHttpClient == null) {
@@ -49,14 +49,7 @@ public class HttpServiceImpl implements HttpService {
         }*/
 
         // 每次都生成新的 httpclient, 防止 cookie 混乱
-        //todo: 如果再出问题,就手动管理 cookie
-        DefaultHttpClient defaultHttpClient = HttpClientFactory.createHttpClient();
-
-        if (cookieService.isExist(mobile)) {
-            CookieStore cookieStore = cookieService.getCookieStore(mobile);
-
-            defaultHttpClient.setCookieStore(cookieStore);
-        }
+        DefaultHttpClient defaultHttpClient = httpClientFactory.createHttpClient(mobile);
 
         return defaultHttpClient;
     }
@@ -83,8 +76,6 @@ public class HttpServiceImpl implements HttpService {
             if (httpResponse.getStatusLine().getStatusCode() != 404) {
                 String result = EntityUtils.toString(httpResponse.getEntity());
 
-                // 设置 cookies
-//                cookieStore = client.getCookieStore();
                 // 保存 cookie
                 updateCookieToLocal(client, mobile);
 
@@ -128,22 +119,6 @@ public class HttpServiceImpl implements HttpService {
         }
         return null;
     }
-
-/*
-    public void updateCookieToService(DefaultHttpClient client, String mobile) {
-        if (cookieService.isExist(mobile)) {
-            CookieStore cookieStore = cookieService.getCookieStore(mobile);
-
-//            System.out.println("updateCookieToService");
-
-//            for (Cookie cookie : cookieStore.getCookies()) {
-//                System.out.println(cookie);
-//            }
-//
-            client.setCookieStore(cookieStore);
-        }
-    }
-*/
 
     public void updateCookieToLocal(DefaultHttpClient client, String mobile) {
         CookieStore cookieStore = client.getCookieStore();
@@ -192,19 +167,6 @@ public class HttpServiceImpl implements HttpService {
     }
 
     // get and set methods
-
-
-//    public void setCookieStore(CookieStore cookieStore) {
-//        this.cookieStore = cookieStore;
-//    }
-//
-//    public CookieStore getCookieStore() {
-//        return cookieStore;
-//    }
-
-//    public void setDefaultHttpClient(DefaultHttpClient defaultHttpClient) {
-//        this.defaultHttpClient = defaultHttpClient;
-//    }
 
     public CookieService getCookieService() {
         return cookieService;

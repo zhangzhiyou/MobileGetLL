@@ -1,9 +1,10 @@
 package com.xiayule.getll.service.draw.job;
 
 /**
+ * 摇奖相关的接口
  * Created by tan on 14-9-8.
  */
-public interface AutoPlayJob {
+public interface ShakeTask {
 
     /**
      * 摇奖延时, 单位毫秒

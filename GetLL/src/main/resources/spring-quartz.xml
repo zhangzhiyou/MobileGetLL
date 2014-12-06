@@ -30,7 +30,7 @@
 
     <bean id="forFriendJobTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForFriendTaskImpl">
         <property name="subscriberService" ref="subscriberServiceImpl"/>
-        <property name="autoPlayJob" ref="autoPlayForFriendJob"/>
+        <property name="shakeTask" ref="autoPlayForFriendJob"/>
         <property name="playService" ref="playServiceImpl"/>
     </bean>
 -->
@@ -42,7 +42,7 @@
     </bean>
 
     <bean id="autoPlayForReceiveGiftsTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForAutoReceiveGiftsTaskImpl">
-        <property name="autoPlayJob" ref="autoPlayForReceiveGiftsJob"/>
+        <property name="shakeTask" ref="autoPlayForReceiveGiftsJob"/>
         <property name="subscriberService" ref="subscriberServiceImpl"/>
         <property name="playService" ref="playServiceImpl"/>
     </bean>
@@ -58,7 +58,7 @@
     <!-- 调度业务 -->
 <!--    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="jobTask" />
-        <property name="targetMethod" value="doJob" />
+        <property name="targetMethod" value="taskStart" />
 
         &lt;!&ndash;对于相同的JobDetail，当指定多个Trigger时,
        很可能第一job完成之前，第二个job就开始了。
@@ -72,7 +72,7 @@
 <!--
     <bean id="playForFriendJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="forFriendJobTask"/>
-        <property name="targetMethod" value="doJob"/>
+        <property name="targetMethod" value="taskStart"/>
 
 
         &lt;!&ndash;对于相同的JobDetail，当指定多个Trigger时,
@@ -87,7 +87,7 @@
 
     <!--<bean id="emailJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="emailJob"/>
-        <property name="targetMethod" value="doJob"/>
+        <property name="targetMethod" value="taskStart"/>
 
 
         &lt;!&ndash;对于相同的JobDetail，当指定多个Trigger时,
@@ -101,7 +101,7 @@
 
    <!-- <bean id="receiveGiftsDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="autoPlayForReceiveGiftsTask"/>
-        <property name="targetMethod" value="doJob"/>
+        <property name="targetMethod" value="taskStart"/>
 
         &lt;!&ndash;对于相同的JobDetail，当指定多个Trigger时,
         很可能第一个job完成之前，第二个job就开始了。

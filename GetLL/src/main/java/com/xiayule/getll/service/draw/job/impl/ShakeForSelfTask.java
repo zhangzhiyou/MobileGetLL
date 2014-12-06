@@ -1,8 +1,8 @@
 package com.xiayule.getll.service.draw.job.impl;
 
 import com.xiayule.getll.service.SubscriberService;
-import com.xiayule.getll.service.draw.job.AutoPlayJob;
 import com.xiayule.getll.service.PlayService;
+import com.xiayule.getll.service.draw.job.ShakeTask;
 import com.xiayule.getll.utils.JsonUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,9 +16,9 @@ import java.util.Set;
  * Created by tan on 14-10-26.
  */
 @Component
-public class AutoPlayForFriendJob implements AutoPlayJob {
+public class ShakeForSelfTask implements ShakeTask {
 
-    private static Logger logger = LogManager.getLogger(AutoPlayJob.class.getName());
+    private static Logger logger = LogManager.getLogger(ShakeTask.class.getName());
 
     @Autowired
     private PlayService playService;
@@ -49,17 +49,17 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
             if (playService.isLogined(myMobile)) {
                 logger.info(myMobile + " 为（" + friendMobile + ")摇奖 setDrawMobile返回(" + playService.setDrawMobile(myMobile, friendMobile) + ")");
 
-                Thread.sleep(AutoPlayJob.PLAY_LAZY);
+                Thread.sleep(ShakeTask.PLAY_LAZY);
 
                 // 累加每日奖励, 并接收返回结果
                 playService.addDrawScore(myMobile);
 
-                Thread.sleep(AutoPlayJob.PLAY_LAZY);
+                Thread.sleep(ShakeTask.PLAY_LAZY);
 
                 // 获取剩余次数
                 int drawCount = playService.getRemainTimes(myMobile);
 
-                Thread.sleep(AutoPlayJob.PLAY_LAZY);
+                Thread.sleep(ShakeTask.PLAY_LAZY);
 
                 int cnt = 0;
 
@@ -76,7 +76,7 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
                     logger.info(myMobile + "为(" + friendMobile + ")摇奖 addDrawScore 返回(" + playService.addDrawScoreWithSource(myMobile) + ")");
 
                     try {
-                        Thread.sleep(AutoPlayJob.PLAY_LAZY);
+                        Thread.sleep(ShakeTask.PLAY_LAZY);
                     } catch (Exception e) {
                         logger.info(myMobile + "为朋友摇奖(" + friendMobile + ")" + "Thread.sleep error");
                     }
@@ -126,18 +126,6 @@ public class AutoPlayForFriendJob implements AutoPlayJob {
         } else {
             logger.info("JobForFriendTaskImpl:" + "任务已经开启，无需再开启");
         }
-    }
-
-    public static Logger getLogger() {
-        return logger;
-    }
-
-    public static void setLogger(Logger logger) {
-        AutoPlayForFriendJob.logger = logger;
-    }
-
-    public PlayService getPlayService() {
-        return playService;
     }
 
     public void setPlayService(PlayService playService) {

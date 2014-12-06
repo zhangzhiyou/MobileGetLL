@@ -2,7 +2,7 @@ package com.xiayule.getll.service.draw.job.impl;
 
 import com.xiayule.getll.service.EmailService;
 import com.xiayule.getll.service.SubscriberService;
-import com.xiayule.getll.service.draw.job.JobTask;
+import com.xiayule.getll.service.draw.job.ScheduledTask;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
  * Created by tan on 14-11-8.
  */
 @Component
-public class EmailJob implements JobTask {
-    private static Logger logger = LogManager.getLogger(JobTask.class.getName());
+public class SystemEmailTask {
+    private static Logger logger = LogManager.getLogger(ScheduledTask.class.getName());
 
     @Autowired
     private SubscriberService subscriberService;

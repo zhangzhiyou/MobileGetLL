@@ -2,10 +2,9 @@ package com.xiayule.getll.service.draw.job.impl;
 
 import com.xiayule.getll.db.service.CreditLogService;
 import com.xiayule.getll.service.SubscriberService;
-import com.xiayule.getll.service.draw.job.AutoPlayJob;
+import com.xiayule.getll.service.draw.job.ScheduledTask;
+import com.xiayule.getll.service.draw.job.ShakeTask;
 import com.xiayule.getll.service.PlayService;
-import com.xiayule.getll.service.draw.request.DrawRequest;
-import com.xiayule.getll.service.draw.job.JobTask;
 import com.xiayule.getll.utils.CreditUtils;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
@@ -20,9 +19,9 @@ import java.util.List;
  * Created by tan on 14-9-8.
  */
 @Component
-public class AutoPlayJobImpl implements AutoPlayJob, JobTask {
+public class ShakeForFriendTask implements ShakeTask, ScheduledTask {
 
-    private static Logger logger = LogManager.getLogger(AutoPlayJob.class.getName());
+    private static Logger logger = LogManager.getLogger(ShakeTask.class.getName());
 
     @Autowired
     private PlayService playService;
@@ -35,25 +34,24 @@ public class AutoPlayJobImpl implements AutoPlayJob, JobTask {
 
     private static boolean isRunning = false;
 
-    @Autowired
-    private DrawRequest drawRequest;
+//    @Autowired
+//    private DrawRequest drawRequest;
 
-    @Override
     public void autoPlay(String mobile) {
-        logger.info("JobTask:" + "执行任务:" + "订阅者:" + mobile);
+        logger.info("ScheduledTask:" + "执行任务:" + "订阅者:" + mobile);
 
         // 如果未登录, 就退出
         if (!playService.isLogined(mobile)) {
-            logger.info("JobTask:" + mobile + " 未登录(第一次尝试)");
+            logger.info("ScheduledTask:" + mobile + " 未登录(第一次尝试)");
 
             try {
-                Thread.sleep(AutoPlayJob.PLAY_LAZY);
+                Thread.sleep(ShakeTask.PLAY_LAZY);
             } catch (InterruptedException e) {
 
             }
 
             if (!playService.isLogined(mobile)) {
-                logger.info("JobTask:" + mobile + " 未登录(第二次尝试), 跳过任务");
+                logger.info("ScheduledTask:" + mobile + " 未登录(第二次尝试), 跳过任务");
                 return ;
             }
         }
@@ -91,7 +89,7 @@ public class AutoPlayJobImpl implements AutoPlayJob, JobTask {
 
                 try {
                     // 等待 3 秒，保险起见
-                    Thread.sleep(AutoPlayJob.PLAY_LAZY);
+                    Thread.sleep(ShakeTask.PLAY_LAZY);
                 } catch (InterruptedException e) {
                     logger.info(mobile + " Thread.sleep error");
                 }
@@ -109,8 +107,7 @@ public class AutoPlayJobImpl implements AutoPlayJob, JobTask {
 
 
     @Scheduled(cron = "0 0 5 * * ?")
-    @Override
-    public void doJob() {
+    public void taskStart() {
         if (!isRunning) {
             isRunning = true;
 
@@ -122,10 +119,11 @@ public class AutoPlayJobImpl implements AutoPlayJob, JobTask {
 
                 cnt++;
 
-                drawRequest.addRequest(sub);
+//                drawRequest.addRequest(sub);
+                autoPlay(sub);
             }
 
-            logger.info("JobTask:" + "将 " + cnt + " 个任务加入队列");
+            logger.info("ScheduledTask: " + cnt + " 个任务执行完毕");
 
             isRunning = false;
         } else {
@@ -142,10 +140,10 @@ public class AutoPlayJobImpl implements AutoPlayJob, JobTask {
         this.playService = playService;
     }
 
-    public void setDrawRequest(DrawRequest drawRequest) {
+   /* public void setDrawRequest(DrawRequest drawRequest) {
         this.drawRequest = drawRequest;
     }
-
+*/
     public void setCreditLogService(CreditLogService creditLogService) {
         this.creditLogService = creditLogService;
     }

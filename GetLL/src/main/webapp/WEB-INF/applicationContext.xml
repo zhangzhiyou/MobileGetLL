@@ -11,9 +11,11 @@
     <!-- 启用@Scheduled注解 -->
     <task:annotation-driven/>
 
+<!--
     <bean name="drawRequest" class="com.xiayule.getll.service.draw.request.impl.DrawRequestImpl" lazy-init="false" init-method="init">
-        <property name="autoPlayJob" ref="autoPlayJobImpl"/>
+        <property name="shakeTask" ref="autoPlayJobImpl"/>
     </bean>
+-->
 
 <!--
     <bean name="redisService" class="com.xiayule.getll.service.impl.RedisServiceImpl">
@@ -104,7 +106,7 @@
 
     </bean>
 -->
-<!--    <bean name="autoPlay" class="com.xiayule.getll.service.draw.job.impl.AutoPlayJobImpl" scope="prototype">
+<!--    <bean name="autoPlay" class="ShakeForFriendTaskask" scope="prototype">
         <property name="playService" ref="playServiceImpl"/>
         <property name="creditLogService" ref="creditLogService"/>
     </bean>-->

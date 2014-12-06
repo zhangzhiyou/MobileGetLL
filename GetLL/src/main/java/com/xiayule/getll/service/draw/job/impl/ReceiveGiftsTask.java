@@ -2,7 +2,8 @@ package com.xiayule.getll.service.draw.job.impl;
 
 import com.xiayule.getll.service.PlayService;
 import com.xiayule.getll.service.SubscriberService;
-import com.xiayule.getll.service.draw.job.AutoPlayJob;
+import com.xiayule.getll.service.draw.job.ScheduledTask;
+import com.xiayule.getll.service.draw.job.ShakeTask;
 import com.xiayule.getll.service.OwnService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.xml.validation.SchemaFactoryLoader;
 import java.util.Set;
 
 /**
@@ -17,9 +19,9 @@ import java.util.Set;
  * 自动领取流量币任务
  */
 @Component
-public class AutoReceiveJob implements AutoPlayJob {
+public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
 
-    private static Logger logger = LogManager.getLogger(AutoPlayJob.class.getName());
+    private static Logger logger = LogManager.getLogger(ShakeTask.class.getName());
 
     @Autowired
     private OwnService ownService;
@@ -32,16 +34,15 @@ public class AutoReceiveJob implements AutoPlayJob {
 
     private static boolean isRunning = false;
 
-    @Override
     public void autoPlay(String mobile) {
         try {
             if (ownService.isHasFlowScoreTransferGifts(mobile)){
 
-                Thread.sleep(AutoPlayJob.PLAY_LAZY);
+                Thread.sleep(ShakeTask.PLAY_LAZY);
 
                 ownService.transferGiftsReceiveAll(mobile);
 
-                Thread.sleep(AutoPlayJob.PLAY_LAZY);
+                Thread.sleep(ShakeTask.PLAY_LAZY);
             }
         } catch (Exception e) {
             logger.info(mobile + " AutoReceiveJob: 出错");
@@ -51,7 +52,7 @@ public class AutoReceiveJob implements AutoPlayJob {
 
 //    @Scheduled(cron = "0 0 21 * * ?")
     @Scheduled(cron = "0 48 20 * * ?")
-    public void doJob() {
+    public void taskStart() {
         logger.info("JobForAutoReceiveGiftsTaskImpl 自动领取任务开始");
 
         if (!isRunning) {
@@ -90,7 +91,7 @@ public class AutoReceiveJob implements AutoPlayJob {
     }
 
     public static void setLogger(Logger logger) {
-        AutoReceiveJob.logger = logger;
+        ReceiveGiftsTask.logger = logger;
     }
 
     public void setOwnService(OwnService ownService) {

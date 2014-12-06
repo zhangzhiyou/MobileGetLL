@@ -99,7 +99,7 @@ public class Test {
 
         /*EmailJob emailJob = ctx.getBean("emailJob", EmailJob.class);
 
-        emailJob.doJob();*/
+        emailJob.taskStart();*/
 
        /* JavaMailSenderImpl sender = new JavaMailSenderImpl();
 

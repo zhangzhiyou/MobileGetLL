@@ -2,7 +2,6 @@ package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
 import com.xiayule.getll.service.draw.api.PlayService;
-import com.xiayule.getll.service.draw.request.DrawRequest;
 import com.xiayule.getll.utils.factory.CookieFactory;
 import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.JsonUtils;
@@ -25,10 +24,7 @@ import java.util.*;
 @Scope("prototype")
 public class AjaxAction {
     private static Logger logger = LogManager.getLogger(PlayService.class.getName());
-    // 兑换日志
-//    private static Logger exchangeLogger = LogManager.getLogger("com.xiayule.exchange");
 
-//    private DrawRequest drawRequest;
     @Autowired
     private SubscriberService subscriberService;
 
@@ -40,7 +36,6 @@ public class AjaxAction {
 
     @Autowired
     private CookieService cookieService;
-//    private CreditLogService creditLogService;
 
     // 返回的结果类型
     private Map json;
@@ -55,6 +50,7 @@ public class AjaxAction {
     private String exchangeID;
     private String smsContext;
     private String transferGifts;
+
     // TODO:这个参数好像是从 /ajax/queryCreditSum.action 和 /ajax/queryCreditDetail.action 这里传过来的，是 $.ajax 自动添加的，目前不明白
     private String _;
     private Boolean isLogin;
@@ -63,8 +59,6 @@ public class AjaxAction {
     private String id;
     private String value;
     private String nickname;
-
-//    private String registerCode;
 
     private void cleanParams() {
         mobile = null;
@@ -82,9 +76,7 @@ public class AjaxAction {
         queryType = null;
         status = null;
         id = null;
-//        registerCode = null;
     }
-
 
 
     public String getRankByTotal(){
@@ -308,7 +300,7 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
-    public String getRegisterCodeDo() {
+    /*public String getRegisterCodeDo() {
         json = new HashMap();
 
         // 生成注册码
@@ -322,7 +314,7 @@ public class AjaxAction {
         json.put("result", result);
 
         return Action.SUCCESS;
-    }
+    }*/
 
     /**
      * 立刻摇奖
@@ -371,7 +363,7 @@ public class AjaxAction {
 
     /**
      * 获得剩余摇奖次数
-     */
+     *//*
     public String getRemainTimes() {
         String m = UserUtils.getMobileFromCookie();
 
@@ -389,7 +381,7 @@ public class AjaxAction {
         json.put("result", result);
 
         return Action.SUCCESS;
-    }
+    }*/
 
     /**
      * 加载收支总和信息, 返回原json信息

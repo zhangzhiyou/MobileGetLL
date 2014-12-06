@@ -65,10 +65,6 @@
     </bean>
 -->
 
-    <!--<bean name="subscribeAction" class="com.xiayule.getll.action.SubscribeAction" scope="prototype">
-        <property name="subscriberService" ref="subscribeService"/>
-    </bean>-->
-
 <!--    <bean name="searchAction" class="com.xiayule.getll.action.SearchAction" scope="prototype">
         <property name="subscriberService" ref="subscribeService"/>
         <property name="creditService" ref="creditService"/>

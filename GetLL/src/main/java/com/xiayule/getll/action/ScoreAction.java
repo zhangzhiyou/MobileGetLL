@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope("prototype")
-public class Score implements Action {
+public class ScoreAction implements Action {
     private String productType_n;
     //id
     private String id_n;

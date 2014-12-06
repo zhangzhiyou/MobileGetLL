@@ -42,9 +42,9 @@
         <property name="mappingResources">
             <list>
                 <!-- 以下列出所有的 PO 映射文件 -->
-                <value>com/xiayule/getll/db/model/User.hbm.xml</value>
-                <value>com/xiayule/getll/db/model/FlowMoneyCost.hbm.xml</value>
-                <value>com/xiayule/getll/db/model/HistoryVersion.hbm.xml</value>
+                <!--<value>com/xiayule/getll/db/model/User.hbm.xml</value>-->
+                <!--<value>com/xiayule/getll/db/model/FlowMoneyCost.hbm.xml</value>-->
+                <!--<value>com/xiayule/getll/db/model/HistoryVersion.hbm.xml</value>-->
                 <value>com/xiayule/getll/db/model/CreditLog.hbm.xml</value>
             </list>
         </property>

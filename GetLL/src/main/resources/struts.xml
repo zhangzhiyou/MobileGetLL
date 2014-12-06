@@ -45,7 +45,7 @@
     <package name="xiayule" namespace="/" extends="all">
         <default-interceptor-ref name="authStack"/>
 
-        <action name="score" class="score">
+        <action name="score" class="scoreAction">
             <result name="success">/score.jsp</result>
         </action>
 
@@ -54,10 +54,6 @@
             <!--<result name="login">/admin.jsp</result>-->
         </action>
 
-        <!--<action name="subscribe" class="subscribeAction">
-            <result name="success" type="redirect">/success.jsp</result>
-            <result name="error">/index.jsp</result>
-        </action>-->
 
         <!--<action name="search" class="searchAction">
             <result name="success">/search.jsp</result>
@@ -127,11 +123,13 @@
             </result>
         </action>
 
+<!--
         <action name="getRegisterCode" class="ajaxAction" method="getRegisterCodeDo">
             <result type="json">
                 <param name="root">json</param>
             </result>
         </action>
+-->
 
 <!--
         <action name="shakeNow" class="ajaxAction" method="shakeNow">
@@ -147,12 +145,14 @@
             </result>
         </action>
 
-        <!--TODO:js调用该接口后，出现问题-->
+<!--
+        &lt;!&ndash;TODO:js调用该接口后，出现问题&ndash;&gt;
         <action name="getRemainTimes" class="ajaxAction" method="getRemainTimes">
             <result type="json">
                 <param name="root">json</param>
             </result>
         </action>
+-->
 
         <action name="getTTL" class="ajaxAction" method="getTTL">
             <result type="json">

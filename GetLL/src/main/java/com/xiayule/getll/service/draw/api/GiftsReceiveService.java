@@ -1,5 +1,6 @@
 package com.xiayule.getll.service.draw.api;
 
+import com.xiayule.getll.db.service.CreditLogService;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -23,6 +24,9 @@ public class GiftsReceiveService {
     @Autowired
     private PlayService playService;
 
+    @Autowired
+    private CreditLogService creditLogService;
+
     /**
      * 查看是否有未领取的流量币
      * @param mobile
@@ -31,8 +35,6 @@ public class GiftsReceiveService {
      */
     public boolean isHasFlowScoreTransferGifts(String mobile) throws Exception {
         String rs = playService.getTransferGiftsList(mobile, "count", "others", "2");
-
-//        System.out.println(rs);
 
         try {
             JSONObject jsonObj = JsonUtils.stringToJson(rs);
@@ -76,8 +78,15 @@ public class GiftsReceiveService {
 
                 return;
             } else {
-                JSONArray listJsonArray = transferListJsonObj.getJSONObject("result").getJSONArray("list");
+                JSONObject result = transferListJsonObj.getJSONObject("result");
 
+                // 获得可以领取的流量币总数
+                double totalCredit = result.getDouble("totalCredit");
+
+                // 获得领取列表
+                JSONArray listJsonArray = result.getJSONArray("list");
+
+                // 获得领取列表迭代器
                 ListIterator<JSONObject> listIterator = listJsonArray.listIterator();
 
                 // 存放所有要领取的 id
@@ -94,6 +103,9 @@ public class GiftsReceiveService {
                 String ids = StringUtils.join(idArray, ",");
 
                 playService.transferGiftsReceive(mobile, ids);
+
+                // 执行到这里没有报错，就计入日志
+                creditLogService.logReceiveCredit(mobile, totalCredit);
             }
         } catch (Exception e) {
             logger.info(mobile + " 自动领取过程发生错误");

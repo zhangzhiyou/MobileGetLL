@@ -21,14 +21,14 @@ import java.util.Map;
 @Scope("prototype")
 public class HistoryVersionAction {
 
+    @Autowired
+    private HistoryVersionService historyVersionService;
 
     private String title;
     private String content;
     private String versionName;
     private Date time;
 
-    @Autowired
-    private HistoryVersionService historyVersionService;
 
     public String show() throws Exception {
 

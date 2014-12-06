@@ -41,6 +41,15 @@ public class CreditLogServiceImpl implements CreditLogService {
         log(mobile, credit, CreditLog.LOG_SHAKE);
     }
 
+    /**
+     * 记录领取获得的流量币
+     * @param mobile 手机号
+     * @param credit 获得的流量币
+     */
+    public void logReceiveCredit(String mobile, Double credit) {
+        log(mobile, credit, CreditLog.LOG_RECEIVE);
+    }
+
     // set and get methods
 
     public CreditLogDao getCreditLogDao() {

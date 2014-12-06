@@ -25,4 +25,11 @@ public interface CreditLogService {
      * @param credit 获得的流量币
      */
     public void logShakeCredit(String mobile, Double credit);
+
+    /**
+     * 记录领取获得的流量币
+     * @param mobile 手机号
+     * @param credit 获得的流量币
+     */
+    public void logReceiveCredit(String mobile, Double credit);
 }

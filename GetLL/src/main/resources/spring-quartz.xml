@@ -38,7 +38,7 @@
     <!-- 自动领取业务对象 -->
 <!--
     <bean id="autoPlayForReceiveGiftsJob" class="com.xiayule.getll.service.draw.job.impl.AutoReceiveJob">
-        <property name="ownService" ref="ownService"/>
+        <property name="giftsReceiveService" ref="giftsReceiveService"/>
     </bean>
 
     <bean id="autoPlayForReceiveGiftsTask" class="com.xiayule.getll.toolkit.scheduling.impl.JobForAutoReceiveGiftsTaskImpl">

@@ -110,7 +110,7 @@
     </bean>-->
 
 <!--
-    <bean name="ownService" class="com.xiayule.getll.service.draw.job.OwnService">
+    <bean name="giftsReceiveService" class="com.xiayule.getll.service.draw.job.OwnService">
         <property name="playService" ref="playService"/>
     </bean>
 -->

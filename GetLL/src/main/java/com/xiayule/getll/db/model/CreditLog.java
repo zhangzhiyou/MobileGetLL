@@ -18,6 +18,11 @@ public class CreditLog {
      */
     public static final Integer LOG_LOGIN = 1;
 
+    /**
+     * 每日领取获得的流量币
+     */
+    public static final Integer LOG_RECEIVE = 2;
+
     private Integer id;
 
     private String mobile;

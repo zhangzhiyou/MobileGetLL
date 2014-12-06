@@ -1,10 +1,10 @@
 package com.xiayule.getll.service.draw.job.impl;
 
+import com.xiayule.getll.service.draw.api.GiftsReceiveService;
 import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.job.ScheduledTask;
 import com.xiayule.getll.service.draw.job.ShakeTask;
-import com.xiayule.getll.service.draw.job.OwnService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
     private static Logger logger = LogManager.getLogger(ShakeTask.class.getName());
 
     @Autowired
-    private OwnService ownService;
+    private GiftsReceiveService giftsReceiveService;
 
     @Autowired
     private SubscriberService subscriberService;
@@ -35,11 +35,11 @@ public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
 
     public void autoPlay(String mobile) {
         try {
-            if (ownService.isHasFlowScoreTransferGifts(mobile)){
+            if (giftsReceiveService.isHasFlowScoreTransferGifts(mobile)){
 
                 Thread.sleep(ShakeTask.PLAY_LAZY);
 
-                ownService.transferGiftsReceiveAll(mobile);
+                giftsReceiveService.transferGiftsReceiveAll(mobile);
 
                 Thread.sleep(ShakeTask.PLAY_LAZY);
             }
@@ -93,7 +93,7 @@ public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
         ReceiveGiftsTask.logger = logger;
     }
 
-    public void setOwnService(OwnService ownService) {
-        this.ownService = ownService;
+    public void setGiftsReceiveService(GiftsReceiveService giftsReceiveService) {
+        this.giftsReceiveService = giftsReceiveService;
     }
 }

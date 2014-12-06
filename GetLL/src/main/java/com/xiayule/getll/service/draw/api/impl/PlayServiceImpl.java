@@ -1,16 +1,12 @@
-package com.xiayule.getll.service.impl;
+package com.xiayule.getll.service.draw.api.impl;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.xiayule.getll.service.*;
+import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
-import org.apache.http.client.CookieStore;
-import org.apache.http.cookie.Cookie;
-import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -18,7 +14,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by tan on 14-7-20.

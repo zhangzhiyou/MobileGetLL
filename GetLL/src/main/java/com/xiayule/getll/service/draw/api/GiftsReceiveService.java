@@ -1,4 +1,4 @@
-package com.xiayule.getll.service;
+package com.xiayule.getll.service.draw.api;
 
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONArray;
@@ -17,26 +17,8 @@ import java.util.ListIterator;
  * 存放一些自己定义的 service
  */
 @Component
-public class OwnService {
-    private static Logger logger = LogManager.getLogger(OwnService.class.getName());
-
-
-    /**
-     * 自己定义的，用来查询是否有未领取的流量币
-     * 和 getFlowScoreTransferGiftsInfo 基本类似
-     */
-    /*FlowScore.prototype.isHasFlowScoreTransferGifts = function() {
-        $.post("/ajax/getTransferGiftsList.action?queryType=count&type=others&status=2&r=" + Math.random(), {}, function (data) {
-            if (data.status != "ok") {
-                return false;
-            } else {
-                var result = data.result;
-                if (Number(result.totalCredit) > 0) {
-                    return true;
-                } else return false;
-            }
-        }, "json");
-    }*/
+public class GiftsReceiveService {
+    private static Logger logger = LogManager.getLogger(GiftsReceiveService.class.getName());
 
     @Autowired
     private PlayService playService;

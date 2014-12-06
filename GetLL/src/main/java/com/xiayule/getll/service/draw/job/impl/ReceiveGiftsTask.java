@@ -1,17 +1,16 @@
 package com.xiayule.getll.service.draw.job.impl;
 
-import com.xiayule.getll.service.PlayService;
+import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.job.ScheduledTask;
 import com.xiayule.getll.service.draw.job.ShakeTask;
-import com.xiayule.getll.service.OwnService;
+import com.xiayule.getll.service.draw.job.OwnService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import javax.xml.validation.SchemaFactoryLoader;
 import java.util.Set;
 
 /**

@@ -1,4 +1,4 @@
-package com.xiayule.getll.factory;
+package com.xiayule.getll.utils.factory;
 
 import javax.servlet.http.Cookie;
 

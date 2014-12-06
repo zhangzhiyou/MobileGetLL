@@ -4,7 +4,7 @@ import com.xiayule.getll.db.service.CreditLogService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.job.ScheduledTask;
 import com.xiayule.getll.service.draw.job.ShakeTask;
-import com.xiayule.getll.service.PlayService;
+import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.utils.CreditUtils;
 import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;

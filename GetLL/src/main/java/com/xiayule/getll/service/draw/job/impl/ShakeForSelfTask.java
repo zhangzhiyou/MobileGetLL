@@ -1,7 +1,7 @@
 package com.xiayule.getll.service.draw.job.impl;
 
 import com.xiayule.getll.service.SubscriberService;
-import com.xiayule.getll.service.PlayService;
+import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.service.draw.job.ShakeTask;
 import com.xiayule.getll.utils.JsonUtils;
 import org.apache.logging.log4j.LogManager;

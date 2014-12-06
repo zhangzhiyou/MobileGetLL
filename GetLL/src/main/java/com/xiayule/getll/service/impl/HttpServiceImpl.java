@@ -1,6 +1,6 @@
 package com.xiayule.getll.service.impl;
 
-import com.xiayule.getll.factory.HttpClientFactory;
+import com.xiayule.getll.utils.factory.HttpClientFactory;
 import com.xiayule.getll.service.CookieService;
 import com.xiayule.getll.service.HttpService;
 import org.apache.http.Header;
@@ -13,14 +13,12 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**

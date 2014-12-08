@@ -57,6 +57,22 @@ public interface CreditLogDao {
      */
     public CreditRank queryRank(String mobile, Calendar calendar);
 
+    /**
+     * 某日参与摇奖的人数
+     * @param year
+     * @param month
+     * @param day
+     * @return
+     */
+    public Integer queryLogMobileCount(int year, int month, int day);
+
+    /**
+     * 某日参与摇奖的人数
+     * @param calendar
+     * @return
+     */
+    public Integer queryLogMobileCount(Calendar calendar);
+
     public List<CreditLog> findAllVersionHistory();
 
 }

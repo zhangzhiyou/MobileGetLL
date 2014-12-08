@@ -53,7 +53,9 @@ public class Test {
         Calendar c = Calendar.getInstance();
         c.add(Calendar.DAY_OF_MONTH, -1);
 
-        System.out.println(creditLogDao.queryRank("18369905136", c));
+//        System.out.println(creditLogDao.queryRank("18369905136", c));
+
+        System.out.println(creditLogDao.queryLogMobileCount(c));
 
 //        CreditLog shakeLog = shakeLogDao.get(1);
 //

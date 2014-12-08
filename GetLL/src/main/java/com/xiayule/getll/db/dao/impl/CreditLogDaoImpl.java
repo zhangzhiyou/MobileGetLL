@@ -8,6 +8,7 @@ import org.hibernate.SQLQuery;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
+import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -140,10 +141,35 @@ public class CreditLogDaoImpl extends HibernateDaoSupport implements CreditLogDa
         return queryRank(mobile, year, month, day);
     }
 
+    /**
+     * 某日参与摇奖的人数
+     * @param year
+     * @param month
+     * @param day
+     * @return
+     */
+    public Integer queryLogMobileCount(int year, int month, int day) {
 
-    /*public Integer queryLogCount(Calendar c) {
+        String hql = "select count(DISTINCT mobile) from shake_log where year(time)=2014 and month(time)=12 and day(time)=8";
 
-    }*/
+        Query query = currentSession().createSQLQuery(hql);
+
+        BigInteger bigCount = (BigInteger)query.uniqueResult();
+        return bigCount.intValue();
+    }
+
+    /**
+     * 某日参与摇奖的人数
+     * @param calendar
+     * @return
+     */
+    public Integer queryLogMobileCount(Calendar calendar) {
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        return queryLogMobileCount(year, month, day);
+    }
 
     public List<CreditLog> findAllVersionHistory() {
         return (List<CreditLog>)getHibernateTemplate().find("from CreditLog s order by s.time asc");

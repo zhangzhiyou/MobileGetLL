@@ -136,8 +136,6 @@
                 </div>
 
                 <div class="col-xs-12">
-
-
                     <!-- 个人详情 -->
                     <div class="col-xs-8">
                         <div>
@@ -181,6 +179,21 @@
                         <div class="col-xs-12 col-md-6" style="text-align:center; font-size: 20px">距结算日<span class="rednum" id="distanceDays" style="font-size: 30px">0</span>天</div>
 
                         <div class="col-xs-12 col-md-6" style="text-align:center; font-size: 20px">日均可用<span class="rednum" id="dayNum" style="font-size: 30px">0</span>MB</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">昨日摇取概况(第一获得<span style="color: #ff0000; font-size: large">${model.firstRank.credit}</span>个流量币)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-xs-12" style="text-align:center; font-size: 20px">
+                            摇得<span class="bigrednum">${model.mobileRank.credit}</span>个流量币,
+                            排第<span class="bigrednum">${model.mobileRank.rank}</span>名,
+                            击败了全站 <span class="bigrednum">${model.beatPercent}</span>用户
+                        </div>
                     </div>
                 </div>
             </div>

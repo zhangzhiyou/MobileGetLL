@@ -3,6 +3,9 @@ package com.xiayule.getll.db.service.impl;
 import com.xiayule.getll.db.dao.CreditLogDao;
 import com.xiayule.getll.db.model.CreditLog;
 import com.xiayule.getll.db.service.CreditLogService;
+import com.xiayule.getll.domain.CreditRank;
+
+import java.util.Calendar;
 
 /**
  * Created by tan on 14-12-3.
@@ -48,6 +51,40 @@ public class CreditLogServiceImpl implements CreditLogService {
      */
     public void logReceiveCredit(String mobile, Double credit) {
         log(mobile, credit, CreditLog.LOG_RECEIVE);
+    }
+
+    /**
+     * 获得昨日排行第一名记录
+     * @return
+     */
+    public CreditRank queryYestodayFirstRank() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_MONTH, -1);
+
+        return creditLogDao.queryRank(c);
+    }
+
+    /**
+     * 获得昨日摇奖人数
+     * @return
+     */
+    public Integer queryYesterdayMobileCount() {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_MONTH, -1);
+
+        return creditLogDao.queryLogMobileCount(c);
+    }
+
+    /**
+     * 获得昨日具体手机号的排名
+     * @param mobile
+     * @return
+     */
+    public CreditRank queryYestoDayRank(String mobile) {
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_MONTH, -1);
+
+        return creditLogDao.queryRank(mobile, c);
     }
 
     // set and get methods

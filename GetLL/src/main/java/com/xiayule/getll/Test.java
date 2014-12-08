@@ -4,6 +4,7 @@ package com.xiayule.getll;
 import com.xiayule.getll.db.dao.CreditLogDao;
 import com.xiayule.getll.db.dao.impl.CreditLogDaoImpl;
 import com.xiayule.getll.domain.CreditRank;
+import com.xiayule.getll.utils.DecimalUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,11 +15,11 @@ import java.util.Calendar;
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
-                "spring-hibernate.xml"
-        });
+//        ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
+//                "spring-hibernate.xml"
+//        });
 
-
+        System.out.println(DecimalUtils.formatPersont((double)378/447));
 /*
         String winName = "0.1个流量币";
         if (winName.contains("个流量币")) {
@@ -40,7 +41,7 @@ public class Test {
         shakeLogService.logShakeCredit("18369905506", 1.3);
 */
 
-        CreditLogDao creditLogDao = ctx.getBean("creditLogDao", CreditLogDao.class);
+//        CreditLogDao creditLogDao = ctx.getBean("creditLogDao", CreditLogDao.class);
 
         /*Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -1);
@@ -50,12 +51,12 @@ public class Test {
         CreditRank creditRank = creditLogDao.queryFirstRank(calendar);
         System.out.println(creditRank);*/
 
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.DAY_OF_MONTH, -1);
+//        Calendar c = Calendar.getInstance();
+//        c.add(Calendar.DAY_OF_MONTH, -1);
 
 //        System.out.println(creditLogDao.queryRank("18369905136", c));
 
-        System.out.println(creditLogDao.queryLogMobileCount(c));
+//        System.out.println(creditLogDao.queryLogMobileCount(c));
 
 //        CreditLog shakeLog = shakeLogDao.get(1);
 //

@@ -1,8 +1,11 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
+import com.xiayule.getll.db.service.CreditLogService;
+import com.xiayule.getll.domain.CreditRank;
 import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.service.SubscriberService;
+import com.xiayule.getll.utils.DecimalUtils;
 import com.xiayule.getll.utils.UserUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,6 +38,9 @@ public class HomeAction implements Action{
     @Autowired
     private PlayService playService;
 
+    @Autowired
+    private CreditLogService creditLogService;
+
     @Override
     public String execute() throws Exception {
 //        System.out.println("access HOme Action");
@@ -64,11 +70,23 @@ public class HomeAction implements Action{
 
         logger.info("useragent:" + userAgent);
 
+
         // 查询有效期
         String ttl = subscriberService.getTTLDays(mobile);
-
-        // 将参数封装到 model
         model.put("ttl", ttl);
+
+        // 查询排名
+        CreditRank firstRank = creditLogService.queryYestodayFirstRank();
+
+        CreditRank mobileRank = creditLogService.queryYestoDayRank(mobile);
+
+        Integer count = creditLogService.queryYesterdayMobileCount();
+
+        String beatPercent = DecimalUtils.formatPersont((double)mobileRank.getRank()/count);
+
+        model.put("firstRank", firstRank);
+        model.put("mobileRank", mobileRank);
+        model.put("beatPercent", beatPercent);
 
         // 传递参数到jsp
         request.setAttribute("model", model);
@@ -84,5 +102,9 @@ public class HomeAction implements Action{
 
     public void setPlayService(PlayService playService) {
         this.playService = playService;
+    }
+
+    public void setCreditLogService(CreditLogService creditLogService) {
+        this.creditLogService = creditLogService;
     }
 }

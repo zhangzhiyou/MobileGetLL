@@ -32,7 +32,7 @@
                     <h3 class="panel-title">朋友摇奖功能</h3>
                 </div>
                 <div class="panel-body">
-                    开启朋友摇奖,每天18点会使用本站手机号再为您摇奖5次,只不过摇到的需要来本站领取,同时还会有移动的短信通知
+                    开启朋友摇奖,每天18点会使用本站手机号再为您摇奖5次,只不过摇到的需要来本站领取,同时还<span style="color: #ff0000">会有移动的短信通知, 如果不介意每天的烦人通知，可以开启改功能</span>
                 </div>
                 <div class="panel-footer" style="text-align: center"><input class="checkbox" type="checkbox" data-toggle="switch" id="forFriend"></div>
             </div>

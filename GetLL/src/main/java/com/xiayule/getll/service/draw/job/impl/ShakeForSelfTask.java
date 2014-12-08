@@ -1,22 +1,25 @@
 package com.xiayule.getll.service.draw.job.impl;
 
+import com.xiayule.getll.db.service.CreditLogService;
 import com.xiayule.getll.service.SubscriberService;
-import com.xiayule.getll.service.draw.api.PlayService;
+import com.xiayule.getll.service.draw.job.ScheduledTask;
 import com.xiayule.getll.service.draw.job.ShakeTask;
-import com.xiayule.getll.utils.JsonUtils;
+import com.xiayule.getll.service.draw.api.PlayService;
+import com.xiayule.getll.utils.CreditUtils;
+import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
+import java.util.List;
 
 /**
- * Created by tan on 14-10-26.
+ * Created by tan on 14-9-8.
  */
 @Component
-public class ShakeForSelfTask implements ShakeTask {
+public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
 
     private static Logger logger = LogManager.getLogger(ShakeTask.class.getName());
 
@@ -24,111 +27,129 @@ public class ShakeForSelfTask implements ShakeTask {
     private PlayService playService;
 
     @Autowired
+    private CreditLogService creditLogService;
+
+    @Autowired
     private SubscriberService subscriberService;
 
     private static boolean isRunning = false;
 
-    /**
-     * 为朋友摇奖，自己的手机号永远都是固定的。
-     * @param friendMobile 朋友的手机号
-     */
-    public void autoPlay(String friendMobile) {
+//    @Autowired
+//    private DrawRequest drawRequest;
 
-        final String myMobile = "18369905136";
+    public void autoPlay(String mobile) {
+        logger.info("ScheduledTask:" + "执行任务:" + "订阅者:" + mobile);
 
-        if (myMobile == friendMobile) return;
+        // 如果未登录, 就退出
+        if (!playService.isLogined(mobile)) {
+            logger.info("ScheduledTask:" + mobile + " 未登录(第一次尝试)");
 
-        //todo: addDrawScore 是可以的
-        //todo: 但是 load 和draw 不可以
-        //todo: 浏览器中的 cookie 设置都是正确的
-
-        playService.addDrawScoreWithSource(myMobile);
-
-        try {
-
-            if (playService.isLogined(myMobile)) {
-                logger.info(myMobile + " 为（" + friendMobile + ")摇奖 setDrawMobile返回(" + playService.setDrawMobile(myMobile, friendMobile) + ")");
-
+            try {
                 Thread.sleep(ShakeTask.PLAY_LAZY);
+            } catch (InterruptedException e) {
 
-                // 累加每日奖励, 并接收返回结果
-                playService.addDrawScore(myMobile);
+            }
 
-                Thread.sleep(ShakeTask.PLAY_LAZY);
+            if (!playService.isLogined(mobile)) {
+                logger.info("ScheduledTask:" + mobile + " 未登录(第二次尝试), 跳过任务");
+                return ;
+            }
+        }
 
-                // 获取剩余次数
-                int drawCount = playService.getRemainTimes(myMobile);
+        // 累加每日奖励, 并接收返回结果
+        double firstShakeGiveCredit = playService.addDrawScore(mobile);
 
-                Thread.sleep(ShakeTask.PLAY_LAZY);
+        // 每日登录获得的流量币
+        if (firstShakeGiveCredit > 0) {
+            creditLogService.logLoginCredit(mobile, firstShakeGiveCredit);
+        }
 
-                int cnt = 0;
+        // 获取剩余次数
+        int remainTimes = playService.getRemainTimes(mobile);
 
-                while (drawCount > 0) {
-                    String drawResult = playService.drawWithSource(myMobile);
+        logger.info(mobile + " 还剩 " + remainTimes + " 次");
 
-                    logger.info(myMobile + "为(" + friendMobile + ")第(" + ++cnt + ")次摇奖 draw 返回(" + drawResult + ")");
+        if (remainTimes > 0) {
+            int cnt = 0;
 
-                    //todo: 这里有可能出错
-                    String strDrawCount = JsonUtils.stringToJson(drawResult).getJSONObject("result").getString("drawCount");
+            do {
+                try {
+                    String winName = playService.draw(mobile);
 
-                    drawCount = Integer.parseInt(strDrawCount);
+                    logger.info(mobile + " 第" + (++cnt) + "次摇奖,获得奖励:"
+                            + winName);
 
-                    logger.info(myMobile + "为(" + friendMobile + ")摇奖 addDrawScore 返回(" + playService.addDrawScoreWithSource(myMobile) + ")");
+                    if (CreditUtils.hasCredit(winName)) {
+                        double credit = CreditUtils.parseCredit(winName);
+                        creditLogService.logShakeCredit(mobile, credit);
+                    }
+
+                    playService.addDrawScore(mobile);
+
+                    remainTimes = Integer.parseInt(playService.queryScore(mobile).getString("times"));
 
                     try {
+                        // 等待 3 秒，保险起见
                         Thread.sleep(ShakeTask.PLAY_LAZY);
-                    } catch (Exception e) {
-                        logger.info(myMobile + "为朋友摇奖(" + friendMobile + ")" + "Thread.sleep error");
+                    } catch (InterruptedException e) {
+                        logger.info(mobile + " Thread.sleep error");
                     }
+                } catch (Exception e) {
+                    logger.info(mobile + " 摇奖过程出错, draw or addDrawScore return null");
                 }
-            } else {
-                logger.info(myMobile + " 没有登录, 无法为" + friendMobile + "摇奖");
-            }
-        } catch (Exception e) {
-            // 设置回自己的 手机号
-            logger.info(myMobile + " 为朋友(" + friendMobile + ")摇取过程出错");
-        } finally {// 无论是否出错，执行完毕后都要设置回自己的手机号
-            logger.info(myMobile + " 为朋友(" + friendMobile + ")摇取完毕, 设置自己的手机号, 返回(" + playService.setDrawMobile(myMobile, myMobile) + ")");
+
+
+            } while (remainTimes > 0);
         }
+
+        // 查询分数
+        JSONObject queryScore = playService.queryScore(mobile);
+
+        logger.info(mobile + " 总计: 连续登录:" + queryScore.getString("count_1") + "天"
+                + " 今日总计:" + queryScore.getString("todayCredit")
+                + " 当前流量币: " + queryScore.getString("credit"));
     }
 
 
-    @Scheduled(cron = "0 0 19 * * ?")
-    public void doJob() {
-        logger.info("JobForFriendTaskImpl:开始为朋友摇奖");
-
+    @Scheduled(cron = "0 0 5 * * ?")
+    public void taskStart() {
         if (!isRunning) {
-
             isRunning = true;
 
-            // 获取所有订阅下午摇奖的人
-            Set<String> subs = subscriberService.getAllSubscriberForFriend();
+            List<String> subs = subscriberService.getAllSubscriber();
 
             int cnt = 0;
 
             for (String sub : subs) {
-                // 如果有效期到期或者登录不成功, 则不执行
-                if (!subscriberService.isSubscribe(sub) && !playService.isLogined(sub)) continue;
 
                 cnt++;
 
-                try {
-                    autoPlay(sub);
-                } catch (Exception e) {
-                    logger.info("JobForFriendTaskImpl: 为(" + sub + ")朋友摇奖发生错误");
-                }
+//                drawRequest.addRequest(sub);
+                autoPlay(sub);
             }
 
-            logger.info("JobForFriendTaskImpl:" + "将 " + cnt + " 个任务加入队列");
+            logger.info("ScheduledTask: " + cnt + " 个任务执行完毕");
 
             isRunning = false;
-
         } else {
-            logger.info("JobForFriendTaskImpl:" + "任务已经开启，无需再开启");
+            logger.info("ScheduledTask:" + "任务已经开启，无需再开启");
         }
+    }
+
+
+    public void setSubscriberService(SubscriberService subscriberService) {
+        this.subscriberService = subscriberService;
     }
 
     public void setPlayService(PlayService playService) {
         this.playService = playService;
+    }
+
+   /* public void setDrawRequest(DrawRequest drawRequest) {
+        this.drawRequest = drawRequest;
+    }
+*/
+    public void setCreditLogService(CreditLogService creditLogService) {
+        this.creditLogService = creditLogService;
     }
 }

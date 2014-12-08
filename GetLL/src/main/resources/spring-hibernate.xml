@@ -42,7 +42,7 @@
         <property name="mappingResources">
             <list>
                 <!-- 以下列出所有的 PO 映射文件 -->
-                <!--<value>com/xiayule/getll/db/model/User.hbm.xml</value>-->
+                <!--<value>com/xiayule/getll/db/model/MobileAccount.hbm.xml</value>-->
                 <!--<value>com/xiayule/getll/db/model/FlowMoneyCost.hbm.xml</value>-->
                 <!--<value>com/xiayule/getll/db/model/HistoryVersion.hbm.xml</value>-->
                 <value>com/xiayule/getll/db/model/CreditLog.hbm.xml</value>
@@ -66,12 +66,12 @@
     </bean>
 
 
-    <bean id="shakeLogDao" class="com.xiayule.getll.db.dao.impl.CreditLogDaoImpl">
+    <bean id="creditLogDao" class="com.xiayule.getll.db.dao.impl.CreditLogDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <bean id="creditLogService" class="com.xiayule.getll.db.service.impl.CreditLogServiceImpl">
-        <property name="creditLogDao" ref="shakeLogDao"/>
+        <property name="creditLogDao" ref="creditLogDao"/>
     </bean>
 
     <!-- 配置 Hibernate 的局部事务管理器，使用 HibernateTransactionManager 类 -->
@@ -95,7 +95,7 @@
     <aop:config>
           <!-- 配置一个切入点 -->
           <aop:pointcut id="ajaxPointcut"
-                        expression="bean(versionHistoryServicve)||bean(creditLogService)"/>
+                        expression="bean(versionHistoryServicve)||bean(creditLogService)||bean(creditLogDao)"/>
           <!-- 指定在 leePointcut 切入点应用 txAdvice 事务增强处理 -->
           <aop:advisor advice-ref="txAdvice"
                        pointcut-ref="ajaxPointcut"/>

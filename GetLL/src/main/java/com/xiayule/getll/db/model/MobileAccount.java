@@ -4,7 +4,7 @@ package com.xiayule.getll.db.model;
  * 用户 Model
  * Created by tan on 14-10-26.
  */
-public class User {
+public class MobileAccount {
     private Integer id;
 
     private String mobile;

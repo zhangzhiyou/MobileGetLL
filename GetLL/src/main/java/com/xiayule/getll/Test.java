@@ -1,16 +1,25 @@
 package com.xiayule.getll;
 
 
+import com.xiayule.getll.db.dao.CreditLogDao;
+import com.xiayule.getll.db.dao.impl.CreditLogDaoImpl;
+import com.xiayule.getll.domain.CreditRank;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Calendar;
+
 /**
  * Created by tan on 14-7-20.
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-//        ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
-//                "spring-hibernate.xml"
-//        });
+        ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
+                "spring-hibernate.xml"
+        });
 
 
+/*
         String winName = "0.1个流量币";
         if (winName.contains("个流量币")) {
 
@@ -20,17 +29,37 @@ public class Test {
 
             System.out.println(creidt);
         }
+*/
 
-//        CreditLogService shakeLogService = ctx.getBean("shakeLogService", CreditLogService.class);
+        /*CreditLogService shakeLogService = ctx.getBean("creditLogService", CreditLogService.class);
 
-//        CreditLog shakeLog = new CreditLog("18369905136", 1.2);
-//        shakeLogDao.saveOrUpdate(shakeLog);
+        shakeLogService.logLoginCredit("18369905136", 1.3);
+        shakeLogService.logReceiveCredit("18369905136", 1.2);
+
+        shakeLogService.logLoginCredit("18369905506", 1.1);
+        shakeLogService.logShakeCredit("18369905506", 1.3);
+*/
+
+        CreditLogDao creditLogDao = ctx.getBean("creditLogDao", CreditLogDao.class);
+
+        /*Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+
+        System.out.println(calendar);
+
+        CreditRank creditRank = creditLogDao.queryFirstRank(calendar);
+        System.out.println(creditRank);*/
+
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DAY_OF_MONTH, -1);
+
+        System.out.println(creditLogDao.queryRank("18369905136", c));
 
 //        CreditLog shakeLog = shakeLogDao.get(1);
 //
 //        shakeLog.setCredit(2.2);
 //        System.out.println(shakeLogDao.get(1));
-
+        
 //        shakeLogDao.saveOrUpdate(shakeLog);
 //
 //        System.out.println(shakeLogDao.findAllVersionHistory());

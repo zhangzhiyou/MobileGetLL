@@ -6,7 +6,7 @@
 <!--hibernate-mapping是映射文件的根元素-->
 <hibernate-mapping package="com.xiayule.getll.db.model" >
 <!-- 每个class元素对应一个持久话对象-->
-    <class name="com.xiayule.getll.db.model.User" table="user">
+    <class name="MobileAccount" table="user">
         <!--id元素定义持久化对象-->
         <id name="id" column="id">
             <!--指定主键生成策略-->

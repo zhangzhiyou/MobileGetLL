@@ -54,7 +54,7 @@
                 <li><a href="javascript:;" title="可以将流量币转赠给亲人、好友" id="bt_zhuanzeng" onclick="locationPage('/transferGifts.jsp')">转赠</a></li>
                 <li><a href="#" title="90天内的流量币获取消费明细" onclick="locationPage('/scoreDetails.jsp')">流量币明细</a></li>
                 <li><a href="#" title="一起来见证我们的成长" onclick="locationPage('/historyVersion/show.action')">历程
-                    <span class="badge" style="background: #e80029">new</span></a></li>
+                    <%--<span class="badge" style="background: #e80029">new</span>--%></a></li>
                 <li><a href="#" title="有什么想对我们说的，可以留言哦" onclick="locationPage('/comment.jsp')">留言</a></li>
                 <li><a href="#" title="如果我们的服务对您有用，可以请我们喝杯茶" onclick="locationPage('/donate.jsp')">赞助</a></li>
             </ul>
@@ -186,12 +186,11 @@
             <div class="col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">昨日摇取概况(第一获得<span style="color: #ff0000; font-size: large">${model.firstRank.credit}</span>个流量币)</h3>
+                        <h3 class="panel-title">昨日摇取概况(第一摇得<span style="color: #ff0000; font-size: large">${model.firstRank.credit}</span>个流量币, 只统计摇取信息)</h3>
                     </div>
                     <div class="panel-body">
                         <div class="col-xs-12" style="text-align:center; font-size: 20px">
-                            摇得<span class="bigrednum">${model.mobileRank.credit}</span>个流量币,
-                            排第<span class="bigrednum">${model.mobileRank.rank}</span>名,
+                            昨日共摇得<span class="bigrednum">${model.mobileRank.credit}</span>个流量币,
                             击败了全站 <span class="bigrednum">${model.beatPercent}</span>用户
                         </div>
                     </div>

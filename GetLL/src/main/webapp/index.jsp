@@ -182,20 +182,23 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">昨日摇取概况(第一摇得<span style="color: #ff0000; font-size: large">${model.firstRank.credit}</span>个流量币, 只统计摇取信息)</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="col-xs-12" style="text-align:center; font-size: 20px">
-                            昨日共摇得<span class="bigrednum">${model.mobileRank.credit}</span>个流量币,
-                            击败了全站 <span class="bigrednum">${model.beatPercent}</span>用户
+            
+            <c:if test="${!empty model.mobileRank}">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">昨日摇取概况(第一摇得<span style="color: #ff0000; font-size: large">${model.firstRank.creditToString}</span>个流量币, 只统计摇取信息)</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-12" style="text-align:center; font-size: 20px">
+                                昨日共摇得<span class="bigrednum">${model.mobileRank.creditToString}</span>个流量币,
+                                击败了全站 <span class="bigrednum">${model.beatPercent}</span>用户
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </c:if>
+
 
             <div class="col-xs-12 col-md-4">
                 <div class="panel panel-default">

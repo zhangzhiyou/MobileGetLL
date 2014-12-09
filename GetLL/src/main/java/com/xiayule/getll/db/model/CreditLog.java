@@ -1,5 +1,7 @@
 package com.xiayule.getll.db.model;
 
+import com.xiayule.getll.utils.DecimalUtils;
+
 import java.util.Date;
 
 /**
@@ -57,6 +59,7 @@ public class CreditLog {
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public Double getCredit() {
         return credit;

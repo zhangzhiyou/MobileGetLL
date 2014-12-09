@@ -53,10 +53,10 @@
         <div class="col-md-4 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">屏蔽朋友摇奖短信</h3>
+                    <h3 class="panel-title">朋友摇奖短信通知</h3>
                 </div>
                 <div class="panel-body">
-                    朋友摇奖会收到短信通知，开启该功能可以屏蔽短信通知，次日生效。<span style="color: #ff0000">注:该功能暂时不可用，请耐心等待修复</span>
+                    朋友摇奖会收到短信通知，关闭该功能可以屏蔽短信通知，次日生效。<span style="color: #ff0000">注:该功能暂时不可用，请耐心等待修复</span>
                 </div>
                 <div class="panel-footer" style="text-align: center"><input class="checkbox" type="checkbox" data-toggle="switch" id="fdShakeNotify"/></div>
             </div>

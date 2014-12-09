@@ -1,6 +1,7 @@
 package com.xiayule.getll.domain;
 
 import com.xiayule.getll.db.model.CreditLog;
+import com.xiayule.getll.utils.DecimalUtils;
 
 /**
  * Created by tan on 14-12-7.
@@ -19,6 +20,14 @@ public class CreditRank {
     public CreditRank(String mobile, double credit) {
         this.mobile = mobile;
         this.credit = credit;
+    }
+
+    /**
+     * 得到经过保留1位小数的credit
+     * @return
+     */
+    public String getCreditToString() {
+        return DecimalUtils.formatDecial(credit);
     }
 
     @Override

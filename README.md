@@ -1,7 +1,11 @@
 
+效果:
 
+[http://xiayule.net](xiayule.net)
 
-bootstrap:
+-------------------------------------------------------------------
+
+备用 bootstrap 插件:
 
 1. [Chart.js](http://www.bootcss.com/p/chart.js/)
 2. [Messenger](http://www.bootcss.com/p/messenger/)

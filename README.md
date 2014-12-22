@@ -1,15 +1,21 @@
 
-官网:
+# 流量汇管家
 
-[http://xiayule.net](http://xiayule.net)
+本项目是一个简单的 JAVA SSH 项目。
 
--------------------------------------------------------------------
+为的是帮助[流量汇](http://shake.sd.chinamobile.com/)玩家赚取流量
 
-备用 bootstrap 插件:
+项目的部署地址为[流量汇管家](http://xiayule.net)
 
-1. [Chart.js](http://www.bootcss.com/p/chart.js/)
-2. [Messenger](http://www.bootcss.com/p/messenger/)
-3. [flat ui](http://www.bootcss.com/p/flat-ui/)
-4. [Responsive Nav](http://www.bootcss.com/p/responsive-nav.js/)
-5. [font-awesome](http://www.bootcss.com/p/font-awesome/)
-6. [stickUp](https://github.com/LiranCohen/stickUp) 固定导航, 例如 footer
+所用到的技术包括:
+
+SSH、redis、quartz、mail、jsp、bootstrap、js、ajax、mysql 等。
+
+现在, 网站**开源了**，你可以做任何你想做的事，包括：
+
+1. 学习代码
+2. 复制、修改、传播代码
+3. pull request 完善代码
+4. 下载、搭建自己的服务，帮助身边的朋友们
+
+目前部署在山东理工大学，用户数800+，每日pv 500+。

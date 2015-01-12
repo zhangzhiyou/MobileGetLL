@@ -47,8 +47,26 @@
         </div>
 
         <div class="col-xs-12">
-            <table class="col-xs-12 col-xs-12 table table-striped table-bordered table-condensed table-hover" style="text-align: center; border: 1">
-                <caption style="text-align: center"><h3>赞助名单</h3></caption>
+            <table class="col-xs-12 col-xs-12 table table-striped table-bordered table-condensed table-hover" style="text-align: center; border: 1px">
+                <caption style="text-align: center"><h3><span style="color: #ff0000">2015</span>赞助名单</h3></caption>
+
+                <tr>
+                    <th style="text-align: center">姓名</th>
+                    <th style="text-align: center">金额(元)</th>
+                    <th style="text-align: center">赠言</th>
+                </tr>
+
+                <tr>
+                    <td>王文彬</td>
+                    <td>0.80</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-xs-12">
+            <table class="col-xs-12 col-xs-12 table table-striped table-bordered table-condensed table-hover" style="text-align: center; border: 1px">
+                <caption style="text-align: center"><h3><span style="color: #ff0000">2014</span>赞助名单</h3></caption>
 
                 <tr>
                     <th style="text-align: center">姓名</th>

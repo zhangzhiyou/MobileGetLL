@@ -15,11 +15,11 @@ import java.util.Calendar;
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-//        ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
-//                "spring-hibernate.xml"
-//        });
+        /*ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
+                "spring-hibernate.xml"
+        });*/
 
-        System.out.println(DecimalUtils.formatPersont((double)378/447));
+//        System.out.println(DecimalUtils.formatPersont((double)378/447));
 /*
         String winName = "0.1个流量币";
         if (winName.contains("个流量币")) {

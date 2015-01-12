@@ -5,6 +5,7 @@ import com.xiayule.getll.db.model.HistoryVersion;
 import com.xiayule.getll.db.service.HistoryVersionService;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

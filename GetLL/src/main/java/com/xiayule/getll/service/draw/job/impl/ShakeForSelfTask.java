@@ -72,8 +72,10 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
         if (remainTimes > 0) {
             int cnt = 0;
 
-            do {
-                try {
+            try {
+
+                do {
+
                     String winName = playService.draw(mobile);
 
                     logger.info(mobile + " 第" + (++cnt) + "次摇奖,获得奖励:"
@@ -94,12 +96,13 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
                     } catch (InterruptedException e) {
                         logger.info(mobile + " Thread.sleep error");
                     }
-                } catch (Exception e) {
-                    logger.info(mobile + " 摇奖过程出错, draw or addDrawScore return null");
-                }
 
-
-            } while (remainTimes > 0);
+                } while (remainTimes > 0);
+            } catch (Exception e) {
+                logger.info(mobile + " 摇奖过程出错, draw or addDrawScore return null");
+                // 摇奖出现错误，退出
+                return ;
+            }
         }
 
         // 查询分数
@@ -109,6 +112,7 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
                 + " 今日总计:" + queryScore.getString("todayCredit")
                 + " 当前流量币: " + queryScore.getString("credit"));
     }
+
 
 
     @Scheduled(cron = "0 0 5 * * ?")

@@ -61,7 +61,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#" title="您想知道的，都在这里" onclick="locationPage('/help.jsp')">帮助</a></li>
-                <li><a href="#" title="注销登录后，我们依旧为您赚取流量而努力" onclick="javascript:logoutSystem();" id="logoutSystem">注销</a></li>
+                <li><a href="#" title="注销登录后，我们依旧为您赚取流量而努力" onclick="logoutSystem()" id="logoutSystem">注销</a></li>
             </ul>
         </div>
     </div>
@@ -221,7 +221,7 @@
                         <h3 class="panel-title">网站公告</h3>
                     </div>
                     <div class="panel-body">
-                        如果您在官方登录并点击了官方的退出登录，那么也会导致本站的服务不可用，这时可以重新登录本站，便可恢复服务
+                        朋友摇奖已可用，需要重新手动开启该功能
                     </div>
                 </div>
             </div>
@@ -336,7 +336,6 @@
     <script type="text/javascript" src="js/jquery.circliful.min.js"></script>
 
     <script type="text/javascript" src="js/common.min.js"></script>
-    <%--<script type="text/javascript" src="js/jquery.MyDigitclock.js"></script>--%>
 
     <script>
         eventMan.checkLogin(function () {

@@ -12,7 +12,6 @@
     <jsp:include page="snap/head.html"/>
 
     <title>设置-流量汇管家</title>
-
 </head>
 
 <body>
@@ -101,13 +100,11 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="modal-forFriend-label">
-                    开启朋友摇奖
+                    模态框
                 </h4>
             </div>
             <div class="modal-body">
-                开启该功能，
-                <span style="color: red">每天18点至21点会收到移动的摇奖短信</span>
-                ，如果觉得困扰，可以随时回来关闭该功能
+                可以点击模态框右上角关闭、点击返回关闭、或者点击确认关闭，如果不对模态框定制，单击模态框以外的区域也可以关闭。
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
@@ -115,7 +112,7 @@
                 </button>
                 <button type="button" class="btn btn-primary action-forFriend-open"
                         data-dismiss="modal">
-                    开启
+                    确认
                 </button>
             </div>
         </div><!-- /.modal-content -->
@@ -153,7 +150,7 @@
         }
     });
 
-    $('input[id="forFriend"]').on({
+    $('#forFriend').on({
         'init.bootstrapSwitch': function() {
             // 更新朋友摇奖状态
             $.getJSON("/ajax/statusForFriend.action?r=" + new Date().getTime(), function(data) {
@@ -176,9 +173,6 @@
 //            alert("state: " + state);
 
             if (state == true) { // 如果想要开启朋友摇奖
-
-
-//                console.log("state1:" + state);
 
 //                让其失去焦点，这时使用代码改变按钮状态就不会触发事件
                 $("#forFriend").blur();
@@ -397,6 +391,47 @@
     function len(v){
         return v.replace(/[^\x00-\xff]/g,"**").length;
     }
+
+
+    $('#switch').on({
+        'init.bootstrapSwitch': function() {
+
+            // 确保一开始焦点不在switch上
+            var state = true; // 从服务器获取按钮状态
+
+            $("#switch").bootstrapSwitch("state", state);// 初始化状态
+
+        },
+        'switchChange.bootstrapSwitch': function(event, state) {
+            // 如果没有焦点，证明不是用户触发的,　不做任何处理
+            if ($("#switch").is(":focus") == false) return;
+
+            if (state == true) { // 如果当前状态为 on
+
+                // 让其失去焦点，这时使用代码改变按钮状态就不会触发事件
+                $("#switch").blur();
+
+                // 防止对话框意外关闭，先设置按钮的状态为关闭
+                $("#switch").bootstrapSwitch("state", false);
+
+                // 弹出模态框, 模态框中的响应
+                $("#modal-switch").modal({backdrop: 'static', keyboard: false});
+
+            } else { // 如果当前状态为off
+                // 处理
+            }
+        }
+    });
+
+    // 单击了模态框中的确定按钮
+    $('#modal-switch-confirm').click(function () {
+        // 处理 ...
+
+        // 处理成功改变 switch 状态
+        $("#switch").bootstrapSwitch("state", true);
+    });
+
+
 </script>
 
 

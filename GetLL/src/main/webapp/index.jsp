@@ -122,7 +122,7 @@
         </c:if>
 
         <!-- 主要内容 -->
-        <div class="col-md-9 col-xs-12">
+        <div id="mainContainer" class="col-md-9 col-xs-12">
             <!-- 个人信息 -->
             <div class="jumbotron col-xs-12">
                 <!-- 欢迎语 -->
@@ -210,17 +210,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class='col-xs-12 col-md-8'>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">套餐明细</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="listDiv" style="text-align: center"></div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- 侧边栏 -->
@@ -288,6 +277,21 @@
         <li><a href="javascript:;" id="convert_#id#">#prizeName#(需#nowLostCredit#流量币)</a></li>
     </div>
 
+    <%--套餐明细临时模板--%>
+    <div id="tmp_ll_detail" class="hideme">
+        <div class='col-xs-12 col-md-4'>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">套餐明细</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="listDiv" style="text-align: center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- 图表临时模板 -->
     <div id="jiaitem_tmp_tubiao" class="hideme">
         <!--图表-->
@@ -329,8 +333,6 @@
     <script type="text/javascript" src="js/score.min.js"></script>
     <script type="text/javascript" src="js/flowScore.min.js"></script>
 
-    <%--todo:--%>
-    <%--<script type="text/javascript" src="js/highcharts.js"></script>--%>
     <script type="text/javascript" src="js/jquery.circliful.min.js"></script>
 
     <script type="text/javascript" src="js/common.min.js"></script>

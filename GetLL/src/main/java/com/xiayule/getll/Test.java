@@ -19,7 +19,7 @@ public class Test {
                 "spring-hibernate.xml"
         });*/
 
-//        System.out.println(DecimalUtils.formatPersont((double)378/447));
+//        System.out.println(DecimalUtils.formatPercent((double)378/447));
 /*
         String winName = "0.1个流量币";
         if (winName.contains("个流量币")) {

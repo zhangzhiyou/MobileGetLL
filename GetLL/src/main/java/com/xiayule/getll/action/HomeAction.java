@@ -83,13 +83,12 @@ public class HomeAction implements Action{
         Integer count = creditLogService.queryYesterdayMobileCount();
 
         if (mobileRank != null) {
-            String beatPercent = DecimalUtils.formatPersont((double)(count-mobileRank.getRank())/count);
+            String beatPercent = DecimalUtils.formatPercent((double) (count - mobileRank.getRank()) / count);
 
             model.put("firstRank", firstRank);
             model.put("mobileRank", mobileRank);
             model.put("beatPercent", beatPercent);
         }
-
 
         // 传递参数到jsp
         request.setAttribute("model", model);

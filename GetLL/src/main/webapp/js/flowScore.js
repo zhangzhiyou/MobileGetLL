@@ -301,10 +301,8 @@ FlowScore.prototype.getTotalFlow = function (callback) {
 
             $totalDiv.append(itemStr);
 
+            // 流量明细
 
-            //列表展示
-            //显示套餐详情
-            var $htmls = $('#listDiv').html("");
             var list = result.list;
 
             var colorsResult = new Array();
@@ -315,7 +313,15 @@ FlowScore.prototype.getTotalFlow = function (callback) {
             colorsResult.push('#B6376E');
             colorsResult.push('#7E3BDC');
 
+            // 获得流量明细的模板
+            var tmpLLDetail = $("#tmp_ll_detail");
+
+            // 生成要显示的流量明细html元素项，然后排序，以防上面的元素描述长导致排版混乱
+            var itemStrs = [];
+
+            //分别显示套餐详情
             for (var i = 0; i < list.length; i++) {
+                // 获得第i个明细对象
                 var obj = list[i];
 
                 itemTmp = $("#jiaitem_tmp_tubiao").html();
@@ -327,30 +333,39 @@ FlowScore.prototype.getTotalFlow = function (callback) {
                     .replace(/#botton_desc#/g, obj.PRIVSET)
                     .replace(/#fgcolor#/g, colorsResult[i]);
 
-                $htmls.append('<div class="col-xs-12 col-md-' + parseInt(12/list.length) + '">' + itemStr + '</div>');
+                itemStrs.push(itemStr);
+            }
+
+            // itemStrs 排序, 先按长度比较
+            itemStrs.sort(function (a, b) {
+                if (a.lengh != b.length) {
+                    return a.length > b.length;
+                } else {
+                    return a > b;
+                }
+            });
+
+            var title = $(".panel-title", tmpLLDetail);
+            var listDiv = $('.listDiv', tmpLLDetail);
+
+            for (i = 0; i < itemStrs.length; i++) {
+                itemStr = itemStrs[i];
+
+                // 获得流量明细模板中的 listDiv
+
+                title.html("套餐明细-" + (i + 1));
+                listDiv.html('<div class="col-xs-12">' + itemStr + '</div>');
+
+                // 复制一份tmpLLDetail，添加到显示
+                $("#mainContainer").append(tmpLLDetail.html());
             }
 
             // 显示图表
-            for (var i = 0; i < list.length; i++) {
+            for (i = 0; i < list.length; i++) {
                 $('#taocan' + i).circliful();
             }
 
             $('#taocan').circliful();
-
-            /*//列表展示
-            var list = result.list;
-            var htmls = '<div><span class="line" style="color:#F33">套餐明细</span></div>';
-            for (var i = 0; i < list.length; i++) {
-                var obj = list[i];
-                htmls = [htmls,
-                        '<div><div>套餐' + getNumTip(i) + '</div>',
-                        '<div>' + obj.PRIVSET + '</div>',//（'+obj.TYPE+'）
-
-                        '<div><span class="detail">剩余：' + obj.LEFTNUM + 'M</span><span class="detail">已用：' + obj.USEDNUM + '/' + obj.SUMNUM + 'M</span></div></div>'
-                ].join('');
-            }
-            $("#listDiv").html(htmls);
-            */
         }
 
         if (callback) {

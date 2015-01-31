@@ -173,8 +173,12 @@
             // 如果没有焦点，证明不是人控制的,　不做任何处理
             if ($("#forFriend").is(":focus") == false) return;
 
-            if (state === true) { // 如果想要开启朋友摇奖
-                console.log("state1:" + state);
+//            alert("state: " + state);
+
+            if (state == true) { // 如果想要开启朋友摇奖
+
+
+//                console.log("state1:" + state);
 
 //                让其失去焦点，这时使用代码改变按钮状态就不会触发事件
                 $("#forFriend").blur();
@@ -183,7 +187,7 @@
                 updateDivStyle("forFriend", 0);
 
                 // 如果是开启该功能，则弹出提示框
-                $("#modal-forFriend").modal();
+                $("#modal-forFriend").modal({backdrop: 'static', keyboard: false});
 
             } else {
                 // 如果是关闭该功能，则不提示
@@ -274,7 +278,8 @@
                 alert(data.message);
             }else{
                 // 成功
-//                alert(data.message);
+                // 如果不加这句，即不弹出一个对话框，在关闭朋友摇奖时，也会弹出modal
+                alert(data.message);
             }
         },"json");
     }

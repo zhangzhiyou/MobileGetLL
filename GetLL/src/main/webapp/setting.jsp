@@ -12,6 +12,7 @@
     <jsp:include page="snap/head.html"/>
 
     <title>设置-流量汇管家</title>
+
 </head>
 
 <body>
@@ -100,11 +101,13 @@
                     &times;
                 </button>
                 <h4 class="modal-title" id="modal-forFriend-label">
-                    模态框
+                    开启朋友摇奖
                 </h4>
             </div>
             <div class="modal-body">
-                可以点击模态框右上角关闭、点击返回关闭、或者点击确认关闭，如果不对模态框定制，单击模态框以外的区域也可以关闭。
+                开启该功能，
+                <span style="color: red">每天18点至21点会收到移动的摇奖短信</span>
+                ，如果觉得困扰，可以随时回来关闭该功能
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
@@ -112,7 +115,7 @@
                 </button>
                 <button type="button" class="btn btn-primary action-forFriend-open"
                         data-dismiss="modal">
-                    确认
+                    开启
                 </button>
             </div>
         </div><!-- /.modal-content -->
@@ -173,6 +176,9 @@
 //            alert("state: " + state);
 
             if (state == true) { // 如果想要开启朋友摇奖
+
+
+//                console.log("state1:" + state);
 
 //                让其失去焦点，这时使用代码改变按钮状态就不会触发事件
                 $("#forFriend").blur();

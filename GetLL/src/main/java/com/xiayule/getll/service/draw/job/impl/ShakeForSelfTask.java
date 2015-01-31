@@ -114,7 +114,6 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
     }
 
 
-
     @Scheduled(cron = "0 0 5 * * ?")
     public void taskStart() {
         if (!isRunning) {
@@ -128,8 +127,12 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
 
                 cnt++;
 
-//                drawRequest.addRequest(sub);
-                autoPlay(sub);
+                try {
+                    autoPlay(sub);
+                } catch (Exception e) {
+                    logger.info("摇奖过程出错");
+                }
+
             }
 
             logger.info("ScheduledTask: " + cnt + " 个任务执行完毕");

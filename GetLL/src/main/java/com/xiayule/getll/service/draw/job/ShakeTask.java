@@ -9,7 +9,7 @@ public interface ShakeTask {
     /**
      * 摇奖延时, 单位毫秒
      */
-    public static final Integer PLAY_LAZY = 1000;
+    public static final Integer PLAY_LAZY = 2000;
 
     /**
      * 为自己摇奖

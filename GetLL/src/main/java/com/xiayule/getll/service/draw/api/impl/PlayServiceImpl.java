@@ -121,6 +121,7 @@ public class PlayServiceImpl implements PlayService {
      */
     public String drawWithSource(String cookieMobile) {
         String urlDrawPath = "http://shake.sd.chinamobile.com/shake?method=draw&r=" + Math.random();
+
         String json = post(cookieMobile, urlDrawPath, null);
 
         logger.info(cookieMobile + " draw 返回(" + json + ")");

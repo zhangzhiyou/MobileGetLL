@@ -278,7 +278,7 @@
                 alert(data.message);
             }else{
                 // 成功
-                // 如果不加这句，即不弹出一个对话框，在关闭朋友摇奖时，也会弹出modal
+                // 如果不加这句，在我的手机浏览器, 在关闭朋友摇奖时，会弹出modal
                 alert(data.message);
             }
         },"json");

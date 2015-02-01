@@ -397,47 +397,6 @@
     function len(v){
         return v.replace(/[^\x00-\xff]/g,"**").length;
     }
-
-
-    $('#switch').on({
-        'init.bootstrapSwitch': function() {
-
-            // 确保一开始焦点不在switch上
-            var state = true; // 从服务器获取按钮状态
-
-            $("#switch").bootstrapSwitch("state", state);// 初始化状态
-
-        },
-        'switchChange.bootstrapSwitch': function(event, state) {
-            // 如果没有焦点，证明不是用户触发的,　不做任何处理
-            if ($("#switch").is(":focus") == false) return;
-
-            if (state == true) { // 如果当前状态为 on
-
-                // 让其失去焦点，这时使用代码改变按钮状态就不会触发事件
-                $("#switch").blur();
-
-                // 防止对话框意外关闭，先设置按钮的状态为关闭
-                $("#switch").bootstrapSwitch("state", false);
-
-                // 弹出模态框, 模态框中的响应
-                $("#modal-switch").modal({backdrop: 'static', keyboard: false});
-
-            } else { // 如果当前状态为off
-                // 处理
-            }
-        }
-    });
-
-    // 单击了模态框中的确定按钮
-    $('#modal-switch-confirm').click(function () {
-        // 处理 ...
-
-        // 处理成功改变 switch 状态
-        $("#switch").bootstrapSwitch("state", true);
-    });
-
-
 </script>
 
 

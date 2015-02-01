@@ -338,7 +338,7 @@ FlowScore.prototype.getTotalFlow = function (callback) {
 
             // itemStrs 排序, 先按长度比较
             itemStrs.sort(function (a, b) {
-                if (a.lengh != b.length) {
+                if (a.length != b.length) {
                     return a.length > b.length;
                 } else {
                     return a > b;

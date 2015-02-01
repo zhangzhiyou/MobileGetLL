@@ -150,9 +150,12 @@ public class CreditLogDaoImpl extends HibernateDaoSupport implements CreditLogDa
      */
     public Integer queryLogMobileCount(int year, int month, int day) {
 
-        String hql = "select count(DISTINCT mobile) from shake_log where year(time)=2014 and month(time)=12 and day(time)=8";
+        String sql = "select count(DISTINCT mobile) from shake_log where year(time) = :year and month(time) = :month and day(time) = :day";
 
-        Query query = currentSession().createSQLQuery(hql);
+        Query query = currentSession().createSQLQuery(sql);
+        query.setInteger("year", year);
+        query.setInteger("month", month);
+        query.setInteger("day", day);
 
         BigInteger bigCount = (BigInteger)query.uniqueResult();
         return bigCount.intValue();

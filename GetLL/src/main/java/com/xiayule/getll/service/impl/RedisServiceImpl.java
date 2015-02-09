@@ -21,17 +21,6 @@ public class RedisServiceImpl implements RedisService {
 
     @Autowired
     private RedisDataSource redisDataSource;
-/*    private static Jedis jedis;
-
-    public RedisServiceImpl(String host, int port) {
-        //该构造函数只执行一次
-        assert jedis == null;
-
-        if (jedis == null) {
-            jedis = new Jedis(host, port);//连接redis
-            System.out.println("构造 " + host + " " + port);
-        }
-    }*/
 
     public String hmset(String key, Map<String, String> hash) {
         boolean broken = false;

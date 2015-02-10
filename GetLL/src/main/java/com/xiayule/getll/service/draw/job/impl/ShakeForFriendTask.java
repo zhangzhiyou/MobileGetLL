@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -102,7 +103,7 @@ public class ShakeForFriendTask implements ShakeTask {
             isRunning = true;
 
             // 获取所有订阅下午摇奖的人
-            Set<String> subs = subscriberService.getAllSubscriberForFriend();
+            List<String> subs = subscriberService.getAllSubscriberForFriend();
 
             int cnt = 0;
 

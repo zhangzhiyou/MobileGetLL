@@ -1,5 +1,7 @@
 package com.xiayule.getll.service.impl;
 
+import com.xiayule.getll.db.model.Function;
+import com.xiayule.getll.db.service.FunctionService;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.service.RegisterCodeService;
 import com.xiayule.getll.service.SubscriberService;
@@ -22,6 +24,9 @@ public class SubscriberServiceImpl implements SubscriberService {
 
     @Autowired
     private RegisterCodeService registerCodeService;
+
+    @Autowired
+    private FunctionService functionService;
 
     /**
      * 某个 手机号 是否已经订购服务
@@ -46,6 +51,15 @@ public class SubscriberServiceImpl implements SubscriberService {
             // 然后将序列号删除
             registerCodeService.removeRegisterCode(registerCode);
 
+            //如果以前没有设置过使用过本站服务
+            Function function = functionService.getByMobile(mobile);
+
+            if (function == null) {
+                // 初始化该用户的设置
+                function = new Function(mobile);
+                functionService.save(function);
+            }
+
             return true;
         }
 
@@ -60,14 +74,16 @@ public class SubscriberServiceImpl implements SubscriberService {
      * 注册为朋友摇奖
      */
     public void subForFriend(String mobile) {
-        redisService.sadd("forFriend", mobile);
+//        redisService.sadd("forFriend", mobile);
+        functionService.setForFriend(mobile, true);
     }
 
     /**
      * 取消订阅为朋友摇奖
      */
     public void unsubForFriend(String mobile) {
-        redisService.srem("forFriend", mobile);
+//        redisService.srem("forFriend", mobile);
+        functionService.setForFriend(mobile, false);
     }
 
     /**
@@ -75,35 +91,42 @@ public class SubscriberServiceImpl implements SubscriberService {
      * @return
      */
     public Boolean isSubForFriend(String mobile) {
-        return redisService.sismember("forFriend", mobile);
+
+//        return redisService.sismember("forFriend", mobile);
+        return functionService.statusForFriend(mobile);
     }
 
     public void subAutoReceiveGifts(String mobile) {
-        redisService.sadd("autoReceive", mobile);
+//        redisService.sadd("autoReceive", mobile);
+        functionService.setAutoReceive(mobile, true);
     }
 
     public void unsubAutoReceiveGifts(String mobile) {
-        redisService.srem("autoReceive", mobile);
+//        redisService.srem("autoReceive", mobile);
+        functionService.setAutoReceive(mobile, false);
     }
 
     public Boolean isSubAutoReceiveGifts(String mobile) {
-        return redisService.sismember("autoReceive", mobile);
+//        return redisService.sismember("autoReceive", mobile);
+        return functionService.statusAutoReceive(mobile);
     }
 
     /**
      * 获得所有的订阅为朋友摇奖的服务
      * @return
      */
-    public Set<String> getAllSubscriberForFriend() {
-        return redisService.smembers("forFriend");
+    public List<String> getAllSubscriberForFriend() {
+//        return redisService.smembers("forFriend");
+        return functionService.getAllForFriend();
     }
 
     /**
      * 获得所有订阅自动领取流量币的用户
      * @return
      */
-    public Set<String> getAllSubscriberAutoReceive() {
-        return redisService.smembers("autoReceive");
+    public List<String> getAllSubscriberAutoReceive() {
+//        return redisService.smembers("autoReceive");
+        return functionService.getAllAutoReceive();
     }
 
 

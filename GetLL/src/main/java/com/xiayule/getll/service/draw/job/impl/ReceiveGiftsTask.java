@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -58,7 +59,7 @@ public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
             isRunning = true;
 
             // 获取所有订阅下午摇奖的人
-            Set<String> subs = subscriberService.getAllSubscriberAutoReceive();
+            List<String> subs = subscriberService.getAllSubscriberAutoReceive();
 
             int cnt = 0;
 

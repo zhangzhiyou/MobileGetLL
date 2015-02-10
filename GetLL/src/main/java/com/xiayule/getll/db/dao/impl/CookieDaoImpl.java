@@ -12,8 +12,6 @@ import java.util.List;
  */
 public class CookieDaoImpl extends HibernateDaoSupport implements CookieDao {
 
-
-
     public Cookie getByMobile(String mobile) {
         List<Cookie> cookieList = (List<Cookie>) getHibernateTemplate().find("from Cookie c where c.mobile=?", mobile);
         if (cookieList.size() <= 0) {

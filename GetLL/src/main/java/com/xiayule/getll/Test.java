@@ -3,6 +3,8 @@ package com.xiayule.getll;
 
 import com.xiayule.getll.db.dao.CreditLogDao;
 import com.xiayule.getll.db.dao.impl.CreditLogDaoImpl;
+import com.xiayule.getll.db.model.Function;
+import com.xiayule.getll.db.service.FunctionService;
 import com.xiayule.getll.domain.CreditRank;
 import com.xiayule.getll.utils.DecimalUtils;
 import org.springframework.context.ApplicationContext;
@@ -15,11 +17,20 @@ import java.util.Calendar;
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-        /*ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext(new String[] {
                 "spring-hibernate.xml"
-        });*/
+        });
 
-//        System.out.println(DecimalUtils.formatPercent((double)378/447));
+        FunctionService functionService = ctx.getBean("functionService", FunctionService.class);
+//        functionService.save(new Function("123"));
+//        System.out.println("haha");
+//        functionService.setForFriend("123", true);
+
+        System.out.println(functionService.getAllAutoReceive());
+        System.out.println(functionService.getAllForFriend());
+
+//        System.out.println(functionService.statusForFriend("123"));
+        //        System.out.println(DecimalUtils.formatPercent((double)378/447));
 /*
         String winName = "0.1个流量币";
         if (winName.contains("个流量币")) {

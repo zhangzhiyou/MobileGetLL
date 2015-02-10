@@ -70,7 +70,7 @@ public interface SubscriberService {
      * 获得所有的订阅为朋友摇奖的服务
      * @return
      */
-    public Set<String> getAllSubscriberForFriend();
+    public List<String> getAllSubscriberForFriend();
 
 
     /**
@@ -96,6 +96,6 @@ public interface SubscriberService {
      * 获得所有订阅自动领取流量币的用户
      * @return
      */
-    public Set<String> getAllSubscriberAutoReceive();
+    public List<String> getAllSubscriberAutoReceive();
 
 }

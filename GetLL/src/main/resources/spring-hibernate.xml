@@ -52,6 +52,7 @@
                 <value>com/xiayule/getll/db/model/HistoryVersion.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/CreditLog.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/Cookie.hbm.xml</value>
+                <value>com/xiayule/getll/db/model/Function.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -88,6 +89,14 @@
         <property name="cookieDao" ref="cookieDao"/>
     </bean>
 
+    <bean id="functionDao" class="com.xiayule.getll.db.dao.impl.FunctionDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="functionService" class="com.xiayule.getll.db.service.impl.FunctionServiceImpl">
+        <property name="functionDao" ref="functionDao"/>
+    </bean>
+
     <!-- 配置 Hibernate 的局部事务管理器，使用 HibernateTransactionManager 类 -->
     <!-- 该类实现 PlatformTransactionManager 接口，是针对 Hibernate 的特定实现 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -109,7 +118,7 @@
     <aop:config>
           <!-- 配置一个切入点 -->
           <aop:pointcut id="ajaxPointcut"
-                        expression="bean(versionHistoryServicve)||bean(creditLogService)||bean(cookieService)"/>
+                        expression="bean(versionHistoryServicve)||bean(creditLogService)||bean(cookieService)||bean(functionService)"/>
           <!-- 指定在 leePointcut 切入点应用 txAdvice 事务增强处理 -->
           <aop:advisor advice-ref="txAdvice"
                        pointcut-ref="ajaxPointcut"/>

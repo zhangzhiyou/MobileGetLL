@@ -13,11 +13,11 @@ import java.util.*;
 
 /**
  * Created by tan on 14-7-20.
- * 操作本地cookie的类
+ * 操作本地cookie的类, 使用 redis 实现
  */
-@Component
+//@Component
 public class CookieServiceImpl implements CookieService {
-    @Autowired
+//    @Autowired
     private RedisService redisService;
 
     /**

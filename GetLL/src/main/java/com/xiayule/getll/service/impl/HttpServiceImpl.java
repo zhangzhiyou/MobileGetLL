@@ -80,7 +80,7 @@ public class HttpServiceImpl implements HttpService {
                 return result;
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return null;
     }

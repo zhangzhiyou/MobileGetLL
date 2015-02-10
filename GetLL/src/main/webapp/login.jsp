@@ -79,7 +79,7 @@
     <script type="text/javascript" src="js/application.min.js"></script>
 
 
-    <script type="text/javascript" src="js/eventMan.min.js"></script>
+    <script type="text/javascript" src="js/eventMan.js"></script>
     <script type="text/javascript" src="js/common.min.js"></script>
 
     <script>

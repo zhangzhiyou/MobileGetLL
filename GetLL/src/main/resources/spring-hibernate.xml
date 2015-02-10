@@ -22,6 +22,11 @@
         <!-- 指定链接数据库的密码 -->
         <property name="password" value="0000"/>
 
+        <!-- sae 数据库 配置 -->
+        <!--<property name="user" value="3lwmowynl4"/>
+        <property name="jdbcUrl" value="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_getll?useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="password" value="xi5xlk5hj5kw4kj4llwzw0iyi5hh2mlm451jx1ky`"/>-->
+
         <!-- 指定链接数据库连接池的最大连接数 -->
         <property name="maxPoolSize" value="40"/>
         <!-- 指定链接数据库连接池的最小连接数 -->
@@ -46,6 +51,7 @@
                 <!--<value>com/xiayule/getll/db/model/FlowMoneyCost.hbm.xml</value>-->
                 <value>com/xiayule/getll/db/model/HistoryVersion.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/CreditLog.hbm.xml</value>
+                <value>com/xiayule/getll/db/model/Cookie.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -74,6 +80,14 @@
         <property name="creditLogDao" ref="creditLogDao"/>
     </bean>
 
+    <bean id="cookieDao" class="com.xiayule.getll.db.dao.impl.CookieDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="cookieService" class="com.xiayule.getll.service.impl.CookieServiceIMysqlmpl">
+        <property name="cookieDao" ref="cookieDao"/>
+    </bean>
+
     <!-- 配置 Hibernate 的局部事务管理器，使用 HibernateTransactionManager 类 -->
     <!-- 该类实现 PlatformTransactionManager 接口，是针对 Hibernate 的特定实现 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -95,7 +109,7 @@
     <aop:config>
           <!-- 配置一个切入点 -->
           <aop:pointcut id="ajaxPointcut"
-                        expression="bean(versionHistoryServicve)||bean(creditLogService)"/>
+                        expression="bean(versionHistoryServicve)||bean(creditLogService)||bean(cookieService)"/>
           <!-- 指定在 leePointcut 切入点应用 txAdvice 事务增强处理 -->
           <aop:advisor advice-ref="txAdvice"
                        pointcut-ref="ajaxPointcut"/>

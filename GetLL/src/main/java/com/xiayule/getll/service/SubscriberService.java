@@ -47,7 +47,7 @@ public interface SubscriberService {
     /**
      * 返回redis 中保存的 订阅者的数量
      */
-    public int countNumbers();
+    public Long countNumbers();
 
     /**
      * 注册为朋友摇奖

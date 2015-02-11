@@ -226,13 +226,15 @@ public class SubscriberServiceImpl implements SubscriberService {
 //    }
 
     /**
-     * 返回redis 中保存的 订阅者的数量
+     * 返回中保存的 订阅者的数量
      * @return
      */
-    public int countNumbers() {
+    public Long countNumbers() {
         // todo： 这样会很耗费时间，建议修改方法
 //        Set<String> numbers = redisService.keys("sub_*");
 //        return numbers.size();
-        return 0;
+
+
+        return mobileAccountService.countValid();
     }
 }

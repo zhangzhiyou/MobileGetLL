@@ -24,7 +24,7 @@ public class SystemEmailTask {
 
     @Scheduled(cron = "0 0 8,22 * * ?")
     public void doJob() {
-        Integer mSubscribCount = subscriberService.countNumbers();
+        Long mSubscribCount = subscriberService.countNumbers();
 
         String messageContent = "订阅人数: " + mSubscribCount;
 

@@ -143,7 +143,7 @@ public class AjaxAction {
                 return Action.SUCCESS;
             }
 
-            if (subscriberService.isSubscribe(m)) {// 是订阅者
+        if (subscriberService.isSubscribe(m)) {// 是订阅者
                 jsonObj.put("status", "ok");
 
                 // 设置 cookie
@@ -208,7 +208,7 @@ public class AjaxAction {
 
         jsonObj = JsonUtils.stringToJson(strRes);
 
-        cleanParams();
+        System.out.println("jsonObj:" + jsonObj);
 
         return Action.SUCCESS;
     }

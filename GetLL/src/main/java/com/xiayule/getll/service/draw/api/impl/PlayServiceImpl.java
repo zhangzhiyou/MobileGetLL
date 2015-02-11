@@ -47,7 +47,7 @@ public class PlayServiceImpl implements PlayService {
         String result = post(mobile, urlGetPassword, params);
 
         exchangeLogger.info(mobile + ": getPassword, 返回信息:(" + result + ")");
-
+        System.out.println(mobile + ": getPassword, 返回信息:(" + result + ")");
 
         return result;
     }

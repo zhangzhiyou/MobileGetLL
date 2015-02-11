@@ -75,7 +75,7 @@ public class HttpServiceImpl implements HttpService {
 
             // 解析返回的内容
             if (httpResponse.getStatusLine().getStatusCode() != 404) {
-                String result = EntityUtils.toString(httpResponse.getEntity());
+                String result = EntityUtils.toString(httpResponse.getEntity(), HTTP.UTF_8);
 
                 // 保存 cookie
                 updateCookieToLocal(client, mobile);
@@ -103,16 +103,14 @@ public class HttpServiceImpl implements HttpService {
             // 设置参数的编码
             HttpResponse httpResponse = client.execute(request); // 发送请求并获取反馈
 
-
             // 解析返回的内容
             if (httpResponse.getStatusLine().getStatusCode() != 404) {
 
-                String result = EntityUtils.toString(httpResponse.getEntity());
+                String result = EntityUtils.toString(httpResponse.getEntity(), HTTP.UTF_8);
 
                 // 保存 cookie
 //                cookieStore = client.getCookieStore();
                 updateCookieToLocal(client, mobile);
-
 
                 return result;
             }
@@ -161,7 +159,7 @@ public class HttpServiceImpl implements HttpService {
         request.setHeader("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
         request.setHeader("Connection", "keep-alive");
         request.setHeader("Cache-Control", "no-cache");
-        request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
         request.setHeader("Host", "shake.sd.chinamobile.com");
         request.setHeader("Origin", "http://shake.sd.chinamobile.com");
         request.setHeader("Referer", "http://shake.sd.chinamobile.com/");

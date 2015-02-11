@@ -59,6 +59,21 @@ public class FunctionServiceImpl implements FunctionService{
         return functionDao.getAllAutoReceive();
     }
 
+    /**
+     * 获得所有有效的订阅朋友摇奖的
+     * @return
+     */
+    public List<String> getAlValidlForFriend() {
+        return functionDao.getAllValidlForFriend();
+    }
+
+    /**
+     * 获得所有有效的订阅自动领取的摇奖的
+     */
+    public List<String> getAllValidAutoReceive() {
+        return functionDao.getAllValidAutoReceive();
+    }
+
     // set and get methods
 
     public FunctionDao getFunctionDao() {

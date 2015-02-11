@@ -32,6 +32,21 @@ public class MobileAccountDaoImpl extends HibernateDaoSupport implements MobileA
     }
 
     /**
+     * 获得所有的有效用户
+     */
+    public List<String> getAllValid() {
+        // 获得当前日期
+        Calendar calendar = Calendar.getInstance();
+
+        String hql = "select m.mobile from MobileAccount m where m.endTime>=:date";
+
+        Query query = currentSession().createQuery(hql);
+        query.setDate("date", calendar.getTime());
+
+        return query.list();
+    }
+
+    /**
      * 统计当前有效用户的数量
      * @return
      */
@@ -45,5 +60,15 @@ public class MobileAccountDaoImpl extends HibernateDaoSupport implements MobileA
         query.setDate("date", calendar.getTime());
 
         return (Long)query.uniqueResult();
+    }
+
+    @Override
+    public void delete(String mobile) {
+        String hql = "delete from MobileAccount m where m.mobile=?";
+
+        Query query = currentSession().createQuery(hql);
+        query.setString(0, mobile);
+
+        query.executeUpdate();
     }
 }

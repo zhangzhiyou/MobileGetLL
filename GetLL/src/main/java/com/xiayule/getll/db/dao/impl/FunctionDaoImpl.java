@@ -5,6 +5,7 @@ import com.xiayule.getll.db.model.Function;
 import org.hibernate.Query;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -45,17 +46,50 @@ public class FunctionDaoImpl extends HibernateDaoSupport implements FunctionDao 
 
 
     public List<String> getAllForFriend() {
-        //todo: 查找的同时去掉没有订阅的
         String hql = "select mobile from Function where forFriend=true";
         Query query = currentSession().createQuery(hql);
         List<String> mobiles = query.list();
         return mobiles;
     }
 
+    /**
+     * 获得所有有效的订阅朋友摇奖的
+     * @return
+     */
+    public List<String> getAllValidlForFriend() {
+        // 获得当前日期
+        Calendar calendar = Calendar.getInstance();
+
+        String hql = "select f.mobile from Function f, MobileAccount m" +
+                " where f.mobile=m.mobile and f.forFriend=true and m.endTime>=:date";
+
+        Query query = currentSession().createQuery(hql);
+        query.setDate("date", calendar.getTime());
+
+        List<String> mobiles = query.list();
+        return mobiles;
+    }
+
     public List<String> getAllAutoReceive() {
-        //todo: 查找所有自动领取的, 去掉没有订阅的
         String hql = "select mobile from Function where autoReceive=true";
         Query query = currentSession().createQuery(hql);
+        List<String> mobiles = query.list();
+        return mobiles;
+    }
+
+    /**
+     * 获得所有有效的订阅自动领取的摇奖的
+     */
+    public List<String> getAllValidAutoReceive() {
+        // 获得当前日期
+        Calendar calendar = Calendar.getInstance();
+
+        String hql = "select f.mobile from Function f, MobileAccount m" +
+                " where f.mobile=m.mobile and f.autoReceive=true and m.endTime>=:date";
+
+        Query query = currentSession().createQuery(hql);
+        query.setDate("date", calendar.getTime());
+
         List<String> mobiles = query.list();
         return mobiles;
     }

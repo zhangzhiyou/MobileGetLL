@@ -4,6 +4,7 @@ import com.xiayule.getll.db.model.Function;
 import com.xiayule.getll.db.model.MobileAccount;
 import com.xiayule.getll.db.service.FunctionService;
 import com.xiayule.getll.db.service.MobileAccountService;
+import com.xiayule.getll.service.CookieService;
 import com.xiayule.getll.service.RedisService;
 import com.xiayule.getll.service.RegisterCodeService;
 import com.xiayule.getll.service.SubscriberService;
@@ -24,6 +25,9 @@ import java.util.Set;
 public class SubscriberServiceImpl implements SubscriberService {
 //    @Autowired
 //    private RedisService redisService;
+
+    @Autowired
+    CookieService cookieService;
 
     @Autowired
     private MobileAccountService mobileAccountService;
@@ -104,6 +108,11 @@ public class SubscriberServiceImpl implements SubscriberService {
     public void unSubscribe(String mobile) {
 //        redisService.del("sub_" + mobile);
 
+        // 删除cookie
+        cookieService.deleteCookie(mobile);
+
+        // 删除有效期
+        mobileAccountService.delete(mobile);
     }
 
     /**
@@ -153,7 +162,8 @@ public class SubscriberServiceImpl implements SubscriberService {
      */
     public List<String> getAllSubscriberForFriend() {
 //        return redisService.smembers("forFriend");
-        return functionService.getAllForFriend();
+//        return functionService.getAllForFriend();
+        return functionService.getAllValidAutoReceive();
     }
 
     /**
@@ -162,7 +172,8 @@ public class SubscriberServiceImpl implements SubscriberService {
      */
     public List<String> getAllSubscriberAutoReceive() {
 //        return redisService.smembers("autoReceive");
-        return functionService.getAllAutoReceive();
+//        return functionService.getAllAutoReceive();
+        return functionService.getAllValidAutoReceive();
     }
 
 
@@ -212,7 +223,8 @@ public class SubscriberServiceImpl implements SubscriberService {
 //        }
 
 //        return subList;
-        return null;
+
+        return mobileAccountService.getAllValid();
     }
 
     // get and set methods
@@ -230,7 +242,6 @@ public class SubscriberServiceImpl implements SubscriberService {
      * @return
      */
     public Long countNumbers() {
-        // todo： 这样会很耗费时间，建议修改方法
 //        Set<String> numbers = redisService.keys("sub_*");
 //        return numbers.size();
 

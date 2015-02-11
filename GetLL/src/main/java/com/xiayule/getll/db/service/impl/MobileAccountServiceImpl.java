@@ -4,6 +4,8 @@ import com.xiayule.getll.db.dao.MobileAccountDao;
 import com.xiayule.getll.db.model.MobileAccount;
 import com.xiayule.getll.db.service.MobileAccountService;
 
+import java.util.List;
+
 /**
  * Created by tan on 15-2-11.
  */
@@ -37,11 +39,22 @@ public class MobileAccountServiceImpl implements MobileAccountService {
     }
 
     /**
+     * 获得所有的有效用户
+     */
+    public List<String> getAllValid() {
+        return mobileAccountDao.getAllValid();
+    }
+
+    /**
      * 统计当前有效用户的数量
      * @return
      */
     public Long countValid() {
         return mobileAccountDao.countValid();
+    }
+
+    public void delete(String mobile) {
+        mobileAccountDao.delete(mobile);
     }
 
     // set and get methods

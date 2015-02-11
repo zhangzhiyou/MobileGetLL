@@ -47,6 +47,11 @@ public class CookieDaoImpl extends HibernateDaoSupport implements CookieDao {
     }
 
     public void delete(String mobile) {
-        getHibernateTemplate().delete("mobile", mobile);
+        String hql = "delete from Cookie c where c.mobile=?";
+
+        Query query = currentSession().createQuery(hql);
+        query.setString(0, mobile);
+
+        query.executeUpdate();
     }
 }

@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 /**
  * Created by tan on 14-7-29.
  */
-@Component
+//@Component
 public class RegisterCodeServiceImpl implements RegisterCodeService {
     private int EXPIRE_TIME = 15*24*60*60;// 15天的秒数
 
-    @Autowired
+//    @Autowired
     private RedisService redisService;
 
     /**
@@ -47,7 +47,7 @@ public class RegisterCodeServiceImpl implements RegisterCodeService {
 
     // set and get methos
 
-    public void setRedisService(RedisService redisService) {
-        this.redisService = redisService;
-    }
+//    public void setRedisService(RedisService redisService) {
+//        this.redisService = redisService;
+//    }
 }

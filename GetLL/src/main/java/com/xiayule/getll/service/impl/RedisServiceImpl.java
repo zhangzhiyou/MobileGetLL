@@ -16,10 +16,10 @@ import java.util.Set;
  * Created by tan on 14-7-21.
  * Redis 操作的类
  */
-@Component
+//@Component
 public class RedisServiceImpl implements RedisService {
 
-    @Autowired
+//    @Autowired
     private RedisDataSource redisDataSource;
 
     public String hmset(String key, Map<String, String> hash) {

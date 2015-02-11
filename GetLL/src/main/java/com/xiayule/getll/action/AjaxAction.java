@@ -31,8 +31,8 @@ public class AjaxAction {
     @Autowired
     private PlayService playService;
 
-    @Autowired
-    private RegisterCodeService registerCodeService;
+//    @Autowired
+//    private RegisterCodeService registerCodeService;
 
     @Autowired
     private CookieService cookieService;
@@ -133,8 +133,10 @@ public class AjaxAction {
                     return Action.SUCCESS;
                 }
 
-                String registerCode = registerCodeService.generateRegisterCode();
-                subscriberService.subscribe(m, registerCode);
+//                String registerCode = registerCodeService.generateRegisterCode();
+//                subscriberService.subscribe(m, registerCode);
+
+                subscriberService.subscribe(m);
 
                 // 设置 cookie
                 ServletActionContext.getResponse().addCookie(cookie);
@@ -151,8 +153,10 @@ public class AjaxAction {
                 return Action.SUCCESS;
             } else {// 不是订阅者
                 // 订购本站业务
-                String registerCode = registerCodeService.generateRegisterCode();
-                subscriberService.subscribe(m, registerCode);
+//                String registerCode = registerCodeService.generateRegisterCode();
+//                subscriberService.subscribe(m, registerCode);
+                subscriberService.subscribe(m);
+
                 jsonObj.put("status", "ok");
 
                 // 设置 cookie
@@ -415,16 +419,19 @@ public class AjaxAction {
     }
 
     /**
-     * 免费续期 7 天
+     * 免费续期 30 天
      * @return
      */
     public String freshRegisterCode() {
         String m = UserUtils.getMobileFromCookie();
 
         // 生成注册码
-        String registerCode = registerCodeService.generateRegisterCode();
+//        String registerCode = registerCodeService.generateRegisterCode();
+
         // 注册注册码
-        subscriberService.subscribe(m, registerCode);
+//        subscriberService.subscribe(m, registerCode);
+
+        subscriberService.subscribe(m);
 
         // 获得更新后得到有效时间
         String strDays = subscriberService.getTTLDays(m);
@@ -789,9 +796,9 @@ public class AjaxAction {
         this.jsonObj = jsonObj;
     }
 
-    public void setRegisterCodeService(RegisterCodeService registerCodeService) {
-        this.registerCodeService = registerCodeService;
-    }
+//    public void setRegisterCodeService(RegisterCodeService registerCodeService) {
+//        this.registerCodeService = registerCodeService;
+//    }
 
     /*public String getRegisterCode() {
         return registerCode;

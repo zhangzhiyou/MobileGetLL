@@ -17,10 +17,9 @@ public interface SubscriberService {
     /**
      * 订阅服务
      * @param mobile 要订阅的手机号
-     * @param serial 使用的序列号
      * @return 序列号合法、成功订阅返回真
      */
-    public boolean subscribe(String mobile, String serial);
+    public void subscribe(String mobile);
 
     public void unSubscribe(String mobile);
 
@@ -41,7 +40,7 @@ public interface SubscriberService {
 
     // get and set methods
 
-    public void setRedisService(RedisService redisService);
+//    public void setRedisService(RedisService redisService);
 
     public List<String> getAllSubscriber();
 

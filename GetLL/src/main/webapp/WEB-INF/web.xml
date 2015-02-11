@@ -25,7 +25,8 @@
             classpath:spring-quartz.xml,
             classpath:spring-mail.xml,
             classpath:spring-hibernate.xml
-            classpath:spring-redis.xml
+            <!--为了在sae上部署，因此决定不再使用redis -->
+            <!--classpath:spring-redis.xml-->
         </param-value>
     </context-param>
 

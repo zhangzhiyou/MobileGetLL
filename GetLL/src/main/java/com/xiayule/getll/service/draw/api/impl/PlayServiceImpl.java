@@ -5,8 +5,7 @@ import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONObject;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -23,10 +22,10 @@ import java.util.List;
 @Scope("prototype")
 public class PlayServiceImpl implements PlayService {
     // 输出到系统日志
-    private static Logger logger = LogManager.getLogger(PlayService.class.getName());
+    private static Logger logger = Logger.getLogger(PlayService.class);
 
     // 兑换日志
-    private static Logger exchangeLogger = LogManager.getLogger("com.xiayule.exchange");
+    private static Logger exchangeLogger = Logger.getLogger("com.xiayule.exchange");
 
     @Autowired
     private HttpService httpService;

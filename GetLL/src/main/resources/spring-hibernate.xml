@@ -15,17 +15,17 @@
         <!-- 指定链接数据库的驱动-->
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
 
-        <!-- 指定链接数据库的 url -->
+    <!--    &lt;!&ndash; 指定链接数据库的 url &ndash;&gt;
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/GetLL?useUnicode=true&amp;characterEncoding=utf8"/>
-        <!-- 指定链接数据库的用户名 -->
+        &lt;!&ndash; 指定链接数据库的用户名 &ndash;&gt;
         <property name="user" value="root"/>
-        <!-- 指定链接数据库的密码 -->
-        <property name="password" value="0000"/>
+        &lt;!&ndash; 指定链接数据库的密码 &ndash;&gt;
+        <property name="password" value="0000"/>-->
 
         <!-- sae 数据库 配置 -->
-        <!--<property name="user" value="3lwmowynl4"/>
+        <property name="user" value="3lwmowynl4"/>
         <property name="jdbcUrl" value="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_getll?useUnicode=true&amp;characterEncoding=utf8"/>
-        <property name="password" value="xi5xlk5hj5kw4kj4llwzw0iyi5hh2mlm451jx1ky`"/>-->
+        <property name="password" value="xi5xlk5hj5kw4kj4llwzw0iyi5hh2mlm451jx1ky"/>
 
         <!-- 指定链接数据库连接池的最大连接数 -->
         <property name="maxPoolSize" value="40"/>

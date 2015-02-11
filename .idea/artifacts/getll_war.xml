@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="getll:war">
-    <output-path>$PROJECT_DIR$/out/artifacts/getll_war</output-path>
-    <root id="archive" name="getll_war.war">
+    <output-path>$PROJECT_DIR$/GetLL/target</output-path>
+    <root id="archive" name="getll-1.0.war">
       <element id="artifact" artifact-name="getll:war exploded" />
     </root>
   </artifact>

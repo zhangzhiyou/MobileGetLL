@@ -7,8 +7,7 @@ import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.JsonUtils;
 import com.xiayule.getll.utils.UserUtils;
 import net.sf.json.JSONObject;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,7 +22,7 @@ import java.util.*;
 @Component
 @Scope("prototype")
 public class AjaxAction {
-    private static Logger logger = LogManager.getLogger(PlayService.class.getName());
+    private static Logger logger = Logger.getLogger(PlayService.class.getName());
 
     @Autowired
     private SubscriberService subscriberService;

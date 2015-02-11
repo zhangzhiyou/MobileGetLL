@@ -15,8 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -30,7 +29,7 @@ import java.util.List;
 @Component
 @Scope("prototype")
 public class HttpServiceImpl implements HttpService {
-    private static Logger logger = LogManager.getLogger(HttpService.class.getName());
+    private static Logger logger = Logger.getLogger(HttpService.class);
 
     @Autowired
     private CookieService cookieService;

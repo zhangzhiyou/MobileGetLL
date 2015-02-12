@@ -106,7 +106,11 @@ public class AjaxAction {
 
         jsonObj = new JSONObject();
 
-        Cookie cookie = CookieFactory.newCookie("mobile", m);
+
+
+        Cookie cookie = CookieFactory.newCookie("mobile", m, ServletActionContext.getRequest().getContextPath());
+
+        System.out.println("AjaxAction login contextPath:" + ServletActionContext.getRequest().getContextPath());
 
         // 存在 cookie
 //        if (cookieService.isExist(m)) {

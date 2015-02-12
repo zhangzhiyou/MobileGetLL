@@ -16,14 +16,12 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
 
 
-<!--
-        &lt;!&ndash; 指定链接数据库的 url &ndash;&gt;
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/GetLL?useUnicode=true&amp;characterEncoding=utf8"/>
+        <!-- 指定链接数据库的 url -->
+        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/GetLL?useUnicode=true&amp;characterEncoding=utf8"/>
         &lt;!&ndash; 指定链接数据库的用户名 &ndash;&gt;
         <property name="user" value="root"/>
         &lt;!&ndash; 指定链接数据库的密码 &ndash;&gt;
-        <property name="password" value="0000"/>
--->
+        <property name="password" value="0000"/>-->
 
         <!-- sae 数据库 配置 -->
         <property name="user" value="3lwmowynl4"/>

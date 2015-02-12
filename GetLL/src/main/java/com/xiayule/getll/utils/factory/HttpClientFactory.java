@@ -2,10 +2,13 @@ package com.xiayule.getll.utils.factory;
 
 import com.xiayule.getll.service.CookieService;
 import org.apache.http.client.CookieStore;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * 用于创建HttpClient的工厂类
@@ -25,6 +28,13 @@ public class HttpClientFactory {
 
         if (cookieService.isExist(mobile)) {
             CookieStore cookieStore = cookieService.getCookieStore(mobile);
+
+            System.out.println("cookieStore: " + cookieStore);
+            List<Cookie> cookieList = cookieStore.getCookies();
+            for (Cookie c : cookieList) {
+                System.out.println(c);
+            }
+
 
             defaultHttpClient.setCookieStore(cookieStore);
         }

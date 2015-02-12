@@ -15,10 +15,15 @@ public class CookieFactory {
      * @param value
      * @return
      */
-    public static Cookie newCookie(String key, String value) {
+    public static Cookie newCookie(String key, String value, String contextPath) {
         // 设置 cookie
         Cookie cookie = new Cookie(key, value);
-        cookie.setPath("/");
+
+//        cookie.setPath("/");
+
+        //sae 需要设置
+        cookie.setPath(contextPath + "/");
+
         cookie.setMaxAge(60*60*24*365*10);// cookie 默认十年
 
         return cookie;
@@ -34,6 +39,7 @@ public class CookieFactory {
         BasicClientCookie cookie = new BasicClientCookie(key, value);
         // 设置 cookie
         cookie.setDomain("shake.sd.chinamobile.com");
+
         cookie.setPath("/");
 
         //设置过期时间为 100 年后

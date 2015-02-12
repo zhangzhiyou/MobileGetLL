@@ -8,6 +8,7 @@ import org.apache.http.client.CookieStore;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.cookie.BasicClientCookie;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +46,21 @@ public class CookieServiceIMysqlmpl implements CookieService {
 
         return cookieStore;
     }
+
+    public Map<String, String> getCookies(String mobile) {
+        Map<String, String> cookies = new HashMap<String, String>();
+
+        Cookie cookie = cookieDao.getByMobile(mobile);
+
+        cookies.put(Cookie.JSESSIONID, cookie.getjSessionId());
+        cookies.put(Cookie.LOGINTOKEN, cookie.getLoginToken());
+        cookies.put(Cookie.NICKNAME, cookie.getNickName());
+        cookies.put(Cookie.PROVWAP, cookie.getPrivWap());
+        cookies.put(Cookie.USERSIGN, cookie.getUserSignWap());
+
+        return cookies;
+    }
+
 
     @Override
     public void saveCookie(String mobile, CookieStore cookieStore) {

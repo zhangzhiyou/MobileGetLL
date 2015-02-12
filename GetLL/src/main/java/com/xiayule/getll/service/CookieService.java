@@ -14,4 +14,6 @@ public interface CookieService {
      * @param mobile 需要删除的手机号
      */
     public void deleteCookie(String mobile);
+
+//    public Map<String, String> getCookies(String mobile);
 }

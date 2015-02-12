@@ -1,8 +1,8 @@
 package com.xiayule.getll.service.impl;
 
-import com.xiayule.getll.utils.factory.HttpClientFactory;
 import com.xiayule.getll.service.CookieService;
 import com.xiayule.getll.service.HttpService;
+import com.xiayule.getll.utils.factory.HttpClientFactory;
 import org.apache.http.Header;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
@@ -59,7 +59,7 @@ public class HttpServiceImpl implements HttpService {
         try {
             HttpPost request = new HttpPost(url); // 根据内容来源地址创建一个Http请求
 
-            initHeaders(request);
+            initPostHeaders(request);
 
             if (params != null) {
                 request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8)); // 设置参数的编码
@@ -95,7 +95,7 @@ public class HttpServiceImpl implements HttpService {
             // 根据内容来源地址创建一个Http请求
             HttpGet request = new HttpGet(url);
 
-            initHeaders(request);
+            initGetHeaders(request);
 
             DefaultHttpClient client = getDefaultHttpClient(mobile);
 
@@ -153,19 +153,54 @@ public class HttpServiceImpl implements HttpService {
         System.out.println("======Cookie end====");
     }
 
-    private void initHeaders(HttpRequest request) {
+    private void initGetHeaders(HttpRequest request) {
         request.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
+        //get 使用没关系, post 不可以
         request.setHeader("Accept-Encoding", "gzip, deflate");
-        request.setHeader("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
+        request.setHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4");
         request.setHeader("Connection", "keep-alive");
         request.setHeader("Cache-Control", "no-cache");
         request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
         request.setHeader("Host", "shake.sd.chinamobile.com");
         request.setHeader("Origin", "http://shake.sd.chinamobile.com");
         request.setHeader("Referer", "http://shake.sd.chinamobile.com/");
-        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0");
+        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36");
+
+        // get 去掉这个就可以, post 没关系
+//        request.setHeader("X-Requested-With", "XMLHttpRequest");
+    }
+
+    private void initPostHeaders(HttpRequest request) {
+        request.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
+        //get 使用没关系, post 不可以
+//        request.setHeader("Accept-Encoding", "gzip, deflate");
+        request.setHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4");
+        request.setHeader("Connection", "keep-alive");
+        request.setHeader("Cache-Control", "no-cache");
+        request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+        request.setHeader("Host", "shake.sd.chinamobile.com");
+        request.setHeader("Origin", "http://shake.sd.chinamobile.com");
+        request.setHeader("Referer", "http://shake.sd.chinamobile.com/");
+        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36");
+
+        // get 去掉这个就可以, post 没关系
         request.setHeader("X-Requested-With", "XMLHttpRequest");
     }
+
+
+//    private void initHeaders(HttpRequest request) {
+//        request.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
+//        request.setHeader("Accept-Encoding", "gzip, deflate");
+//        request.setHeader("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
+//        request.setHeader("Connection", "keep-alive");
+//        request.setHeader("Cache-Control", "no-cache");
+//        request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+//        request.setHeader("Host", "shake.sd.chinamobile.com");
+//        request.setHeader("Origin", "http://shake.sd.chinamobile.com");
+//        request.setHeader("Referer", "http://shake.sd.chinamobile.com/");
+//        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0");
+//        request.setHeader("X-Requested-With", "XMLHttpRequest");
+//    }
 
     // get and set methods
 

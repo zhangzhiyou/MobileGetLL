@@ -18,14 +18,14 @@ public class Cookie {
     private String jSessionId;
     private String loginToken;
     private String nickName;
-    private String privWap;
+    private String provWap;
     private String userSignWap;
 
     public void update(Cookie cookie) {
         this.jSessionId = cookie.getjSessionId();
         this.loginToken = cookie.getLoginToken();
         this.nickName = cookie.getNickName();
-        this.privWap = cookie.getPrivWap();
+        this.provWap = cookie.getProvWap();
         this.userSignWap = cookie.getUserSignWap();
     }
 
@@ -63,12 +63,12 @@ public class Cookie {
         this.nickName = nickName;
     }
 
-    public String getPrivWap() {
-        return privWap;
+    public String getProvWap() {
+        return provWap;
     }
 
-    public void setPrivWap(String privWap) {
-        this.privWap = privWap;
+    public void setProvWap(String privWap) {
+        this.provWap = privWap;
     }
 
     public String getUserSignWap() {

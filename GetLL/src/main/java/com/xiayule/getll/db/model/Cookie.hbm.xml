@@ -19,7 +19,7 @@
         <property name="jSessionId" type="java.lang.String"/>
         <property name="loginToken" type="java.lang.String"/>
         <property name="nickName" type="java.lang.String"/>
-        <property name="privWap" type="java.lang.String"/>
+        <property name="getProvWap" type="java.lang.String"/>
         <property name="userSignWap" type="java.lang.String"/>
     </class>
 </hibernate-mapping>

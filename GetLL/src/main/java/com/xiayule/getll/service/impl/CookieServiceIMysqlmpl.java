@@ -34,7 +34,7 @@ public class CookieServiceIMysqlmpl implements CookieService {
         BasicClientCookie jSessionId = CookieFactory.newShakeCookie(Cookie.JSESSIONID, cookie.getjSessionId());
         BasicClientCookie loginToken = CookieFactory.newShakeCookie(Cookie.LOGINTOKEN, cookie.getLoginToken());
         BasicClientCookie nickName = CookieFactory.newShakeCookie(Cookie.NICKNAME, cookie.getNickName());
-        BasicClientCookie provWap = CookieFactory.newShakeCookie(Cookie.PROVWAP, cookie.getPrivWap());
+        BasicClientCookie provWap = CookieFactory.newShakeCookie(Cookie.PROVWAP, cookie.getProvWap());
         BasicClientCookie userSign = CookieFactory.newShakeCookie(Cookie.USERSIGN, cookie.getUserSignWap());
 
         // 创建需要的cookie
@@ -55,7 +55,7 @@ public class CookieServiceIMysqlmpl implements CookieService {
         cookies.put(Cookie.JSESSIONID, cookie.getjSessionId());
         cookies.put(Cookie.LOGINTOKEN, cookie.getLoginToken());
         cookies.put(Cookie.NICKNAME, cookie.getNickName());
-        cookies.put(Cookie.PROVWAP, cookie.getPrivWap());
+        cookies.put(Cookie.PROVWAP, cookie.getProvWap());
         cookies.put(Cookie.USERSIGN, cookie.getUserSignWap());
 
         return cookies;
@@ -83,7 +83,7 @@ public class CookieServiceIMysqlmpl implements CookieService {
             } else if (key.equalsIgnoreCase(Cookie.NICKNAME)) {
                 cookie.setNickName(c.getValue());
             } else if (key.equalsIgnoreCase(Cookie.PROVWAP)) {
-                cookie.setPrivWap(c.getValue());
+                cookie.setProvWap(c.getValue());
             } else if (key.equalsIgnoreCase(Cookie.USERSIGN)) {
                 cookie.setUserSignWap(c.getValue());
             }

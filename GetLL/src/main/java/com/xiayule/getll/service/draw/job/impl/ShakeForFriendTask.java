@@ -4,13 +4,12 @@ import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.service.draw.job.ShakeTask;
 import com.xiayule.getll.utils.JsonUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by tan on 14-10-26.
@@ -18,7 +17,7 @@ import java.util.Set;
 @Component
 public class ShakeForFriendTask implements ShakeTask {
 
-    private static Logger logger = LogManager.getLogger(ShakeTask.class.getName());
+    private static Logger logger = Logger.getLogger(ShakeTask.class);
 
     @Autowired
     private PlayService playService;
@@ -93,7 +92,8 @@ public class ShakeForFriendTask implements ShakeTask {
     }
 
 
-    @Scheduled(cron = "0 0 18 * * ?")
+//    @Scheduled(cron = "0 0 18 * * ?")
+    @Scheduled(cron = "0 43 22 * * ?")
     public void doJob() {
         logger.info("JobForFriendTaskImpl:开始为朋友摇奖");
 
@@ -102,7 +102,7 @@ public class ShakeForFriendTask implements ShakeTask {
             isRunning = true;
 
             // 获取所有订阅下午摇奖的人
-            Set<String> subs = subscriberService.getAllSubscriberForFriend();
+            List<String> subs = subscriberService.getAllSubscriberForFriend();
 
             int cnt = 0;
 

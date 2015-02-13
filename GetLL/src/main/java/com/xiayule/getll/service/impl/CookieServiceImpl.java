@@ -6,18 +6,16 @@ import org.apache.http.client.CookieStore;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.cookie.BasicClientCookie;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 /**
  * Created by tan on 14-7-20.
- * 操作本地cookie的类
+ * 操作本地cookie的类, 使用 redis 实现
  */
-@Component
+//@Component
 public class CookieServiceImpl implements CookieService {
-    @Autowired
+//    @Autowired
     private RedisService redisService;
 
     /**
@@ -59,6 +57,8 @@ public class CookieServiceImpl implements CookieService {
 
         redisService.hmset(mobile, data);
     }
+
+
 
     public List<Cookie> getCookies(String mobile) {
         List<Cookie> cookies = new ArrayList<Cookie>();

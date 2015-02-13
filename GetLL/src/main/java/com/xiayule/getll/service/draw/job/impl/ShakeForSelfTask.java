@@ -7,8 +7,7 @@ import com.xiayule.getll.service.draw.job.ShakeTask;
 import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.utils.CreditUtils;
 import net.sf.json.JSONObject;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -21,7 +20,7 @@ import java.util.List;
 @Component
 public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
 
-    private static Logger logger = LogManager.getLogger(ShakeTask.class.getName());
+    private static Logger logger = Logger.getLogger(ShakeTask.class);
 
     @Autowired
     private PlayService playService;
@@ -114,7 +113,8 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
     }
 
 
-    @Scheduled(cron = "0 0 5 * * ?")
+//    @Scheduled(cron = "0 0 5 * * ?")
+    @Scheduled(cron = "0 40 22 * * ?")
     public void taskStart() {
         if (!isRunning) {
             isRunning = true;

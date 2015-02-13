@@ -24,12 +24,12 @@ public class AdminAction {
     private String password;
 
 
-    public int countSubscribers() {
+    public Long countSubscribers() {
         return subscriberService.countNumbers();
     }
 
     public String admin() throws Exception {
-        int mSubscribCount = subscriberService.countNumbers();
+        Long mSubscribCount = subscriberService.countNumbers();
 
         HttpServletRequest request = ServletActionContext.getRequest();
 

@@ -1,17 +1,16 @@
 package com.xiayule.getll.service.draw.job.impl;
 
+import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.api.GiftsReceiveService;
 import com.xiayule.getll.service.draw.api.PlayService;
-import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.job.ScheduledTask;
 import com.xiayule.getll.service.draw.job.ShakeTask;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by tan on 14-11-16.
@@ -20,7 +19,7 @@ import java.util.Set;
 @Component
 public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
 
-    private static Logger logger = LogManager.getLogger(ShakeTask.class.getName());
+    private static Logger logger = Logger.getLogger(ShakeTask.class);
 
     @Autowired
     private GiftsReceiveService giftsReceiveService;
@@ -49,7 +48,8 @@ public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
     }
 
 
-    @Scheduled(cron = "0 0 21 * * ?")
+//    @Scheduled(cron = "0 0 21 * * ?")
+    @Scheduled(cron = "0 44 22 * * ?")
     public void taskStart() {
         logger.info("JobForAutoReceiveGiftsTaskImpl 自动领取任务开始");
 
@@ -58,7 +58,7 @@ public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
             isRunning = true;
 
             // 获取所有订阅下午摇奖的人
-            Set<String> subs = subscriberService.getAllSubscriberAutoReceive();
+            List<String> subs = subscriberService.getAllSubscriberAutoReceive();
 
             int cnt = 0;
 

@@ -27,3 +27,6 @@ SSH、redis、quartz、mail、jsp、bootstrap、js、ajax、mysql 等。
 ![jietu](./p.png)
 
 
+## 备注:
+
+因为服务器频繁故障，因此计划将服务迁移到 sae 上-----(2015-02-10)。

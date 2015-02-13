@@ -154,6 +154,7 @@ EventMan.prototype.getPassword =  function(type) {
     $.post(postUrl + "r=" + Math.random(), {
         mobile : mobile
     }, function(data) {
+
         var msg = "";
         if (data.status != "ok") {
             msg = data.message;

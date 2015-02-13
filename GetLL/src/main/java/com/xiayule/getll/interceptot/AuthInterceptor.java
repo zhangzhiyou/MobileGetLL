@@ -5,20 +5,17 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.utils.UserUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.http.Cookie;
 
 /**
  * Created by tan on 14-8-1.
  */
 @Component
 public class AuthInterceptor extends AbstractInterceptor {
-    private static Logger logger = LogManager.getLogger(AuthInterceptor.class.getName());
+    private static Logger logger = Logger.getLogger(AuthInterceptor.class);
 
     @Autowired
     private SubscriberService subscriberService;

@@ -7,8 +7,7 @@ import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.utils.DecimalUtils;
 import com.xiayule.getll.utils.UserUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -30,7 +29,7 @@ import java.util.Map;
 public class HomeAction implements Action{
 
     //todo: 日志
-    private static Logger logger = LogManager.getLogger(HomeAction.class.getName());
+    private static Logger logger = Logger.getLogger(HomeAction.class);
 
     @Autowired
     private SubscriberService subscriberService;

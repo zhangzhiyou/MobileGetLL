@@ -1,5 +1,10 @@
 package com.xiayule.getll.db.model;
 
+import com.xiayule.getll.utils.Constants;
+
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * 用户 Model
  * Created by tan on 14-10-26.
@@ -8,17 +13,40 @@ public class MobileAccount {
     private Integer id;
 
     private String mobile;
+
     private String nick;
+
+    private String avatar;
 
     private String email;
 
-    // 是否自动领取
-    private Boolean isAutoReceive;
+    /**
+     * 截止日期
+     * 形式为 2015-01-01 这种形式
+     */
+    private Calendar endTime;
 
-    // 是否开启朋友摇奖
-    private Boolean isForFriend;
+    public MobileAccount() {
+        updateEndTime();
+    }
 
-//    todo: valid?
+    /**
+     * 续期
+     */
+    public void updateEndTime() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, Constants.TTL_VALID_DAY);
+        endTime = calendar;
+    }
+
+    public boolean valid() {
+        Calendar c = Calendar.getInstance();
+        if (c.after(endTime)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     // set and get methods
 
@@ -54,19 +82,19 @@ public class MobileAccount {
         this.email = email;
     }
 
-    public Boolean getIsAutoReceive() {
-        return isAutoReceive;
+    public Calendar getEndTime() {
+        return endTime;
     }
 
-    public void setIsAutoReceive(Boolean isAutoReceive) {
-        this.isAutoReceive = isAutoReceive;
+    public void setEndTime(Calendar endTime) {
+        this.endTime = endTime;
     }
 
-    public Boolean getIsForFriend() {
-        return isForFriend;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setIsForFriend(Boolean isForFriend) {
-        this.isForFriend = isForFriend;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

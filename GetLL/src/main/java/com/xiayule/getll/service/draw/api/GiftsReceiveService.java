@@ -5,8 +5,7 @@ import com.xiayule.getll.utils.JsonUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +18,7 @@ import java.util.ListIterator;
  */
 @Component
 public class GiftsReceiveService {
-    private static Logger logger = LogManager.getLogger(GiftsReceiveService.class.getName());
+    private static Logger logger = Logger.getLogger(GiftsReceiveService.class);
 
     @Autowired
     private PlayService playService;

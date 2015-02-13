@@ -17,10 +17,9 @@ public interface SubscriberService {
     /**
      * 订阅服务
      * @param mobile 要订阅的手机号
-     * @param serial 使用的序列号
      * @return 序列号合法、成功订阅返回真
      */
-    public boolean subscribe(String mobile, String serial);
+    public void subscribe(String mobile);
 
     public void unSubscribe(String mobile);
 
@@ -41,14 +40,14 @@ public interface SubscriberService {
 
     // get and set methods
 
-    public void setRedisService(RedisService redisService);
+//    public void setRedisService(RedisService redisService);
 
     public List<String> getAllSubscriber();
 
     /**
      * 返回redis 中保存的 订阅者的数量
      */
-    public int countNumbers();
+    public Long countNumbers();
 
     /**
      * 注册为朋友摇奖
@@ -70,7 +69,7 @@ public interface SubscriberService {
      * 获得所有的订阅为朋友摇奖的服务
      * @return
      */
-    public Set<String> getAllSubscriberForFriend();
+    public List<String> getAllSubscriberForFriend();
 
 
     /**
@@ -96,6 +95,6 @@ public interface SubscriberService {
      * 获得所有订阅自动领取流量币的用户
      * @return
      */
-    public Set<String> getAllSubscriberAutoReceive();
+    public List<String> getAllSubscriberAutoReceive();
 
 }

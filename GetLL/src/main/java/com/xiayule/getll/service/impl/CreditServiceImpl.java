@@ -12,9 +12,9 @@ import java.util.*;
  * Created by tan on 14-7-24.
  * 流量币 计数
  */
-@Component("creditService")
+//@Component("creditService")
 public class CreditServiceImpl implements CreditService {
-    @Autowired
+//    @Autowired
     private RedisService redisService;
 
     /**
@@ -101,7 +101,7 @@ public class CreditServiceImpl implements CreditService {
 
     // get and set methods
 
-    public void setRedisService(RedisService redisService) {
-        this.redisService = redisService;
-    }
+//    public void setRedisService(RedisService redisService) {
+//        this.redisService = redisService;
+//    }
 }

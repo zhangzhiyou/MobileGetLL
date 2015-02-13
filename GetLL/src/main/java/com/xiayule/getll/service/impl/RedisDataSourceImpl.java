@@ -9,10 +9,10 @@ import redis.clients.jedis.JedisPool;
 /**
  * Created by tan on 14-7-30.
  */
-@Component
+//@Component
 public class RedisDataSourceImpl implements RedisDataSource {
 
-    @Autowired
+//    @Autowired
     private JedisPool jedisPool;
 
     @Override

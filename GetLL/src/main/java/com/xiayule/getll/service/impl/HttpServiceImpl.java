@@ -1,9 +1,10 @@
 package com.xiayule.getll.service.impl;
 
-import com.xiayule.getll.utils.factory.HttpClientFactory;
 import com.xiayule.getll.service.CookieService;
 import com.xiayule.getll.service.HttpService;
+import com.xiayule.getll.utils.factory.HttpClientFactory;
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
@@ -14,20 +15,27 @@ import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 /**
  * Created by tan on 14-7-20.
  * Http 的 post 和 get，能够操作 cookie
+ *
+ * todo: 部署到 sae 上不能登录，不清楚为什么
  */
 @Component
 @Scope("prototype")
 public class HttpServiceImpl implements HttpService {
+    private static Logger logger = Logger.getLogger(HttpService.class);
+
     @Autowired
     private CookieService cookieService;
 
@@ -56,7 +64,7 @@ public class HttpServiceImpl implements HttpService {
         try {
             HttpPost request = new HttpPost(url); // 根据内容来源地址创建一个Http请求
 
-            initHeaders(request);
+            initPostHeaders(request);
 
             if (params != null) {
                 request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8)); // 设置参数的编码
@@ -72,7 +80,9 @@ public class HttpServiceImpl implements HttpService {
 
             // 解析返回的内容
             if (httpResponse.getStatusLine().getStatusCode() != 404) {
-                String result = EntityUtils.toString(httpResponse.getEntity());
+//                String result = EntityUtils.toString(httpResponse.getEntity(), HTTP.UTF_8);
+
+                String result = getResponseContent(httpResponse);
 
                 // 保存 cookie
                 updateCookieToLocal(client, mobile);
@@ -80,6 +90,7 @@ public class HttpServiceImpl implements HttpService {
                 return result;
             }
         } catch (Exception e) {
+
 
         }
         return null;
@@ -91,7 +102,7 @@ public class HttpServiceImpl implements HttpService {
             // 根据内容来源地址创建一个Http请求
             HttpGet request = new HttpGet(url);
 
-            initHeaders(request);
+            initGetHeaders(request);
 
             DefaultHttpClient client = getDefaultHttpClient(mobile);
 
@@ -99,22 +110,24 @@ public class HttpServiceImpl implements HttpService {
             // 设置参数的编码
             HttpResponse httpResponse = client.execute(request); // 发送请求并获取反馈
 
-
             // 解析返回的内容
             if (httpResponse.getStatusLine().getStatusCode() != 404) {
 
-                String result = EntityUtils.toString(httpResponse.getEntity());
+                // 在 sae 上会导致乱码
+//                String result = EntityUtils.toString(httpResponse.getEntity(), HTTP.UTF_8);
+
+                String result = getResponseContent(httpResponse);
 
                 // 保存 cookie
 //                cookieStore = client.getCookieStore();
                 updateCookieToLocal(client, mobile);
 
-
                 return result;
             }
         } catch (Exception e) {
-
+            logger.info("HttpServiceImpl post error(发生错误), e(" + e.toString() + ")");
         }
+
         return null;
     }
 
@@ -150,18 +163,76 @@ public class HttpServiceImpl implements HttpService {
         System.out.println("======Cookie end====");
     }
 
-    private void initHeaders(HttpRequest request) {
+    // 解决 sae 乱码bug
+    private void initGetHeaders(HttpRequest request) {
+//        request.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
+        //get 使用没关系, post 不可以
+//        request.setHeader("Accept-Encoding", "gzip, deflate");
+//        request.setHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4");
+        request.setHeader("Connection", "keep-alive");
+        request.setHeader("Cache-Control", "no-cache");
+//        request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+        request.setHeader("Host", "shake.sd.chinamobile.com");
+        request.setHeader("Origin", "http://shake.sd.chinamobile.com");
+        request.setHeader("Referer", "http://shake.sd.chinamobile.com/");
+        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36");
+
+        // get 去掉这个就可以, post 没关系
+//        request.setHeader("X-Requested-With", "XMLHttpRequest");
+    }
+
+    // 解决 sae 乱码 bug
+    private void initPostHeaders(HttpRequest request) {
         request.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
-        request.setHeader("Accept-Encoding", "gzip, deflate");
-        request.setHeader("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
+        //get 使用没关系, post 不可以
+//        request.setHeader("Accept-Encoding", "gzip, deflate");
+        request.setHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6,ja;q=0.4");
         request.setHeader("Connection", "keep-alive");
         request.setHeader("Cache-Control", "no-cache");
         request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         request.setHeader("Host", "shake.sd.chinamobile.com");
         request.setHeader("Origin", "http://shake.sd.chinamobile.com");
         request.setHeader("Referer", "http://shake.sd.chinamobile.com/");
-        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0");
+        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36");
+
+        // get 去掉这个就可以, post 没关系
         request.setHeader("X-Requested-With", "XMLHttpRequest");
+    }
+
+
+//    private void initHeaders(HttpRequest request) {
+//        request.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
+//        request.setHeader("Accept-Encoding", "gzip, deflate");
+//        request.setHeader("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
+//        request.setHeader("Connection", "keep-alive");
+//        request.setHeader("Cache-Control", "no-cache");
+//        request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+//        request.setHeader("Host", "shake.sd.chinamobile.com");
+//        request.setHeader("Origin", "http://shake.sd.chinamobile.com");
+//        request.setHeader("Referer", "http://shake.sd.chinamobile.com/");
+//        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0");
+//        request.setHeader("X-Requested-With", "XMLHttpRequest");
+//    }
+
+
+    // 为了解决 sae 乱码bug
+    private String getResponseContent(HttpResponse httpResponse) {
+        HttpEntity httpEntity = httpResponse.getEntity();
+        BufferedReader br = null;
+        StringBuilder result = new StringBuilder();
+        String line;
+
+        try {
+            br = new BufferedReader(new InputStreamReader(httpEntity.getContent(), "UTF-8"));
+
+            while((line = br.readLine()) != null) {
+                result.append(line + "\n");
+            }
+        } catch (IOException e) {
+            logger.info("HttpServiceImpl: getResponseContent error(发生错误)");
+        }
+
+        return result.toString();
     }
 
     // get and set methods

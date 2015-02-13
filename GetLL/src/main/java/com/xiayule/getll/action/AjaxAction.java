@@ -7,8 +7,7 @@ import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.JsonUtils;
 import com.xiayule.getll.utils.UserUtils;
 import net.sf.json.JSONObject;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,7 +22,7 @@ import java.util.*;
 @Component
 @Scope("prototype")
 public class AjaxAction {
-    private static Logger logger = LogManager.getLogger(PlayService.class.getName());
+    private static Logger logger = Logger.getLogger(PlayService.class.getName());
 
     @Autowired
     private SubscriberService subscriberService;
@@ -31,8 +30,8 @@ public class AjaxAction {
     @Autowired
     private PlayService playService;
 
-    @Autowired
-    private RegisterCodeService registerCodeService;
+//    @Autowired
+//    private RegisterCodeService registerCodeService;
 
     @Autowired
     private CookieService cookieService;
@@ -107,7 +106,11 @@ public class AjaxAction {
 
         jsonObj = new JSONObject();
 
-        Cookie cookie = CookieFactory.newCookie("mobile", m);
+
+
+        Cookie cookie = CookieFactory.newCookie("mobile", m, ServletActionContext.getRequest().getContextPath());
+
+        System.out.println("AjaxAction login contextPath:" + ServletActionContext.getRequest().getContextPath());
 
         // 存在 cookie
 //        if (cookieService.isExist(m)) {
@@ -133,8 +136,10 @@ public class AjaxAction {
                     return Action.SUCCESS;
                 }
 
-                String registerCode = registerCodeService.generateRegisterCode();
-                subscriberService.subscribe(m, registerCode);
+//                String registerCode = registerCodeService.generateRegisterCode();
+//                subscriberService.subscribe(m, registerCode);
+
+                subscriberService.subscribe(m);
 
                 // 设置 cookie
                 ServletActionContext.getResponse().addCookie(cookie);
@@ -142,7 +147,7 @@ public class AjaxAction {
                 return Action.SUCCESS;
             }
 
-            if (subscriberService.isSubscribe(m)) {// 是订阅者
+        if (subscriberService.isSubscribe(m)) {// 是订阅者
                 jsonObj.put("status", "ok");
 
                 // 设置 cookie
@@ -151,8 +156,10 @@ public class AjaxAction {
                 return Action.SUCCESS;
             } else {// 不是订阅者
                 // 订购本站业务
-                String registerCode = registerCodeService.generateRegisterCode();
-                subscriberService.subscribe(m, registerCode);
+//                String registerCode = registerCodeService.generateRegisterCode();
+//                subscriberService.subscribe(m, registerCode);
+                subscriberService.subscribe(m);
+
                 jsonObj.put("status", "ok");
 
                 // 设置 cookie
@@ -205,7 +212,7 @@ public class AjaxAction {
 
         jsonObj = JsonUtils.stringToJson(strRes);
 
-        cleanParams();
+        System.out.println("jsonObj:" + jsonObj);
 
         return Action.SUCCESS;
     }
@@ -415,16 +422,19 @@ public class AjaxAction {
     }
 
     /**
-     * 免费续期 7 天
+     * 免费续期 30 天
      * @return
      */
     public String freshRegisterCode() {
         String m = UserUtils.getMobileFromCookie();
 
         // 生成注册码
-        String registerCode = registerCodeService.generateRegisterCode();
+//        String registerCode = registerCodeService.generateRegisterCode();
+
         // 注册注册码
-        subscriberService.subscribe(m, registerCode);
+//        subscriberService.subscribe(m, registerCode);
+
+        subscriberService.subscribe(m);
 
         // 获得更新后得到有效时间
         String strDays = subscriberService.getTTLDays(m);
@@ -789,9 +799,9 @@ public class AjaxAction {
         this.jsonObj = jsonObj;
     }
 
-    public void setRegisterCodeService(RegisterCodeService registerCodeService) {
-        this.registerCodeService = registerCodeService;
-    }
+//    public void setRegisterCodeService(RegisterCodeService registerCodeService) {
+//        this.registerCodeService = registerCodeService;
+//    }
 
     /*public String getRegisterCode() {
         return registerCode;

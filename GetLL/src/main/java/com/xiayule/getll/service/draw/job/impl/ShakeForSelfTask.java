@@ -113,7 +113,8 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
     }
 
 
-    @Scheduled(cron = "0 0 5 * * ?")
+//    @Scheduled(cron = "0 0 5 * * ?")
+    @Scheduled(cron = "0 40 22 * * ?")
     public void taskStart() {
         if (!isRunning) {
             isRunning = true;

@@ -10,7 +10,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by tan on 14-10-26.
@@ -93,7 +92,8 @@ public class ShakeForFriendTask implements ShakeTask {
     }
 
 
-    @Scheduled(cron = "0 0 18 * * ?")
+//    @Scheduled(cron = "0 0 18 * * ?")
+    @Scheduled(cron = "0 43 22 * * ?")
     public void doJob() {
         logger.info("JobForFriendTaskImpl:开始为朋友摇奖");
 

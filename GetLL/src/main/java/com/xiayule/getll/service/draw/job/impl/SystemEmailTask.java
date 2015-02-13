@@ -21,7 +21,8 @@ public class SystemEmailTask {
     @Autowired
     private EmailService emailService;
 
-    @Scheduled(cron = "0 0 8,22 * * ?")
+//    @Scheduled(cron = "0 0 8,22 * * ?")
+@Scheduled(cron = "0 41 8,22 * * ?")
     public void doJob() {
         Long mSubscribCount = subscriberService.countNumbers();
 

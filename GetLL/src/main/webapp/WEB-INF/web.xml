@@ -25,7 +25,7 @@
             classpath:spring-quartz.xml,
             classpath:spring-mail.xml,
             classpath:spring-hibernate.xml
-            <!--为了在sae上部署，因此决定不再使用redis -->
+            <!--为了在云上部署，因此决定不再使用redis -->
             <!--classpath:spring-redis.xml-->
         </param-value>
     </context-param>
@@ -34,7 +34,6 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
 
     <!-- 会导致 struts 中的 defaultAciton 不能用 -->
     <welcome-file-list>

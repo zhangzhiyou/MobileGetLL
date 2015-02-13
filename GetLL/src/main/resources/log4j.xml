@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration>
+
+    <!--参见 http://helpdocs.sturgeon.mopaas.com/helpdocs/_spring.html-->
+
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{yyyy/MM/dd HH:mm:ss.sss} [%-5p] %c %L - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="traceLog4Debug" class="org.apache.log4j.RollingFileAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <param name="File" value="log4j/traceLog4Debug.log"/>
+        <param name="maxFileSize" value="2000KB"/>
+        <param name="maxBackupIndex" value="20"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{yyyy/MM/dd HH:mm:ss.sss} [%-5p] %c %L - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="infoLog" class="org.apache.log4j.RollingFileAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <param name="File" value="log4j/info.log"/>
+        <param name="maxFileSize" value="6000KB"/>
+        <param name="maxBackupIndex" value="10"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{yyyy/MM/dd HH:mm:ss.sss} [%-5p] %c %L - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMax" value="INFO" />
+            <param name="LevelMin" value="INFO" />
+        </filter>
+    </appender>
+
+    <!-- 记录该包下所有日志 -->
+    <logger name="com.xiayule.getll">
+        <level value="INFO"/>
+        <appender-ref ref="infoLog"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="INFO"/>
+        <appender-ref ref="traceLog4Debug"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+
+</log4j:configuration>

@@ -30,6 +30,11 @@ public class MobileAccount {
         updateEndTime();
     }
 
+    public MobileAccount(String mobile) {
+        this();
+        this.mobile = mobile;
+    }
+
     /**
      * 续期
      */

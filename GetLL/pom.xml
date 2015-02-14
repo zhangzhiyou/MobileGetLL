@@ -20,7 +20,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springversion>4.0.5.RELEASE</springversion>
-        <junitversion>3.8.1</junitversion>
+        <junitversion>4.7</junitversion>
     </properties>
 
     <dependencies>
@@ -257,6 +257,14 @@
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4</version>
+        </dependency>
+
+        <!-- junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junitversion}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

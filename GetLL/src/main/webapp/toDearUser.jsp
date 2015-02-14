@@ -49,11 +49,11 @@
         </p>
         <p>
             因此，我花了一番功夫，将服务搬到了云上，希望服务能更稳定些。代价就是域名会很长。
-            虽然你也可以选择登录 xiayule.net 来跳转到 http://getll.sturgeon.mopaas.com/，由于域名没有备案，这种方式不太稳定(指的是会被墙掉)。
-            因此我更建议你将 http://getll.sturgeon.mopaas.com 保存书签。
+            你可以选择登录 xiayule.net 来跳转到 http://getll.sturgeon.mopaas.com/ （感谢zhengnanlee同学提供的vps)。
+            也可以将 http://getll.sturgeon.mopaas.com 保存书签。
         </p>
         <p>
-            谢谢您的支持。
+            谢谢支持。
         </p>
 
         <p class="q">

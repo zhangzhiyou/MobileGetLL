@@ -67,8 +67,8 @@ public class Cookie {
         return provWap;
     }
 
-    public void setProvWap(String privWap) {
-        this.provWap = privWap;
+    public void setProvWap(String provWap) {
+        this.provWap = provWap;
     }
 
     public String getUserSignWap() {

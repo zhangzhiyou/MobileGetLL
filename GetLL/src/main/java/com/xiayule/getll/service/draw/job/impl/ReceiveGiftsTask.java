@@ -48,8 +48,7 @@ public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
     }
 
 
-//    @Scheduled(cron = "0 0 21 * * ?")
-    @Scheduled(cron = "0 44 22 * * ?")
+    @Scheduled(cron = "0 0 21 * * ?")
     public void taskStart() {
         logger.info("JobForAutoReceiveGiftsTaskImpl 自动领取任务开始");
 

@@ -92,8 +92,7 @@ public class ShakeForFriendTask implements ShakeTask {
     }
 
 
-//    @Scheduled(cron = "0 0 18 * * ?")
-    @Scheduled(cron = "0 43 22 * * ?")
+    @Scheduled(cron = "0 0 18 * * ?")
     public void doJob() {
         logger.info("JobForFriendTaskImpl:开始为朋友摇奖");
 

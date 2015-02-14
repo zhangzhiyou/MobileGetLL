@@ -2,9 +2,9 @@ package com.xiayule.getll.service.draw.job.impl;
 
 import com.xiayule.getll.db.service.CreditLogService;
 import com.xiayule.getll.service.SubscriberService;
+import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.service.draw.job.ScheduledTask;
 import com.xiayule.getll.service.draw.job.ShakeTask;
-import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.utils.CreditUtils;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
@@ -113,8 +113,7 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
     }
 
 
-//    @Scheduled(cron = "0 0 5 * * ?")
-    @Scheduled(cron = "0 40 22 * * ?")
+    @Scheduled(cron = "0 5 13 * * ?")
     public void taskStart() {
         if (!isRunning) {
             isRunning = true;

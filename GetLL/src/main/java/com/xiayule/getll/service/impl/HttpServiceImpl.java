@@ -64,7 +64,7 @@ public class HttpServiceImpl implements HttpService {
         try {
             HttpPost request = new HttpPost(url); // 根据内容来源地址创建一个Http请求
 
-            initPostHeaders(request);
+            initHeaders(request);
 
             if (params != null) {
                 request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8)); // 设置参数的编码
@@ -90,8 +90,7 @@ public class HttpServiceImpl implements HttpService {
                 return result;
             }
         } catch (Exception e) {
-
-
+            logger.info("HttpServiceImpl get error(发生错误), e(" + e.toString() + ")");
         }
         return null;
     }
@@ -102,7 +101,7 @@ public class HttpServiceImpl implements HttpService {
             // 根据内容来源地址创建一个Http请求
             HttpGet request = new HttpGet(url);
 
-            initGetHeaders(request);
+            initHeaders(request);
 
             DefaultHttpClient client = getDefaultHttpClient(mobile);
 
@@ -200,19 +199,19 @@ public class HttpServiceImpl implements HttpService {
     }
 
 
-//    private void initHeaders(HttpRequest request) {
-//        request.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
-//        request.setHeader("Accept-Encoding", "gzip, deflate");
-//        request.setHeader("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
-//        request.setHeader("Connection", "keep-alive");
-//        request.setHeader("Cache-Control", "no-cache");
-//        request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
-//        request.setHeader("Host", "shake.sd.chinamobile.com");
-//        request.setHeader("Origin", "http://shake.sd.chinamobile.com");
-//        request.setHeader("Referer", "http://shake.sd.chinamobile.com/");
-//        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0");
-//        request.setHeader("X-Requested-With", "XMLHttpRequest");
-//    }
+    private void initHeaders(HttpRequest request) {
+        request.setHeader("Accept", "application/json, text/javascript, */*; q=0.01");
+        request.setHeader("Accept-Encoding", "gzip, deflate");
+        request.setHeader("Accept-Language", "zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
+        request.setHeader("Connection", "keep-alive");
+        request.setHeader("Cache-Control", "no-cache");
+        request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+        request.setHeader("Host", "shake.sd.chinamobile.com");
+        request.setHeader("Origin", "http://shake.sd.chinamobile.com");
+        request.setHeader("Referer", "http://shake.sd.chinamobile.com/");
+        request.setHeader("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0");
+        request.setHeader("X-Requested-With", "XMLHttpRequest");
+    }
 
 
     // 为了解决 sae 乱码bug

@@ -5,18 +5,13 @@ import com.xiayule.getll.db.model.MobileAccount;
 import com.xiayule.getll.db.service.FunctionService;
 import com.xiayule.getll.db.service.MobileAccountService;
 import com.xiayule.getll.service.CookieService;
-import com.xiayule.getll.service.RedisService;
-import com.xiayule.getll.service.RegisterCodeService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.utils.Constants;
-import com.xiayule.getll.utils.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by tan on 14-7-22.
@@ -163,7 +158,7 @@ public class SubscriberServiceImpl implements SubscriberService {
     public List<String> getAllSubscriberForFriend() {
 //        return redisService.smembers("forFriend");
 //        return functionService.getAllForFriend();
-        return functionService.getAllValidAutoReceive();
+        return functionService.getAlValidlForFriend();
     }
 
     /**

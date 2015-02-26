@@ -7,6 +7,7 @@ import com.xiayule.getll.service.draw.job.impl.ShakeForSelfTask;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,9 @@ public class AdminAction {
     private String password;
 
     private Map json;
+
+    @Autowired
+    private ThreadPoolTaskExecutor executor;
 
     @Autowired
     private ShakeForSelfTask shakeForSelfTask;
@@ -46,6 +50,14 @@ public class AdminAction {
         request.setAttribute("mSubscribCount", mSubscribCount);
         request.setAttribute("mSubscribForFriendCount", mSubscribForFriendCount);
         request.setAttribute("mSubscribAutoReceiveCount", mSubscribAutoReceiveCount);
+
+        // 线程池信息
+        StringBuffer strBuff = new StringBuffer();
+        strBuff.append("CurrentPoolSize : ").append(executor.getPoolSize());
+        strBuff.append(" - CorePoolSize : ").append(executor.getCorePoolSize());
+        strBuff.append(" - ActiveTaskCount : ").append(executor.getActiveCount());
+
+        request.setAttribute("executorInfo", strBuff.toString());
 
         return Action.SUCCESS;
     }

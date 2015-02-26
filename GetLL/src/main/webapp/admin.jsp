@@ -32,7 +32,9 @@
 <%--管理员的一些权利--%>
 
 <c:if test="${sessionScope.admin}">
+    ${executorInfo}
 
+    <br/>
     <%--启动自己摇奖功能--%>
     <button id="startForSelf">开启摇奖任务</button>
 

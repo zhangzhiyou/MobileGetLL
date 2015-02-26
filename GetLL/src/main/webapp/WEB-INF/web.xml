@@ -24,7 +24,8 @@
             /WEB-INF/applicationContext.xml,
             classpath:spring-quartz.xml,
             classpath:spring-mail.xml,
-            classpath:spring-hibernate.xml
+            classpath:spring-hibernate.xml,
+            classpath:spring-threadPool.xml
             <!--为了在云上部署，因此决定不再使用redis -->
             <!--classpath:spring-redis.xml-->
         </param-value>

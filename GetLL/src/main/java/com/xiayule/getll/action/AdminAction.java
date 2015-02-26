@@ -3,13 +3,14 @@ package com.xiayule.getll.action;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.xiayule.getll.service.SubscriberService;
+import com.xiayule.getll.service.draw.job.impl.ShakeForSelfTask;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -22,6 +23,11 @@ public class AdminAction {
     private SubscriberService subscriberService;
 
     private String password;
+
+    private Map json;
+
+    @Autowired
+    private ShakeForSelfTask shakeForSelfTask;
 
 
     public Long countSubscribers() {
@@ -60,6 +66,25 @@ public class AdminAction {
         return Action.SUCCESS;
     }
 
+    static int count = 1;
+
+    /**
+     * 开启为自己摇奖任务
+     * @return
+     */
+    public String startForSelfTask() {
+        json = new HashMap();
+
+        if (shakeForSelfTask.isRunning()) {
+            json.put("status", "error");
+            json.put("msg", "摇奖任务正在执行");
+        } else {
+            json.put("status", "ok");
+            shakeForSelfTask.startExecute();
+        }
+
+        return Action.SUCCESS;
+    }
 
     // set and get method
 
@@ -73,6 +98,14 @@ public class AdminAction {
 
     public String getPassword() {
         return password;
+    }
+
+    public Map getJson() {
+        return json;
+    }
+
+    public void setJson(Map json) {
+        this.json = json;
     }
 
     public void setPassword(String password) {

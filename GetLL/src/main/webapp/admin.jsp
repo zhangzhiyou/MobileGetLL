@@ -26,7 +26,6 @@
     <input type="password" name="password">
 
     <input type="submit" value="登录">
-
 </form>
 
 
@@ -34,10 +33,26 @@
 
 <c:if test="${sessionScope.admin}">
 
+    <%--启动自己摇奖功能--%>
+    <button id="startForSelf">开启摇奖任务</button>
+
     <%--操作 historyVersion --%>
 
     <%--登录之后,在admin.jsp可以发布 history--%>
 
+    <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+
+
+    <script>
+        var startForSelf = document.getElementById("startForSelf");
+
+        startForSelf.onclick = function () {
+            $.post("/ajax/startForSelfTask.action?r="+Math.random(), {}, function (data) {
+                console.log(data);
+            });
+        };
+
+    </script>
 
 </c:if>
 

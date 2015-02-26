@@ -72,6 +72,7 @@
 
             <result name="login">/admin.jsp</result>
         </action>
+
     </package>
 
     <!--对应 historyVersion 的增删改查-->
@@ -111,6 +112,13 @@
 
         <default-interceptor-ref name="jsonStack"/>
 
+        <!--开启摇奖任务-->
+        <action name="startForSelfTask" class="adminAction" method="startForSelfTask">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
         <action name="loadLoginedMobile" class="ajaxAction" method="loadLoginedMobile">
             <result type="json">
                 <param name="root">jsonObj</param>
@@ -122,22 +130,6 @@
                 <param name="root">json</param>
             </result>
         </action>
-
-<!--
-        <action name="getRegisterCode" class="ajaxAction" method="getRegisterCodeDo">
-            <result type="json">
-                <param name="root">json</param>
-            </result>
-        </action>
--->
-
-<!--
-        <action name="shakeNow" class="ajaxAction" method="shakeNow">
-            <result type="json">
-                <param name="root">json</param>
-            </result>
-        </action>
--->
 
         <action name="deleteService" class="ajaxAction" method="deleteService">
             <result type="json">

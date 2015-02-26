@@ -3,12 +3,12 @@ package com.xiayule.getll.service.draw.job.impl;
 import com.xiayule.getll.db.service.CreditLogService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.api.PlayService;
-import com.xiayule.getll.service.draw.job.ScheduledTask;
 import com.xiayule.getll.service.draw.job.ShakeTask;
 import com.xiayule.getll.utils.CreditUtils;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by tan on 14-9-8.
  */
 @Component
-public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
+public class ShakeForSelfTask implements  Runnable {
 
     private static Logger logger = Logger.getLogger(ShakeTask.class);
 
@@ -31,7 +31,10 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
     @Autowired
     private SubscriberService subscriberService;
 
-    private static boolean isRunning = false;
+    @Autowired
+    private TaskExecutor taskExecutor;
+
+    private static boolean running = false;
 
 //    @Autowired
 //    private DrawRequest drawRequest;
@@ -72,9 +75,7 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
             int cnt = 0;
 
             try {
-
                 do {
-
                     String winName = playService.draw(mobile);
 
                     logger.info(mobile + " 第" + (++cnt) + "次摇奖,获得奖励:"
@@ -112,11 +113,9 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
                 + " 当前流量币: " + queryScore.getString("credit"));
     }
 
-
-    @Scheduled(cron = "0 0 5 * * ?")
     public void taskStart() {
-        if (!isRunning) {
-            isRunning = true;
+        if (!running) {
+            running = true;
 
             List<String> subs = subscriberService.getAllSubscriber();
 
@@ -136,25 +135,41 @@ public class ShakeForSelfTask implements ShakeTask, ScheduledTask {
 
             logger.info("ScheduledTask: " + cnt + " 个任务执行完毕");
 
-            isRunning = false;
+            running = false;
         } else {
+            System.out.println("ScheduledTask:" + "任务已经开启，无需再开启");
             logger.info("ScheduledTask:" + "任务已经开启，无需再开启");
         }
     }
 
+    @Override
+    public void run() {
+        taskStart();
+    }
+
+    @Scheduled(cron = "0 0 5 * * ?")
+    public void startExecute() {
+        taskExecutor.execute(this);
+    }
 
     public void setSubscriberService(SubscriberService subscriberService) {
         this.subscriberService = subscriberService;
+    }
+
+
+    public static boolean isRunning() {
+        return running;
+    }
+
+    public static void setRunning(boolean running) {
+        ShakeForSelfTask.running = running;
     }
 
     public void setPlayService(PlayService playService) {
         this.playService = playService;
     }
 
-   /* public void setDrawRequest(DrawRequest drawRequest) {
-        this.drawRequest = drawRequest;
-    }
-*/
+
     public void setCreditLogService(CreditLogService creditLogService) {
         this.creditLogService = creditLogService;
     }

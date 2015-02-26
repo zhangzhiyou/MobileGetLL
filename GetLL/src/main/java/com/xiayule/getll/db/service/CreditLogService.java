@@ -42,6 +42,12 @@ public interface CreditLogService {
     public CreditRank queryYestodayFirstRank();
 
     /**
+     * 获得今日摇奖人数
+     * @return
+     */
+    public Integer queryMobileCount();
+
+    /**
      * 获得昨日具体手机号的排名
      * @param mobile
      * @return

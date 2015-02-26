@@ -2,6 +2,7 @@ package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
+import com.xiayule.getll.db.service.CreditLogService;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.job.impl.ShakeForSelfTask;
 import org.apache.struts2.ServletActionContext;
@@ -33,6 +34,9 @@ public class AdminAction {
     @Autowired
     private ShakeForSelfTask shakeForSelfTask;
 
+    @Autowired
+    private CreditLogService creditLogService;
+
 
     public Long countSubscribers() {
         return subscriberService.countNumbers();
@@ -51,6 +55,9 @@ public class AdminAction {
         request.setAttribute("mSubscribForFriendCount", mSubscribForFriendCount);
         request.setAttribute("mSubscribAutoReceiveCount", mSubscribAutoReceiveCount);
 
+        // 今日摇取人数统计
+        request.setAttribute("shakeCount", creditLogService.queryMobileCount());
+
         // 线程池信息
         StringBuffer strBuff = new StringBuffer();
         strBuff.append("CurrentPoolSize : ").append(executor.getPoolSize());
@@ -58,6 +65,7 @@ public class AdminAction {
         strBuff.append(" - ActiveTaskCount : ").append(executor.getActiveCount());
 
         request.setAttribute("executorInfo", strBuff.toString());
+
 
         return Action.SUCCESS;
     }

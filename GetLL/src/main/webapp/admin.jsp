@@ -32,7 +32,12 @@
 <%--管理员的一些权利--%>
 
 <c:if test="${sessionScope.admin}">
-    ${executorInfo}
+    线程池信息: <br/>
+    ${executorInfo} <br/>
+
+    <br/>
+
+    已摇奖总人数: ${shakeCount};
 
     <br/>
     <%--启动自己摇奖功能--%>

@@ -18,7 +18,7 @@ import java.util.List;
  * Created by tan on 14-9-8.
  */
 @Component
-public class ShakeForSelfTask implements  Runnable {
+public class ShakeForSelfTask implements Runnable {
 
     private static Logger logger = Logger.getLogger(ShakeTask.class);
 

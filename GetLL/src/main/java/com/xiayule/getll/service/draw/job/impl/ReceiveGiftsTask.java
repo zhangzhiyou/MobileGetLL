@@ -3,10 +3,10 @@ package com.xiayule.getll.service.draw.job.impl;
 import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.api.GiftsReceiveService;
 import com.xiayule.getll.service.draw.api.PlayService;
-import com.xiayule.getll.service.draw.job.ScheduledTask;
 import com.xiayule.getll.service.draw.job.ShakeTask;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ import java.util.List;
  * 自动领取流量币任务
  */
 @Component
-public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
+public class ReceiveGiftsTask implements Runnable {
 
     private static Logger logger = Logger.getLogger(ShakeTask.class);
 
@@ -29,6 +29,9 @@ public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
 
     @Autowired
     private PlayService playService;
+
+    @Autowired
+    private TaskExecutor taskExecutor;
 
     private static boolean isRunning = false;
 
@@ -47,8 +50,6 @@ public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
         }
     }
 
-
-    @Scheduled(cron = "0 0 21 * * ?")
     public void taskStart() {
         logger.info("JobForAutoReceiveGiftsTaskImpl 自动领取任务开始");
 
@@ -82,6 +83,17 @@ public class ReceiveGiftsTask implements ShakeTask, ScheduledTask{
             logger.info("JobForAutoReceiveGiftsTaskImpl:" + "任务已经开启，无需再开启");
         }
     }
+
+    @Override
+    public void run() {
+        taskStart();
+    }
+
+    @Scheduled(cron = "0 0 21 * * ?")
+    public void startExecute() {
+        taskExecutor.execute(this);
+    }
+
 
     public static Logger getLogger() {
         return logger;

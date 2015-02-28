@@ -6,6 +6,7 @@ import com.xiayule.getll.service.draw.job.ShakeTask;
 import com.xiayule.getll.utils.JsonUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by tan on 14-10-26.
  */
 @Component
-public class ShakeForFriendTask implements ShakeTask {
+public class ShakeForFriendTask implements Runnable {
 
     private static Logger logger = Logger.getLogger(ShakeTask.class);
 
@@ -26,6 +27,9 @@ public class ShakeForFriendTask implements ShakeTask {
     private SubscriberService subscriberService;
 
     private static boolean isRunning = false;
+
+    @Autowired
+    private TaskExecutor taskExecutor;
 
     /**
      * 为朋友摇奖，自己的手机号永远都是固定的。
@@ -92,8 +96,7 @@ public class ShakeForFriendTask implements ShakeTask {
     }
 
 
-    @Scheduled(cron = "0 0 18 * * ?")
-    public void doJob() {
+    public void taskStart() {
         logger.info("JobForFriendTaskImpl:开始为朋友摇奖");
 
         if (!isRunning) {
@@ -125,6 +128,16 @@ public class ShakeForFriendTask implements ShakeTask {
         } else {
             logger.info("JobForFriendTaskImpl:" + "任务已经开启，无需再开启");
         }
+    }
+
+    @Override
+    public void run() {
+        taskStart();
+    }
+
+    @Scheduled(cron = "0 0 18 * * ?")
+    public void startExecute() {
+        taskExecutor.execute(this);
     }
 
     public void setPlayService(PlayService playService) {

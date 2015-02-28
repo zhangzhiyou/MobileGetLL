@@ -68,7 +68,7 @@
 
         <action name="adminLogin" class="adminAction" method="adminLogin">
             <!--登录成功,则重定向-->
-            <result name="success">/admin.jsp</result>
+            <result name="success" type="redirectAction">admin</result>
 
             <result name="login">/admin.jsp</result>
         </action>

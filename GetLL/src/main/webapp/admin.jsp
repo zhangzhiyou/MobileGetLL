@@ -37,9 +37,10 @@
 
     <br/>
 
-    已摇奖总人数: ${shakeCount};
+    已摇奖总人数: ${shakeCount}; <br/>
 
-    <br/>
+    朋友摇奖状态: ${statusForFriend} <br/>
+
     <%--启动自己摇奖功能--%>
     <button id="startForSelf">开启摇奖任务</button>
 

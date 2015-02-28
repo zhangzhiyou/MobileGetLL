@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.xiayule.getll.db.service.CreditLogService;
 import com.xiayule.getll.service.SubscriberService;
+import com.xiayule.getll.service.draw.job.impl.ShakeForFriendTask;
 import com.xiayule.getll.service.draw.job.impl.ShakeForSelfTask;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class AdminAction {
     @Autowired
     private CreditLogService creditLogService;
 
+    @Autowired
+    private ShakeForFriendTask shakeForFriendTask;
+
 
     public Long countSubscribers() {
         return subscriberService.countNumbers();
@@ -66,6 +70,9 @@ public class AdminAction {
 
         request.setAttribute("executorInfo", strBuff.toString());
 
+        // 朋友摇奖状态
+        int statusForFriend = shakeForFriendTask.getStatus();
+        request.setAttribute("statusForFriend", statusForFriend);
 
         return Action.SUCCESS;
     }

@@ -95,6 +95,7 @@ public class ShakeForFriendTask implements Runnable {
         }
     }
 
+    private int status = 0;
 
     public void taskStart() {
         logger.info("JobForFriendTaskImpl:开始为朋友摇奖");
@@ -106,13 +107,11 @@ public class ShakeForFriendTask implements Runnable {
             // 获取所有订阅下午摇奖的人
             List<String> subs = subscriberService.getAllSubscriberForFriend();
 
-            int cnt = 0;
-
             for (String sub : subs) {
                 // 如果有效期到期或者登录不成功, 则不执行
                 if (!subscriberService.isSubscribe(sub) && !playService.isLogined(sub)) continue;
 
-                cnt++;
+                status++;
 
                 try {
                     autoPlay(sub);
@@ -121,7 +120,7 @@ public class ShakeForFriendTask implements Runnable {
                 }
             }
 
-            logger.info("JobForFriendTaskImpl:" + "将 " + cnt + " 个任务加入队列");
+            logger.info("JobForFriendTaskImpl:" + "将 " + status + " 个任务加入队列");
 
             isRunning = false;
 
@@ -142,5 +141,9 @@ public class ShakeForFriendTask implements Runnable {
 
     public void setPlayService(PlayService playService) {
         this.playService = playService;
+    }
+
+    public int getStatus() {
+        return status;
     }
 }

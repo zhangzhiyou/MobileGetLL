@@ -36,11 +36,11 @@
         <property name="password" value="p3duDSuOynGqc"/>
 
         <!-- 指定链接数据库连接池的最大连接数 -->
-        <property name="maxPoolSize" value="40"/>
-        <!-- 指定链接数据库连接池的最小连接数 -->
+        <!--<property name="maxPoolSize" value="40"/>
+        &lt;!&ndash; 指定链接数据库连接池的最小连接数 &ndash;&gt;
         <property name="minPoolSize" value="1"/>
-        <!-- 指定链接数据库连接池的初始化连接数 -->
-        <property name="initialPoolSize" value="1"/>
+        &lt;!&ndash; 指定链接数据库连接池的初始化连接数 &ndash;&gt;
+        <property name="initialPoolSize" value="1"/>-->
 
         <!-- sae 建议 -->
         <property name="idleConnectionTestPeriod" value="10"/>

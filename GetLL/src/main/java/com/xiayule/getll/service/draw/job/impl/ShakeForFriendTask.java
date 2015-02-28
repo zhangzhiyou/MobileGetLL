@@ -26,7 +26,7 @@ public class ShakeForFriendTask implements Runnable {
     @Autowired
     private SubscriberService subscriberService;
 
-    private static boolean isRunning = false;
+    private static boolean running = false;
 
     @Autowired
     private TaskExecutor taskExecutor;
@@ -98,11 +98,13 @@ public class ShakeForFriendTask implements Runnable {
     private int status = 0;
 
     public void taskStart() {
+        status = 0;
+
         logger.info("JobForFriendTaskImpl:开始为朋友摇奖");
 
-        if (!isRunning) {
+        if (!running) {
 
-            isRunning = true;
+            running = true;
 
             // 获取所有订阅下午摇奖的人
             List<String> subs = subscriberService.getAllSubscriberForFriend();
@@ -122,7 +124,7 @@ public class ShakeForFriendTask implements Runnable {
 
             logger.info("JobForFriendTaskImpl:" + "将 " + status + " 个任务加入队列");
 
-            isRunning = false;
+            running = false;
 
         } else {
             logger.info("JobForFriendTaskImpl:" + "任务已经开启，无需再开启");
@@ -145,5 +147,9 @@ public class ShakeForFriendTask implements Runnable {
 
     public int getStatus() {
         return status;
+    }
+
+    public static boolean isRunning() {
+        return running;
     }
 }

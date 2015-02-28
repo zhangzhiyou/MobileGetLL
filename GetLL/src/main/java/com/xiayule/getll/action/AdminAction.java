@@ -113,6 +113,20 @@ public class AdminAction {
         return Action.SUCCESS;
     }
 
+    public String startForFriendTask() {
+        json = new HashMap();
+
+        if (shakeForFriendTask.isRunning()) {
+            json.put("status", "error");
+            json.put("msg", "朋友摇奖任务正在执行");
+        } else {
+            json.put("status", "ok");
+            shakeForSelfTask.startExecute();
+        }
+
+        return Action.SUCCESS;
+    }
+
     // set and get method
 
     public SubscriberService getSubscriberService() {

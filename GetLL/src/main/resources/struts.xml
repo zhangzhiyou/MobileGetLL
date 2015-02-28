@@ -119,6 +119,13 @@
             </result>
         </action>
 
+        <!--开启朋友摇奖任务-->
+        <action name="startForFriendTask" class="adminAction" method="startForFriendTask">
+            <result type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
         <action name="loadLoginedMobile" class="ajaxAction" method="loadLoginedMobile">
             <result type="json">
                 <param name="root">jsonObj</param>

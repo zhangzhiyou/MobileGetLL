@@ -43,6 +43,7 @@
 
     <%--启动自己摇奖功能--%>
     <button id="startForSelf">开启摇奖任务</button>
+    <button id="startForFriend">开启朋友摇奖任务</button>
 
     <%--操作 historyVersion --%>
 
@@ -50,12 +51,20 @@
 
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
 
-
     <script>
         var startForSelf = document.getElementById("startForSelf");
+        var startForFriend = document.getElementById("startForFriend");
 
         startForSelf.onclick = function () {
             $.post("/ajax/startForSelfTask.action?r="+Math.random(), {}, function (data) {
+                alert(JSON.stringify(data));
+                console.log(data);
+            });
+        };
+
+        startForFriend.onclick = function () {
+            $.post("/ajax/startForFriendTask.action?r="+Math.random(), {}, function (data) {
+                alert(JSON.stringify(data));
                 console.log(data);
             });
         };

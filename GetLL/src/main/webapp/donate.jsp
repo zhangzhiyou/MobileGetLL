@@ -55,7 +55,16 @@
                     <th style="text-align: center">金额(元)</th>
                     <th style="text-align: center">赠言</th>
                 </tr>
-
+                <tr>
+                    <td>杨家乐</td>
+                    <td>1.00</td>
+                    <td>Never give up</td>
+                </tr>
+                <tr>
+                    <td>光风(昵称)</td>
+                    <td>1.00</td>
+                    <td>感谢</td>
+                </tr>
                 <tr>
                     <td>王文彬</td>
                     <td>0.80</td>

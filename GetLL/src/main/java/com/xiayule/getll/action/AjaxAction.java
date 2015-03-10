@@ -156,8 +156,6 @@ public class AjaxAction {
                 return Action.SUCCESS;
             } else {// 不是订阅者
                 // 订购本站业务
-//                String registerCode = registerCodeService.generateRegisterCode();
-//                subscriberService.subscribe(m, registerCode);
                 subscriberService.subscribe(m);
 
                 jsonObj.put("status", "ok");
@@ -167,40 +165,6 @@ public class AjaxAction {
 
                 return Action.SUCCESS;
             }
-
-
-//        }
-        // 如果不存在 cookie，且密码不为空 则需要登录
-        /*else if (!cookieService.isExist(m) && (pass != null && !pass.equals(""))) {
-            String strJson = playService.loginDo(m, pass);
-
-            System.out.println("loginDo: mobile: " + m + " password: " + pass);
-
-            jsonObj = JsonUtils.stringToJson(strJson);
-
-            // 如果返回的不是 ok，则没有登录成功
-            if (!jsonObj.getString("status").equals("ok")) {
-                return Action.SUCCESS;
-            }
-
-            String registerCode = registerCodeService.generateRegisterCode();
-            subscriberService.subscribe(m, registerCode);
-
-            // 设置 cookie
-            ServletActionContext.getResponse().addCookie(cookie);
-
-            return Action.SUCCESS;
-        }*/
-
-        // 如果不存在 cookie，并且没有 password
-       /* else if (!cookieService.isExist(m) && (pass == null || pass.equals(""))) {
-            jsonObj.put("status", "error");
-            jsonObj.put("errorId", 0);
-            jsonObj.put("message", "请输入动态密码");
-            return Action.SUCCESS;
-        }*/
-
-//        return Action.SUCCESS;
     }
 
     /**

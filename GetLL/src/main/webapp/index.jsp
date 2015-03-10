@@ -156,8 +156,10 @@
                         </div>
 
                         <div>
-                            <span style="cursor: help" title="少于30天时，可以点击免费延长至30天">有效期：</span>
-                            <span id="leavesDay">${model.ttl}</span>
+                            <span>上次登录：${model.lastLoginTime}</span>
+                            <%--<span>是否过期：${model.expired}</span>--%>
+                            <%--<span style="cursor: help" title="少于30天时，可以点击免费延长至30天">有效期：</span>--%>
+                            <%--<span id="leavesDay">${model.ttl}</span>--%>
                         </div>
                     </div>
 
@@ -339,30 +341,34 @@
     <script type="text/javascript" src="js/common.min.js"></script>
 
     <script>
-        eventMan.checkLogin(function () {
-            if (eventMan.isLogin()) {
-                $("#userMobile").html(eventMan.loginMobile_);
 
-                if (eventMan.nickName_ != null && eventMan.nickName_ != "") {
-                    $("#userNick").html(eventMan.nickName_);
-                }
+        $(function () {
+            eventMan.checkLogin(function () {
+                if (eventMan.isLogin()) {
+                    $("#userMobile").html(eventMan.loginMobile_);
 
-                // 显示个人积分
-                score.showMyScore(function () {
-                    // 获得套餐详情, 包括绘制饼状图
-                    flowScore.getTotalFlow(function () {
-                        // 显示 兑换列表
-                        score.showConvertList(function () {
-                            // 未领取的流量币信息
-                            flowScore.getFlowScoreTransferGiftsInfo();
+                    if (eventMan.nickName_ != null && eventMan.nickName_ != "") {
+                        $("#userNick").html(eventMan.nickName_);
+                    }
+
+                    // 显示个人积分
+                    score.showMyScore(function () {
+                        // 获得套餐详情, 包括绘制饼状图
+                        flowScore.getTotalFlow(function () {
+                            // 显示 兑换列表
+                            score.showConvertList(function () {
+                                // 未领取的流量币信息
+                                flowScore.getFlowScoreTransferGiftsInfo();
+                            });
                         });
                     });
-                });
-            }
-        }, function () {
-            // 验证登录失败
-            locationPage("/login.jsp")
+                }
+            }, function () {
+                // 验证登录失败
+                locationPage("/login.jsp")
+            });
         });
+
     </script>
 </div>
 

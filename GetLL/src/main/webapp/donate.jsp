@@ -56,6 +56,11 @@
                     <th style="text-align: center">赠言</th>
                 </tr>
                 <tr>
+                    <td>张加东</td>
+                    <td>1.00</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
                     <td>杨家乐</td>
                     <td>1.00</td>
                     <td>Never give up</td>

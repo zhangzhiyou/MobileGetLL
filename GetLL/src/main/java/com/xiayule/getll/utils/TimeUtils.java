@@ -2,7 +2,6 @@ package com.xiayule.getll.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by tan on 14-6-25.
@@ -21,6 +20,14 @@ public class TimeUtils {
         return sdf_line.format(dt.getTime());
     }
 
+    public static String formatDate(Calendar c) {
+        return sdf_line.format(c.getTime());
+    }
+
+//    减一个月
+    public static void sub30Days(Calendar calendar) {
+        calendar.add(Calendar.DAY_OF_MONTH, -30);
+    }
 
     /**
      * 获得问候语

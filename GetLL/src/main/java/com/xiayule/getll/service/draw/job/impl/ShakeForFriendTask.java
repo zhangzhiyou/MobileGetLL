@@ -106,12 +106,12 @@ public class ShakeForFriendTask implements Runnable {
 
             running = true;
 
-            // 获取所有订阅下午摇奖的人
+            // 获取所有且有效的订阅下午摇奖的人,
             List<String> subs = subscriberService.getAllSubscriberForFriend();
 
             for (String sub : subs) {
                 // 如果有效期到期或者登录不成功, 则不执行
-                if (!subscriberService.isSubscribe(sub) && !playService.isLogined(sub)) continue;
+                if (/*!subscriberService.isSubscribe(sub) && */!playService.isLogined(sub)) continue;
 
                 status++;
 

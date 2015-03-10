@@ -1,11 +1,14 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
+import com.xiayule.getll.db.model.MobileAccount;
 import com.xiayule.getll.db.service.CreditLogService;
+import com.xiayule.getll.db.service.MobileAccountService;
 import com.xiayule.getll.domain.CreditRank;
-import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.service.SubscriberService;
+import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.utils.DecimalUtils;
+import com.xiayule.getll.utils.TimeUtils;
 import com.xiayule.getll.utils.UserUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -14,6 +17,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +43,9 @@ public class HomeAction implements Action{
 
     @Autowired
     private CreditLogService creditLogService;
+
+    @Autowired
+    private MobileAccountService mobileAccountService;
 
     @Override
     public String execute() throws Exception {
@@ -69,10 +76,26 @@ public class HomeAction implements Action{
 
         logger.info("useragent:" + userAgent);
 
+        MobileAccount mobileAccount = mobileAccountService.getByMobile(mobile);
+
+        //            todo: 改成上一次登录时间
+        Calendar expiredCalendar = mobileAccount.getEndTime();
+
+
+        if (!mobileAccount.valid()) { // 过期了, 则提示
+            model.put("expired", true);
+        }
+
+//        减去30天就是上次登录时间
+        TimeUtils.sub30Days(expiredCalendar);
+        model.put("lastLoginTime", TimeUtils.formatDate(expiredCalendar));
+
+        // 自动续期
+        mobileAccountService.updateEndTime(mobile);
 
         // 查询有效期
-        String ttl = subscriberService.getTTLDays(mobile);
-        model.put("ttl", ttl);
+//        String ttl = subscriberService.getTTLDays(mobile);
+//        model.put("ttl", ttl);
 
         // 查询排名
         CreditRank firstRank = creditLogService.queryYestodayFirstRank();

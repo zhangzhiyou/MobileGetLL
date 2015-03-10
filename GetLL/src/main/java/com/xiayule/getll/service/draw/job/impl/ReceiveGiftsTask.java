@@ -64,7 +64,7 @@ public class ReceiveGiftsTask implements Runnable {
 
             for (String sub : subs) {
                 // 如果有效期到期或者登录不成功, 则不执行
-                if (!subscriberService.isSubscribe(sub) && !playService.isLogined(sub)) continue;
+                if (/*!subscriberService.isSubscribe(sub) && */!playService.isLogined(sub)) continue;
 
                 cnt++;
 

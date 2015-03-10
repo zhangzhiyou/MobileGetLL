@@ -17,11 +17,11 @@
 
 
         <!-- 指定链接数据库的 url -->
-        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/GetLL?useUnicode=true&amp;characterEncoding=utf8"/>
-        &lt;!&ndash; 指定链接数据库的用户名 &ndash;&gt;
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/GetLL?useUnicode=true&amp;characterEncoding=utf8"/>
+        <!-- 指定链接数据库的用户名 -->
         <property name="user" value="root"/>
-        &lt;!&ndash; 指定链接数据库的密码 &ndash;&gt;
-        <property name="password" value="0000"/>-->
+        <!-- 指定链接数据库的密码 -->
+        <property name="password" value="0000"/>
 
         <!-- sae 数据库 配置 -->
         <!--<property name="user" value="3lwmowynl4"/>
@@ -29,11 +29,11 @@
         <property name="password" value="xi5xlk5hj5kw4kj4llwzw0iyi5hh2mlm451jx1ky"/>-->
 
         <!-- mopaas 数据库 -->
-        <property name="jdbcUrl" value="jdbc:mysql://10.4.26.93:3306/d7786d82415924f10a87d99b41c7e6174?useUnicode=true&amp;characterEncoding=utf8"/>
-        <!-- 指定链接数据库的用户名 -->
+        <!--<property name="jdbcUrl" value="jdbc:mysql://10.4.26.93:3306/d7786d82415924f10a87d99b41c7e6174?useUnicode=true&amp;characterEncoding=utf8"/>
+        &lt;!&ndash; 指定链接数据库的用户名 &ndash;&gt;
         <property name="user" value="um4L6zjcAyQcr"/>
-        <!-- 指定链接数据库的密码 -->
-        <property name="password" value="p3duDSuOynGqc"/>
+        &lt;!&ndash; 指定链接数据库的密码 &ndash;&gt;
+        <property name="password" value="p3duDSuOynGqc"/>-->
 
         <!-- 指定链接数据库连接池的最大连接数 -->
         <!--<property name="maxPoolSize" value="40"/>

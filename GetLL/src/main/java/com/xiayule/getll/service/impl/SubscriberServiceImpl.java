@@ -34,7 +34,7 @@ public class SubscriberServiceImpl implements SubscriberService {
     private FunctionService functionService;
 
     /**
-     * 某个 手机号 是否已经订购服务
+     * 某个 手机号 是否已经订购服务, 过期的用户也算作是订阅服务
      * @param mobile
      * @return
      */
@@ -44,9 +44,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 
         if (mobileAccount == null) {
             return false;
-        } else {
+        } /*else {
             return mobileAccount.valid();
-        }
+        }*/
+
+        return true;
     }
 
     /**

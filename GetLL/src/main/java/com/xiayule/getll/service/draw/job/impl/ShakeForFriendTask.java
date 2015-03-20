@@ -110,13 +110,13 @@ public class ShakeForFriendTask implements Runnable {
             List<String> subs = subscriberService.getAllSubscriberForFriend();
 
             for (String sub : subs) {
-                // 如果有效期到期或者登录不成功, 则不执行
-                if (/*!subscriberService.isSubscribe(sub) && */!playService.isLogined(sub)) continue;
-
-                status++;
-
                 try {
+                    // 如果有效期到期或者登录不成功, 则不执行
+                    if (/*!subscriberService.isSubscribe(sub) && */!playService.isLogined(sub)) continue;
+
                     autoPlay(sub);
+
+                    status++;
                 } catch (Exception e) {
                     logger.info("JobForFriendTaskImpl: 为(" + sub + ")朋友摇奖发生错误");
                 }

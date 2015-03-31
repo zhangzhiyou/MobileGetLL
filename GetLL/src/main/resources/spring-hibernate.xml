@@ -17,11 +17,11 @@
 
 
         <!-- 指定链接数据库的 url -->
-        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/GetLL?useUnicode=true&amp;characterEncoding=utf8"/>
-        &lt;!&ndash; 指定链接数据库的用户名 &ndash;&gt;
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/GetLL?useUnicode=true&amp;characterEncoding=utf8"/>
+        <!-- 指定链接数据库的用户名 -->
         <property name="user" value="root"/>
-        &lt;!&ndash; 指定链接数据库的密码 &ndash;&gt;
-        <property name="password" value="0000"/>-->
+        <!-- 指定链接数据库的密码 -->
+        <property name="password" value="0000"/>
 
         <!-- sae 数据库 配置 -->
         <!--<property name="user" value="3lwmowynl4"/>
@@ -29,11 +29,11 @@
         <property name="password" value="xi5xlk5hj5kw4kj4llwzw0iyi5hh2mlm451jx1ky"/>-->
 
         <!-- mopaas 数据库 -->
-        <property name="jdbcUrl" value="jdbc:mysql://10.4.26.93:3306/d7786d82415924f10a87d99b41c7e6174?useUnicode=true&amp;characterEncoding=utf8"/>
-        <!-- 指定链接数据库的用户名 -->
+        <!--<property name="jdbcUrl" value="jdbc:mysql://10.4.26.93:3306/d7786d82415924f10a87d99b41c7e6174?useUnicode=true&amp;characterEncoding=utf8"/>
+        &lt;!&ndash; 指定链接数据库的用户名 &ndash;&gt;
         <property name="user" value="um4L6zjcAyQcr"/>
-        <!-- 指定链接数据库的密码 -->
-        <property name="password" value="p3duDSuOynGqc"/>
+        &lt;!&ndash; 指定链接数据库的密码 &ndash;&gt;
+        <property name="password" value="p3duDSuOynGqc"/>-->
 
         <!-- 指定链接数据库连接池的最大连接数 -->
         <!--<property name="maxPoolSize" value="40"/>
@@ -62,6 +62,7 @@
                 <value>com/xiayule/getll/db/model/Cookie.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/Function.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/MobileAccount.hbm.xml</value>
+                <value>com/xiayule/getll/db/model/MobileGroup.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -113,6 +114,14 @@
         <property name="mobileAccountDao" ref="mobileAccountDao"/>
     </bean>
 
+    <bean id="mobileGroupDao" class="com.xiayule.getll.db.dao.impl.MobileGroupDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="mobileGroupService" class="com.xiayule.getll.db.service.impl.MobileGroupServiceImpl">
+        <property name="mobileGroupDao" ref="mobileGroupDao"/>
+    </bean>
+
     <!-- 配置 Hibernate 的局部事务管理器，使用 HibernateTransactionManager 类 -->
     <!-- 该类实现 PlatformTransactionManager 接口，是针对 Hibernate 的特定实现 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -134,7 +143,7 @@
     <aop:config>
           <!-- 配置一个切入点 -->
           <aop:pointcut id="ajaxPointcut"
-                        expression="bean(versionHistoryServicve)||bean(creditLogService)||bean(cookieService)||bean(functionService)||bean(mobileAccountService)"/>
+                        expression="bean(versionHistoryServicve)||bean(creditLogService)||bean(cookieService)||bean(functionService)||bean(mobileAccountService)||bean(mobileGroupService)"/>
           <!-- 指定在 leePointcut 切入点应用 txAdvice 事务增强处理 -->
           <aop:advisor advice-ref="txAdvice"
                        pointcut-ref="ajaxPointcut"/>

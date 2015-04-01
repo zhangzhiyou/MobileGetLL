@@ -57,12 +57,12 @@
                 <!-- 以下列出所有的 PO 映射文件 -->
                 <!--<value>com/xiayule/getll/db/model/MobileAccount.hbm.xml</value>-->
                 <!--<value>com/xiayule/getll/db/model/FlowMoneyCost.hbm.xml</value>-->
+                <value>com/xiayule/getll/db/model/MobileGroup.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/HistoryVersion.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/CreditLog.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/Cookie.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/Function.hbm.xml</value>
                 <value>com/xiayule/getll/db/model/MobileAccount.hbm.xml</value>
-                <value>com/xiayule/getll/db/model/MobileGroup.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">

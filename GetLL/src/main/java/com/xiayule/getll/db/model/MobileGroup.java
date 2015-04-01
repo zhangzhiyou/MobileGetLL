@@ -13,7 +13,7 @@ public class MobileGroup {
     /**
      * 相同owner的手机号 index 相同, 这里使用 uuid
      */
-    private String index;
+    private String groupIndex;
 
     public MobileGroup() {
 
@@ -21,11 +21,17 @@ public class MobileGroup {
 
     public MobileGroup(String mobile) {
         this(mobile, UUIDUtils.generate());
+        this.id = 1;
     }
 
     public MobileGroup(String mobile, String index) {
         this.mobile = mobile;
-        this.index = index;
+        this.groupIndex = index;
+    }
+
+    @Override
+    public String toString() {
+        return "id:" + id + " mobile:" + mobile + " groupIndex:" + groupIndex;
     }
 
     public Integer getId() {
@@ -44,11 +50,11 @@ public class MobileGroup {
         this.mobile = mobile;
     }
 
-    public String getIndex() {
-        return index;
+    public String getGroupIndex() {
+        return groupIndex;
     }
 
-    public void setIndex(String index) {
-        this.index = index;
+    public void setGroupIndex(String groupIndex) {
+        this.groupIndex = groupIndex;
     }
 }

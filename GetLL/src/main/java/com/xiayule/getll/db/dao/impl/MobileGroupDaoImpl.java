@@ -30,11 +30,11 @@ public class MobileGroupDaoImpl extends HibernateDaoSupport implements MobileGro
             return null;
         }
 
-        String hql = "select mobile from MobileGroup m where m.mobile <> :mobile and m.index = :index";
+        String hql = "select mobile from MobileGroup m where m.mobile <> :mobile and m.groupIndex = :index";
 
         Query query = currentSession().createQuery(hql);
         query.setParameter("mobile", mobile);
-        query.setParameter("index", mobileGroup.getIndex());
+        query.setParameter("index", mobileGroup.getGroupIndex());
 
         return (List<String>) query.list();
     }

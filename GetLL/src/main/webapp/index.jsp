@@ -129,9 +129,14 @@
                 <div class="col-xs-12">
                     <h3>
                         <!-- 问候语 -->
-                        <span style="font-size: 25px"> <%= TimeUtils.getGreetings() %> &nbsp;<span id="userNick" style="font-size: 45px;"></span>&nbsp;</span><br />
+                        <span style="font-size: 25px"> <%= TimeUtils.getGreetings() %> &nbsp;<span id="userNick" style="font-size: 45px;"></span>&nbsp;</span>
 
-                        <small style="color: #b09fc9" id="userMobile">&nbsp;</small>
+                        <div class="dropdown">
+                            <a data-toggle="dropdown" href="#"><small style="color: #b09fc9" id="userMobile">&nbsp;</small><b class="caret"></b></a>
+
+                            <ul class="dropdown-menu" id="mobileList">
+                            </ul>
+                        </div>
                     </h3>
                 </div>
 

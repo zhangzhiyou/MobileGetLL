@@ -1,11 +1,13 @@
 package com.xiayule.getll.action;
 
 import com.opensymphony.xwork2.Action;
+import com.xiayule.getll.db.service.MobileGroupService;
+import com.xiayule.getll.service.CookieService;
+import com.xiayule.getll.service.SubscriberService;
 import com.xiayule.getll.service.draw.api.PlayService;
-import com.xiayule.getll.utils.factory.CookieFactory;
-import com.xiayule.getll.service.*;
 import com.xiayule.getll.utils.JsonUtils;
 import com.xiayule.getll.utils.UserUtils;
+import com.xiayule.getll.utils.factory.CookieFactory;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -14,7 +16,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.Cookie;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tan on 14-7-27.
@@ -29,6 +33,9 @@ public class AjaxAction {
 
     @Autowired
     private PlayService playService;
+
+    @Autowired
+    private MobileGroupService mobileGroupService;
 
 //    @Autowired
 //    private RegisterCodeService registerCodeService;
@@ -689,6 +696,8 @@ public class AjaxAction {
         return Action.SUCCESS;
     }
 
+
+
     public String changeStatusAutoReceive() {
         String m = UserUtils.getMobileFromCookie();
 
@@ -712,6 +721,55 @@ public class AjaxAction {
         logger.info(m + " changeStatusAutoReceive: status(" + s + ")");
 
         json.put("status", "ok");
+
+        return Action.SUCCESS;
+    }
+
+
+    public String getMobileGroup() {
+
+        String m = UserUtils.getMobileFromCookie();
+
+        json = new HashMap();
+
+        List<String> mobileGroups = mobileGroupService.getGroup(m);
+
+
+        json.put("status", "ok");
+
+        json.put("mobileGroups", mobileGroups);
+
+        return Action.SUCCESS;
+    }
+
+    public String addMobileGroup() {
+
+        String m = UserUtils.getMobileFromCookie();
+        // 想要绑定的手机号
+        String m2 = getMobile();
+
+        mobileGroupService.addToGroup(m, m2);
+
+        json = new HashMap();
+        json.put("status", "ok");
+
+        List<String> mobileGroups = mobileGroupService.getGroup(m);
+        json.put("mobileGroups", mobileGroups);
+
+        return Action.SUCCESS;
+    }
+
+    public String deleteMobileGroup() {
+        String cookieMobile = UserUtils.getMobileFromCookie();
+
+        String m = getMobile();
+
+        mobileGroupService.delete(m);
+
+        json = new HashMap();
+        json.put("status", "ok");
+        List<String> mobileGroups = mobileGroupService.getGroup(cookieMobile);
+        json.put("mobileGroups", mobileGroups);
 
         return Action.SUCCESS;
     }
@@ -894,4 +952,5 @@ public class AjaxAction {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
 }

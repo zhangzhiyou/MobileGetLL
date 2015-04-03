@@ -20,6 +20,8 @@ public class MobileGroupServiceImpl implements MobileGroupService {
      * 将两个手机号放入相同的组
      */
     public void addToGroup(String m1, String m2) {
+        if (m1.equals(m2)) return;
+
         MobileGroup mobileGroup1 = get(m1);
         MobileGroup mobileGroup2 = get(m2);
 

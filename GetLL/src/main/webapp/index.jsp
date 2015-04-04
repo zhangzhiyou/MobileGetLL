@@ -134,8 +134,7 @@
                         <div class="dropdown">
                             <a data-toggle="dropdown" href="#"><small style="color: #b09fc9" id="userMobile">&nbsp;</small><b class="caret"></b></a>
 
-                            <ul class="dropdown-menu" id="mobileList">
-                            </ul>
+                            <ul class="dropdown-menu" id="mobileGroups"></ul>
                         </div>
                     </h3>
                 </div>
@@ -320,6 +319,36 @@
         </table>
     </div>
 
+    <%--绑定手机号--%>
+    <div class="modal fade" id="modal-mobile-group" tabindex="-1" role="dialog"
+         aria-labelledby="modal-mobile-group" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="modal-forFriend-label">
+                        添加手机号
+                    </h4>
+                </div>
+                <div class="modal-body" style="text-align: center">
+                    请输入需要绑定的手机号: <input type="text" name="mobile" id="groupMobile" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-cancel"
+                            data-dismiss="modal">返回
+                    </button>
+                    <button type="button" class="btn btn-primary action-add-group-mobile"
+                            data-dismiss="modal">
+                        添加
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
     <!-- 兑换申请表单 -->
     <form action="/score" method="POST" name="flowScoreCfPage" id="flowScoreCfPage" class='hide'>
         <input type="text" value="flowScoreCfPage" name="redirect"/>
@@ -348,9 +377,42 @@
     <script>
 
         $(function () {
+            $(".action-add-group-mobile").click(function () {
+                var mobile = $("#groupMobile").val();
+
+                var params = {mobile: mobile};
+
+                $.post("/ajax/addMobileGroup.action?r=" + Math.random(), params, function (data) {
+                    if (data.status != "ok") {
+
+                        alert("绑定手机号失败");
+
+                        return;
+                    } else {
+                        var mobileGroups = data.mobileGroups;
+                        eventMan.renderMobileGroups(mobileGroups);
+
+                        console.log(mobileGroups);
+                    }
+                })
+            });
+
+            $(".btn-cancel").click(function () {
+
+            });
+
+//            关闭模态框后，自动清空内容
+            $('#modal-mobile-group').on('hide.bs.modal', function () {
+                        $("#groupMobile").val("");
+                    }
+            );
+
             eventMan.checkLogin(function () {
                 if (eventMan.isLogin()) {
                     $("#userMobile").html(eventMan.loginMobile_);
+
+                    // 显示 手机组
+                    eventMan.renderMobileGroups();
 
                     if (eventMan.nickName_ != null && eventMan.nickName_ != "") {
                         $("#userNick").html(eventMan.nickName_);

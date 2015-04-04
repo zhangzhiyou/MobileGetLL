@@ -85,3 +85,7 @@ html, body {
 .grayfont{font-size:0.8em; color:#898989; padding-left:30px;}
 
 .smallfont{font-size:0.8em;}
+
+#mobileGroups {
+    border: green 1px solid;
+}

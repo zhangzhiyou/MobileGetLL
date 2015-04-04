@@ -10,12 +10,14 @@ import com.xiayule.getll.service.draw.api.PlayService;
 import com.xiayule.getll.utils.DecimalUtils;
 import com.xiayule.getll.utils.TimeUtils;
 import com.xiayule.getll.utils.UserUtils;
+import com.xiayule.getll.utils.factory.CookieFactory;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -30,7 +32,7 @@ import java.util.Map;
  */
 @Component
 @Scope("prototype")
-public class HomeAction implements Action{
+public class HomeAction {
 
     //todo: 日志
     private static Logger logger = Logger.getLogger(HomeAction.class);
@@ -47,8 +49,9 @@ public class HomeAction implements Action{
     @Autowired
     private MobileAccountService mobileAccountService;
 
-    @Override
-    public String execute() throws Exception {
+    private String mobile;
+
+    public String home() throws Exception {
 //        System.out.println("access HOme Action");
 
         String mobile = UserUtils.getMobileFromCookie();
@@ -57,7 +60,7 @@ public class HomeAction implements Action{
         if (mobile == null) {
             System.out.println("需要重新登录");
 
-            return LOGIN;
+            return Action.LOGIN;
         } /*ed -lse if (!playService.isLogined(mobile)) {// 这个还是在js里面检测
 
         }
@@ -115,7 +118,22 @@ public class HomeAction implements Action{
         // 传递参数到jsp
         request.setAttribute("model", model);
 
-        return SUCCESS;
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 用于切换手机组中的登录手机号
+     * @return
+     */
+    public String changeLoginMobile() {
+        String m = getMobile();
+
+        Cookie cookie = CookieFactory.newCookie("mobile", m, ServletActionContext.getRequest().getContextPath());
+
+        // 设置 cookie
+        ServletActionContext.getResponse().addCookie(cookie);
+
+        return Action.SUCCESS;
     }
 
     // set and get methods
@@ -130,5 +148,13 @@ public class HomeAction implements Action{
 
     public void setCreditLogService(CreditLogService creditLogService) {
         this.creditLogService = creditLogService;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

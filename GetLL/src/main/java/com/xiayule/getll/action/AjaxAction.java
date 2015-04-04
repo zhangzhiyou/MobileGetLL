@@ -246,11 +246,16 @@ public class AjaxAction {
 
             jsonObj = JsonUtils.stringToJson(rs);
 
-            // 测试 todo
             if (jsonObj == null) {
                 jsonObj = new JSONObject();
 //                System.out.println("jsonobj == null");
+            } else {
+                List<String> mobileGroups = mobileGroupService.getGroup(m);
+
+                // 添加手机组
+                jsonObj.getJSONObject("result").put("mobileGroups", mobileGroups);
             }
+
         }
 
         return Action.SUCCESS;

@@ -49,11 +49,15 @@
             <result name="success">/score.jsp</result>
         </action>
 
-        <action name="home" class="homeAction">
+        <action name="home" class="homeAction" method="home">
             <result name="success">/index.jsp</result>
             <!--<result name="login">/admin.jsp</result>-->
         </action>
 
+        <!--用于切换手机号-->
+        <action name="changeLoginMobile" class="homeAction" method="changeLoginMobile">
+            <result name="success" type="redirectAction">home</result>
+        </action>
 
         <!--<action name="search" class="searchAction">
             <result name="success">/search.jsp</result>

@@ -10,6 +10,9 @@ function EventMan() {
     // 移动号码正则式
     this.mobileReg_ = /^1\d{10}$/;
 
+    // mobileGroups
+    this.mobileGroups = [];
+
     // 剩余摇奖次数
     this.remainTimes_ = 0;
 
@@ -231,6 +234,7 @@ EventMan.prototype.checkLogin = function(loginCallback, notLoginCallBack) {
         // 已经登录的号码(存在则表示已经登录,否则未登录)
         that.loginMobile_ = data.result.loginMobile;
         that.nickName_ = data.result.nickName;
+        that.mobileGroups = data.result.mobileGroups;
 
         if (that.loginMobile_) {
             if (loginCallback) {
@@ -242,6 +246,29 @@ EventMan.prototype.checkLogin = function(loginCallback, notLoginCallBack) {
             }
         }
     });
+};
+
+// 展示 mobileGroups
+EventMan.prototype.renderMobileGroups = function (mobileGroups) {
+
+    mobileGroups = mobileGroups || this.mobileGroups;
+
+    var htmls = [];
+
+    if (mobileGroups) {
+        for (var i=0; i<mobileGroups.length; i++) {
+            var mobile = mobileGroups[i];
+
+            htmls.push("<li><a href=\"/changeLoginMobile?mobile=" + mobile + "\">" + mobile + "</a></li>");
+        }
+    }
+
+    //    分割条
+    htmls.push("<li class=\"divider\"></li>")
+
+    htmls.push("<li><a href=\"#modal-mobile-group\" data-toggle='modal'><i class=\"glyphicon glyphicon-plus\"></i> 绑定手机号</a></li>");
+
+    $("#mobileGroups").html(htmls.join("\n"));
 };
 
 /**

@@ -392,7 +392,7 @@
                         var mobileGroups = data.mobileGroups;
                         eventMan.renderMobileGroups(mobileGroups);
 
-                        console.log(mobileGroups);
+                        alert("绑定成功");
                     }
                 })
             });
@@ -406,6 +406,28 @@
                         $("#groupMobile").val("");
                     }
             );
+
+//             动态绑定事件, 删除手机组
+            $("#mobileGroups").delegate(".delete-group-mobile", "click", function () {
+
+                var mobile = $(this).data("mobile");
+
+                var params = {mobile: mobile};
+
+                $.post("/ajax/deleteMobileGroup.action?r=" + Math.random(), params, function (data) {
+                    if (data.status != "ok") {
+
+                        alert("删除绑定的手机号失败");
+
+                        return;
+                    } else {
+                        var mobileGroups = data.mobileGroups;
+                        eventMan.renderMobileGroups(mobileGroups);
+
+                        alert("解绑成功")
+                    }
+                })
+            });
 
             eventMan.checkLogin(function () {
                 if (eventMan.isLogin()) {

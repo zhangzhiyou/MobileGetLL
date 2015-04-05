@@ -89,3 +89,24 @@ html, body {
 #mobileGroups {
     border: green 1px solid;
 }
+
+a.li-left {
+    width: 70%;
+    padding-right:0px;
+    float:left;
+}
+
+i.li-right {
+    float: right;
+    display: block;
+    height: 35px;
+    width: 30%;
+    line-height: 35px;
+    text-align: center;
+    color: red;
+    cursor: pointer;
+}
+
+i.li-right:hover {
+    background: rgba(202,206,209,.5);
+}

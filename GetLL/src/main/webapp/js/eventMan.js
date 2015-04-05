@@ -259,7 +259,8 @@ EventMan.prototype.renderMobileGroups = function (mobileGroups) {
         for (var i=0; i<mobileGroups.length; i++) {
             var mobile = mobileGroups[i];
 
-            htmls.push("<li><a href=\"/changeLoginMobile?mobile=" + mobile + "\">" + mobile + "</a></li>");
+            htmls.push("<li><a  class=\"li-left\" href=\"/changeLoginMobile?mobile=" + mobile + "\">" + mobile + "</a><i data-mobile=\"" + mobile + "\" class=\"li-right delete-group-mobile glyphicon glyphicon-trash\"></i></li>");
+
         }
     }
 

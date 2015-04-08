@@ -46,8 +46,8 @@ public class PlayServiceImpl implements PlayService {
 
         String result = post(mobile, urlGetPassword, params);
 
-        exchangeLogger.info(mobile + ": getPassword, 返回信息:(" + result + ")");
-        System.out.println(mobile + ": getPassword, 返回信息:(" + result + ")");
+//        exchangeLogger.info(mobile + ": getPassword, 返回信息:(" + result + ")");
+//        System.out.println(mobile + ": getPassword, 返回信息:(" + result + ")");
 
         return result;
     }
@@ -65,7 +65,7 @@ public class PlayServiceImpl implements PlayService {
             String drawCount = getFromResult(result, "drawCount");
             return Integer.parseInt(drawCount);
         } catch (Exception e) {
-            logger.info(mobile + " getRemainTimes 出错, 返回信息: " + "(" + result + ")");
+//            logger.info(mobile + " getRemainTimes 出错, 返回信息: " + "(" + result + ")");
             return 0; //  如果解析错误，就认为0次
         }
     }
@@ -87,7 +87,7 @@ public class PlayServiceImpl implements PlayService {
 //        String s = httpService.post(urlLoginDo, params);
         String s = post(mobile, urlLoginDo, params);
 
-        exchangeLogger.info(mobile + ": loginDo 返回信息:(" + s + ")");
+//        exchangeLogger.info(mobile + ": loginDo 返回信息:(" + s + ")");
 
 
 //        System.out.println("loginDo:(" + s + ")");
@@ -123,7 +123,7 @@ public class PlayServiceImpl implements PlayService {
 
         String json = post(cookieMobile, urlDrawPath, null);
 
-        logger.info(cookieMobile + " draw 返回(" + json + ")");
+//        logger.info(cookieMobile + " draw 返回(" + json + ")");
 
         return json;
     }
@@ -154,7 +154,7 @@ public class PlayServiceImpl implements PlayService {
 
         String json = get(cookieMobile, urlAddDrawScore);
 
-        logger.info(cookieMobile + " addDrawScore 返回(" + json + ")");
+//        logger.info(cookieMobile + " addDrawScore 返回(" + json + ")");
 
         return json;
     }
@@ -219,7 +219,7 @@ public class PlayServiceImpl implements PlayService {
 
             // 只有当加载出来手机号了,且加载的手机号不为null, 才删除cookie
             if ( !loginMobile.equals(mobile)) {
-                logger.info(mobile + " loadLoginMobile返回mobile(" + loginMobile + ") 删除 cookie 成功");
+//                logger.info(mobile + " loadLoginMobile返回mobile(" + loginMobile + ") 删除 cookie 成功");
                 cookieService.deleteCookie(mobile);
                 return false;
             } else return true;
@@ -234,7 +234,7 @@ public class PlayServiceImpl implements PlayService {
         String rs = get(mobile, urlLoadMobile);
 
         //todo: 检查返回信息
-        logger.info(mobile + " loadLoginMobile 返回信息: " + "(" + rs + ")");
+//        logger.info(mobile + " loadLoginMobile 返回信息: " + "(" + rs + ")");
 
 //        System.out.println(mobile + " loadLoginMobile 返回信息: " + "(" + rs + ")");
 
@@ -272,7 +272,7 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(cookieMobile, urlTransferGiftsReceive, params);
 
-        logger.info(cookieMobile + ": 领取赠送的流量币 id:(" + paramId + ") " + " 返回信息:(" + rs + ")");
+//        logger.info(cookieMobile + ": 领取赠送的流量币 id:(" + paramId + ") " + " 返回信息:(" + rs + ")");
 
         return rs;
     }
@@ -323,7 +323,7 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(realMobile, urlGetOtherPassword, params);
 
-        exchangeLogger.info(realMobile + ": getOtherPassword, 返回信息:(" + rs + ")");
+//        exchangeLogger.info(realMobile + ": getOtherPassword, 返回信息:(" + rs + ")");
 
         return rs;
     }
@@ -339,7 +339,7 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(realMobile, urlTransferGifts, params);
 
-        exchangeLogger.info(realMobile + ": 转赠给 " + paramMobile + " smsContext:" + smsContext + " 转赠金额: " + transferGifts + " 返回信息:(" + rs + ")");
+//        exchangeLogger.info(realMobile + ": 转赠给 " + paramMobile + " smsContext:" + smsContext + " 转赠金额: " + transferGifts + " 返回信息:(" + rs + ")");
 
         return rs;
     }
@@ -357,8 +357,8 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(cookieMobile, urlGetTransferGiftsList, params);
 
-        logger.info(cookieMobile + " getTransferGiftsList: 参数(queryType:" + queryType
-                + ", type:" + type + ",status:" + status + ") 返回(" + rs + ")");
+//        logger.info(cookieMobile + " getTransferGiftsList: 参数(queryType:" + queryType
+//                + ", type:" + type + ",status:" + status + ") 返回(" + rs + ")");
 
         return rs;
     }
@@ -379,7 +379,7 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(mobile, urlExchangePrize, params);
 
-        exchangeLogger.info(mobile + ": 使用动态(" + password + ") 兑换id(" + exchangeID + ") 兑换type(" + type + ") 返回信息:(" + rs + ")");
+//        exchangeLogger.info(mobile + ": 使用动态(" + password + ") 兑换id(" + exchangeID + ") 兑换type(" + type + ") 返回信息:(" + rs + ")");
 
         return rs;
     }
@@ -438,7 +438,7 @@ public class PlayServiceImpl implements PlayService {
 
 //        System.out.println("smsNoticeSetQuery: " + rs);
 
-        logger.info(cookieMobile + " smsNoticeSetQuery: rs(" + rs + ")");
+//        logger.info(cookieMobile + " smsNoticeSetQuery: rs(" + rs + ")");
 
         return rs;
     }
@@ -456,8 +456,8 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(cookieMobile, urlSmsNoticeSet, params);
 
-        logger.info(cookieMobile + " smsNoticeSet: cookieMobile(" + cookieMobile
-                + ") type(" + type + ") value(" + value + ")" + " rs(" + rs + ")");
+//        logger.info(cookieMobile + " smsNoticeSet: cookieMobile(" + cookieMobile
+//                + ") type(" + type + ") value(" + value + ")" + " rs(" + rs + ")");
 
         return rs;
     }
@@ -474,7 +474,7 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(cookieMobile, urlIfExistNickName, params);
 
-        logger.info(cookieMobile + " ifExistNickName: nickName(" + nickName + ") 返回(" + rs + ")");
+//        logger.info(cookieMobile + " ifExistNickName: nickName(" + nickName + ") 返回(" + rs + ")");
 
         return rs;
     }
@@ -491,7 +491,7 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(cookieMobile, urlChangeNickName, params);
 
-        logger.info(cookieMobile + " changeNickName: nickName(" + nickName + ") 返回(" + rs + ")");
+//        logger.info(cookieMobile + " changeNickName: nickName(" + nickName + ") 返回(" + rs + ")");
 
         return rs;
     }
@@ -501,7 +501,7 @@ public class PlayServiceImpl implements PlayService {
 
         String rs = post(cookieMobile, urlRefreshNickName, null);
 
-        logger.info(cookieMobile + " refreshNickName 返回(" + rs + ")");
+//        logger.info(cookieMobile + " refreshNickName 返回(" + rs + ")");
 
         return rs;
     }

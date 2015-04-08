@@ -723,7 +723,7 @@ public class AjaxAction {
 
         }
 
-        logger.info(m + " changeStatusAutoReceive: status(" + s + ")");
+//        logger.info(m + " changeStatusAutoReceive: status(" + s + ")");
 
         json.put("status", "ok");
 

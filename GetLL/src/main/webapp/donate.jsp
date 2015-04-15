@@ -56,6 +56,11 @@
                     <th style="text-align: center">赠言</th>
                 </tr>
                 <tr>
+                    <td>刘春园</td>
+                    <td>1.00</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
                     <td>张家东</td>
                     <td>1.00</td>
                     <td>&nbsp;</td>

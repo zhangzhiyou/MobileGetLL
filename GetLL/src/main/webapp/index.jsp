@@ -71,7 +71,7 @@
 <div class="container">
     <div class="row">
 
-        <jsp:include page="snap/notification.html"/>
+        <%--<jsp:include page="snap/notification.html"/>--%>
 
         <%--检测到是电脑,显示小人--%>
         <c:if test="${model.isMobile eq false}">

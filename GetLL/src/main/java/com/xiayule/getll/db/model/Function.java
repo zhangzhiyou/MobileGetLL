@@ -1,6 +1,5 @@
 package com.xiayule.getll.db.model;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
  * Created by tan on 15-2-10.

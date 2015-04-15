@@ -14,7 +14,7 @@
 
     <appender name="traceLog4Debug" class="org.apache.log4j.RollingFileAppender">
         <param name="Encoding" value="UTF-8"/>
-        <param name="File" value="log4j/traceLog4Debug.log"/>
+        <param name="File" value="${catalina.base}/log4j/traceLog4Debug.log"/>
         <param name="maxFileSize" value="2000KB"/>
         <param name="maxBackupIndex" value="20"/>
         <layout class="org.apache.log4j.PatternLayout">
@@ -25,7 +25,7 @@
 
     <appender name="infoLog" class="org.apache.log4j.RollingFileAppender">
         <param name="Encoding" value="UTF-8"/>
-        <param name="File" value="log4j/info.log"/>
+        <param name="File" value="${catalina.base}/log4j/info.log"/>
         <param name="maxFileSize" value="6000KB"/>
         <param name="maxBackupIndex" value="10"/>
         <layout class="org.apache.log4j.PatternLayout">

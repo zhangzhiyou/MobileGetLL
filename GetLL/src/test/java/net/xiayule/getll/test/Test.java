@@ -9,23 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:spring-hibernate.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"classpath*:spring-hibernate.xml"})
 public class Test extends TestCase {
 
-    @Autowired
+//    @Autowired
     private MobileGroupService mobileGroupService;
 
-    @Autowired
+//    @Autowired
     private FunctionService functionService;
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testSave() {
         MobileGroup mobileGroup = new MobileGroup("18369905136");
         mobileGroupService.save(mobileGroup);
     }
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testAddToGroup() {
 //        两个都没有组的情况
         mobileGroupService.addToGroup("1", "2");
@@ -43,19 +43,19 @@ public class Test extends TestCase {
         mobileGroupService.addToGroup("7", "8");
     }
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testExist() {
         System.out.println(mobileGroupService.exist("183699051316"));
     }
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testGetGroup() {
         System.out.println(mobileGroupService.getGroup("1"));
         System.out.println();
         System.out.println(mobileGroupService.getGroup("2"));
     }
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testGet() {
         MobileGroup mobileGroup = mobileGroupService.get("18369905136");
         System.out.println(mobileGroup);
@@ -64,7 +64,7 @@ public class Test extends TestCase {
         System.out.println(mobileGroup);
     }
 
-    @org.junit.Test
+//    @org.junit.Test
     public void testDelete() {
         mobileGroupService.delete("18369905136");
     }

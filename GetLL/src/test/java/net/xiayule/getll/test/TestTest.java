@@ -22,9 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:spring-hibernate.xml",
-        "classpath*:spring-redis.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"classpath*:spring-hibernate.xml",
+//        "classpath*:spring-redis.xml"})
 public class TestTest extends TestCase {
 
     @Autowired
@@ -41,7 +41,7 @@ public class TestTest extends TestCase {
 
 
     // 把 redis 中的订阅者数据添加到 mysql 中, 即 mobile_account 表
-    @Test
+//    @Test
     public void transRedisSubToMysql() {
         List<String> subscribers = getAllSubscriber();
 
@@ -57,7 +57,7 @@ public class TestTest extends TestCase {
     }
 
     // 把 redis 中的cookie数据添加到 mysql 中, 即 cookie 表
-    @Test
+//    @Test
     public void transRedisCookieToMysql() {
         List<String> subscribers = getAllSubscriber();
 
@@ -74,7 +74,7 @@ public class TestTest extends TestCase {
     }
 
     // 把 redis 中的 功能 数据添加到 mysql 中, 即 function 表
-    @Test
+//    @Test
     public void transRedisFunctionToMysql() {
         RedisService redisService = getRedisService();
 

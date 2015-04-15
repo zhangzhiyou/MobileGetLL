@@ -27,13 +27,13 @@
         <!--<property name="user" value="3lwmowynl4"/>
         <property name="jdbcUrl" value="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_getll?useUnicode=true&amp;characterEncoding=utf8"/>
         <property name="password" value="xi5xlk5hj5kw4kj4llwzw0iyi5hh2mlm451jx1ky"/>-->
-
-        <!-- mopaas 数据库 -->
+<!--
+        &lt;!&ndash; mopaas 数据库 &ndash;&gt;
         <property name="jdbcUrl" value="jdbc:mysql://10.4.26.93:3306/d7786d82415924f10a87d99b41c7e6174?useUnicode=true&amp;characterEncoding=utf8"/>
-        <!-- 指定链接数据库的用户名 -->
+        &lt;!&ndash; 指定链接数据库的用户名 &ndash;&gt;
         <property name="user" value="um4L6zjcAyQcr"/>
-        <!-- 指定链接数据库的密码 -->
-        <property name="password" value="p3duDSuOynGqc"/>
+        &lt;!&ndash; 指定链接数据库的密码 &ndash;&gt;
+        <property name="password" value="p3duDSuOynGqc"/>-->
 
         <!-- 指定链接数据库连接池的最大连接数 -->
         <!--<property name="maxPoolSize" value="40"/>
@@ -41,6 +41,13 @@
         <property name="minPoolSize" value="1"/>
         &lt;!&ndash; 指定链接数据库连接池的初始化连接数 &ndash;&gt;
         <property name="initialPoolSize" value="1"/>-->
+
+        <!-- ace 链接数据库的 url -->
+        <property name="jdbcUrl" value="jdbc:mysql://rdsbauzbjfzbquj.mysql.rds.aliyuncs.com:3306/r5la1ud65g0sn258?useUnicode=true&amp;characterEncoding=utf8"/>
+        <!-- 指定链接数据库的用户名 -->
+        <property name="user" value="tan"/>
+        <!-- 指定链接数据库的密码 -->
+        <property name="password" value="6224989a"/>
 
         <!-- sae 建议 -->
         <property name="idleConnectionTestPeriod" value="10"/>

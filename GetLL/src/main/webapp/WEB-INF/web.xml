@@ -22,7 +22,7 @@
         <!--多个配置文件之间以，隔开-->
         <param-value>
             /WEB-INF/applicationContext.xml,
-            classpath:spring-quartz.xml,
+            <!--classpath:spring-quartz.xml,-->
             classpath:spring-mail.xml,
             classpath:spring-hibernate.xml,
             classpath:spring-threadPool.xml
